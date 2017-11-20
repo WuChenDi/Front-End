@@ -8,7 +8,7 @@
 
 >  项目地址https://WuChenDi.github.io/PC-zhhj/
 
->  大学时期学习前端所写的一个demo
+>  大学时期 - 学习前端所写的一个demo
 
 >  上线地址http://www.zhonghuagold.com/
 
