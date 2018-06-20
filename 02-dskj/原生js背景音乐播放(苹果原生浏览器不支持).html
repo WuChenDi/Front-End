@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    audio {
+      display: none
+    }
+
+    #div1 {
+      width: 170px;
+      height: 100px;
+      border-radius: 50px;
+      position: relative;
+    }
+
+    #div2 {
+      width: 96px;
+      height: 96px;
+      border-radius: 48px;
+      position: absolute;
+      background: white;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .open1 {
+      background: rgba(0, 184, 0, 0.8);
+    }
+
+    .open2 {
+      top: 2px;
+      right: 1px;
+    }
+
+    .close1 {
+      background: rgba(255, 255, 255, 0.4);
+      border: 3px solid rgba(0, 0, 0, 0.15);
+      border-left: transparent;
+    }
+
+    .close2 {
+      left: 0px;
+      top: 0px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1" class="open1">
+    <div id="div2" class="open2"></div>
+  </div>
+</body>
+
+</html>
+<script>
+  window.onload = function () {
+    var div1 = document.getElementById("div1");
+    var div2 = document.getElementById("div2");
+    var audio = document.createElement('audio');
+    audio.setAttribute("id", "mainBgMusic");
+    audio.controls = true;
+    audio.src = 'http://www.hzqjdz.com.cn/static/music/back.mp3';
+    document.body.appendChild(audio);
+    var mainBgMusic = document.getElementById('mainBgMusic');
+    setTimeout(function () {
+      if (!localStorage.musicFlag) {
+        localStorage.musicFlag = 'open';
+      }
+      console.log('状态码: ' + localStorage.musicFlag);
+      if (localStorage.musicFlag === 'close') {
+        // 关闭音乐
+        mainBgMusic.pause();
+      }
+    }, 500);
+    if (localStorage.musicFlag == 'open') {
+      div1.className = 'open1';
+      div2.className = 'open2';
+    } else {
+      div1.className = 'close1';
+      div2.className = 'close2';
+    }
+    div1.onclick = function () {
+      if (localStorage.musicFlag === 'open') {
+        // 关闭音乐
+        div1.className = 'close1';
+        div2.className = 'close2';
+        mainBgMusic.pause();
+        localStorage.musicFlag = 'close';
+      } else {
+        // 开启音乐
+        div1.className = 'open1';
+        div2.className = 'open2';
+        mainBgMusic.play();
+        localStorage.musicFlag = 'open';
+      }
+    }
+    mainBgMusic.play();
+  };
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  // 通过微信第三方提供api苹果支持背景音乐自动播放 
+  function autoPlayAudio() {
+    wx.config({
+      debug: false,
+      appId: '',
+      timestamp: 1,
+      nonceStr: '',
+      signature: '',
+      jsApiList: []
+    });
+    wx.ready(function () {
+      var globalAudio = document.getElementById("mainBgMusic");
+      globalAudio.play();
+    });
+  };
+  autoPlayAudio();
+</script>

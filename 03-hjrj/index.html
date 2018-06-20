@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.jqprint-0.3.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<div id="print-area">
+				<table>
+					<tr>
+						<td class="dd">test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+					<tr>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+						<td>test</td>
+					</tr>
+				</table>
+			</div>
+			<input type="button" onclick=" print()" value="打印">
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		function print() {
+			$("#print-area").jqprint({
+				debug: false,
+				importCSS: true,
+				printContainer: true,
+				operaSupport: false
+			});
+		}
+	</script>
+
+</html>

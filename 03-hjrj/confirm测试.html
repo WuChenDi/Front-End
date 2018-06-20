@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function disp_confirm() {
+      // 如果用户点击确定按钮，则 confirm() 返回 true。如果点击取消按钮，则 confirm() 返回 false
+      var r = confirm("测试confirm");
+      if (r == true) {
+        console.log("返回true!");
+      }
+      else {
+        console.log("返回false!");
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <input type="button" onclick="disp_confirm()" value="confirm" />
+</body>
+
+</html>
