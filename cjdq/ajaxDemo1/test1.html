@@ -1,0 +1,41 @@
+﻿<style type="text/css">
+	div {
+		margin: 0;
+		padding: 0;
+		width: 184px;
+		height: 200px;
+		border: 1px solid #ccc;
+		display: none;
+	}
+    .main ul{
+        float:left;
+        padding:0px;
+        margin:0px;
+    }
+    .main ul li {
+        display: inline-block;
+        width: 70px;
+        height: 30px;
+        float: left;
+        line-height: 30px;
+        text-align: center;
+        background-color:#d0d0d0;
+        margin-right:2px;
+    }
+</style>
+
+<div class="main">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(".main ul li").click(function () {
+        //alert($(this).html());
+        $(".main ul li").css("background-color", "#d0d0d0");
+        $(this).css("background-color", "#b6ff00");
+    });
+</script>

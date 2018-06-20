@@ -1,0 +1,59 @@
+<!--<style type="text/css">
+	.in {
+		margin: 0;
+		padding: 0;
+		width: 184px;
+		height: 200px;
+		border: 1px solid #ccc;
+		display: none;
+	}
+	
+	.tab {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		width: 200px;
+		overflow: hidden;
+	}
+	
+	.tab li {
+		float: left;
+		width: 60px;
+		height: 30px;
+		background: #ccc;
+		color: #fff;
+		border: 1px solid red;
+		text-align: center;
+		line-height: 30px;
+		cursor: pointer;
+	}
+	
+	.on {
+		display: block;
+	}
+	
+	.tab li.cur {
+		background: blue;
+	}
+</style>-->
+
+<link rel="stylesheet" href="main.css" />
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".tab li").click(function() {
+			$(".tab li").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
+			//$(".in").hide().eq($(this).index()).show();
+			$(".in").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
+
+		});
+	});
+</script>
+
+	<ul class="tab">
+		<li class="cur">最新</li>
+		<li>热门</li>
+		<li>新闻</li>
+	</ul>
+	<div class="in on">11</div>
+	<div class="in">22</div>
+	<div class="in">33</div>

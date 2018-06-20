@@ -1,0 +1,36 @@
+.in {
+	margin: 0;
+	padding: 0;
+	width: 184px;
+	height: 200px;
+	border: 1px solid #ccc;
+	display: none;
+}
+
+.tab {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 200px;
+	overflow: hidden;
+}
+
+.tab li {
+	float: left;
+	width: 60px;
+	height: 30px;
+	background: #ccc;
+	color: #fff;
+	border: 1px solid red;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.on {
+	display: block;
+}
+
+.tab li.cur {
+	background: blue;
+}
