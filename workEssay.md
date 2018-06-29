@@ -27,3 +27,6 @@
 ## reflect on
 百花齐放的前端，留给我的余香会是什么呢？
 
+作者 *WuChenDi*
+
+  [1]: https://WuChenDi.github.io
