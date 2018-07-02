@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <select id="sheng">
+    <option value="">-请选择-</option>
+  </select>
+
+  <select id="shi">
+    <option value="">-请选择-</option>
+  </select>
+
+  <select id="xian">
+    <option value="">-请选择-</option>
+  </select>
+  <script>
+    var osheng = document.getElementById("sheng");
+    var oshi = document.getElementById("shi");
+    var oxian = document.getElementById("xian");
+
+    var arr_sheng = ["广东省", "陕西省", "云南省", "四川省", "山西省"];
+
+    var arr_shi = [
+      ["广州", "佛山", "肇庆", "湛江"],
+      ["西安市", "咸阳市", "宝鸡市", "渭南市"],
+      ["昆明市", "大理市", "丽江市", "西双版纳市"],
+      ["乐山市", "成都市", "大同市", "高新市"],
+      ["太原市", "屏显市", "乐宝市", "李伟市"]
+    ];
+
+    var arr_xian = [
+      [
+        ["天河区", "海珠区", "白云区"], ["霞山区", "雷州市"]
+      ],
+      [
+        ["西安县1", "西安县2"], ["咸阳市1", "咸阳市2"], ["宝鸡市1", "宝鸡市2"], ["渭南市1", "渭南市2"]
+      ],
+      [
+        ["昆明市1", "昆明市2"], ["大理市1", "大理市2"], ["丽江市1", "丽江市2"], ["西双版纳市1", "西双版纳市2"]
+      ],
+      [
+        ["乐山市1", "乐山市2"], ["成都市1", "成都市2"], ["大同市1", "大同市2"], ["高新市1", "高新市2"]
+      ],
+      [
+        ["太原市1", "太原市2"], ["屏显市1", "屏显市2"], ["乐宝市1", "乐宝市2"], ["李伟市1", "李伟市2"]
+      ]
+    ];
+
+    var quanju_arr;//创建一个全局对象，用于存储一个中间数组
+
+    function input_arr(arr, event) {//封装一个函数，用于向下拉栏中添加元素
+      for (var i = 0; i < arr.length; i++) {//下拉栏内的元素来源于数组中的元素，遍历数组
+        var option = new Option(arr[i], i);//创建Option对象（这个O要大写），存入值
+        event.appendChild(option);//把option添加到event对象的末尾
+      }
+    }
+
+    input_arr(arr_sheng, osheng);//调用,给省下拉栏添元素
+
+    osheng.onchange = function () {//给下拉栏绑定事件（当下拉栏元素改变时执行）
+      oshi.options.length = 1;//当省下拉栏改变时，清空市的下拉栏内元素
+      oxian.options.length = 1;//当省下拉栏改变时，清空县的下拉栏内元素
+      var index = this.value;//每一个option标签都有一个value值索引，获取索引，用于数组中元素的选择
+      var arr_shi_next = arr_shi[index];//获取当前选择省的市元素并赋给一个数组
+      quanju_arr = arr_xian[index];//获取当前选择省中市的县元素并赋给定义的中间数组
+      input_arr(arr_shi_next, oshi);//调用,给市下拉栏添元素
+    }
+
+    oshi.onchange = function () {
+      oxian.options.length = 1;
+      var index = this.value;
+      var arr_xian_next = quanju_arr[index];
+      input_arr(arr_xian_next, oxian);//调用,给县下拉栏添元素
+    }
+  </script>
+</body>
+
+</html>
