@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var datas = { "code": 200, "msg": "成功", "data": [{ "ROLEID": "xccccc", "ORGID": "1", "STATE": "jc", "TYPE": null, "CREATETIME": null, "MODTIME": null, "CREATEUSERNAME": null, "MODUSERNAME": null, "FLAG": 0, "SEQ": null, "B0105": null, "B0115": null, "B0120": null, "B0125": null, "B0130": null, "B0135": null, "B0140": null, "B0145": null, "B0150": null, "B0155": null, "B0160": null, "B0165": null, "B0170": null, "B0175": null, "B0180": null, "B0199": null, "D0101": null, "F0102": null, "F0104": null, "F0106": null, "F0108": null, "N0101": null, "N0102": null, "N0103": null, "N0104": null, "N0105": null, "N0106": null, "N0107": null, "N0108": null, "N0109": null, "N0110": null, "N0111": null, "N0112": null, "N0114": null, "N0115": null, "N0116": null, "N0117": null, "N0118": null, "N0119": null, "N0120": null, "ORGNAME": "广州医科大学附属第三医院", "ORGPID": "0", "ORGCJ": "1", "ORGFL": "UN", "CODEITEMID": null, "GRADE": null, "A0000": "1", "GROUPID": "NULL", "POS_COND": "NULL", "INVALID": "NULL", "CORCODE": "1", "END_DATE": "9999/12/31/周五", "START_DATE": "2016/10/22/周六", "VIEW_CHART": "NULL", "DICTID": null, "ORGTYPE": "xz" }, { "ROLEID": "1", "ORGID": "1", "STATE": "jc", "TYPE": null, "CREATETIME": null, "MODTIME": null, "CREATEUSERNAME": null, "MODUSERNAME": null, "FLAG": 0, "SEQ": null, "B0105": null, "B0115": null, "B0120": null, "B0125": null, "B0130": null, "B0135": null, "B0140": null, "B0145": null, "B0150": null, "B0155": null, "B0160": null, "B0165": null, "B0170": null, "B0175": null, "B0180": null, "B0199": null, "D0101": null, "F0102": null, "F0104": null, "F0106": null, "F0108": null, "N0101": null, "N0102": null, "N0103": null, "N0104": null, "N0105": null, "N0106": null, "N0107": null, "N0108": null, "N0109": null, "N0110": null, "N0111": null, "N0112": null, "N0114": null, "N0115": null, "N0116": null, "N0117": null, "N0118": null, "N0119": null, "N0120": null, "ORGNAME": "广州医科大学附属第三医院", "ORGPID": "0", "ORGCJ": "1", "ORGFL": "UN", "CODEITEMID": null, "GRADE": null, "A0000": "1", "GROUPID": "NULL", "POS_COND": "NULL", "INVALID": "NULL", "CORCODE": "1", "END_DATE": "9999/12/31/周五", "START_DATE": "2016/10/22/周六", "VIEW_CHART": "NULL", "DICTID": null, "ORGTYPE": "222222" }], "handles": null };
+    function toLowerCaseKeys(res) {
+      if (res.length == 0) return;
+      let newRes = [];
+      res.forEach(function (value, index) {
+        var newObject = {};
+        for (var key in value) {
+          newObject[key.toLowerCase()] = value[key];
+        }
+        newRes.push(newObject);
+      });
+      return newRes;
+    }
+    toLowerCaseKeys(datas.data);
+    console.log(toLowerCaseKeys(datas.data))
+  </script>
+</body>
+
+</html>
