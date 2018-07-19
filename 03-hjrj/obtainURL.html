@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>获取url中的参数</title>
-		<script type="text/javascript">
-			function getQueryString(name) {
-				var qs = location.search.substr(1), // 获取url中"?"符后的字串 
-					args = {}, // 保存参数数据的对象
-					items = qs.length ? qs.split("&") : [], // 取得每一个参数项,
-					item = null,
-					len = items.length;
+<head>
+  <meta charset="UTF-8">
+  <title>获取url中的参数</title>
+  <script type="text/javascript">
+    function getQueryString(name) {
+      var qs = location.search.substr(1), // 获取url中"?"符后的字串 
+        args = {}, // 保存参数数据的对象
+        items = qs.length ? qs.split("&") : [], // 取得每一个参数项,
+        item = null,
+        len = items.length;
 
-				for(var i = 0; i < len; i++) {
-					item = items[i].split("=");
-					var name = decodeURIComponent(item[0]),
-						value = decodeURIComponent(item[1]);
-					if(name) {
-						args[name] = value;
-					}
-				}
-				return args[name];
-			}
+      for (var i = 0; i < len; i++) {
+        item = items[i].split("=");
+        var name = decodeURIComponent(item[0]),
+          value = decodeURIComponent(item[1]);
+        if (name) {
+          args[name] = value;
+        }
+      }
+      return args[name];
+    }
 
-			var urlEncry = getQueryString("getQueryString");
-			console.log(urlEncry);
-		</script>
-	</head>
+    var urlEncry = getQueryString("getQueryString");
+    console.log(urlEncry);
+  </script>
+</head>
 
-	<body>
-	</body>
+<body>
+</body>
 
 </html>
