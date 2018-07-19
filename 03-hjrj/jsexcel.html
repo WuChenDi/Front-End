@@ -8,53 +8,42 @@
   <title>Document</title>
   <script type="text/javascript" language="javascript">
     var idTmr;
-
     function getExplorer() {
       var explorer = window.navigator.userAgent;
-      //ie 
-      if (explorer.indexOf("MSIE") >= 0) {
+      if (explorer.indexOf("MSIE") >= 0) { // ie
         return 'ie';
-      }
-      //firefox 
-      else if (explorer.indexOf("Firefox") >= 0) {
+      } else if (explorer.indexOf("Firefox") >= 0) { // firefox
         return 'Firefox';
-      }
-      //Chrome
-      else if (explorer.indexOf("Chrome") >= 0) {
+      } else if (explorer.indexOf("Chrome") >= 0) { // Chrome
         return 'Chrome';
-      }
-      //Opera
-      else if (explorer.indexOf("Opera") >= 0) {
+      } else if (explorer.indexOf("Opera") >= 0) { // Opera
         return 'Opera';
-      }
-      //Safari
-      else if (explorer.indexOf("Safari") >= 0) {
+      } else if (explorer.indexOf("Safari") >= 0) { // Safari
         return 'Safari';
       }
     }
-
-    function method1(tableid) { //整个表格拷贝到EXCEL中
-      // debugger
+    // 整个表格拷贝到EXCEL中
+    function method1(tableid) {
       if (getExplorer() == 'ie') {
         var curTbl = document.getElementById(tableid);
         var oXL = new ActiveXObject("Excel.Application");
 
-        //创建AX对象excel 
+        // 创建AX对象excel
         var oWB = oXL.Workbooks.Add();
-        //获取workbook对象 
+        // 获取workbook对象
         var xlsheet = oWB.Worksheets(1);
-        //激活当前sheet 
+        // 激活当前sheet
         var sel = document.body.createTextRange();
         sel.moveToElementText(curTbl);
-        //把表格中的内容移到TextRange中 
+        // 把表格中的内容移到TextRange中
         sel.select;
-        //全选TextRange中内容 
+        // 全选TextRange中内容
         sel.execCommand("Copy");
-        //复制TextRange中内容  
+        // 复制TextRange中内容
         xlsheet.Paste();
-        //粘贴到活动的EXCEL中       
+        // 粘贴到活动的EXCEL中
         oXL.Visible = true;
-        //设置excel可见属性
+        // 设置excel可见属性
 
         try {
           var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
@@ -62,17 +51,13 @@
           print("Nested catch caught " + e);
         } finally {
           oWB.SaveAs(fname);
-
           oWB.Close(savechanges = false);
-          //xls.visible = false;
+          // xls.visible = false;
           oXL.Quit();
           oXL = null;
-          //结束excel进程，退出完成
-          //window.setInterval("Cleanup();",1);
+          // 结束excel进程，退出完成
           idTmr = window.setInterval("Cleanup();", 1);
-
         }
-
       } else {
         tableToExcel('ta')
       }
