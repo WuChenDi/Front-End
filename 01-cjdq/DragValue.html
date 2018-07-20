@@ -1,85 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<style type="text/css">
-			#boxbg {
-				width: 100%;
-				height: 35px;
-				border: 2px solid #778aa0;
-				border-radius: 20px;
-				margin-top: 24px;
-			}
-			
-			#ballbg {
-				width: 98%;
-				margin: 12px auto;
-				height: 12px;
-				background: #4c6c90;
-				margin-left: 2px;
-				position: relative;
-				z-index: 99;
-				border-radius: 8px;
-			}
-			
-			#ball {
-				border-radius: 20px;
-				width: 18px;
-				height: 25px;
-				background: #4c6c90;
-				position: absolute;
-				z-index: 100;
-				top: -7px;
-				border: 1px solid #fff;
-				box-sizing: border-box;
-			}
-		</style>
-	</head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    #boxbg {
+      width: 100%;
+      height: 35px;
+      border: 2px solid #778aa0;
+      border-radius: 20px;
+      margin-top: 24px;
+    }
 
-	<body>
-		<div id="boxbg">
-			<div id="ballbg">
-				<div id="ball"></div>
-			</div>
-		</div>
-	</body>
-	<script type="text/javascript" src="jquery-1.7.2.min.js" ></script>
-	<script>
-		var oDiv = document.getElementById('ball');
-		var oDiv2 = document.getElementById('ballbg');
-		
-		var maxWhith = 40;
-		var dWhith = $("#ballbg").width();
-		var dDiv = $("#ball").width();
-		//console.log(dWhith);
-		//var dSpeed = parseInt((dWhith  - dDiv)/ maxWhith);
-		var dSpeed = parseInt(dWhith/ maxWhith);
-		//console.log(dSpeed);
-		
-		var disX = 0;
-		oDiv.onmousedown = function(ev) {
-			var oEvent = ev || event;
-			disX = oEvent.clientX - oDiv.offsetLeft;
-			document.onmousemove = function(ev) {
-				var oEvent = ev || event;
-				var l = oEvent.clientX - disX;
-				if(l < 0) {
-					l = 0;
-				} else if(l > oDiv2.offsetWidth - oDiv.offsetWidth) {
-					l = oDiv2.offsetWidth - oDiv.offsetWidth;
-				}
-				oDiv.style.left = l + 'px';
-				console.log(parseInt(l / dSpeed + 1));
-				//console.log(oDiv.style.left / dSpeed+1);
-			}
-			document.onmouseup = function() {
-				document.onmousemove = null;
-				document.onmouseup = null;
-			};
-			return false;
-		};
-	</script>
+    #ballbg {
+      width: 98%;
+      margin: 12px auto;
+      height: 12px;
+      background: #4c6c90;
+      margin-left: 2px;
+      position: relative;
+      z-index: 99;
+      border-radius: 8px;
+    }
+
+    #ball {
+      border-radius: 20px;
+      width: 18px;
+      height: 25px;
+      background: #4c6c90;
+      position: absolute;
+      z-index: 100;
+      top: -7px;
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <p>拖拽</p>
+  <div id="boxbg">
+    <div id="ballbg">
+      <div id="ball"></div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script>
+  var oDiv = document.getElementById('ball');
+  var oDiv2 = document.getElementById('ballbg');
+
+  var maxWhith = 40;
+  var dWhith = $("#ballbg").width();
+  var dDiv = $("#ball").width();
+  //console.log(dWhith);
+  //var dSpeed = parseInt((dWhith  - dDiv)/ maxWhith);
+  var dSpeed = parseInt(dWhith / maxWhith);
+  //console.log(dSpeed);
+
+  var disX = 0;
+  oDiv.onmousedown = function (ev) {
+    var oEvent = ev || event;
+    disX = oEvent.clientX - oDiv.offsetLeft;
+    document.onmousemove = function (ev) {
+      var oEvent = ev || event;
+      var l = oEvent.clientX - disX;
+      if (l < 0) {
+        l = 0;
+      } else if (l > oDiv2.offsetWidth - oDiv.offsetWidth) {
+        l = oDiv2.offsetWidth - oDiv.offsetWidth;
+      }
+      oDiv.style.left = l + 'px';
+      console.log(parseInt(l / dSpeed + 1));
+      //console.log(oDiv.style.left / dSpeed+1);
+    }
+    document.onmouseup = function () {
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+    return false;
+  };
+</script>
 
 </html>
