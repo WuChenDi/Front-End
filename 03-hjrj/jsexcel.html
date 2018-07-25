@@ -23,7 +23,7 @@
       }
     }
     // 整个表格拷贝到EXCEL中
-    function method1(tableid) {
+    function onExport(tableid) {
       if (getExplorer() == 'ie') {
         var curTbl = document.getElementById(tableid);
         var oXL = new ActiveXObject("Excel.Application");
@@ -111,7 +111,7 @@
       <td>guest@kali.com</td>
     </tr>
   </table>
-  <input id="Button1" type="button" value="导出EXCEL" onclick="method1('ta')" />
+  <input id="Button1" type="button" value="导出EXCEL" onclick="onExport('ta')" />
 </body>
 
 </html>
