@@ -9,7 +9,7 @@
   <script>
     var timestamp = Date.parse(new Date());
     var unixTimestamp = new Date(timestamp);
-    
+
     Date.prototype.toLocaleString = function () {
       return this.getFullYear() + "-" + (this.getMonth() + 1) + "-" + this.getDate() + " " + this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds();
     };
