@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    // jQuery直接使用$.trim(str)方法即可，str表示要去掉前后所有空格的字符串。
+
+    var string = " 2018-7-30 ";
+    var subString = " 2018 - 7 - 30 ";
+    // 去掉字符串前后所有空格
+    function Trim(str) {
+      return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+
+    // 去掉字符串中所有空格(包括中间空格,需要设置第2个参数为:g)
+    function subTrim(str, is_global) {
+      var result;
+      result = str.replace(/(^\s+)|(\s+$)/g, "");
+      if (is_global.toLowerCase() == "g") {
+        result = result.replace(/\s/g, "");
+      }
+      return result;
+    }
+    console.log(Trim(string));
+    console.log(subTrim(subString, "g"));
+  </script>
+</head>
+
+<body>
+  <p>JavaScript去掉字符串前后空格或去掉所有空格</p>
+</body>
+
+</html>
