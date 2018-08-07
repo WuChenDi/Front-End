@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-		<script type="text/javascript">
-			var countdown = 60;
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var countdown = 60;
 
-			function settime(obj) {
-				if(countdown == 0) {
-					obj.removeAttribute("disabled");
-					obj.value = "免费获取验证码";
-					countdown = 60;
-					return;
-				} else {
-					obj.setAttribute("disabled", true);
-					obj.value = "重新发送(" + countdown + ")";
-					countdown--;
-				}
-				setTimeout(function() {
-					settime(obj)
-				}, 1000)
-			}
-		</script>
-	</head>
+    function settime(obj) {
+      if (countdown == 0) {
+        obj.removeAttribute("disabled");
+        obj.value = "免费获取验证码";
+        countdown = 60;
+        return;
+      } else {
+        obj.setAttribute("disabled", true);
+        obj.value = "重新发送(" + countdown + ")";
+        countdown--;
+      }
+      setTimeout(function () {
+        settime(obj)
+      }, 1000)
+    }
+  </script>
+</head>
 
-	<body>
-		<input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" />
-	</body>
+<body>
+  <input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" />
+</body>
 
 </html>

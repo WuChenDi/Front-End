@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<script type="text/javascript">
-			if(/Android (\d+\.\d+)/.test(ua)) {
-				var version = parseFloat(RegExp.$1);
-				if(version > 2.3)
-					document.write('<meta name="viewport" content="width=750, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
-				else
-					document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
-			} else {
-				document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
-			}
-		</script>
-	</head>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript">
+    if (/Android (\d+\.\d+)/.test(ua)) {
+      var version = parseFloat(RegExp.$1);
+      if (version > 2.3)
+        document.write('<meta name="viewport" content="width=750, minimum-scale = ' + phoneScale + ', maximum-scale = ' +
+          phoneScale + ', target-densitydpi=device-dpi">');
+      else
+        document.write('<meta name="viewport" content="width=750, target-densitydpi=device-dpi">');
+    } else {
+      document.write('<meta name="viewport" content="width=750, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+  </script>
+</head>
 
-	<body>
-	</body>
+<body>
+</body>
 
 </html>

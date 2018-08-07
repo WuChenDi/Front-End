@@ -1,175 +1,188 @@
 <!DOCTYPE>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>test</title>
-		<script type="text/javascript" src="jquery-1.7.2.min.js" ></script>
-		<style type="text/css">
-			.gridtable {
-				margin-top: 5px;
-				width: 100%;
-				font-family: verdana, arial, sans-serif;
-				font-size: 12px;
-				color: #333333;
-				border-width: 1px;
-				border-color: #666666;
-				border-collapse: collapse;
-			}
-			
-			.gridtable td {
-				border-width: 1px;
-				border-style: solid;
-				border-color: #666666;
-				background-color: #ffffff;
-				text-align: center;
-			}
-			
-			.gridtable td input {
-				width: 95%;
-				height: 30px;
-			}
-			
-			.gridtable td textarea {
-				width: 95%;
-				height: 30px;
-				padding: 0 0 0 0;
-				margin: 0 0 0 0;
-			}
-		</style>
-	</head>
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+  <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+  <style type="text/css">
+    .gridtable {
+      margin-top: 5px;
+      width: 100%;
+      font-family: verdana, arial, sans-serif;
+      font-size: 12px;
+      color: #333333;
+      border-width: 1px;
+      border-color: #666666;
+      border-collapse: collapse;
+    }
 
-	<body>
-		<script>
-			$(document).ready(function() {
-				$(".add").click(function() {
-					var count = $('table').size();
-					var a = $("form.Form table:first-child").clone();
-					var table = $(a).attr("id", "table" + count.toString());
-					$("form.Form").append(table);
+    .gridtable td {
+      border-width: 1px;
+      border-style: solid;
+      border-color: #666666;
+      background-color: #ffffff;
+      text-align: center;
+    }
 
-					var table_id = "table" + count.toString()
-					var a = table_id + " input[class='btn_add']"
-					var b = table_id + " input[class='btn_del']"
-					$("#" + a + "").attr("id", "btn_add" + count.toString());
-					var btn_add = $("#" + a + "").attr("id");
-					$("#" + b + "").attr("id", "btn_del" + count.toString());
-					var btn_del = $("#" + b + "").attr("id");
+    .gridtable td input {
+      width: 95%;
+      height: 30px;
+    }
 
-					$("#" + btn_add + "").click(function() {
-						var s = table_id + " tr";
-						var c = table_id + " tr:last-child";
-						var d = table_id + " td[rowspan]";
-						var f = table_id + " input[name=num_tr]";
-						var num_tr = $("#" + s + "").length;
-						if(num_tr < 7) {
-							var tr = $("#" + c + "").clone(); //clone one tr  
+    .gridtable td textarea {
+      width: 95%;
+      height: 30px;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+    }
+  </style>
+</head>
 
-							$(tr).children("td:eq(0)").children("select").attr("name", "name_" + (num_tr - 1).toString()); //name  
-							$(tr).children("td:eq(1)").children("input").attr("name", "ip_" + (num_tr - 1).toString()); //ip  
-							$(tr).children("td:eq(2)").children("input").attr("name", "backup_" + (num_tr - 1).toString()); //backup  
+<body>
+  <script>
+    $(document).ready(function () {
+      $(".add").click(function () {
+        var count = $('table').size();
+        var a = $("form.Form table:first-child").clone();
+        var table = $(a).attr("id", "table" + count.toString());
+        $("form.Form").append(table);
 
-							$("#" + table_id + "").append(tr);
-							count = $("#" + d + "").attr('rowspan');
-							$("#" + d + "").attr('rowspan', parseInt(count) + 1);
-							$("#" + f + "").val(num_tr - 1);
-						}
-					});
-					$("#" + btn_del + "").click(function() {
-						var s = table_id + " tr"
-						var e = table_id + " tr:last-child";
-						var f = table_id + " input[name=num_tr]";
-						var d = table_id + " td[rowspan]";
-						if($("#" + s + "").length > 3) {
-							$("#" + e + "").remove();
-							count = $("#" + d + "").attr('rowspan');
-							$("#" + d + "").attr('rowspan', parseInt(count) - 1);
-							num_tr = $("#" + f + "").val();
-							$("#" + f + "").val(num_tr - 1);
-						}
-					});
-				});
-				$(".remove").click(function() {
-					if($("form.Form table").length > 1) {
-						$("form.Form table:last-child").remove();
-					}
-				});
+        var table_id = "table" + count.toString()
+        var a = table_id + " input[class='btn_add']"
+        var b = table_id + " input[class='btn_del']"
+        $("#" + a + "").attr("id", "btn_add" + count.toString());
+        var btn_add = $("#" + a + "").attr("id");
+        $("#" + b + "").attr("id", "btn_del" + count.toString());
+        var btn_del = $("#" + b + "").attr("id");
 
-				$("#btn_add0").click(function() {
-					var num_tr = $("#table0 tr").length;
-					if(num_tr < 7) { //the max num of tr  
-						var tr = $("#table0 tr:last-child").clone();
-						$(tr).children("td:eq(0)").children("select").attr("name", "name_" + (num_tr - 1).toString()); //name  
-						$(tr).children("td:eq(1)").children("input").attr("name", "ip_" + (num_tr - 1).toString()); //ip  
-						$(tr).children("td:eq(2)").children("input").attr("name", "backup_" + (num_tr - 1).toString()); //backup  
-						$("#table0").append(tr);
-						count = $("#table0 td[rowspan]").attr('rowspan');
-						$("#table0 td[rowspan]").attr('rowspan', parseInt(count) + 1);
-					}
-					$("#table0 input[name=num_tr]").val(num_tr - 1);
-				});
-				$("#btn_del0").click(function() {
-					if($("#table0 tr").length > 3) {
-						$("#table0 tr:last-child").remove();
-						count = $("#table0 td[rowspan]").attr('rowspan');
-						$("#table0 td[rowspan]").attr('rowspan', parseInt(count) - 1);
-						num_tr = $("#table0 input[name=num_tr]").val();
-						$("#table0 input[name=num_tr]").val(num_tr - 1);
-					}
-				});
-			});
-		</script>
-		<!-- 内容 -->
-		<div class="Css">
-			<div id="Content">
-				<form id="Form" class="Form" method="POST" action="." style="margin-bottom:0px;">
-					<table class="gridtable" id="table0">
-						<tr>
-							<td></td>
-							<td>name</td>
-							<td>area</td>
-							<td>num</td>
-							<td>URL</td>
+        $("#" + btn_add + "").click(function () {
+          var s = table_id + " tr";
+          var c = table_id + " tr:last-child";
+          var d = table_id + " td[rowspan]";
+          var f = table_id + " input[name=num_tr]";
+          var num_tr = $("#" + s + "").length;
+          if (num_tr < 7) {
+            var tr = $("#" + c + "").clone(); //clone one tr  
 
-						</tr>
-						<tr>
-							<td rowspan="2"><input type="button" class="btn_del" id="btn_del0" value="-" /><input type="button" class="btn_add" id="btn_add0" value="+" /></td>
-							<td rowspan="2"><input maxlength="255" name="domain" type="url"><input name="num_tr" type="hidden" value="2"></td>
-							<td>
-								<select name="name_0">
-									<option value="0" selected="selected">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-								</select>
-							</td>
-							<td><input name="ip_0" type="text" maxlength="15"></td>
-							<td rowspan="2"><textarea name="testurl" style="height:60px;">www.baidu.com</textarea></td>
+            $(tr).children("td:eq(0)").children("select").attr("name", "name_" + (num_tr - 1).toString()); //name  
+            $(tr).children("td:eq(1)").children("input").attr("name", "ip_" + (num_tr - 1).toString()); //ip  
+            $(tr).children("td:eq(2)").children("input").attr("name", "backup_" + (num_tr - 1).toString()); //backup  
 
-						</tr>
-						<tr>
-							<td>
-								<select name="name_1">
-									<option value="0">0</option>
-									<option value="1" selected="selected">1</option>
-									<option value="2">2</option>
-								</select>
-							</td>
-							<td><input name="ip_1" type="text" maxlength="15"></td>
-						</tr>
-					</table>
-				</form>
-			</div>
-			<button class="remove" style="float:left;">删除表</button>
-			<button class="add" style="float:left;">增加表</button>
+            $("#" + table_id + "").append(tr);
+            count = $("#" + d + "").attr('rowspan');
+            $("#" + d + "").attr('rowspan', parseInt(count) + 1);
+            $("#" + f + "").val(num_tr - 1);
+          }
+        });
+        $("#" + btn_del + "").click(function () {
+          var s = table_id + " tr"
+          var e = table_id + " tr:last-child";
+          var f = table_id + " input[name=num_tr]";
+          var d = table_id + " td[rowspan]";
+          if ($("#" + s + "").length > 3) {
+            $("#" + e + "").remove();
+            count = $("#" + d + "").attr('rowspan');
+            $("#" + d + "").attr('rowspan', parseInt(count) - 1);
+            num_tr = $("#" + f + "").val();
+            $("#" + f + "").val(num_tr - 1);
+          }
+        });
+      });
+      $(".remove").click(function () {
+        if ($("form.Form table").length > 1) {
+          $("form.Form table:last-child").remove();
+        }
+      });
 
-			<br><br>
-			<br>
-			<p width="50%" style="text-align:center;">
-				<input id="Submit" class="button" type="button" value="提交" onclick="">
-			</p>
-		</div>
+      $("#btn_add0").click(function () {
+        var num_tr = $("#table0 tr").length;
+        if (num_tr < 7) { //the max num of tr  
+          var tr = $("#table0 tr:last-child").clone();
+          $(tr).children("td:eq(0)").children("select").attr("name", "name_" + (num_tr - 1).toString()); //name  
+          $(tr).children("td:eq(1)").children("input").attr("name", "ip_" + (num_tr - 1).toString()); //ip  
+          $(tr).children("td:eq(2)").children("input").attr("name", "backup_" + (num_tr - 1).toString()); //backup  
+          $("#table0").append(tr);
+          count = $("#table0 td[rowspan]").attr('rowspan');
+          $("#table0 td[rowspan]").attr('rowspan', parseInt(count) + 1);
+        }
+        $("#table0 input[name=num_tr]").val(num_tr - 1);
+      });
+      $("#btn_del0").click(function () {
+        if ($("#table0 tr").length > 3) {
+          $("#table0 tr:last-child").remove();
+          count = $("#table0 td[rowspan]").attr('rowspan');
+          $("#table0 td[rowspan]").attr('rowspan', parseInt(count) - 1);
+          num_tr = $("#table0 input[name=num_tr]").val();
+          $("#table0 input[name=num_tr]").val(num_tr - 1);
+        }
+      });
+    });
+  </script>
+  <!-- 内容 -->
+  <div class="Css">
+    <div id="Content">
+      <form id="Form" class="Form" method="POST" action="." style="margin-bottom:0px;">
+        <table class="gridtable" id="table0">
+          <tr>
+            <td></td>
+            <td>name</td>
+            <td>area</td>
+            <td>num</td>
+            <td>URL</td>
 
-		</div>
-	</body>
+          </tr>
+          <tr>
+            <td rowspan="2">
+              <input type="button" class="btn_del" id="btn_del0" value="-" />
+              <input type="button" class="btn_add" id="btn_add0" value="+" />
+            </td>
+            <td rowspan="2">
+              <input maxlength="255" name="domain" type="url">
+              <input name="num_tr" type="hidden" value="2">
+            </td>
+            <td>
+              <select name="name_0">
+                <option value="0" selected="selected">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </td>
+            <td>
+              <input name="ip_0" type="text" maxlength="15">
+            </td>
+            <td rowspan="2">
+              <textarea name="testurl" style="height:60px;">www.baidu.com</textarea>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <select name="name_1">
+                <option value="0">0</option>
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+              </select>
+            </td>
+            <td>
+              <input name="ip_1" type="text" maxlength="15">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <button class="remove" style="float:left;">删除表</button>
+    <button class="add" style="float:left;">增加表</button>
+
+    <br>
+    <br>
+    <br>
+    <p width="50%" style="text-align:center;">
+      <input id="Submit" class="button" type="button" value="提交" onclick="">
+    </p>
+  </div>
+
+  </div>
+</body>
 
 </html>

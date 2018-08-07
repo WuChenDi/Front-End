@@ -41,9 +41,9 @@
     // 随机字符串
     var pool = "ABCDEFGHIJKLIMNOPQRSTUVWSYZ1234567890";
     for (var i = 0; i < 4; i++) {
-      var c = pool[rn(0, pool.length)];//随机的字
-      var fs = rn(18, 40);//字体的大小
-      var deg = rn(-30, 30);//字体的旋转角度
+      var c = pool[rn(0, pool.length)]; //随机的字
+      var fs = rn(18, 40); //字体的大小
+      var deg = rn(-30, 30); //字体的旋转角度
       ctx.font = fs + 'px Simhei';
       ctx.textBaseline = "top";
       ctx.fillStyle = rc(80, 150);
