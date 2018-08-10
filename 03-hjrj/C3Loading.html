@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Loading加载</title>
+  <style>
+    .relative {
+      position: relative;
+    }
+
+    .loader-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -120px 0 0 -120px;
+      width: 240px;
+      height: 240px;
+    }
+
+    .loader-ring-light {
+      width: 240px;
+      height: 240px;
+      -moz-border-radius: 240px;
+      -webkit-border-radius: 240px;
+      border-radius: 240px;
+      -moz-box-shadow: 0 4px 0 #00abf2 inset;
+      -webkit-box-shadow: 0 4px 0 #00abf2 inset;
+      box-shadow: 0 4px 0 #00abf2 inset;
+      animation: rotate-360 2s linear infinite;
+    }
+
+    .loader-ring-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      -moz-border-radius: 240px;
+      -webkit-border-radius: 240px;
+      border-radius: 240px;
+      -moz-box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3) inset;
+      -webkit-box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3) inset;
+      box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3) inset;
+    }
+
+    @keyframes rotate-360 {
+      from {
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+      }
+      to {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    body {
+      background-color: rgba(0, 0, 0, 0.87);
+    }
+  </style>
+</head>
+
+<body>
+  <div class='loader-ring'>
+    <div class='loader-ring-light'></div>
+    <div class='loader-ring-track'></div>
+  </div>
+</body>
+
+</html>
