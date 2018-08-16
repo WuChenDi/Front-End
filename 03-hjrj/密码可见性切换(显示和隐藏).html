@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/jquery.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'iconfont';
+      /* project id 674189 */
+      src: url('//at.alicdn.com/t/font_674189_dvawifegwrj.eot');
+      src: url('//at.alicdn.com/t/font_674189_dvawifegwrj.eot?#iefix') format('embedded-opentype'),
+      url('//at.alicdn.com/t/font_674189_dvawifegwrj.woff') format('woff'),
+      url('//at.alicdn.com/t/font_674189_dvawifegwrj.ttf') format('truetype'),
+      url('//at.alicdn.com/t/font_674189_dvawifegwrj.svg#iconfont') format('svg');
+    }
+
+    .iconfont {
+      display: inline-block;
+      font-family: 'iconfont';
+      font-style: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      transform: translate(0, 0);
+      -webkit-text-stroke-width: 0.2px;
+    }
+
+    .bui-input {
+      box-sizing: border-box;
+      height: 40px;
+      padding: 8px 10px;
+      line-height: 24px;
+      border: 1px solid #DDDDDD;
+      color: #5F5F5F;
+      font-size: 14px;
+      vertical-align: middle;
+      border-radius: 4px;
+      width: 330px;
+    }
+
+    .bui-input:hover {
+      border: 1px #659aea solid;
+    }
+
+    .bui-input:focus {
+      outline: none;
+      border: 1px solid #4F9FE9;
+      box-shadow: 0 0 3px 0 #2171BB;
+      color: #595959;
+    }
+
+    .password-wrap {
+      position: relative;
+      width: 330px;
+    }
+
+    .password-wrap .bt-showpwd {
+      color: #999999;
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      line-height: 24px;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .password-wrap .bt-showpwd.off::before {
+      content: "\e60a";
+      font-family: "iconfont";
+      font-size: 18px;
+    }
+
+    .password-wrap .bt-showpwd.on::before {
+      content: "\e60b";
+      font-family: "iconfont";
+      font-size: 18px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="password-wrap">
+    <div class="password-input">
+      <input type="password" name="key" value='https://github.com/WuChenDi' class="bui-input" autocomplete="off" />
+    </div>
+    <i class="bt-showpwd off"></i>
+  </div>
+  <script>
+    $(".bt-showpwd").on("click", function (e) {
+      e.preventDefault();
+      var $this = $(this);
+      var $password = $this.closest(".password-wrap");
+      var $input = $password.find('input');
+      var $inputWrap = $password.find('.password-input');
+      var newinput = '',
+        inputHTML = $inputWrap.html(),
+        inputValue = $input.val();
+      if ($input.attr('type') === 'password') {
+        newinput = inputHTML.replace(/type\s*=\s*('|")?password('|")?/ig, 'type="text"');
+        $inputWrap.html(newinput).find('input')[0].value = inputValue;
+        $this.removeClass("off").addClass("on");
+      } else {
+        newinput = inputHTML.replace(/type\s*=\s*('|")?text('|")?/ig, 'type="password"');
+        $inputWrap.html(newinput).find('input')[0].value = inputValue;
+        $this.removeClass("on").addClass("off");
+      }
+    });
+  </script>
+</body>
+
+</html>
