@@ -1,12 +1,12 @@
-# Demo or Summarize
+# 👀前端知识整理
   
-yuanpiaobderendouyoujiuhe ，gududerendouhuichangge。
+## yuanpiaoboderendouyoujiuhe，gududerendohuichangge。
 
-* 01-cjdq
-* 02-dskj
-* 03-hjrj
+1. cjdq (2017/8 - 2018/3)
+2. dskj (2018/3 - 2018/5)
+3. hjrj (2018/5 - now)
 
 
 作者 *WuChenDi*
 
-  [1]: https://WuChenDi.github.io
+[1]: https://WuChenDi.github.io
