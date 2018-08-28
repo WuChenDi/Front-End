@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script>
+    // 第一种方法
     var timestamp = Date.parse(new Date());
     var unixTimestamp = new Date(timestamp);
 
@@ -16,6 +17,25 @@
     };
     commonTime = unixTimestamp.toLocaleString();
     console.log(commonTime);
+
+    // 第二种方法
+    function timestampToTime(timestamp) {
+      const dateObj = new Date(+timestamp) // ps, 必须是数字类型，不能是字符串, +运算符把字符串转化为数字，更兼容
+      const year = dateObj.getFullYear() // 获取年，
+      const month = dateObj.getMonth() + 1 // 获取月，必须要加1，因为月份是从0开始计算的
+      const date = dateObj.getDate() // 获取日，记得区分getDay()方法是获取星期几的。
+      const hours = pad(dateObj.getHours()) // 获取时, pad函数用来补0
+      const minutes = pad(dateObj.getMinutes()) // 获取分
+      const seconds = pad(dateObj.getSeconds()) // 获取秒
+      return year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds
+    }
+
+    // 根据需求做适当的补0
+    function pad(str) {
+      return +str >= 10 ? str : '0' + str
+    }
+
+    console.log(timestampToTime(Date.parse(new Date())));
   </script>
 </head>
 
