@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="test">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <style>
+    table td {
+      width: 200px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    table td span {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+  <script>
+    angular.module('test', []).controller('testController', function ($scope) {
+
+      $scope.data = [
+        { id: 1, name: 'huang', age: 22 },
+        { id: 2, name: 'zhao', age: 22 },
+        { id: 3, name: 'zhou', age: 20 },
+        { id: 4, name: 'sun', age: 22 }
+      ];
+
+      $scope.replace = function ($event, dataObj, name) {
+
+        var obj = $event.target;
+
+        //当被双击的是span元素时，才执行事件         
+        if (obj.nodeName == 'SPAN') {
+
+          //转换成输入框  
+          var input = document.createElement("input");
+          input.value = obj.innerHTML;
+          obj.parentNode.replaceChild(input, obj);
+          //聚焦的替换后的input上  
+          input.focus();
+          input.onblur = function () {
+            obj.innerHTML = input.value;
+            dataObj[name] = angular.isNumber(dataObj[name]) ? parseInt(input.value) : input.value;
+            input.parentNode.replaceChild(obj, input);
+            console.table($scope.data);
+          };
+        }
+      };
+    });
+  </script>
+
+</head>
+
+<body ng-controller="testController">
+  <p>AngularJs-实现双击进入编辑，失去焦点后保存数据</p>
+  <table class="table1">
+    <tr ng-repeat="item in data track by $index">
+      <td>{{item.id}}</td>
+      <td ng-dblclick="replace($event,item,'name')"><span>{{item.name}}</span></td>
+      <td ng-dblclick="replace($event,item,'age')"><span>{{item.age}}</span></td>
+    </tr>
+  </table>
+</body>
+
+</html>
