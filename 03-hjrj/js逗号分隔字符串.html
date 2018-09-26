@@ -12,9 +12,10 @@
 <body>
   <p>js分隔数组</p>
   <script>
-    function formatNumber(n) {
+    // 方法一
+    function formatNumber_one(num) {
       let index, result, s, startLen;
-      s = n.toString();
+      s = num.toString();
       result = '';
       startLen = s.length % 3;
       if (!startLen) {
@@ -29,7 +30,27 @@
       }
       return result;
     };
-    console.log(formatNumber(1234567));
+    console.log(formatNumber_one(1234567));
+
+    // 方法二
+    function formatNumber_two(num, n) {
+      var num = num.toString(),
+        remain_num = num.slice(0, num.length % n)
+      return remain_num + ',' + num.slice(num.length % n).match(new RegExp('\\d{' + n + '}', 'g')).join(',')
+    }
+    console.log(formatNumber_two(1234567, 3));
+
+    // 方法三
+    function formatNumber_three(num, n) {
+      return num.toString().replace(new RegExp('\\B(?=(\\d{' + n + '})+(?!\\d))', 'g'), ',')
+    }
+    console.log(formatNumber_three(1234567, 3));
+
+    // 方法四
+    function formatNumber_four(num) {
+      return num.toLocaleString()
+    }
+    console.log(formatNumber_four(1234567));
   </script>
 </body>
 
