@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <p>js分隔数组</p>
+  <script>
+    function formatNumber(n) {
+      let index, result, s, startLen;
+      s = n.toString();
+      result = '';
+      startLen = s.length % 3;
+      if (!startLen) {
+        startLen = 3;
+      }
+      index = 0;
+      result += s.substr(0, startLen);
+      index += startLen;
+      while (index < s.length) {
+        result += "," + s.substr(index, 3);
+        index += 3;
+      }
+      return result;
+    };
+    console.log(formatNumber(1234567));
+  </script>
+</body>
+
+</html>
