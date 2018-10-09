@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript">
+    function qcRemoval() {
+      var numStr = "1,2,3,3,2,1,4,5,67,8,";
+
+      if (numStr.length > 0) {
+        //去掉最后一个逗号
+        numStr = numStr.substring(0, numStr.length - 1);
+      }
+
+      //去重
+      var arr = numStr.split(",");
+      var json = {};
+      for (var i = 0; i < arr.length; i++) {
+        json[arr[i]] = arr[i];
+      }
+
+      arr = new Array();
+      for (var key in json) {
+        arr.push(key);
+      }
+      console.log(arr);
+      console.log(arr.toString());
+    }
+    qcRemoval();
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
