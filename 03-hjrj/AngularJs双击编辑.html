@@ -29,11 +29,26 @@
   <script>
     angular.module('test', []).controller('testController', function ($scope) {
 
-      $scope.data = [
-        { id: 1, name: 'wuchendi', age: 22 },
-        { id: 2, name: 'tanghaifei', age: 22 },
-        { id: 3, name: 'chendi', age: 20 },
-        { id: 4, name: 'haifei', age: 22 }
+      $scope.data = [{
+          id: 1,
+          name: 'wuchendi',
+          age: 22
+        },
+        {
+          id: 2,
+          name: 'tanghaifei',
+          age: 22
+        },
+        {
+          id: 3,
+          name: 'chendi',
+          age: 20
+        },
+        {
+          id: 4,
+          name: 'haifei',
+          age: 22
+        }
       ];
 
       $scope.replace = function ($event, dataObj, name) {
