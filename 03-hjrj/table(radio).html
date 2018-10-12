@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <style type="text/css">
+    .even {
+      background-color: White;
+    }
+
+    .odd {
+      background-color: Silver;
+    }
+
+    .selected {
+      background-color: Yellow;
+    }
+
+    .divboder {
+      border: 1px solid #96c2f1;
+      background: #eff7ff;
+    }
+
+    .altCss {
+      background: #fff;
+    }
+
+    .overCss {
+      background-color: #FEF2E8;
+    }
+
+    .clickCss {
+      background-color: #A7CDF0;
+    }
+  </style>
+</head>
+
+<body>
+  <table style="width: 100%;" id="tableList">
+    <tr>
+      <td>选择</td>
+      <td>学号</td>
+      <td>姓名</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose" />
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>01</td>
+      <td>吴</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>02</td>
+      <td>陈</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>03</td>
+      <td>迪</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>04</td>
+      <td>在</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>05</td>
+      <td>神</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>06</td>
+      <td>烦</td>
+    </tr>
+    <tr>
+      <td><input id="radioId" type="radio" name="radioChoose">
+        <input type="checkbox" name="checkbox1" id="checkbox222" /></td>
+      <td>07</td>
+      <td>中</td>
+    </tr>
+  </table>
+</body>
+<script type="text/javascript">
+  $("#tableList tr:odd").addClass("odd"); // 偶数行样式
+  $("#tableList tr:even").addClass("even"); //奇数行样式
+
+  // // 鼠标移动时改变行的样式
+  // $("#tableList tr").hover(function () {
+  //   $(this).addClass('selected');
+  // }, function () {
+  //   $(this).removeClass('selected');
+  // });
+
+  $("#tableList tr").click(function () {
+    $(this).find("input[type='radio']").prop("checked", true);
+    // if (event.target.type != 'checkbox') {
+    //   if ($(this).find("input[type='checkbox']").prop("checked")) {
+    //     $(this).find("input[type='checkbox']").attr("checked", false);
+    //   } else {
+    //     $(this).find("input[type='checkbox']").attr("checked", true);
+    //   }
+    //   $(this).find("input[type='checkbox']").trigger('change');
+    // }
+  });
+
+  $("#checkbox222").change(function () {
+    alert("22");
+  });
+</script>
+
+</html>
