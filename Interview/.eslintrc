@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "6"
+  },
+  "plugins": [
+    "html"
+  ],
+  "extends": [
+    "ttdefault"
+  ],
+  "globals": {
+    "chrome": true,
+    "crypto": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0,
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}

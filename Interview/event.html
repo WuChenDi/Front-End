@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Event</title>
+  </head>
+  <body>
+      <div id="ev">
+        <style media="screen">
+          #ev{
+            width: 300px;
+            height: 100px;
+            background: red;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+          }
+        </style>
+        目标元素
+      </div>
+      <script type="text/javascript">
+        var ev = document.getElementById('ev');
+
+        ev.addEventListener('click', function (e) {
+            console.log('ev captrue');
+        }, true);
+
+        window.addEventListener('click', function (e) {
+            console.log('window captrue');
+        }, true);
+
+        document.addEventListener('click', function (e) {
+            console.log('document captrue');
+        }, true);
+
+        document.documentElement.addEventListener('click', function (e) {
+            console.log('html captrue');
+        }, true);
+
+        document.body.addEventListener('click', function (e) {
+            console.log('body captrue');
+        }, true);
+
+        var eve = new Event('test');
+        ev.addEventListener('test', function () {
+            console.log('test dispatch');
+        });
+        setTimeout(function () {
+            ev.dispatchEvent(eve);
+        }, 1000);
+      </script>
+  </body>
+</html>
