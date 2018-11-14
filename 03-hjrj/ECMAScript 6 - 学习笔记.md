@@ -7,7 +7,7 @@
 * let和const都能够声明块级作用域，用法和var是类似的，let的特点是不会变量提升，而是被锁在当前块中。
 
 一个非常简单的例子：
-```
+```js
 function test() {
 if(true) {
   console.log(a)//TDZ，俗称临时死区，用来描述变量不提升的现象
@@ -26,7 +26,7 @@ test() // a is not defined
 ```
 
 唯一正确的使用方法：先声明，再访问。
-```
+```js
 function test() {
     if(true) {
       let a = 1
@@ -37,7 +37,7 @@ test() // 1
 ```
 const：声明常量，一旦声明，不可更改，而且常量必须初始化赋值。
 const虽然是常量，不允许修改默认赋值，但如果定义的是对象Object，那么可以修改对象内部的属性值。
-```
+```js
 const type = {
   a: 1
 }
@@ -53,7 +53,7 @@ console.log(type) // {a: 2}
 ### **块级作用域的使用场景**
 * 除了上面提到的常用声明方式，我们还可以在循环中使用，最出名的一道面试题：循环中定时器闭包的考题
 * 在for循环中使用var声明的循环变量，会跳出循环体污染当前的函数。
-```
+```js
 for(var i = 0; i < 5; i++) {
   setTimeout(() => {
     console.log(i) //5, 5, 5, 5, 5
@@ -75,7 +75,7 @@ console.log(i)//i is not defined i无法污染外部函数
 ### symbol
 * ES6 以前，我们知道5种基本数据类型分别是Undefined，Null，Boolean，Number以及String，然后加上一种引用类型Object构成了JavaScript中所有的数据类型，但是ES6出来之后，新增了一种数据类型，名叫symbol，像它的名字表露的一样，意味着独一无二，意思是每个 Symbol类型都是独一无二的，不与其它 Symbol 重复。
 * 可以通过调用 Symbol() 方法将创建一个新的 Symbol 类型的值，这个值独一无二，不与任何值相等。
-```
+```js
 var mySymbol=Symbol();
 console.log(typeof mySymbol) //"symbol"
 ```
@@ -96,7 +96,7 @@ console.log(typeof mySymbol) //"symbol"
 
 * **模板字符串**：字符串是JavaScript中基本类型之一，应该算是除了对象之外是使用最为频繁的类型吧，字符串中包含了例如substr，replace，indexOf,slice等等诸多方法，ES6引入了模板字符串的特性，用反引号来表示，可以表示多行字符串以及做到文本插值（利用模板占位符）。
 
-```
+```js
 // 以前的多行字符串我们这么写：
 console.log("hello world 1\n\
 hello cala");
@@ -111,7 +111,7 @@ string text line 2`);
 ```
 
 可以用${}来表示模板占位符，可以将你已经定义好的变量传进括弧中，例如：
-```
+```js
 var name="cala";
 var age=22;
 console.log(`hello,I'am ${name},my age is ${age}`)
@@ -119,7 +119,7 @@ console.log(`hello,I'am ${name},my age is ${age}`)
 ```
 
 **includes(str, index)**：如果在字符串中检测到指定文本，返回true，否则false。
-```
+```js
 let t = 'abcdefg'
 if(t.includes('cde')) {
   console.log(2)
@@ -128,7 +128,7 @@ if(t.includes('cde')) {
 ```
 
 **startsWith(str, index)**：如果在字符串起始部分检测到指定文本，返回true，否则返回false。
-```
+```js
 let t = 'abcdefg'
 if(t.startsWith('ab')) {
   console.log(2)
@@ -137,7 +137,7 @@ if(t.startsWith('ab')) {
 ```
 
 **endsWith(str, index)**：如果在字符串的结束部分检测到指定文本，返回true，否则返回false。
-```
+```js
 let t = 'abcdefg'
 if(t.endsWith('fg')) {
   console.log(2)
@@ -152,7 +152,7 @@ if(t.endsWith('fg')) {
 函数的默认参数
 
 在ES5中，我们给函数传参数，然后在函数体内设置默认值，如下面这种方式。
-```
+```js
 function a(num, callback) {
   num = num || 6
   callback = callback || function (data) {console.log('ES5: ', data)}
@@ -167,7 +167,7 @@ a(10, function(data) {
 ```
 
 在ES6中，我们使用新的默认值写法
-```
+```js
 function a(num = 6, callback = function (data) {console.log('ES6: ', data)}) {
   callback(num * num)
 }
@@ -180,7 +180,7 @@ a(10, function(data) {
 ```
 ## 四. 箭头函数
 
-```
+```js
 const arr = [5, 10]
 const s = arr.reduce((sum, item) => sum + item)
 console.log(s) // 15
@@ -205,12 +205,12 @@ console.log(s) // 15
 **箭头函数的简单理解**
 
 1. 箭头函数的左边表示输入的参数，右边表示输出的结果。
-```
+```js
 const s = a => a
 console.log(s(2)) // 2
 ```
 2. 在箭头函数中，this属于词法作用域，直接由上下文确定，对于普通函数中指向不定的this，箭头函数中处理this无疑更加简单，如下：
-```
+```js
 //ES5普通函数
 function Man(){
   this.age=22;
@@ -231,7 +231,7 @@ console.log(cala())//23
 ```
 
 3. 箭头函数中没有arguments(我们可以用rest参数替代),也没有原型，也不能使用new 关键字，例如：
-```
+```js
 //没有arguments
 var foo=(a,b)=>{return arguments[0]*arguments[1]}
 console.log(foo(3,5))
@@ -249,7 +249,7 @@ var o = new Obj();
 ```
 
 4. 箭头函数给数组排序
-```
+```js
 const arr = [10, 50, 30, 40, 20]
 const s = arr.sort((a, b) => a - b)
 console.log(s) // [10,20,30,40,50]
@@ -266,7 +266,7 @@ ES6中，引擎会帮你做好尾调用的优化工作，你不需要自己优�
 尾调用实际用途——递归函数优化
 * 在ES5时代，我们不推荐使用递归，因为递归会影响性能。
 * 但是有了尾调用优化之后，递归函数的性能有了提升。
-```
+```js
 //新型尾优化写法
 "use strict";  
 function a(n, p = 1) {
@@ -289,7 +289,7 @@ console.log(sum) // 6
 * （String类型和 Symbol 类型的属性都会被拷贝。
 
 * 合并对象
-```
+```js
 var o1 = { a: 1 };
 var o2 = { b: 2 };
 var o3 = { c: 3 };
@@ -299,7 +299,7 @@ console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变�
 ```
 
 * 合并具有相同属性的对象
-```
+```js
 var o1 = { a: 1, b: 1, c: 1 };
 var o2 = { b: 2, c: 2 };
 var o3 = { c: 3 };
@@ -327,7 +327,7 @@ console.log(obj); // { a: 1, b: 2, c: 3 }
 * Object有原型，所以映射中有一些缺省的键。可以理解为Map=Object.create(null)
 
 **Set操作集合**
-```
+```js
 let set = new Set()
 // Set转化为数组
 let arr = Array.from(set)
@@ -355,7 +355,7 @@ set = new Set([...set].filter((x) => x > 2))
 ```
 
 **Map的方法集合**
-```
+```js
 let map = new Map()
 // 实例属性(继承自Map)
 map.constructor === Map
@@ -388,7 +388,7 @@ map.get(arr1)
 ## 七. 迭代器（Iterator）
 
 1. entries() 返回迭代器：返回键值对
-```
+```js
 //数组
 const arr = ['a', 'b', 'c'];
 for(let v of arr.entries()) {
@@ -414,7 +414,7 @@ for(let v of arr.entries()) {
 ```
 
 2. values() 返回迭代器：返回键值对的value
-```
+```js
 //数组
 const arr = ['a', 'b', 'c'];
 for(let v of arr.values()) {
@@ -440,7 +440,7 @@ for(let v of arr.values()) {
 ```
 
 3. keys() 返回迭代器：返回键值对的key
-```
+```js
 //数组
 const arr = ['a', 'b', 'c'];
 for(let v of arr.keys()) {
@@ -470,7 +470,7 @@ for(let v of arr.keys()) {
 **for of循环解构**
 
 对象本身不支持迭代，但是我们可以自己添加一个生成器，返回一个key，value的迭代器，然后使用for of循环解构key和value。
-```
+```js
 const obj = {
   a: 1,
   b: 2,
@@ -487,7 +487,7 @@ for(let [key, value] of obj) {
 ```
 
 **字符串迭代器**
-```
+```js
 const str = 'abc';
 for(let v of str) {
   console.log(v)
@@ -498,24 +498,24 @@ for(let v of str) {
 ## ES6给数组添加了几个新方法：find()、findIndex()、fill()、copyWithin()
 
 1. find()：传入一个回调函数，找到数组中符合当前搜索规则的第一个元素，返回它，并且终止搜索。
-```
+```js
 const arr = [1, "2", 3, 3, "2"]
 console.log(arr.find(n => typeof n === "number")) // 1
 ```
 
 2. findIndex()：传入一个回调函数，找到数组中符合当前搜索规则的第一个元素，返回它的下标，终止搜索。
-```
+```js
 const arr = [1, "2", 3, 3, "2"]
 console.log(arr.findIndex(n => typeof n === "number")) // 0
 ```
 
 3. fill()：用新元素替换掉数组内的元素，可以指定替换下标范围。
-```
+```js
 arr.fill(value, start, end)
 ```
 
 4. copyWithin()：选择数组的某个下标，从该位置开始复制数组元素，默认从0开始复制。也可以指定要复制的元素范围。
-```
+```js
 arr.copyWithin(target, start, end)
 
 const arr = [1, 2, 3, 4, 5]
