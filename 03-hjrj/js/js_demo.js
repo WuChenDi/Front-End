@@ -78,3 +78,18 @@
   console.log(addSix(21))
 
 }
+
+// 1~100的完全平方数
+{
+  function isSqrt(n) {
+    for (var i = 1; n > 0; i += 2) {
+      n -= i;
+    };
+    return 0 == n;
+  }
+  for (var j = 1; j <= 100; j++) {
+    if (isSqrt(j)) {
+      console.log(j)
+    }
+  }
+}
