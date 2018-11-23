@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .gift-container {
+      position: relative;
+    }
+
+    .gift-container>ul {
+      font-size: 0;
+    }
+
+    .gift-container>ul>li {
+      margin-bottom: 20px;
+    }
+
+    .gift-container>ul>li>.gift-box:nth-of-type(2) {
+      margin: 0 20px;
+    }
+
+    .gift-container .gift-box {
+      display: inline-block;
+      width: 200px;
+      height: 60px;
+      line-height: 60px;
+      background: black;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .gift-container .gift-box.active {
+      background: red;
+    }
+
+    .get-gift-btn {
+      cursor: pointer;
+    }
+  </style>
+  <script src="./js/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      // 奖号dom元素
+      let $frameList = $('[data-role]');
+      let $input = $('#gift-num');
+      // 定时器的值
+      let k = null;
+      // 奖号dom元素 总长度
+      let len = null;
+      // 初始化 闪动间隔时间 毫秒数
+      let initDelayTime = 50;
+      // 抽奖号数
+      let times = 0;
+      // 抽圈数
+      let circleCount = 0;
+      // 是不是在抽奖
+      let isBusy = false;
+      // 抽奖初始 号数
+      let oldTimes = null;
+      // 抽奖号数 dom元素 做个排序， 分个大小
+      frameList = Array.from($frameList).sort((a, b) => {
+        return $(a).data('role') - $(b).data('role')
+      });
+      len = frameList.length;
+      // 抽奖开始效果
+      function startGiftAm() {
+        // 抽奖第一帧时，给oldTimes 赋值起始抽号数
+        k || (oldTimes = times);
+        // 当前应激活的元素
+        let $curItem = $(frameList[(times++) % len]);
+        //抽奖圈数   
+        circleCount = parseInt((times - oldTimes) / len);
+        // 根据圈数 改变 闪动间隔时间 
+        switch (circleCount) {
+          case 0:
+          case 1:
+            {
+              break;
+            }
+          case 2:
+          case 3:
+            {
+              initDelayTime = 100;
+              break;
+            }
+          default:
+            {
+              initDelayTime = 200
+            }
+        }
+        // 
+        $frameList.removeClass('active');
+        $curItem.addClass('active');
+        // 如果够四圈 并且 当前抽奖号数等于 结束抽奖号数 终止抽奖， 并初始化抽奖 状态
+        if (circleCount === 4 && $input.val() == $curItem.data('role')) {
+          circleCount = 0;
+          k = null;
+          isBusy = false;
+          initDelayTime = 50;
+        } else {
+          k = setTimeout(startGiftAm, initDelayTime);
+        }
+      };
+      //
+      $('.get-gift-btn').on('click', function () {
+        if (!isBusy) {
+          console.log(isBusy);
+          isBusy = true;
+          startGiftAm();
+        }
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div class="gift-container">
+    <ul>
+      <li>
+        <section class="gift-box active" data-role="0">0</section>
+        <section class="gift-box" data-role="1">1</section>
+        <section class="gift-box" data-role="2">2</section>
+      </li>
+      <li>
+        <section class="gift-box" data-role="7">7</section>
+        <section class="gift-box get-gift-btn">抽奖</section>
+        <section class="gift-box" data-role="3">3</section>
+      </li>
+      <li>
+        <section class="gift-box" data-role="6">6</section>
+        <section class="gift-box" data-role="5">5</section>
+        <section class="gift-box" data-role="4">4</section>
+      </li>
+    </ul>
+    <div>
+      <label for="gift-num">
+        <span>抽奖数字<small>0-7</small>:</span>
+        <input type="text" id="gift-num" name="gift-name">
+      </label>
+    </div>
+  </div>
+</body>
+
+
+</html>
