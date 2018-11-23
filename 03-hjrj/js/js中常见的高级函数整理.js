@@ -118,7 +118,7 @@ function flattenES5(arr) {
 }
 console.log(flattenES5([1, [2, [3, [4]], 5]]))
 
-// 对象拷贝
+// 对象拷贝-1
 function clone(value, isDeep) {
   if (value === null) return null;
   if (typeof value !== 'object') return value
@@ -139,3 +139,27 @@ function clone(value, isDeep) {
     }
   }
 }
+
+// 对象拷贝-2
+function copy(obj) {
+  if (!obj || typeof obj !== 'object') {
+    return
+  }
+  var newObj = obj.constructor === Array ? [] : {}
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === 'object' && obj[key]) {
+        newObj[key] = copy(obj[key])
+      } else {
+        newObj[key] = obj[key]
+      }
+    }
+  }
+  return newObj
+}
+
+var old = {a: 'old', b: {c: 'old'}}
+var newObj = copy(old)
+newObj.b.c = 'new'
+console.log(old) // { a: 'old', b: { c: 'old' } }
+console.log(newObj) // { a: 'old', b: { c: 'new' } }
