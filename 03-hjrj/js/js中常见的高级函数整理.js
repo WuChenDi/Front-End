@@ -158,7 +158,12 @@ function copy(obj) {
   return newObj
 }
 
-var old = {a: 'old', b: {c: 'old'}}
+var old = {
+  a: 'old',
+  b: {
+    c: 'old'
+  }
+}
 var newObj = copy(old)
 newObj.b.c = 'new'
 console.log(old) // { a: 'old', b: { c: 'old' } }
