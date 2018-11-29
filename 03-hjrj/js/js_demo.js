@@ -94,7 +94,9 @@
   }
 }
 
-// 实现一个函数，判断输入是不是回文字符串 -  one
+
+// 实现一个函数，判断输入是不是回文字符串(在我的理解，如果将一个字符串翻转过来，能和原字符串完全相等，那么就可以称之为“回文”)
+// one
 {
   function Palindrome1(input) {
     if (typeof input !== 'string') return false;
@@ -102,7 +104,7 @@
   }
 }
 
-// 实现一个函数，判断输入是不是回文字符串 -  two
+// two
 {
   function Palindrome2(line) {
     line += "";
