@@ -93,3 +93,24 @@
     }
   }
 }
+
+// 实现一个函数，判断输入是不是回文字符串 -  one
+{
+  function Palindrome1(input) {
+    if (typeof input !== 'string') return false;
+    return input.split('').reverse().join('') === input;
+  }
+}
+
+// 实现一个函数，判断输入是不是回文字符串 -  two
+{
+  function Palindrome2(line) {
+    line += "";
+    for (var i = 0, j = line.length - 1; i < j; i++, j--) {
+      if (line.charAt(i) !== line.charAt(j)) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
