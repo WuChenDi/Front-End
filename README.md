@@ -5,7 +5,6 @@
 ### 如果还有其他问题或者有错误，请在 Issues 中提出，我会尽力解答
 
 ```js
-  // 自定义判断元素类型
   function toType(obj) {
     return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
   }
