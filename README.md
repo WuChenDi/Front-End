@@ -1,14 +1,8 @@
-# 👀WuChenDi知识整理
-  
-## ʕ•͓͡•ʔ-̫͡-ʕ•̫͡•ʔ A crazy code Boy , tough coding
+# 👀前言
 
-🕸 [Experience](https://github.com/WuChenDi/Demo-or-Summarize/blob/master/workEssay.md)
-- [x] cjdq (2017/8 - 2018/3)
-- [x] dskj (2018/3 - 2018/5)
-- [ ] hjrj (2018/5 - now)
+## 一路走来，酸甜苦辣，记录和总结自己在这个行业的点滴
 
-
-### **如果还有其他问题或者有错误，请在 Issues 中提出，我会尽力解答**
+### 如果还有其他问题或者有错误，请在 Issues 中提出，我会尽力解答
 
 作者 *WuChenDi*
 
