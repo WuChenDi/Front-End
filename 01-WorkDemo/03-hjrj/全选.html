@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+  <script type="text/javascript">
+    //创建模块 
+    angular.module("select", []).controller("moreSel", function ($scope) {
+      $scope.datas = ["Vue", "React", "Angular"];
+      //用来标志每一项的状态 
+      $scope.chkItem = [];
+
+      //全选 
+      $scope.all = function (checks) {
+        //初始化设置状态 
+        init(checks);
+      }
+
+      //点击选择 
+      $scope.ck = function (state, item, index) {
+        //取状态的相反值 
+        $scope.chkItem[index] = !state;
+        // 有一个为false则全选按钮为不选中 
+        if (!$scope.chkItem[index]) {
+          $scope.checks = false;
+        } else {
+          for (var i = 0; i < $scope.datas.length; i++) {
+            //只要有一个按钮没有选中 
+            if (!$scope.chkItem[i]) {
+              return;
+            }
+          }
+          //全部选中 
+          $scope.checks = true;
+        }
+      }
+
+      //初始化 
+      var init = function (sel) {
+        for (var i = 0; i < $scope.datas.length; i++) {
+          //sel没有值 默认初始化false 
+          $scope.chkItem[i] = sel || false;
+        }
+      }
+
+    });
+  </script>
+</head>
+
+<body ng-app="select" ng-controller="moreSel">
+
+  <input type="checkbox" ng-checked="checks" ng-click="checks = !checks; all(checks)">全选
+  <!--track by $index去掉也可以-->
+  <div ng-repeat="item in datas">
+    <input type="checkbox" ng-checked="chkItem[$index]" ng-click="ck(chkItem[$index]==undefind?false:chkItem[$index], item, $index)">
+    {{ item }}
+  </div>
+</body>
+
+</html>
