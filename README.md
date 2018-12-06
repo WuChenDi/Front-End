@@ -4,11 +4,7 @@
 
 ### 如果还有其他问题或者有错误，请在 Issues 中提出，我会尽力解答
 
-```js
-  function toType(obj) {
-    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-  }
-```
+<img src="./screenshots/JS类型判断.png"/>
 
 作者 *WuChenDi*
 
