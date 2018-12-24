@@ -95,7 +95,6 @@ HTTP协议采用“请求-应答”模式，当使用普通模式，即非Keep-A
 
 ## HTTP与HTTPS
 ```
-HTTP与HTTPS的不同
 1.HTTP的URL为http://开头，HTTPS的URL为https://开头
 2.HTTP标准端口80，HTTPS标准端口是443
 3.在OSI网络模型中，HTTP工作于应用层，HTTPS工作于传输层
