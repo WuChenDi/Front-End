@@ -90,4 +90,4 @@
     console.log(b === Math.pow(2,7)) // true
     ```
 
-链接：https://www.jianshu.com/p/a138a525c287
+原文链接：https://www.jianshu.com/p/a138a525c287
