@@ -76,6 +76,9 @@ const [user, account] = await Promise.all([
 ])
 ```
 
-注：console.table() 有一个隐藏的特性，如果某项数值为空字符串，则这一项不会显示在列表里，如：
+注：console.table() 有一个隐藏的特性，如果某项数值为空字符串，则这一项不会显示在列表里
+
+如：
+
 console.table({"notdown_type":""})
 所以有时候不好用
