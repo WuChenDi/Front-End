@@ -116,3 +116,18 @@
     return true;
   }
 }
+
+{
+  var name = 'global';
+  var obj = {
+    name: 'obj',
+    sex:function() {
+      this.name = 'sex';
+      return function() {
+        return this.name;
+      }
+    }
+  }
+  console.log(obj.sex().call(this));
+  console.log(obj.sex().call(obj));
+}
