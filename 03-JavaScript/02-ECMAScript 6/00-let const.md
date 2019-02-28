@@ -7,7 +7,7 @@ function test() {
   // let不允许在相同作用域内重复声明同一个变量，即同一个作用域内不允许出现名称相同的变量。
   let a = 1;
   // let a = 2;
-  console.log(a);
+  console.log(a);   // 1
 }
 
 function test1() {
@@ -15,7 +15,7 @@ function test1() {
   for (let i = 1; i < 3; i++) {
     console.log(i);
   }
-  // console.log(i);
+  // console.log(i);    // 1 2
 }
 
 function last() {
@@ -28,7 +28,7 @@ function last() {
     a: 1
   }
   k.b = 3;
-  console.log(PI, k);
+  console.log(PI, k);   // 3.1415926 {a: 1, b: 3}
 }
 
 test();
