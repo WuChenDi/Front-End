@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .eg2 {
+      width: 300px;
+      height: 80px;
+      background: #e5004f;
+      position: relative;
+    }
+
+    .eg2:after {
+      color: #ddd;
+      font-size: 5px;
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      z-index: 1000;
+      left: 0%;
+      background: #fff;
+      background-size: 2rem .66rem;
+      background-image:
+        linear-gradient(-75deg, #e5004f 25%, transparent 25%, transparent),
+        linear-gradient(-135deg, #e5004f 25%, transparent 25%, transparent),
+        linear-gradient(-45deg, transparent 75%, #e5004f 75%),
+        linear-gradient(-135deg, transparent 75%, #e5004f 75%);
+      transform: rotate(-180deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="eg2"></div>
+</body>
+
+</html>
