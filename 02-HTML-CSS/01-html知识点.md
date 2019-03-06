@@ -1,5 +1,7 @@
 # Html知识点
 
+注：ie9之前版本通过createElement创建html5新标签，引入html5shiv.js
+
 ## 按默认分类
 1. 块级元素block
 2. 行内inline

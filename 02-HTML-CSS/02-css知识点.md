@@ -1,5 +1,12 @@
 # CSS知识点
 
+## link @import导入css
+1. link是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；@import属于CSS范畴，只能加载CSS。
+2. link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。
+3. link无兼容问题；@import是在CSS2.1提出的，低版本的浏览器不支持。
+4. link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+
 ## 雪碧图
 css雪碧图(sprite)是一种网页图片应用处理方式，它允许将一个页面涉及到的所有零星图片都包含到一张大图中。使用雪碧图的处理方式可以实现两个优点：
 
