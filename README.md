@@ -4,7 +4,7 @@
 
 ### 如果还有其他问题或者有错误，请在 Issues 中提出，我会尽力解答
 
-<img src="./screenshots/JS类型判断.png"/>
+<img src="./screenshots/forkStar.png"/>
 
 作者 *WuChenDi*
 
