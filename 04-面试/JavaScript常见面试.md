@@ -319,3 +319,7 @@
         - Render Tree构建完毕，进入到布局阶段（layout/reflow），将会为每个阶段分配一个应出现在屏幕上的确切坐标
         - 最后将全部的节点遍历绘制出来后，一个页面就展现出来了。 遇到script会停下来执行，所以通常把script放在底部
     6. 连接结束
+
+27. babel原理
+
+    ES6、7代码输入 -> babylon进行解析 -> 得到AST（抽象语法树）-> plugin用babel-traverse对AST树进行遍历转译 ->得到新的AST树->用babel-generator通过AST树生成ES5代码
