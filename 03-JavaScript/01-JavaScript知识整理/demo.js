@@ -121,13 +121,22 @@
   var name = 'global';
   var obj = {
     name: 'obj',
-    sex:function() {
+    sex: function () {
       this.name = 'sex';
-      return function() {
+      return function () {
         return this.name;
       }
     }
   }
   console.log(obj.sex().call(this));
   console.log(obj.sex().call(obj));
+}
+
+{
+  // 正则实现trim()功能
+  function myTrim(str) {
+    let reg = /^\s+|\s+$/g;
+    return str.replace(reg, "");
+  }
+  console.log(myTrim('    asdf    '));
 }
