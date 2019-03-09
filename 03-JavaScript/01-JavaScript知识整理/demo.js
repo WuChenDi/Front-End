@@ -140,3 +140,39 @@
   }
   console.log(myTrim('    asdf    '));
 }
+
+// 判断数组或者一个字符串中出现次数最多的元素及其出现的次数
+{
+  function maxCountElement(arr) {
+    var obj = {};
+    for (var i = 0; i < arr.length; i++) {
+      var key = arr[i];
+      if (obj[key]) {
+        obj[key]++;
+      } else {
+        obj[key] = 1;
+      }
+    }
+    var maxCount = 0;
+    var maxElement = arr[0];
+    var eq = [];
+    for (var key in obj) {
+      if (maxCount < obj[key]) {
+        maxCount = obj[key];
+        maxElement = key;
+        eq.length = 0;
+      } else if (maxCount === obj[key]) {
+        eq.push(key);
+      }
+    }
+    if (eq.length > 0) {
+      for (var j = 0; j < eq.length; j++) {
+        maxElement += '，' + eq[j];
+      }
+    }
+    return "该数组中出现次数最多的元素:" + maxElement + "-----出现了:" + maxCount + "次";
+  }
+  var arr = [1, 2, 2, 2, 3, 3, 3, 4, 5, 6];
+  var res = maxCountElement(arr);
+  console.log(res);
+}
