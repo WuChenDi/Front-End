@@ -141,8 +141,9 @@
   console.log(myTrim('    asdf    '));
 }
 
-// 判断数组或者一个字符串中出现次数最多的元素及其出现的次数
+
 {
+  // 判断数组或者一个字符串中出现次数最多的元素及其出现的次数
   function maxCountElement(arr) {
     var obj = {};
     for (var i = 0; i < arr.length; i++) {
@@ -175,4 +176,31 @@
   var arr = [1, 2, 2, 2, 3, 3, 3, 4, 5, 6];
   var res = maxCountElement(arr);
   console.log(res);
+}
+
+{
+  // 统计数组中相同项的个数
+  var cars = ['BMW', 'Benz', 'Benz', 'Benz', 'Tesla', 'BMW', 'Toyota'];
+  var carsObj = cars.reduce(function (obj, name) {
+    obj[name] = obj[name] ? ++obj[name] : 1;
+    return obj;
+  }, {});
+  carsObj;
+}
+
+{
+  /** 
+   * reduce方法同时实现map和filter
+   * 需求：假设现在有一个数列，你希望更新它的每一项（map的功能）然后筛选出一部分（filter的功能）。如果是先使用map然后filter的话，你需要遍历这个数组两次。 在下面的代码中，我们将数列中的值翻倍，然后挑选出那些大于50的数
+   */
+  const numbers = [10, 20, 30, 40];
+  const doubledOver50 = numbers.reduce((finalList, num) => {
+    num = num * 2;
+    if (num > 50) {
+      finalList.push(num);
+    }
+    return finalList;
+  }, []);
+  doubledOver50;
+
 }
