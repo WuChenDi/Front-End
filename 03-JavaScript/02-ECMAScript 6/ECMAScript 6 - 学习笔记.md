@@ -9,10 +9,10 @@
 一个非常简单的例子：
 ```js
 function test() {
-if(true) {
-  console.log(a)//TDZ，俗称临时死区，用来描述变量不提升的现象
-  let a = 1
-}
+    if(true) {
+      console.log(a)//TDZ，俗称临时死区，用来描述变量不提升的现象
+      let a = 1
+    }
 }
 test()  // a is not defined
 
