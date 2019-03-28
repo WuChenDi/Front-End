@@ -202,5 +202,4 @@
     return finalList;
   }, []);
   doubledOver50;
-
 }
