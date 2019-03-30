@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    p:nth-child(4n+1) {
+      background: #8ac7ff;
+    }
+
+    p:nth-child(4n+2) {
+      background: #c591ff;
+    }
+
+    p:nth-child(4n+3) {
+      background: #ff6f80;
+    }
+
+    p:nth-child(4n+4) {
+      background: #ffdf7f;
+    }
+  </style>
+</head>
+
+<body>
+  <div>CSS伪类选择器 - nth-child(an+b):
+    1、nth-child(an):倍数写法，匹配倍数为a的所有元素
+    2、:nth-child(an+b) 与 :nth-child(an-b)，倍数偏移写法
+    n从0开始计数，b是偏移量</div>
+  <div id="outer"></div>
+</body>
+<script type="text/javascript">
+  function test() {
+    var outer = document.getElementById("outer");
+    for (var i = 0; i < 100; i++) {
+      var p = document.createElement("p");
+      var txt = document.createTextNode("第" + i + "个p");
+      p.appendChild(txt);
+      outer.appendChild(p);
+    }
+  }
+  test();
+</script>
+
+</html>
