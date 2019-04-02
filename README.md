@@ -16,4 +16,6 @@
 <!-- 
 <img src="./screenshots/forkStar.png"/> -->
 
-[1]: https://WuChenDi.github.io
+[1]: https://github.com/WuChenDi
+[2]: https://WuChenDi.github.io
+
