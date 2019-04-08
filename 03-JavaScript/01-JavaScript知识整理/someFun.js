@@ -203,3 +203,27 @@
   }, []);
   doubledOver50;
 }
+
+{
+  /** 
+   * 需求：假设需要对字符串进行字符长度限制
+   * str为字符串，len为长度
+   *  
+   */
+  function setString(str, len) {
+    var strlen = 0;
+    var s = "";
+    for (var i = 0; i < str.length; i++) {
+      if (str.charCodeAt(i) > 128) {
+        strlen += 2;
+      } else {
+        strlen++;
+      }
+      s += str.charAt(i);
+      if (strlen >= len) {
+        return s + "...";
+      }
+    }
+    return s;
+  }
+}
