@@ -32,7 +32,6 @@
 
 {
   var uname = 'jack';
-
   function change() {
     console.log(uname);
     var uname = 'wcd';
@@ -96,19 +95,19 @@
 
 
 // 实现一个函数，判断输入是不是回文字符串(在我的理解，如果将一个字符串翻转过来，能和原字符串完全相等，那么就可以称之为“回文”)
-// one
 {
+  // one
   function Palindrome1(input) {
     if (typeof input !== 'string') return false;
     return input.split('').reverse().join('') === input;
   }
 }
 
-// two
 {
+  // two
   function Palindrome2(line) {
     line += "";
-    for (var i = 0, j = line.length - 1; i < j; i++, j--) {
+    for (var i = 0, j = line.length - 1; i < j; i++ , j--) {
       if (line.charAt(i) !== line.charAt(j)) {
         return false;
       }
@@ -138,7 +137,8 @@
     let reg = /^\s+|\s+$/g;
     return str.replace(reg, "");
   }
-  console.log(myTrim('    asdf    '));
+  let str = '    asdf    ';
+  console.log(myTrim(str));
 }
 
 
@@ -208,7 +208,6 @@
   /** 
    * 需求：假设需要对字符串进行字符长度限制
    * str为字符串，len为长度
-   *  
    */
   function setString(str, len) {
     var strlen = 0;
