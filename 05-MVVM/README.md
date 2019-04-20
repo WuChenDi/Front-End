@@ -24,8 +24,15 @@
 ## 原理图
 <img src="../screenshots/new MVVM.png"/>
 
+## Vue.js双向数据绑定、
 
-## Vue.js双向数据绑定
+阅读官方文档（v2.0），我们会发现：
+
+    把一个普通 Javascript 对象传给 Vue 实例来作为它的 data 选项，Vue 将遍历它的属性，用 Object.defineProperty 将它们转为 getter/setter。
+
+关键字是Object.defineProperty，在MDN文档找到说明如下：
+
+    Object.defineProperty()方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
 
 - 双向数据绑定：将DOM与Vue实例的data数据绑定到一起，彼此之间相互影响
     - 数据的改变会引起DOM的改变
