@@ -10,7 +10,7 @@
 
 - [2018寒冬离职](https://github.com/WuChenDi/Front-End/blob/master/00-WorkSummary/2018.12.7%E7%A6%BB%E8%81%8C.md)
 
-- [切图仔在2019的经历 - 更新中](https://github.com/WuChenDi/Front-End/blob/master/00-WorkSummary/%E5%88%87%E5%9B%BE%E4%BB%94%E7%9A%84%E6%88%91%E6%83%B3%E5%81%9A%E4%B8%80%E5%90%8Dleader.md)
+- [切图仔在2019的经历 - 更新中](https://github.com/WuChenDi/Front-End/blob/master/00-WorkSummary/%E5%88%87%E5%9B%BE%E4%BB%94%E5%9C%A82019%E7%9A%84%E7%BB%8F%E5%8E%86.md)
 
 
 <!-- 
