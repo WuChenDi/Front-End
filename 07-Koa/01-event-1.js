@@ -33,6 +33,7 @@ class Dog extends EventEmitter {
         this.name = name
     }
 }
+
 var simon = new Dog('simon')
 simon.on('bark', function () {
     console.log(this.name, ' barked')
