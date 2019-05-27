@@ -41,30 +41,30 @@
 7. 获取当前鼠标坐标
     ```js
     var getCoordInDocumentExample = function () {
-      var coords = document.getElementById("colorPanel");
-      coords.onmousemove = function (e) {
-        var pointer = getCoordInDocument(e);
-        var coord = document.getElementById("colorText");
-        coord.innerHTML = "X,Y=(" + pointer.x + ", " + pointer.y + ")";
-      }
+        var coords = document.getElementById("colorPanel");
+        coords.onmousemove = function (e) {
+            var pointer = getCoordInDocument(e);
+            var coord = document.getElementById("colorText");
+            coord.innerHTML = "X,Y=(" + pointer.x + ", " + pointer.y + ")";
+        }
     }
 
     var getCoordInDocument = function (e) {
-      e = e || window.event;
-      var x = e.pageX || (e.clientX +
-        (document.documentElement.scrollLeft ||
-          document.body.scrollLeft));
-      var y = e.pageY || (e.clientY +
-        (document.documentElement.scrollTop ||
-          document.body.scrollTop));
-      return {
-        'x': x,
-        'y': y
-      };
+        e = e || window.event;
+        var x = e.pageX || (e.clientX +
+            (document.documentElement.scrollLeft ||
+                document.body.scrollLeft));
+        var y = e.pageY || (e.clientY +
+            (document.documentElement.scrollTop ||
+                document.body.scrollTop));
+        return {
+            'x': x,
+            'y': y
+        };
     }
 
     window.onload = function () {
-      getCoordInDocumentExample();
+        getCoordInDocumentExample();
     };
     ```
 
@@ -78,63 +78,65 @@
     ```js
     var ua = navigator.userAgent.toLowerCase();
     if (/iphone|ipad|ipod/.test(ua)) {
-      console.log("iphone");
+        console.log("iphone");
     } else if (/android/.test(ua)) {
-      console.log("android");
+        console.log("android");
     }
     ```
 
 10. ajax请求
     ```js
     $(function () {
-      $.ajax({
-        type: "post",
-        async: true, //默认设置为true，所有请求均为异步请求。
-        url: "http://www.idaima.com/xxxxx.php",
-        data: {
-          username: $("#username").val(),
-          content: $("#content").val()
-        },
-        dataType: "json", //xml、html、script、jsonp、text
-        beforeSend: function () { },
-        complete: function () { },
-        success: function (data) {
-          console.log(data)
-        },
-        error: function () { }
-      })
+        $.ajax({
+            type: "post",
+            async: true, //默认设置为true，所有请求均为异步请求。
+            url: "http://www.idaima.com/xxxxx.php",
+            data: {
+                username: $("#username").val(),
+                content: $("#content").val()
+            },
+            dataType: "json", //xml、html、script、jsonp、text
+            beforeSend: function () { },
+            complete: function () { },
+            success: function (data) {
+                console.log(data)
+            },
+            error: function () { }
+        })
     })
     ```
 
 11. 如何获取checkbox，并判断是否选中
     ```js
     $("input[type='checkbox']").is(':checked') //返回结果：选中=true，未选中=false
+    ```
 
-    12.获取checkbox选中的值
+12. 获取checkbox选中的值
+    ```js
     var chk_value = [];
     $('input[name="test"]:checked').each(function () {
-      chk_value.push($(this).val());
+        chk_value.push($(this).val());
     });
     ```
 
 13. checkbox全选 / 反选 / 选择奇数
     ```js
     $("document").ready(function () {
-      $("#btn1").click(function () {
-        $("[name='checkbox']").attr("checked", 'true'); //全选 
-      }) $("#btn2").click(function () {
-        $("[name='checkbox']").removeAttr("checked"); //取消全选 
-      }) $("#btn3").click(function () {
-        $("[name='checkbox']:even").attr("checked", 'true'); //选中所有奇数 
-      }) $("#btn4").click(function () {
-        $("[name='checkbox']").each(function () { //反选 
-          if ($(this).attr("checked")) {
-            $(this).removeAttr("checked");
-          } else {
-            $(this).attr("checked", 'true');
-          }
+        $("#btn1").click(function () {
+            $("[name='checkbox']").attr("checked", 'true'); //全选 
+        }) $("#btn2").click(function () {
+            $("[name='checkbox']").removeAttr("checked"); //取消全选 
+        }) $("#btn3").click(function () {
+            $("[name='checkbox']:even").attr("checked", 'true'); //选中所有奇数 
+        }) $("#btn4").click(function () {
+            $("[name='checkbox']").each(function () { //反选 
+                if ($(this).attr("checked")) {
+                    $(this).removeAttr("checked");
+                } else {
+                    $(this).attr("checked", 'true');
+                }
+            })
         })
-      })
     })
     ```
 
@@ -166,26 +168,26 @@
 17. 屏幕旋转的事件和样式
     ```js
     function orientInit() {
-      var orientChk = document.documentElement.clientWidth > document.documentElement.clientHeight ? 'landscape' : 'portrait';
-      if (orientChk == 'lapdscape') {
-        //这里是横屏下需要执行的事件
-      } else {
-        //这里是竖屏下需要执行的事件
-      }
+        var orientChk = document.documentElement.clientWidth > document.documentElement.clientHeight ? 'landscape' : 'portrait';
+        if (orientChk == 'lapdscape') {
+            //这里是横屏下需要执行的事件
+        } else {
+            //这里是竖屏下需要执行的事件
+        }
     }
     orientInit();
     window.addEventListener('onorientationchange' in window ? 'orientationchange' : 'resize', function () {
-      setTimeout(orientInit, 100);
+        setTimeout(orientInit, 100);
     }, false)
     ```
 
 18. 软键盘弹出影响定位
-    ```js
-    fixed定位
+    ```html
+    <!-- fixed定位
     1.ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位
     2.android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位
     3.ios4下不支持position: fixed
-    解决方案：使用[Iscroll](http://cubiq.org/iscroll-5)，如：
+    解决方案：使用[Iscroll](http://cubiq.org/iscroll-5)，如： -->
       <div id="wrapper">
         <ul>
           <li></li>
@@ -196,32 +198,34 @@
       <script>
         var myscroll;
         function loaded(){
-          myscroll = new iScroll("wrapper");
+            myscroll = new iScroll("wrapper");
         }
         window.addEventListener("DOMContentLoaded",loaded,false);
     </script>
-    position定位
+    <!-- position定位
     Android下弹出软键盘弹出时，影响absolute元素定位
-    解决方案:
-    var ua = navigator.userAgent.indexOf('Android');
-    if (ua > -1) {
-      $('.ipt').on('focus', function () {
-        $('.css').css({ 'visibility': 'hidden' })
-      }).on('blur', function () {
-        $('.css').css({ 'visibility': 'visible' })
-      })
-    }
+    解决方案: -->
+    <script>
+        var ua = navigator.userAgent.indexOf('Android');
+        if (ua > -1) {
+            $('.ipt').on('focus', function () {
+                $('.css').css({ 'visibility': 'hidden' })
+            }).on('blur', function () {
+                $('.css').css({ 'visibility': 'visible' })
+            })
+        }
+    </script>
     ```
 
 19. js判断微信浏览器
     ```js
     function isWeixin() {
-      var ua = navigator.userAgent.toLowerCase();
-      if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-        return true;
-      } else {
-        return false;
-      }
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+        } else {
+            return false;
+        }
     }
     ```
 
@@ -233,11 +237,11 @@
 21. 获取当前国家省市(新浪的接口)
     ```js
     $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js',
-      function () {
+    function () {
         alert(remote_ip_info.country);//国家  
         alert(remote_ip_info.province);//省份  
         alert(remote_ip_info.city);//城市  
-      });
+    });
     ```
 
 22. 获取本周日期
@@ -246,10 +250,10 @@
     var start = new Date();
     var n = now.getDay();
     for (var i = 1; i <= 7; i++) {
-      var day = start.setDate(now.getDate() - n + i);
-      day = new Date(day);
-      day = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
-      console.log(day);
+        var day = start.setDate(now.getDate() - n + i);
+        day = new Date(day);
+        day = day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+        console.log(day);
     }
     ```
 
