@@ -1,0 +1,27 @@
+{
+	"manifest_version": 2,
+	"name": "二维码生成器",
+	"version": "1.0",
+	"description": "初始生成本页二维码 或者 自定义生成二维码!",
+	"author": "cerien",
+	"icons":
+	{
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"browser_action": 
+	{
+		"default_icon": "icon.png",
+		"default_title": "快速生成二维码!",
+		"default_popup": "popup.html"
+	},
+	"homepage_url": "http://www.cerien.cn",
+	"content_scripts": 
+	[
+		{
+			"matches": ["<all_urls>"],
+			"js": ["js/content-script.js"],
+			"run_at": "document_start"
+		}
+	]
+}

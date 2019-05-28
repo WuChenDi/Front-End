@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <!-- 这里是通过点击某个Div来隐式创建一个 input 控件，然后实现直接访问相机的功能。-->
+    <div id="demoForClick">
+        <div id="btnID">这里是直接获取iOS相机功能</div>
+    </div>
+    <!-- 换行 -->
+    <br /><br /><br />
+    <div>
+        <!-- 直接访问相机功能进行拍照 -->
+        <label>照相机</label>
+        <input type="file" id='image' accept="image/*" capture='camera'>
+    </div>
+    <!-- 换行 -->
+    <br /><br /><br />
+    <div>
+        <!-- 直接唤起摄像头进行录像 -->
+        <label>摄像机</label>
+        <input type="file" id='video' accept="video/*" capture='camcorder'>
+    </div>
+    <!-- 换行 -->
+    <br /><br /><br />
+    <script>
+        // 隐式创建一个input控件，然后实现直接访问相册
+        var inputUploadObj = '';
+        $("#btnID").on("click", function () {
+            inputUploadObj = document.createElement('input')
+            inputUploadObj.setAttribute('id', 'input_upload_ID');
+            inputUploadObj.setAttribute('type', 'file');
+            // 添加这个属性，就可以唤起相机的功能
+            inputUploadObj.setAttribute('capture', 'camera');
+            // 这里如果不加属性 accept 是 "image/*" 或者 "video/*"，就默认打开摄像头，既可以拍照也可以录像
+            inputUploadObj.setAttribute('accept', 'image/*');
+            inputUploadObj.setAttribute("style", 'visibility:hidden');
+            // 这里将创建的隐式input控件拼接到body的最后面，会增加页面的长度，所以要在适当的时候，移除掉这个隐式创建的input控件
+            document.body.appendChild(inputUploadObj);
+            // 这里是模拟点击了input控件
+            inputUploadObj.click();
+        });
+    </script>
+</body>
+
+</html>
