@@ -13,8 +13,10 @@ const con = mysql.createConnection({
 con.connect()
 
 // 执行 sql 语句
-// const sql = 'select * from users';
-// const sql = 'select id, username from users';
+// const sql = 'select * from users'
+// const sql = 'select id, username from users'
+// const sql = `SELECT * FROM users WHERE state='1'`
+// const sql = `UPDATE users set state='0' WHERE username='wcd'`
 // const sql = `update users set realname='wuchendi3' where username = 'wcd1'`;
 const sql = `insert into blogs (title, content, createtime, author) values ('标题', '内容',1560818599043, 'wuchendi')`
 con.query(sql, (err, result) => {
