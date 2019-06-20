@@ -25,34 +25,51 @@ const handleBlogRouter = (req, res) => {
 
     // 获取博客详情
     if (method === "GET" && req.path === "/api/blog/detail") {
-        const data = getDetail(id)
-        return new SuccessModel(data)
+        // const data = getDetail(id)
+        // return new SuccessModel(data)
+        const result = getDetail(id)
+        return result.then(data => {
+            return new SuccessModel(data)
+        })
     }
 
     // 新建博客接口
     if (method === "POST" && req.path === "/api/blog/new") {
-        const data = newBlog(req.body)
-        return new SuccessModel(data)
+        // const data = newBlog(req.body)
+        // return new SuccessModel(data)
+
+        // const author = 'wcd' // 假数据，带开发登录时在改成真实数据
+        req.body.author = 'wcd'
+        const result = newBlog(req.body)
+        return result.then(data => {
+            return new SuccessModel(data)
+        })
     }
 
     // 更新博客接口
     if (method === "POST" && req.path === "/api/blog/update") {
         const result = updateBlog(id, req.body)
-        if (result) {
-            return new SuccessModel()
-        } else {
-            return new Error('更新博客失败')
-        }
+        return result.then(val => {
+            if (val) {
+                return new SuccessModel()
+            } else {
+                return new Error('更新博客失败')
+            }
+        })
     }
 
     // 删除博客接口
     if (method === "POST" && req.path === "/api/blog/del") {
-        const result = delBlog(id)
-        if (result) {
-            return new SuccessModel()
-        } else {
-            return new Error('删除博客失败')
-        }
+        const author = 'wcd' // 假数据，带开发登录时在改成真实数据
+        // req.body.author = 'wcd'
+        const result = delBlog(id, author)
+        return result.then(val => {
+            if (val) {
+                return new SuccessModel()
+            } else {
+                return new Error('删除博客失败')
+            }
+        })
     }
 }
 
