@@ -274,3 +274,13 @@
         window.location.href = nUrl
     }
 }
+
+{
+    // ios下，页面上下滑动时，input的光标错位了
+    $('input').blur(function () {
+        setTimeout(function () {
+          var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+          window.scrollTo(0, currentPosition);//页面向上滚动
+        }, 200)
+    })
+}
