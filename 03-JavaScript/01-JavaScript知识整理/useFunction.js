@@ -1,3 +1,4 @@
+
 {
     for (var i = 1; i <= 3; i++) {
         console.log(i)
@@ -275,14 +276,48 @@
         this.location = nUrl;
         window.location.href = nUrl
     }
+
+    /** 
+     * 指定参数名称，返回该参数的值 或者 空字符串
+     * 不指定参数名称，返回全部的参数对象 或者 {}
+     * 如果存在多个同名参数，则返回数组
+    */
+    function getUrlParam(url, key) {
+        var arr = {};
+        url.replace(/\??(\w+)=(\w+)&?/g, function (match, matchKey, matchValue) {
+            if (!arr[matchKey]) {
+                arr[matchKey] = matchValue;
+            } else {
+                var temp = arr[matchKey];
+                arr[matchKey] = [].concat(temp, matchValue);
+            }
+        });
+        if (!key) {
+            return arr;
+        } else {
+            for (ele in arr) {
+                if (ele = key) {
+                    return arr[ele];
+                }
+            }
+            return '';
+        }
+    }
 }
 
 {
     // ios下，页面上下滑动时，input的光标错位了
     $('input').blur(function () {
         setTimeout(function () {
-          var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-          window.scrollTo(0, currentPosition);//页面向上滚动
+            var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            window.scrollTo(0, currentPosition);//页面向上滚动
         }, 200)
     })
+}
+
+{
+    // 判断类型
+    function toType(obj) {
+        return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+    }
 }
