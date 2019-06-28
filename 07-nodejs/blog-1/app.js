@@ -6,7 +6,7 @@ const handleUserRouter = require('./src/router/user')
 const getCookieExpires = () => {
     const d = new Date()
     d.setTime(d.getTime() + (24 * 60 * 60 * 1000))
-    // console.log('d.toGMTString() is ', d.toGMTString())
+    console.log('d.toGMTString() is ', d.toGMTString())
     return d.toGMTString()
 }
 
@@ -33,16 +33,14 @@ const getPostData = (req) => {
                 resolve({})
                 return
             }
-            resolve(
-                JSON.parse(postData)
-            )
+            resolve(JSON.parse(postData))
         })
     })
     return promise
 }
 
 const serverHandle = (req, res) => {
-    // 设置防护格式 JSON
+    // 设置返回格式 JSON
     res.setHeader('Content-type', 'application/json')
 
     // 获取 path
@@ -108,15 +106,15 @@ const serverHandle = (req, res) => {
         if (userResult) {
             userResult.then(userData => {
                 if (needSetCookie) {
-                    res.setHeader('Set-Cookie', `userId=${userId}; path=/; httpOnly; expires=${getCookieExpires()}`)
+                    res.setHeader('Set-Cookie', `userid=${userId}; path=/; httpOnly; expires=${getCookieExpires()}`)
                 }
-                res.end(JSON.stringify(userData));
+                res.end(JSON.stringify(userData))
             })
             return
         }
 
         // 未命中路由： 返回404
-        res.writeHead(404, {"Content-type": "text/plain"});
+        res.writeHead(404, { "Content-type": "text/plain" });
         res.write("404 Not Found\n");
         res.end();
     })
