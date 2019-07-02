@@ -14,6 +14,11 @@
         var regx = /\d{1,3}(?=(\d{3})+$)/g;
         return (number + '').replace(regx, '$&,')  // $&表示与regx相匹配的字符串
     }
+
+    // 格式化金钱
+    const ThousandNum = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const money = ThousandNum(19941112);
+    // money => "19,941,112"
 }
 
 {
@@ -67,4 +72,23 @@
 {
     // URL正则
     var regx = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+    // 操作URL查询参数
+    const params = new URLSearchParams(location.search.replace(/\?/ig, "")); // location.search = "?name=yajun&sex=female"
+    params.has("yajun"); // true
+    params.get("sex"); // "female"
+}
+
+{
+    // 生成随机HEX色值
+    const RandomColor = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
+    const color = RandomColor();
+    // color => "#f03665"
+}
+
+{
+    // 生成星级评分
+    const StartScore = rate => "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
+    const start = StartScore(3);
+    // start => "★★★"
 }
