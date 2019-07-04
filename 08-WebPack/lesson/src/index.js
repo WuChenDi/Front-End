@@ -1,12 +1,15 @@
-import avatar from './avatar.jpg';
-import style from './index.scss';
-import createAvatar from './createAvatar.js';
+// import './style.css'
 
-createAvatar();
+// var btn = document.createElement('button');
+// btn.innerHTML = '新增';
+// document.body.appendChild(btn);
 
-var img = new Image()
-img.src = avatar;
-img.classList.add(style.avatar);
+// btn.onclick = function () {
+//     var div = document.createElement('div');
+//     div.innerHTML = 'item';
+//     document.body.appendChild(div)
+// }
 
-document.getElementById('root');
-root.append(img);
+import counter from './counter';
+
+counter()
