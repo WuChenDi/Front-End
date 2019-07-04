@@ -11,5 +11,7 @@
 // }
 
 import counter from './counter';
+import number from './number';
 
 counter()
+number();
