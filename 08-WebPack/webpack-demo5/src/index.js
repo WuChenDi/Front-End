@@ -1,4 +1,4 @@
-// import "@babel/polyfill";
+import "@babel/polyfill";
 
 const arr = [
     new Promise(() => { }),
@@ -6,4 +6,4 @@ const arr = [
 ];
 arr.map(item => {
     console.log(item);
-});
+})
