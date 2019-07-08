@@ -1,10 +1,23 @@
 // 常用正则整理
 
 {
-    // 判断电话号码
+    /**
+     * @desc   判断电话号码
+     * @param {String|Number} tel
+     * @returns {Boolean} 
+     */
     function isPhone(tel) {
         var regx = /^1[34578]\d{9}$/;
         return regx.test(tel);
+    }
+
+    /**
+     * @desc   判断是否为手机号
+     * @param  {String|Number} str 
+     * @return {Boolean} 
+     */
+    function isPhoneNum(str) {
+        return /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(str)
     }
 }
 
@@ -22,7 +35,11 @@
 }
 
 {
-    // 验证邮箱
+    /**
+     * @desc   判断是否为邮箱地址
+     * @param {String} email
+     * @returns {Boolean} 
+     */
     function isEmail(email) {
         var regx = /^([a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(\.[a-zA-Z0-9_\-])+$/;
         return regx.test(email);
