@@ -2,4 +2,4 @@
 
 import { add } from './main.js'
 
-add(1, 7)
+add(1, 2)
