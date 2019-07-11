@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     ios 软键盘出现吧布局顶上去，软键盘消失布局没有还原问题
     <script>
-    $(function () {
-        $(document).on('blur', 'input.input-scrollTo, textarea.input-scrollTo', function () {
-            setTimeout(function () {
-                // $("#activityDetailsVue").scrollTop(0)
-                window.scrollTo(0, 0); // 页面向上滚动
-            }, 500)
+        $(function () {
+            $(document).on('blur', 'input.input-scrollTo, textarea.input-scrollTo', function () {
+                setTimeout(function () {
+                    $("#activityDetailsVue").scrollTop(0)
+                    window.scrollTo(0, 0); // 页面向上滚动
+                }, 500)
+            })
         })
-    })
+        // 多个input 导致页面下滚
+        // 处理方案：如果在次获取input focus，软键盘不会消失（页面不会下滚）
+        $(function () {
+            var timerTop = 0;
+            $(document).on('blur', 'input.inputText', function (e) {
+                // console.log(2)
+                e.preventDefault()
+                var input = $(this);
+                timerTop = setTimeout(function () {
+                    // console.log(3)
+                    input.blur()
+                    $("#activityDetailsVue").scrollTop(0)
+                    window.scrollTo(0, 0); // 页面向上滚动
+                }, 500)
+            }).on('focus', 'input.inputText', function () {
+                // console.log(1)
+                clearTimeout(timerTop)
+            })
+        })
     </script>
 </body>
+
 </html>
