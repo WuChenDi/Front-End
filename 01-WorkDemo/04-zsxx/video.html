@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.bootcss.com/element-ui/2.10.0/theme-chalk/index.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/video.js/7.6.0/video-js.min.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/video.js/7.6.0/video.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/2.10.0/index.js"></script>
+    <style>
+        /* video.js 默认倒序显示时间，也就是视频播放的剩余时间。
+        要显示当前的播放时间，以及总共视频时长，加2行CSS解决： */
+        /* .video-js .vjs-time-control {
+            display: block;
+        }
+
+        .video-js .vjs-remaining-time {
+            display: none;
+        } */
+        .video-wrap {
+            width: 500px;
+            height: 325px;
+            position: relative;
+        }
+
+        .video-wrap .operation {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            color: #fff;
+            height: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .video-wrap .operation .count-down {
+            color: red;
+        }
+
+        .video-wrap .operation .jump-over {
+            padding: 0 10px;
+            border: 1px solid #f6f6f6;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="videoVue">
+        <div class="video-wrap">
+            <video ref="videoRef" id="my-player" class="video-js vjs-big-play-centered" controls preload="auto"
+                data-setup='{}' width="500" height="325" playsinline webkit-playsinline x5-video-player-type="h5-page">
+                <!-- 播放失败 -->
+                <p class="vjs-no-js">不支持播放</p>
+            </video>
+            <div class="operation" v-if="">
+                <div class="count-down">{{countDown}}秒</div>
+                <div class="jump-over" @click="jump">跳过</div>
+            </div>
+        </div>
+        <el-select v-model="elValue" placeholder="请选择">
+            <el-option v-for="item in elOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+        </el-select>
+        <el-button type="primary" @click="switchVideo">切换视频</el-button>
+    </div>
+
+    <script>
+        var videoApp = new Vue({
+            el: "#videoVue",
+            data() {
+                return {
+                    elOptions: [
+                        { value: 'https://oss-vod.vzan.cc/videoDemo.mp4', label: 'mp4视频格式1' },
+                        { value: 'https://mp4-vod.vzan.cc/22kJYQwedN.mp4', label: 'mp4视频格式2' },
+                        { value: 'http://qvod2.vzan.cc/11939060/132059046191613126/replay.1561466882.25685608.m3u8', label: 'm3u8视频格式1' },
+                        { value: 'http://v2.weizan.cn/87283/131917551799504120/replay.1547281927.53123098.m3u8', label: 'm3u8视频格式2' },
+                        { value: 'http://p2.vzan.cc/1441140555/132052016008862298/live.m3u8', label: '直播中1' },
+                        { value: 'http://pili-live-hls.vzan.com/vzanlive/132052313665706880.m3u8', label: 'wcd直播' },
+                        { value: 'http://v2.weizan.cn/488788/132000759483049617/replay.1555730289.86178197.m3u8', label: '卡顿视频' },
+                        { value: 'http://p2.weizan.cn/949666248/132053376338984635/live.m3u8', label: '广告视频' }
+                    ],
+                    elValue: 'http://pili-live-hls.vzan.com/vzanlive/132052313665706880.m3u8',
+                    player: "",
+                    options: {
+                        controls: true, // 是否显示控制栏
+                        poster: "https://i2cut.vzan.cc/image/liveImage/jpeg/2019/5/13/111045c9fad301946442fa82afb17914f69958.jpeg", // 播放器图片
+                        // playbackRates: [0.5, 1, 1.5, 2], // 播放速度
+                        sources: []
+                    },
+                    countDown: 0, // 倒计时长
+                }
+            },
+            mounted: function () {
+                this.infoVideo();
+
+            },
+            methods: {
+                // 加载视频
+                infoVideo() {
+                    this.options.sources = [{ src: this.elValue }];
+                    this.player = videojs(this.$refs.videoRef, this.options, function onPlayerReady() {
+                        videojs.log('Your player is ready!');
+
+                        // this.load();
+                        // 开始播放(自动播放)
+                        this.play();
+
+                        // 监听播放 开始/恢复状态
+                        this.on('play', () => {
+                            videojs.log('开始/恢复播放');
+                        });
+
+                        // 监听播放暂停状态
+                        this.on('pause', () => {
+                            console.log('暂停播放');
+                        });
+
+                        // 监听播放结束状态
+                        this.on('ended', () => {
+                            videojs.log('监听播放结束状态');
+                        });
+
+                        this.on('timeupdate', () => {
+                            videoApp.countDown = parseInt(this.duration()) - parseInt(this.currentTime());
+                            console.log(videoApp.countDown)
+                            // console.log(`视频剩下时长 ${parseInt(this.duration()) - parseInt(this.currentTime())}`)
+                        });
+
+                        this.on('loadedmetadata', () => {
+                            console.log(`视频总时长${parseInt(this.duration())}秒`)
+                        });
+                    });
+                },
+                // 切换视频
+                switchVideo() {
+                    let that = this;
+                    that.$message.success('切换成功');
+                    that.options.sources = [];
+                    // 更换视频播放地址
+                    that.player.src([
+                        { src: that.elValue }
+                    ])
+                    that.player.pause();
+                    that.player.load(that.elValue);
+                    that.player.play();
+                },
+                // 跳过广告
+                jump() {
+                    that.$message.success('跳过广告');
+                }
+            },
+            beforeDestroy: function () {
+                //销毁video实例
+                const videoDom = this.$refs.videoRef;
+                // videojs(videoDom).dispose();
+                this.player.dispose();
+            }
+        });
+        // var options = {
+        //     sources: [{
+        //         src: 'http://qvod2.vzan.cc/11939060/132059046191613126/replay.1561466882.25685608.m3u8',
+        //         type: 'application/x-mpegURL'
+        //     }, {
+        //         src: 'http://oss-vod.vzan.cc/videoDemo.mp4',
+        //         type: 'video/mp4'
+        //     }]
+        // };
+
+        // var player = videojs('my-player', options, function onPlayerReady() {
+        //     videojs.log('Your player is ready!');
+
+        //     //this.play(); // 开始播放(自动播放)
+
+        //     // 监听播放 开始/恢复状态
+        //     this.on('play', function () {
+        //         videojs.log('开始/恢复播放');
+        //     });
+
+        //     // 监听播放暂停状态
+        //     this.on('pause', function () {
+        //         console.log('暂停播放');
+        //     });
+
+        //     // 监听播放结束状态
+        //     this.on('ended', function () {
+        //         videojs.log('监听播放结束状态');
+        //     });
+        // });
+    </script>
+</body>
+
+</html>
