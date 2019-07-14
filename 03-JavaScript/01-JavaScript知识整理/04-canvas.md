@@ -268,8 +268,16 @@
             }, 500);
         },
     
-        // 图片
-        // downloadCanvasImg(画布区域的左上角横坐标,画布区域的左上角纵坐标,画布区域的宽度,画布区域的高度,图片的宽度,图片的高度)
+        /**
+         *
+         * @method downloadCanvasImg 把当前画布指定区域的内容导出生成指定大小的图片，并返回文件路径
+         * @param { Number } x 画布区域的左上角横坐标
+         * @param { Number } y 画布区域的左上角纵坐标
+         * @param { Number } width 画布区域的宽度
+         * @param { Number } height 画布区域的高度
+         * @param { Number } destWidth 图片的宽度
+         * @param { Number } destHeight 图片的高度
+         */
         downloadCanvasImg(x, y, width, height, destWidth, destHeight) {
             wx.canvasToTempFilePath({
                 x: x,
@@ -293,9 +301,16 @@
                 }
             });
         },
-    
-        // canvas文本居中 
-        // centerText(canvas对象，要写的字，字体，颜色，绘制的高度)
+
+        /**
+         * 
+         * @method centerText canvas文本居中 
+         * @param {*} ctx canvas对象
+         * @param {*} text 文字
+         * @param {*} fontSzie 字体
+         * @param {*} color 颜色
+         * @param {*} height 绘制高度
+         */
         centerText(ctx, text, fontSzie, color, height) {
             ctx.font = fontSzie;
             ctx.fillStyle = color;
@@ -304,8 +319,17 @@
             ctx.fillText(text, ctx.width / 2, height);
         },
     
-        // canvas文本超过隐藏 
-        // drawText(canvas对象，文本，X轴，Y轴，文本宽度，行高，显示多少行)
+        /**
+         * 
+         * @method drawText canvas文本超过隐藏 
+         * @param {*} ctx canvas对象
+         * @param {*} text 文字
+         * @param {*} x X轴
+         * @param {*} y Y轴
+         * @param {*} maxWidth 文本宽度
+         * @param {*} lineHeight 行高
+         * @param {*} maxLine 显示行数
+         */
         drawText(ctx, text, x, y, maxWidth, lineHeight, maxLine) {
             let arrText = text.split('');
             let line = '';
