@@ -321,3 +321,12 @@
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
     }
 }
+
+{
+    // 检测平台（设备）类型
+    let isWechat = /micromessenger/i.test(navigator.userAgent),
+        isWeibo = /weibo/i.test(navigator.userAgent),
+        isQQ = /qq\//i.test(navigator.userAgent),
+        isIOS = /(iphone|ipod|ipad|ios)/i.test(navigator.userAgent),
+        isAndroid = /android/i.test(navigator.userAgent);
+}
