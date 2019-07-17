@@ -5,10 +5,10 @@
                 targets: {
                     chrome: "67",
                 },
-                useBuiltIns: 'usage'
+                useBuiltIns: "usage"
             }
         ],
         "@babel/preset-react"
     ],
-    "plugins": ["@babel/plugin-syntax-dynamic-import"]
+    "plugins": ["dynamic-import-webpack"]
 }
