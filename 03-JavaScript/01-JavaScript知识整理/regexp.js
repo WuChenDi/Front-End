@@ -2,43 +2,36 @@
 
 {
     /**
-     * @desc   判断手机号码
+     * @description 判断手机号码
      * @param {String|Number} tel
      * @returns {Boolean} 
      */
-    function isPhone(tel) {
+    function isPhoneNum(tel) {
         return /^1[34578]\d{9}$/.test(tel);
     }
 
     /**
-     * @desc   判断是否为手机号
-     * @param  {String|Number} str 
-     * @return {Boolean} 
+     * @description 判断是否为手机号 (百度)
+     * @param  {String|Number} tel
+     * @returns {Boolean} 
      */
-    function isPhoneNum(str) {
-        return /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(str)
+    function isPhoneNum(tel) {
+        return /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(tel)
     }
 
-    // 手机号(严谨), 根据工信部2019年最新公布的手机号段
-    var regx = /^1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/;
-}
-
-{
-    // JS实现千位分隔符
-    function format(number) {
-        var regx = /\d{1,3}(?=(\d{3})+$)/g;
-        return (number + '').replace(regx, '$&,')  // $&表示与regx相匹配的字符串
+    /**
+     * @description 手机号(严谨), 根据工信部2019年最新公布的手机号段
+     * @param  {String|Number} tel
+     * @returns {Boolean} 
+     */
+    function isPhoneNum(tel) {
+        return /^1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/.test(tel);
     }
-
-    // 格式化金钱
-    const ThousandNum = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    const money = ThousandNum(19941112);
-    // money => "19,941,112"
 }
 
 {
     /**
-     * @desc   判断是否为邮箱地址
+     * @description 判断是否为邮箱地址
      * @param {String} email
      * @returns {Boolean} 
      */
@@ -48,15 +41,23 @@
 }
 
 {
-    // 验证身份证号码
-    // 身份证号码可能为15位或18位，15位为全数字，18位中前17位为数字，最后一位为数字或者X
-    function isCardNo(number) {
-        return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(number);
+    /**
+     * @description 验证身份证号码(身份证号码可能为15位或18位，15位为全数字，18位中前17位为数字，最后一位为数字或者X)
+     * @param {String} idCard
+     * @returns {Boolean} 
+     */
+    function isCardNo(idCard) {
+        return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(idCard);
     }
 
-    // or
-    var regx = /(^\d{8}(0\d|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0\d|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/
-
+    /**
+     * @description 验证身份证号码
+     * @param {String} idCard
+     * @returns {Boolean} 
+     */
+    function isIDCard(idCard) {
+        return /(^\d{8}(0\d|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0\d|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/.test(idCard)
+    }
 }
 
 {
@@ -132,4 +133,26 @@
     // 车牌号(新能源+非新能源)
     var regx3 = /^([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-HJ-NP-Z]{1}(([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9 挂学警港澳]{1})$/;
 
+}
+
+{
+    /**
+     * @description 千位分隔符(格式化金钱)
+     * @param {String|Number} num
+     * @returns {string} 
+     */
+    function thousandNum(num) {
+        var regx = /\d{1,3}(?=(\d{3})+$)/g;
+        return (num + '').replace(regx, '$&,')  // $&表示与regx相匹配的字符串
+    }
+
+    /**
+     * @description 千位分隔符(格式化金钱)
+     * @param {String|Number} num
+     * @returns {string} 
+     */
+    function thousandNum(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    // thousandNum(123456789) => "123,456,789"
 }
