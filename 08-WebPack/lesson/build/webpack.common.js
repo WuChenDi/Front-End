@@ -55,8 +55,19 @@ module.exports = {
         new CleanWebpackPlugin()
     ],
     optimization: {
+        runtimeChunk: {
+            name: 'runtime'
+        },
+        usedExports: true,
         splitChunks: {
-            chunks: 'all'
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    name: 'vendors',
+                }
+            }
         }
     },
     output: {
