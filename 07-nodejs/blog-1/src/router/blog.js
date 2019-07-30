@@ -27,6 +27,18 @@ const handleBlogRouter = (req, res) => {
         const keyword = req.query.keyword || ''
         // const listData = getList(author, keyword)
         // return new SuccessModel(listData)
+
+        if (req.query.isadmin) {
+            // 管理员界面
+            const loginCheckResult = loginCheck(req)
+            if (loginCheckResult) {
+                // 未登录
+                return loginCheckResult
+            }
+            // 强制查询自己的博客
+            author = req.session.username
+        }
+
         const result = getList(author, keyword)
         return result.then(listData => {
             return new SuccessModel(listData)
@@ -51,7 +63,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginCheck(req);
         if (loginCheckResult) {
             // 未登录
-            return loginCheck
+            return loginCheckResult
         }
 
         // const author = 'wcd' // 假数据，带开发登录时在改成真实数据
@@ -67,7 +79,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginCheck(req);
         if (loginCheckResult) {
             // 未登录
-            return loginCheck
+            return loginCheckResult
         }
 
         const result = updateBlog(id, req.body)
@@ -85,7 +97,7 @@ const handleBlogRouter = (req, res) => {
         const loginCheckResult = loginCheck(req);
         if (loginCheckResult) {
             // 未登录
-            return loginCheck
+            return loginCheckResult
         }
 
         // req.body.author = 'wcd' // 假数据，带开发登录时在改成真实数据
