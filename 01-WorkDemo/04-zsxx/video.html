@@ -89,7 +89,7 @@
                         { value: 'http://v2.weizan.cn/488788/132000759483049617/replay.1555730289.86178197.m3u8', label: '卡顿视频' },
                         { value: 'http://p2.weizan.cn/949666248/132053376338984635/live.m3u8', label: '广告视频' }
                     ],
-                    elValue: 'http://pili-live-hls.vzan.com/vzanlive/132052313665706880.m3u8',
+                    elValue: 'http://i3.vzan.cc/clip/566693/1986421653/63685B0F92C58AFA.m3u8',
                     player: "",
                     options: {
                         controls: true, // 是否显示控制栏
@@ -108,6 +108,7 @@
                 // 加载视频
                 infoVideo() {
                     this.options.sources = [{ src: this.elValue }];
+                    console.log(this.options.sources )
                     this.player = videojs(this.$refs.videoRef, this.options, function onPlayerReady() {
                         videojs.log('Your player is ready!');
 
