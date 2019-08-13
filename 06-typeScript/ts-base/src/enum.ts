@@ -5,8 +5,18 @@ enum Role {
     Owner,
     Guest
 }
-console.log(Role.Reporter)
+console.log(Role.Reporter) // 1
 console.log(Role)
+// 1: "Reporter"
+// 2: "Developer"
+// 3: "Maintainer"
+// 4: "Owner"
+// 5: "Guest"
+// Developer: 2
+// Guest: 5
+// Maintainer: 3
+// Owner: 4
+// Reporter: 1
 
 // 字符串枚举
 enum Message {

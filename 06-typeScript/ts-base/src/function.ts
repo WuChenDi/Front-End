@@ -21,12 +21,12 @@ add5(1)
 function add6(x: number, y = 0, z: number, q = 1) {
     return x + y + z + q
 }
-console.log(add6(1, undefined, 3))
+console.log(add6(1, undefined, 3)) // 5
 
 function add7(x: number, ...rest: number[]) {
     return x + rest.reduce((pre, cur) => pre + cur)
 }
-console.log(add7(1, 2, 3, 4, 5))
+console.log(add7(1, 2, 3, 4, 5)) // 15
 
 function add8(...rest: number[]): number;
 function add8(...rest: string[]): string;
@@ -39,5 +39,5 @@ function add8(...rest: any[]): any {
         return rest.reduce((pre, cur) => pre + cur)
     }
 }
-console.log(add8(1, 2, 3))
-console.log(add8('a', 'b', 'c'))
+console.log(add8(1, 2, 3)) // 6
+console.log(add8('a', 'b', 'c')) // abc

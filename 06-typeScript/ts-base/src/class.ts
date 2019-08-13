@@ -20,10 +20,10 @@ class Dog {
 
 console.log(Dog.prototype)
 let dog = new Dog('wangwang')
-console.log(dog)
+console.log(dog) // Dog {legs: 4, name: "wangwang"}
 // dog.pri()
 // dog.pro()
-console.log(Dog.food)
+console.log(Dog.food) // bones
 
 // 继承
 class Husky extends Dog {
@@ -35,4 +35,4 @@ class Husky extends Dog {
     }
     // color: string
 }
-console.log(Husky.food)
+console.log(Husky.food) // bones

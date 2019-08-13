@@ -9,9 +9,9 @@ interface Result {
 }
 function render(result: Result) {
     result.data.forEach((value) => {
-        console.log(value.id, value.name)
+        console.log(value.id, value.name) // 1 "A"  2 "B"
         if (value.age) {
-            console.log(value.age)
+            console.log(value.age) // 10
         }
         // value.id++
     })
