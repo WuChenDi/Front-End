@@ -126,22 +126,24 @@ export const formatTime = (time, format = 'yyyy-mm-dd') => {
 }
 
 /**
- * @method 防抖
- * @param {*} func 
- * @param {*} delay 
- * @param {*} immediate 
+ * @description 函数防抖
+ * @param {Function} method 延时调用函数
+ * @param {Number} wait 延迟时长
+ * @param {Boolean} immediate 立即执行选项
  */
-
 export const Ddebounce = (method, wait, immediate) => {
-    let timeout = null
-    // debounced函数为返回值
+    if (typeof method != 'function') {
+        throw new TypeError('Expected a function');
+    }
+    let timeout
+    // Ddebounce函数为返回值
     // 使用Async/Await处理异步，如果函数异步执行，等待setTimeout执行完，拿到原函数返回值后将其返回
     // args为返回函数调用时传入的参数，传给method
     let Ddebounce = function (...args) {
         return new Promise(resolve => {
             // 用于记录原函数执行结果
             let result
-            // 将method执行时this的指向设为debounce返回的函数被调用时的this指向
+            // 将method执行时this的指向设为 debounce 返回的函数被调用时的this指向
             let context = this
             // 如果存在定时器则将其清除
             if (timeout) {
@@ -173,13 +175,14 @@ export const Ddebounce = (method, wait, immediate) => {
         })
     }
 
-    // 在返回的debounced函数上添加取消方法
+    // 在返回的 Ddebounce 函数上添加取消方法
     Ddebounce.cancel = function () {
         clearTimeout(timeout)
         timeout = null
     }
     return Ddebounce
 }
+
 
 /**
  * @method 节流
