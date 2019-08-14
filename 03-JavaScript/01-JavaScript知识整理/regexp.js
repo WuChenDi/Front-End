@@ -103,6 +103,12 @@
     // URL正则
     var regx = /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
 
+    // 合法uri
+    function validateURL(textval) {
+        const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
+        return urlregex.test(textval)
+    }
+
     // 操作URL查询参数
     const params = new URLSearchParams(location.search.replace(/\?/ig, "")); // location.search = "?name=yajun&sex=female"
     params.has("yajun"); // true
@@ -132,7 +138,6 @@
 
     // 车牌号(新能源+非新能源)
     var regx3 = /^([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-HJ-NP-Z]{1}(([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9 挂学警港澳]{1})$/;
-
 }
 
 {
@@ -155,4 +160,42 @@
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     // thousandNum(123456789) => "123,456,789"
+}
+
+{
+    /* 小写字母*/
+    function validateLowerCase(str) {
+        const reg = /^[a-z]+$/
+        return reg.test(str)
+    }
+
+    /* 大写字母*/
+    function validateUpperCase(str) {
+        const reg = /^[A-Z]+$/
+        return reg.test(str)
+    }
+
+    /* 大小写字母*/
+    function validatAlphabets(str) {
+        const reg = /^[A-Za-z]+$/
+        return reg.test(str)
+    }
+}
+
+{
+    //  判断是否为空
+    function validatenull(val) {
+        if (typeof val === 'boolean') {
+            return false
+        }
+        if (val instanceof Array) {
+            if (val.length === 0) return true
+        } else if (val instanceof Object) {
+            if (JSON.stringify(val) === '{}') return true
+        } else {
+            if (val === 'null' || val == null || val === 'undefined' || val === undefined || val === '') return true
+            return false
+        }
+        return false
+    }
 }
