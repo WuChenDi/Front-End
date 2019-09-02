@@ -1,44 +1,42 @@
-const redis = require('redis')
-const { REDIS_CONF } = require('../conf/db.js')
+const redis = require("redis");
+const { REDIS_CONF } = require("../conf/db.js");
 
 // 创建客户端
-const redisClient = redis.createClient(REDIS_CONF.port, REDIS_CONF.host)
-redisClient.on('error', err => {
-    console.error(err)
-})
+const redisClient = redis.createClient(REDIS_CONF.port, REDIS_CONF.host);
+redisClient.on("error", err => {
+    console.error(err);
+});
 
-function set(key, value) {
-    if (typeof val === 'object') {
-        val = JSON.stringify(val)
+function set(key, val) {
+    if (typeof val === "object") {
+        val = JSON.stringify(val);
     }
-    redisClient.set(key, val, redis.print)
+    redisClient.set(key, val, redis.print);
 }
 
 function get(key) {
     const promise = new Promise((resolve, reject) => {
         redisClient.get(key, (err, val) => {
             if (err) {
-                reject(err)
-                return
+                reject(err);
+                return;
             }
             if (val == null) {
-                resolve(null)
-                return
+                resolve(null);
+                return;
             }
 
             try {
-                resolve(
-                    JSON.parse(val)
-                )
+                resolve(JSON.parse(val));
             } catch (ex) {
-                resolve(val)
+                resolve(val);
             }
-        })
-    })
-    return promise
+        });
+    });
+    return promise;
 }
 
 module.exports = {
     set,
     get
-}
+};
