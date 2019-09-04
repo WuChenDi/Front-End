@@ -29,7 +29,7 @@ const newBlog = (blogData = {}) => {
     //     id: 3, // 表示新建博客，插入到数据表里面的 id
     // }
     const title = xss(blogData.title)
-    console.log("title is", +title)
+    console.log("title is", title)
     const content = blogData.content
     const author = blogData.author
     const createTime = Date.now()
