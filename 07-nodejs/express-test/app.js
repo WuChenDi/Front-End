@@ -43,7 +43,22 @@ app.post("/api", (req, res, next) => {
     next();
 });
 
-app.get("/api/get-cookie", (req, res, next) => {
+// 模拟登陆验证
+function loginCheck(req, res, next) {
+    // setTimeout(() => {
+    //     console.log("模拟登陆成功");
+    //     next();
+    // });
+    setTimeout(() => {
+        console.log("登陆失败");
+        res.json({
+            error: -1,
+            msg: "登陆失败"
+        })
+    });
+}
+
+app.get("/api/get-cookie", loginCheck, (req, res, next) => {
     console.log("get /api/get-cookie");
     res.json({
         error: 0,
