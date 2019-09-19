@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animate动画</title>
+    <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/element-ui/2.12.0/theme-chalk/index.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/element-ui/2.12.0/index.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", Arial;
+            color: black;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .containView {
+            height: 200px;
+            background-color: rgb(58, 142, 230);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        .btn {
+            margin: 0 auto;
+            width: 35%;
+            margin-top: 30px;
+            background-color: green;
+            color: white;
+            font-size: 17px;
+        }
+
+        .aniDes {
+            width: 80%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px;
+            font-size: 16px;
+        }
+
+        .boxlabel {
+            height: 40px;
+            width: 80%;
+            margin: 0 auto;
+            margin-left: 10%;
+            font-size: 16px;
+        }
+
+        .scrollView {
+            width: 100%;
+            height: 60vh;
+            margin: 0 0 30px;
+            overflow-y: scroll;
+        }
+
+        .AttentionSeekers {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            margin: 20px;
+            background-color: #f5f7fa;
+        }
+
+        .AttentionSeekers button {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="animateApp">
+        <div class="containView">
+            <div :class="animationType">animate动画效果</div>
+        </div>
+        <div class='aniDes'>
+            <div>当前的动画类型：{{animationName}}</div>
+            <el-checkbox v-model="infinite">循环</el-checkbox>
+        </div>
+        <div class="scrollView">
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    晃动效果
+                </div>
+                <template v-for="(item,index) in AttentionSeekers">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    弹性缓冲效果 Entrances
+                </div>
+                <template v-for="(item,index) in BouncingEntrances">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    弹性缓冲效果 Exits
+                </div>
+                <template v-for="(item,index) in BouncingExits">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    透明度变化效果 Entrances
+                </div>
+                <template v-for="(item,index) in FadingEntrances">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    透明度变化效果 Exits
+                </div>
+                <template v-for="(item,index) in FadingExits">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    翻转效果
+                </div>
+                <template v-for="(item,index) in Flippers">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    旋转效果 Entrances
+                </div>
+                <template v-for="(item,index) in RotatingEntrances">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    旋转效果 Exits
+                </div>
+                <template v-for="(item,index) in RotatingExits">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    滑动效果 Entrances
+                </div>
+                <template v-for="(item,index) in SlidingEntrances">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    滑动效果 Exits
+                </div>
+                <template v-for="(item,index) in SlidingExits">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    变焦效果 Entrances
+                </div>
+                <template v-for="(item,index) in ZoomEntrances">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    变焦效果 Exits
+                </div>
+                <template v-for="(item,index) in ZoomExits">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+            <div class="AttentionSeekers">
+                <div style='width:100%;font-size:13px;padding:10px;background-color:#3a8ee6;color:white;'>
+                    特殊效果
+                </div>
+                <template v-for="(item,index) in Specials">
+                    <el-button size="small" v-on:click="clickAniBtn(item)">{{item}}</el-button>
+                </template>
+            </div>
+        </div>
+    </div>
+    <script>
+        var animateVue = new Vue({
+            el: "#animateApp",
+            data() {
+                return {
+                    animationType: "animated bounce",
+                    animationName: "bounce",
+                    infinite: false,
+                    AttentionSeekers: ["bounce", "flash", "pulse", "rubberBand", "shake", "swing", "tada", "wobble", "jello"],
+                    BouncingEntrances: ["bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp"],
+                    BouncingExits: ["bounceOut", "bounceOutDown", "bounceOutLeft", "bounceOutRight", "bounceOutUp"],
+                    FadingEntrances: ["fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig"],
+                    FadingExits: ["fadeOut", "fadeOutDown", "fadeOutDownBig", "fadeOutLeft", "fadeOutLeftBig", "fadeOutRight", "fadeOutRightBig", "fadeOutUp", "fadeOutUpBig"],
+                    Flippers: ["flip", "flipInX", "flipInY", "flipOutX", "flipOutY"],
+                    Lightspeed: ["lightSpeedIn", "lightSpeedOut"],
+                    RotatingEntrances: ["rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight"],
+                    RotatingExits: ["rotateOut", "rotateOutDownLeft", "rotateOutDownRight", "rotateOutUpLeft", "rotateOutUpRight"],
+                    SlidingEntrances: ["slideInDown", "slideInLeft", "slideInRight", "slideInUp"],
+                    SlidingExits: ["slideOutDown", "slideOutLeft", "slideOutRight", "slideOutUp"],
+                    ZoomEntrances: ["zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp"],
+                    ZoomExits: ["zoomOut", "zoomOutDown", "zoomOutLeft", "zoomOutRight", "zoomOutUp"],
+                    Specials: ["hinge", "jackInTheBox", "rollIn", "rollOut"]
+                }
+            },
+            methods: {
+                clickAniBtn(item) {
+                    this.animationName = item;
+                    if (this.infinite) {
+                        console.log("open循环");
+                        this.animationType = `animated ${item} infinite`
+                    } else {
+                        console.log("close循环");
+                        this.animationType = `animated ${item}`
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
