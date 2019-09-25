@@ -399,3 +399,18 @@
         return debounced
     }
 }
+
+{
+    // -0
+    // 首先创建一个8位的ArrayBuffer
+    const buffer = new ArrayBuffer(8);
+    // 创建DataView对象操作buffer
+    const dataView = new DataView(buffer);
+    // 将第1个字节设置为0x80，即最高位为1
+    dataView.setUint8(0, 0x80);
+    // 将buffer内容当做Float64类型返回
+    console.log(dataView.getFloat64(0)); // -0
+
+    // -0
+    console.log(0*-1); // -0
+}
