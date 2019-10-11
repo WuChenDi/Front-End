@@ -401,7 +401,8 @@
 }
 
 {
-    // -0
+    // 生成 -0
+
     // 首先创建一个8位的ArrayBuffer
     const buffer = new ArrayBuffer(8);
     // 创建DataView对象操作buffer
