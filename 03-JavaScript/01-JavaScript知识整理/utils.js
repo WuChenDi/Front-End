@@ -97,7 +97,7 @@ export const formatTime = (time, format = "yyyy-mm-dd") => {
 
     return format.replace(
         /(yy){1,2}|m{1,2}|d{1,2}|h{1,2}|i{1,2}|s{1,2}|w{1,2}/gi,
-        function(r) {
+        function (r) {
             switch (r.toUpperCase()) {
                 case "YY":
                     return ("" + year).substr(2);
@@ -126,7 +126,7 @@ export const formatTime = (time, format = "yyyy-mm-dd") => {
                 case "W":
                     return `星期${
                         ["日", "一", "二", "三", "四", "五", "六"][weekday]
-                    }`;
+                        }`;
                 case "WW":
                     return [
                         "Sunday",
@@ -156,7 +156,7 @@ export const Ddebounce = (method, wait, immediate) => {
     // Ddebounce函数为返回值
     // 使用Async/Await处理异步，如果函数异步执行，等待setTimeout执行完，拿到原函数返回值后将其返回
     // args为返回函数调用时传入的参数，传给method
-    let Ddebounce = function(...args) {
+    let Ddebounce = function (...args) {
         return new Promise(resolve => {
             // 用于记录原函数执行结果
             let result;
@@ -193,7 +193,7 @@ export const Ddebounce = (method, wait, immediate) => {
     };
 
     // 在返回的 Ddebounce 函数上添加取消方法
-    Ddebounce.cancel = function() {
+    Ddebounce.cancel = function () {
         clearTimeout(timeout);
         timeout = null;
     };
@@ -207,11 +207,11 @@ export const Ddebounce = (method, wait, immediate) => {
  */
 export const Dthrottle = (func, delay) => {
     let timer = null;
-    return function() {
+    return function () {
         let context = this;
         let args = arguments;
         if (!timer) {
-            timer = setTimeout(function() {
+            timer = setTimeout(function () {
                 func.apply(context, args);
                 timer = null;
             }, delay);
@@ -221,10 +221,12 @@ export const Dthrottle = (func, delay) => {
 
 /**
  * @method 数组扁平化
- * @param {*} arr
+ * @param {*} arry
  */
-export const Dflatten = arr => {
+export const deepFlatten = arr => {
     return arr.toString().split(",").map(item => +item);
+    // or
+    // return [].concat(...arr.map(item => (Array.isArray(item) ? deepFlatten(item) : item)));
 };
 
 /**

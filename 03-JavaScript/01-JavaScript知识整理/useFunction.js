@@ -1,110 +1,74 @@
-
 {
     for (var i = 1; i <= 3; i++) {
-        console.log(i)
+        console.log(i); // 1 2 3
         // setTimeout(function () {
-        //   console.log(i);
+        //   console.log(i); // 4 4 4
         // }, 0);
     }
 }
 
 {
     var a = null;
-    console.log(typeof (a))
+    console.log(typeof a); // object
 }
 
 {
     var a = 100;
 
     function test() {
-        console.log(a);
+        console.log(a); // 100
         a = 10;
-        console.log(a);
+        console.log(a); // 10
     }
     test();
-    console.log(a)
+    console.log(a); // 10
 }
 
 {
-    String.prototype.trim = function () {
-        return this.replace(/^\s+/, "").replace(/\s+$/, "");
-    }
-}
-
-{
-    var uname = 'jack';
+    var uname = "jack";
     function change() {
-        console.log(uname);
-        var uname = 'wcd';
-        console.log(uname);
+        console.log(uname); // undefined
+        var uname = "wcd";
+        console.log(uname); // wcd
     }
-    change()
-}
-
-{
-    let array = [5, 4, 3, 2, 1];
-    let temp = 0;
-    for (var i = 0; i < array.length; i++) {
-        for (var j = 0; j < array.length - i; j++) {
-            if (array[i] > array[j + 1]) {
-                temp = array[j + 1];
-                array[j + 1] = array[j];
-                array[j] = temp;
-            }
-        }
-    }
-    console.log(array)
-}
-
-{
-    function modifyArray(arr, callback) {
-        arr.push(100);
-        callback();
-    }
-    let arr = [1, 2, 3, 4];
-    modifyArray(arr, function () {
-        console.log("array has been modified", arr)
-    })
+    change();
 }
 
 {
     function createBase(baseNumber) {
         return function (N) {
             return baseNumber + N;
-        }
+        };
     }
     let addSix = createBase(6);
-    console.log(addSix(10))
-    console.log(addSix(21))
-
+    console.log(addSix(10)); // 16
+    console.log(addSix(21)); // 27
 }
 
-// 1~100的完全平方数
 {
+    // 1~100的完全平方数
     function isSqrt(n) {
         for (var i = 1; n > 0; i += 2) {
             n -= i;
-        };
+        }
         return 0 == n;
     }
     for (var j = 1; j <= 100; j++) {
         if (isSqrt(j)) {
-            console.log(j)
+            console.log(j); // 1 4 9 16 25 36 49 64 81 100
         }
     }
 }
 
-
-// 实现一个函数，判断输入是不是回文字符串(在我的理解，如果将一个字符串翻转过来，能和原字符串完全相等，那么就可以称之为“回文”)
 {
+    // 实现一个函数，判断输入是不是回文字符串(在我的理解，如果将一个字符串翻转过来，能和原字符串完全相等，那么就可以称之为“回文”)
+
     // one
     function Palindrome1(input) {
-        if (typeof input !== 'string') return false;
-        return input.split('').reverse().join('') === input;
+        if (typeof input !== "string") return false;
+        return (input.split("").reverse().join("") === input);
     }
-}
 
-{
     // two
     function Palindrome2(line) {
         line += "";
@@ -118,18 +82,24 @@
 }
 
 {
-    var name = 'global';
+    var name = "global";
     var obj = {
-        name: 'obj',
+        name: "obj",
         sex: function () {
-            this.name = 'sex';
+            this.name = "wcd";
             return function () {
                 return this.name;
-            }
+            };
         }
-    }
-    console.log(obj.sex().call(this));
-    console.log(obj.sex().call(obj));
+    };
+    console.log(obj.sex().call(this)); // undefined
+    console.log(obj.sex().call(obj)); // wcd
+}
+
+{
+    String.prototype.trim = function () {
+        return this.replace(/^\s+/, "").replace(/\s+$/, "");
+    };
 }
 
 {
@@ -138,10 +108,9 @@
         let reg = /^\s+|\s+$/g;
         return str.replace(reg, "");
     }
-    let str = '    asdf    ';
-    console.log(myTrim(str));
+    let str = "    wcd    ";
+    console.log(myTrim(str)); // wcd
 }
-
 
 {
     // 判断数组或者一个字符串中出现次数最多的元素及其出现的次数
@@ -169,28 +138,28 @@
         }
         if (eq.length > 0) {
             for (var j = 0; j < eq.length; j++) {
-                maxElement += '，' + eq[j];
+                maxElement += "，" + eq[j];
             }
         }
-        return "该数组中出现次数最多的元素:" + maxElement + "-----出现了:" + maxCount + "次";
+        return `该数组中出现次数最多的元素:${maxElement},出现了:${maxCount}次`;
     }
     var arr = [1, 2, 2, 2, 3, 3, 3, 4, 5, 6];
     var res = maxCountElement(arr);
-    console.log(res);
+    console.log(res); // 该数组中出现次数最多的元素:2，3,出现了:3次
 }
 
 {
     // 统计数组中相同项的个数
-    var cars = ['BMW', 'Benz', 'Benz', 'Benz', 'Tesla', 'BMW', 'Toyota'];
+    var cars = ["xiaoming", "xiaohong", "xiaohong", "xiaohong", "xiaolv", "xiaolan", "xiaohei"];
     var carsObj = cars.reduce(function (obj, name) {
         obj[name] = obj[name] ? ++obj[name] : 1;
         return obj;
     }, {});
-    carsObj;
+    console.log(carsObj); // { xiaoming: 1, xiaohong: 3, xiaolv: 1, xiaolan: 1, xiaohei: 1 }
 }
 
 {
-    /** 
+    /**
      * reduce方法同时实现map和filter
      * 需求：假设现在有一个数列，你希望更新它的每一项（map的功能）然后筛选出一部分（filter的功能）。如果是先使用map然后filter的话，你需要遍历这个数组两次。 在下面的代码中，我们将数列中的值翻倍，然后挑选出那些大于50的数
      */
@@ -202,11 +171,11 @@
         }
         return finalList;
     }, []);
-    doubledOver50;
+    console.log(doubledOver50); // [ 60, 80 ]
 }
 
 {
-    /** 
+    /**
      * 需求：假设需要对字符串进行字符长度限制
      * str为字符串，len为长度
      */
@@ -229,19 +198,18 @@
 }
 
 {
-    // 获取 URL 的中参数
+    // 获取 URL 的中参数 (推荐 https://github.com/derek-watson/jsUri)
     // 正则
     function getQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
         var context = "";
-        if (r != null)
-            context = r[2];
+        if (r != null) context = r[2];
         reg = null;
         r = null;
         return context == null || context == "" || context == "undefined" ? "" : context;
     }
-    // 这样调用：
+    // such as：
     // alert(GetQueryString("参数名1"));
     // alert(GetQueryString("参数名2"));
     // alert(GetQueryString("参数名3"));
@@ -271,17 +239,17 @@
     //替换指定传入参数的值,paramName为参数,replaceWith为新值
     function replaceParamVal(paramName, replaceWith) {
         var oUrl = this.location.href.toString();
-        var re = eval('/(' + paramName + '=)([^&]*)/gi');
-        var nUrl = oUrl.replace(re, paramName + '=' + replaceWith);
+        var re = eval("/(" + paramName + "=)([^&]*)/gi");
+        var nUrl = oUrl.replace(re, paramName + "=" + replaceWith);
         this.location = nUrl;
-        window.location.href = nUrl
+        window.location.href = nUrl;
     }
 
-    /** 
+    /**
      * 指定参数名称，返回该参数的值 或者 空字符串
      * 不指定参数名称，返回全部的参数对象 或者 {}
      * 如果存在多个同名参数，则返回数组
-    */
+     */
     function getUrlParam(url, key) {
         var arr = {};
         url.replace(/\??(\w+)=(\w+)&?/g, function (match, matchKey, matchValue) {
@@ -296,29 +264,29 @@
             return arr;
         } else {
             for (ele in arr) {
-                if (ele = key) {
+                if ((ele = key)) {
                     return arr[ele];
                 }
             }
-            return '';
+            return "";
         }
     }
 }
 
 {
     // ios下，页面上下滑动时，input的光标错位了
-    $('input').blur(function () {
+    $("input").blur(function () {
         setTimeout(function () {
             var currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
-            window.scrollTo(0, currentPosition);//页面向上滚动
-        }, 200)
-    })
+            window.scrollTo(0, currentPosition); //页面向上滚动
+        }, 200);
+    });
 }
 
 {
     // 判断类型
     function toType(obj) {
-        return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+        return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
     }
 }
 
@@ -334,48 +302,48 @@
 {
     // 简单 函数防抖
     function debounce(method, wait) {
-        let timeout
+        let timeout;
         // args为返回函数调用时传入的参数，传给method
         return function (...args) {
-            let context = this
+            let context = this;
             if (timeout) {
-                clearTimeout(timeout)
+                clearTimeout(timeout);
             }
             timeout = setTimeout(() => {
                 // args是一个数组，所以使用fn.apply
                 // 也可写作method.call(context, ...args)
-                method.apply(context, args)
-            }, wait)
-        }
+                method.apply(context, args);
+            }, wait);
+        };
     }
     // goods 函数防抖
     function debounce(method, wait, immediate) {
-        let timeout
+        let timeout;
         // debounced函数为返回值
         // 使用Async/Await处理异步，如果函数异步执行，等待setTimeout执行完，拿到原函数返回值后将其返回
         // args为返回函数调用时传入的参数，传给method
         let debounced = function (...args) {
             return new Promise(resolve => {
                 // 用于记录原函数执行结果
-                let result
+                let result;
                 // 将method执行时this的指向设为debounce返回的函数被调用时的this指向
-                let context = this
+                let context = this;
                 // 如果存在定时器则将其清除
                 if (timeout) {
-                    clearTimeout(timeout)
+                    clearTimeout(timeout);
                 }
                 // 立即执行需要两个条件，一是immediate为true，二是timeout未被赋值或被置为null
                 if (immediate) {
                     // 如果定时器不存在，则立即执行，并设置一个定时器，wait毫秒后将定时器置为null
                     // 这样确保立即执行后wait毫秒内不会被再次触发
-                    let callNow = !timeout
+                    let callNow = !timeout;
                     timeout = setTimeout(() => {
-                        timeout = null
-                    }, wait)
+                        timeout = null;
+                    }, wait);
                     // 如果满足上述两个条件，则立即执行并记录其执行结果
                     if (callNow) {
-                        result = method.apply(context, args)
-                        resolve(result)
+                        result = method.apply(context, args);
+                        resolve(result);
                     }
                 } else {
                     // 如果immediate为false，则等待函数执行并记录其执行结果
@@ -383,20 +351,20 @@
                     timeout = setTimeout(() => {
                         // args是一个数组，所以使用fn.apply
                         // 也可写作method.call(context, ...args)
-                        result = method.apply(context, args)
-                        resolve(result)
-                    }, wait)
+                        result = method.apply(context, args);
+                        resolve(result);
+                    }, wait);
                 }
-            })
-        }
+            });
+        };
 
         // 在返回的debounced函数上添加取消方法
         debounced.cancel = function () {
-            clearTimeout(timeout)
-            timeout = null
-        }
+            clearTimeout(timeout);
+            timeout = null;
+        };
 
-        return debounced
+        return debounced;
     }
 }
 
@@ -413,5 +381,85 @@
     console.log(dataView.getFloat64(0)); // -0
 
     // -0
-    console.log(0*-1); // -0
+    console.log(0 * -1); // -0
 }
+
+{
+    // 对后端返回的列表数据进行相同数据整合处理
+    let oldList = [
+        { id: 111, date: "05-25", list: [1, 2, 3] },
+        { id: 222, date: "05-26", list: [4, 5] },
+        { id: 111, date: "05-25", list: [4, 5] }
+    ];
+    function formatList() {
+        return Array.from(
+            oldList.reduce((dict, item) => {
+                if (dict.has(item.id)) {
+                    dict.get(item.id).list.push(...item.list);
+                } else {
+                    dict.set(item.id, {
+                        id: item.id,
+                        date: item.date,
+                        list: [...item.list]
+                    });
+                }
+                return dict;
+            }, new Map())
+        ).map(item => ({
+            date: item[1].date,
+            id: item[1].id,
+            list: item[1].list
+        }));
+    }
+    console.log(formatList());
+    // [
+    //     { id: 111, date: "05-25", list: [1, 2, 3, 4, 5] },
+    //     { id: 222, date: "05-26", list: [4, 5] }
+    // ];
+}
+
+{
+    // 实现数字金额转大写金额
+    function digitUppercase(n) {
+        let fraction = ["角", "分"];
+        let digit = ["零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖"];
+        let unit = [["元", "万", "亿"], ["", "拾", "佰", "仟"]];
+        let head = n < 0 ? "欠" : "";
+        n = Math.abs(n);
+        let s = "";
+        for (let i = 0; i < fraction.length; i++) {
+            s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, "");
+        }
+        s = s || "整";
+        n = Math.floor(n);
+        for (let k = 0; k < unit[0].length && n > 0; k++) {
+            let p = "";
+            for (let j = 0; j < unit[1].length && n > 0; j++) {
+                p = digit[n % 10] + unit[1][j] + p;
+                n = Math.floor(n / 10);
+            }
+            s = `${p.replace(/(零.)*零$/, "").replace(/^$/, "零")}${unit[0][k]}${s}`;
+        }
+        return `${head}${s.replace(/(零.)*零元/, "元").replace(/(零.)+/g, "零").replace(/^整$/, "零元整")}`;
+    }
+
+    console.log(digitUppercase(7682.01)); // 柒仟陆佰捌拾贰元壹分
+    console.log(digitUppercase(7682)); // 柒仟陆佰捌拾贰元整
+    console.log(digitUppercase(951434677682.0)); // 玖仟伍佰壹拾肆亿叁仟肆佰陆拾柒万柒仟陆佰捌拾贰元整
+}
+
+{
+    // 返回字符串的字节长度
+    function byteSize(str) {
+        return new Blob([str]).size;
+    }
+    console.log(byteSize("Hello World")); // 11
+}
+
+// {
+//     // 首字母大写
+//     function capitalize([first, ...rest]) {
+//         return first.toUpperCase() + rest.join('');
+//     }
+//     // 首字母小写
+// }
