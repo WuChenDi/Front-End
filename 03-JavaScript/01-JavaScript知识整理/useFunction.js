@@ -281,6 +281,20 @@
             window.scrollTo(0, currentPosition); //页面向上滚动
         }, 200);
     });
+
+    // 多个input情况
+    // ios系统用户在点击输入框，出现键盘后，弹出层被顶上去，而光标还停留在原处，即出现错位情况
+    $(function () {
+        var setTimerTop = 0;
+        $(document).on('blur', 'input.kfzb-input', function () {
+            event.preventDefault()
+            setTimerTop = setTimeout(function () {
+                window.scrollTo(0, 0); // 页面向上滚动
+            }, 500)
+        }).on('focus', 'input.kfzb-input', function () {
+            clearTimeout(setTimerTop)
+        })
+    })
 }
 
 {
@@ -449,6 +463,13 @@
 }
 
 {
+    const clothes = ["jacket", "t-shirt"];
+    clothes.length = 0;
+    console.log(clothes[0]); // undefined
+    // 由于 length 属性行为，当 JavaScript 执行 clothes.length = 0 时，删除所有的 clothes 项。 所以 clothes[0] 的值为 undefined，因为 clothes 数组已被清空。
+}
+
+{
     // 返回字符串的字节长度
     function byteSize(str) {
         return new Blob([str]).size;
@@ -456,10 +477,18 @@
     console.log(byteSize("Hello World")); // 11
 }
 
-// {
-//     // 首字母大写
-//     function capitalize([first, ...rest]) {
-//         return first.toUpperCase() + rest.join('');
-//     }
-//     // 首字母小写
-// }
+{
+    // 首字母大写
+    const capitalize = ([first, ...rest]) => first.toUpperCase() + rest.join('');
+    console.log(capitalize('fooBar')); // FooBar
+    console.log(capitalize('fooBar', true)); // FooBar
+
+    // 首字母小写
+    const decapitalize = ([first, ...rest]) => first.toLowerCase() + rest.join('');
+    console.log(decapitalize('FooBar')); // fooBar
+    console.log(decapitalize('FooBar')); // fooBar
+
+    // 每个单词首字母大写
+    const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
+    console.log(capitalizeEveryWord('hello world!')); // 'Hello World!'
+}
