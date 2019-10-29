@@ -478,6 +478,13 @@
 }
 
 {
+    // 平均数
+    const average = (...nums) => nums.reduce((acc, val) => acc + val, 0) / nums.length;
+    console.log(average(...[1, 2, 3])); // 2
+    console.log(average(1, 2, 3)); // 2
+}
+
+{
     // 首字母大写
     const capitalize = ([first, ...rest]) => first.toUpperCase() + rest.join('');
     console.log(capitalize('fooBar')); // FooBar
@@ -491,4 +498,14 @@
     // 每个单词首字母大写
     const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
     console.log(capitalizeEveryWord('hello world!')); // 'Hello World!'
+}
+
+{
+    // 当前日期天数
+    const dayOfYear = date => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+    console.log(dayOfYear(new Date())); // 302
+
+    // 返回日期间的天数
+    const getDaysDiffBetweenDates = (dateInitial, dateFinal) => (dateFinal - dateInitial) / (1000 * 3600 * 24);
+    console.log(getDaysDiffBetweenDates(new Date('2019-01-01'), new Date('2019-10-29'))); // 301
 }

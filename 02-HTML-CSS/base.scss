@@ -1,0 +1,142 @@
+// flex
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+// flex-direction属性决定主轴的方向(即项目的排列方向)
+// 左横排
+.f-dir-row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+// 右横排
+.f-dir-row-r {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+// 上竖排
+.f-dir-col {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+// 下竖排
+.f-dir-col-r {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+}
+
+// flex-wrap属性定义，如果一条轴线排不下，如何换行
+// 不换行
+.f-now {
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+// 换行，第一行在上方
+.f-wrap {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+// 换行，第一行在下方
+.f-wrap-reverse {
+    -ms-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+}
+
+// 竖居中
+.f_ali-ite-cen {
+    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+}
+
+// 横居中
+.f_jus-con-cen {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+// 两端对齐
+.f_jus-con-sb {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+// 右对齐
+.f_jus-con-fe {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+// 两侧的间隔相等
+.f_fus-con-sa {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+// flex等于1
+.f-1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+// 一行文本溢出隐藏
+.f_row1_h {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+// 两行文本溢出隐藏
+.f_row2_h {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+// .fc-end {
+//     align-items: flex-end;
+//     -webkit-box-align: flex-end;
+//     -webkit-align-items: flex-end;
+//     -ms-flex-align: flex-end;
+// }
+
+// .fc-bl {
+//     align-items: baseline;
+//     -webkit-box-align: baseline;
+//     -webkit-align-items: baseline;
+//     -ms-flex-align: baseline;
+// }
+
+
+// postion
+.p_rel {
+    position: relative;
+}
+
+.p_abs {
+    position: absolute;
+}
+
+.p_fixed {
+    position: fixed;
+}

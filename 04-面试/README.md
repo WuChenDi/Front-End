@@ -2,4 +2,4 @@
 
 前端面试-整理自己知识体系
 
-<img src="../screenshots/JS类型判断.png"/>
+![JS类型判断](../screenshots/JS类型判断.png)

@@ -19,10 +19,10 @@
 
     let k = tell();
 
-    console.log(k.next()); // { value: 'a', done: false } 
-    console.log(k.next()); // { value: 'b', done: false } 
-    console.log(k.next()); // { value: 'c', done: true } 
-    console.log(k.next()); // { value: undefined, done: true } 
+    console.log(k.next()); // { value: 'a', done: false }
+    console.log(k.next()); // { value: 'b', done: false }
+    console.log(k.next()); // { value: 'c', done: true }
+    console.log(k.next()); // { value: undefined, done: true }
 }
 
 {
@@ -50,11 +50,11 @@
         }
     };
     let status = state();
-    console.log(status.next()); // { value: 'A', done: false } 
-    console.log(status.next()); // { value: 'B', done: false } 
-    console.log(status.next()); // { value: 'C', done: false } 
-    console.log(status.next()); // { value: 'A', done: false } 
-    console.log(status.next()); // { value: 'B', done: false } 
+    console.log(status.next()); // { value: 'A', done: false }
+    console.log(status.next()); // { value: 'B', done: false }
+    console.log(status.next()); // { value: 'C', done: false }
+    console.log(status.next()); // { value: 'A', done: false }
+    console.log(status.next()); // { value: 'B', done: false }
 }
 
 // {
