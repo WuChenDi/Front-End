@@ -5,9 +5,9 @@ let b1 = [1, null]
 let c = (x = 1) => { }
 let c1 = (x = 1) => x + 1
 
-window.onkeydown = (event) => {
-    // console.log(event.button)
-}
+// window.onkeydown = (event) => {
+//     // console.log(event.button)
+// }
 
 interface Foo {
     bar: number

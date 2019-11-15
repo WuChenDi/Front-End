@@ -6,6 +6,7 @@ interface Human {
 
 // 类实现接口的时候，必须实现接口所有声明的属性
 // 接口只能约束类的共有成员
+// 接口不能约束构造函数
 class Asion implements Human {
     constructor(name: string) {
         this.name = name
