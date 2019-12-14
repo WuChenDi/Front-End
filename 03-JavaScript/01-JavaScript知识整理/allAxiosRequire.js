@@ -69,7 +69,7 @@ instance.interceptors.response.use(
  * @param {*} password
  */
 export function login(loginname, password) {
-    let url = "/liveajax/salelogin";
+    let url = "/api/login";
     return instance({
         method: "POST",
         url: url,
