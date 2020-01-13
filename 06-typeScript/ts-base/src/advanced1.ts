@@ -18,8 +18,8 @@ interface Y {
 }
 
 // let x: X = { a: 1, b: 2 }
-let y: Y = { a: a, b: 2, c: 3 };
-x = y;
+// let y: Y = { a: a, b: 2, c: 3 };
+// x = y;
 // y = x
 
 // 函数兼容性
