@@ -430,6 +430,30 @@
     //     { id: 111, date: "05-25", list: [1, 2, 3, 4, 5] },
     //     { id: 222, date: "05-26", list: [4, 5] }
     // ];
+
+    // 数组list去重
+    const data = [
+        { name: "Kris", age: "24" },
+        { name: "Andy", age: "25" },
+        { name: "Kitty", age: "25" },
+        { name: "Andy", age: "25" },
+        { name: "Kitty", age: "25" },
+        { name: "Andy", age: "25" },
+        { name: "Kitty", age: "25" }
+    ];
+    
+    let newData = Object.values(
+        data.reduce((prev, cur, idx) => {
+            let obj = {};
+            const { name } = cur;
+            obj[name] = cur;
+            return {
+                ...prev,
+                ...obj
+            };
+        }, {})
+    );
+    console.log(newData)    
 }
 
 {
