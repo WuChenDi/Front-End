@@ -72,7 +72,7 @@
     // two
     function Palindrome2(line) {
         line += "";
-        for (var i = 0, j = line.length - 1; i < j; i++ , j--) {
+        for (var i = 0, j = line.length - 1; i < j; i++, j--) {
             if (line.charAt(i) !== line.charAt(j)) {
                 return false;
             }
@@ -441,7 +441,7 @@
         { name: "Andy", age: "25" },
         { name: "Kitty", age: "25" }
     ];
-    
+
     let newData = Object.values(
         data.reduce((prev, cur, idx) => {
             let obj = {};
@@ -453,7 +453,7 @@
             };
         }, {})
     );
-    console.log(newData)    
+    console.log(newData)
 }
 
 {
