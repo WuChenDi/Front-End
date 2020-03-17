@@ -44,19 +44,27 @@
 // instanceof 实现原理
 {
   // instanceof 主要的实现原理就是只要右边变量的 prototype 在左边变量的原型链上即可。因此，instanceof 在查找的过程中会遍历左边变量的原型链，直到找到右边变量的 prototype，如果查找失败，则会返回 false，告诉我们左边变量并非是右边变量的实例。
-  function new_instance_of(leftVaule, rightVaule) {
-    let rightProto = rightVaule.prototype;
-    leftVaule = leftVaule.__proto__;
-    while (true) {
-      if (leftVaule === null) {
-        return false;
-      }
-      if (leftVaule === rightProto) {
-        return true;
-      }
+  {
+    function new_instance_of(leftVaule, rightVaule) {
+      let rightProto = rightVaule.prototype;
       leftVaule = leftVaule.__proto__;
+      while (true) {
+        if (leftVaule === null) return false;
+        if (leftVaule === rightProto) return true;
+        leftVaule = leftVaule.__proto__;
+      }
     }
   }
+  // {
+  //   const new_instance_of = function(leftVaule, rightVaule) {
+  //     let proto = Object.getPrototypeOf(leftVaule);
+  //     while (true) {
+  //       if (proto == null) return false;
+  //       if (proto === rightVaule.prototype) return true;
+  //       proto = Object.getPrototypeOf(proto);
+  //     }
+  //   };
+  // }
   // 总结：使用 typeof 来判断基本数据类型是 ok 的，不过需要注意当用 typeof 来判断 null 类型时的问题，如果想要判断一个对象的具体类型可以考虑用 instanceof，但是 instanceof 也可能判断不准确，比如一个数组，他可以被 instanceof 判断为 Object。所以我们要想比较准确的判断对象实例的类型时，可以采取 Object.prototype.toString.call() 方法
 }
 
@@ -188,7 +196,16 @@
 // node 进程之间如何通讯
 // graghgl 如何优化请求速度
 // node 跟浏览器的 event loop 区别
+
 // 浏览器渲染页面过程
+{
+  // 从耗时的角度，浏览器请求、加载、渲染一个页面，时间花在下面五件事情上：
+  // DNS 查询
+  // TCP 连接
+  // HTTP 请求即响应
+  // 服务器响应
+  // 客户端渲染
+}
 
 // 如何性能优化
 {
@@ -197,7 +214,6 @@
   // 白屏时间： responseStart - navigationStart
   // dom渲染完成时间： domContentLoadedEventEnd - navigationStart
   // 页面onload时间： loadEventEnd - navigationStart
-  
   // 缓存方面具体参考(https://github.com/WuChenDi/Front-End/blob/master/04-%E9%9D%A2%E8%AF%95/11-%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E7%B1%BB.md)
 }
 
@@ -212,8 +228,55 @@
 
 // webpack 插件原理，如何写一个插件
 
-
 // 手写 bind、reduce
+{
+  {
+    // bind
+    // 箭头函数的 this 永远指向它所在的作用域
+    // 函数作为构造函数用 new 关键字调用时，不应该改变其 this 指向，因为 new绑定 的优先级高于 显示绑定 和 硬绑定
+    // {
+    //   var mybind = function(thisArg) {
+    //     if (typeof this !== "function") {
+    //       throw TypeError("绑定必须在函数上调用");
+    //     }
+    //     // 拿到参数，为了传给调用者
+    //     const args = Array.prototype.slice.call(arguments, 1),
+    //       // 保存 this
+    //       var that = this;
+    //       // 构建一个干净的函数，用于保存原函数的原型
+    //       var nop = function() {};
+    //       // 绑定的函数
+    //       var bound = function() {
+    //         // this instanceof nop, 判断是否使用 new 来调用 bound
+    //         // 如果是 new 来调用的话，this的指向就是其实例，
+    //         // 如果不是 new 调用的话，就改变 this 指向到指定的对象 o
+    //         return that.apply(
+    //           this instanceof nop ? this : thisArg,
+    //           args.concat(Array.prototype.slice.call(arguments))
+    //         );
+    //       };
+
+    //     // 箭头函数处理：由于箭头函数没有 prototype，箭头函数this永远指向它所在的作用域
+    //     if (this.prototype) {
+    //       nop.prototype = this.prototype;
+    //     }
+    //     // 修改绑定函数的原型指向
+    //     bound.prototype = new nop();
+
+    //     return bound;
+    //   };
+    // }
+    // 测试
+    const bar = function() {
+      console.log(this.name, arguments);
+    };
+    bar.prototype.name = "bar";
+    const foo = { name: "foo" };
+    const bound = bar.mybind(foo, 22, 33, 44);
+    new bound(); // bar, [22, 33, 44]
+    bound(); // foo, [22, 33, 44]
+  }
+}
 
 // 防抖截流
 {
