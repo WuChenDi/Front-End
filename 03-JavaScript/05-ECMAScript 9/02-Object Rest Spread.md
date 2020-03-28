@@ -28,5 +28,5 @@ const input = {
 
 const { a, b, ...rest } = input;
 
-console.log(a, b, rest);
+console.log(a, b, rest); // 1 2 {c:3, d:4, e:5}
 ```
