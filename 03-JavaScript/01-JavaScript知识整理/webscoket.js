@@ -226,7 +226,7 @@ const websocket = new WebSocketClass({
 		console.log(messageId);
 		// some code...
 	},
-	// 重连后拉取最新的第一页数据
+	// 连接/重连 拉取最新数据
 	reConnectGetMsg: () => {
 		console.log("拉取最新消息");
 	},
