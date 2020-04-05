@@ -135,7 +135,7 @@ export default class WebSocketClass {
 
 		if (this.connectStatus === 1) {
 			return this.ws.send(data);
-    }
+		}
 		this.socketMsgQueue.push(message);
 		await this.closeSocket();
 		await this.reLinkSocket();
@@ -179,18 +179,14 @@ export default class WebSocketClass {
 
 	// 关闭WebSocket
 	closeSocket() {
-		try {
-			if (this.ws) {
-				this.ws.close();
-				this.ws = null;
-				// 清除重连定时器
-				this.reConnInterval && clearInterval(this.reConnInterval);
-				// 清除心跳包定时器
-				this.heartTimeout && clearTimeout(this.heartTimeout);
-				this.heartServerTimeout && clearTimeout(this.heartServerTimeout);
-			}
-		} catch (error) {
-			console.log(`关闭socket错误日志:${error}`);
+		if (this.ws) {
+			this.ws.close();
+			this.ws = null;
+			// 清除重连定时器
+			this.reConnInterval && clearInterval(this.reConnInterval);
+			// 清除心跳包定时器
+			this.heartTimeout && clearTimeout(this.heartTimeout);
+			this.heartServerTimeout && clearTimeout(this.heartServerTimeout);
 		}
 	}
 
