@@ -215,6 +215,7 @@ const websocket = new WebSocketClass({
 	// 访客进入
 	visitor: (userInfo) => {
 		console.log(userInfo);
+		// some code...
 	},
 	// 消息推送
 	pushMsg: (msgdata) => {
@@ -228,6 +229,6 @@ const websocket = new WebSocketClass({
 	},
 	// 连接/重连 拉取最新数据
 	reConnectGetMsg: () => {
-		console.log("拉取最新消息");
+		// 拉取最新消息
 	},
 });
