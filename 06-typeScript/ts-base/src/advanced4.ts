@@ -1,11 +1,11 @@
 let adObj = {
-  a: 1,
-  b: 2,
-  c: 3
+	a: 1,
+	b: 2,
+	c: 3,
 };
 // // 获取对象中的指定属性的值集合
 // function getValues(adObj: any, keys: string[]) {
-//   return keys.map(key => adObj[key]);
+// 	return keys.map((key) => adObj[key]);
 // }
 // console.log(getValues(adObj, ["a", "b"])); // [1, 2]
 // console.log(getValues(adObj, ["e", "f"])); // [undefined, undefined]
@@ -18,8 +18,8 @@ let adObj = {
 
 // 定义一个接口Obj含有属性a,b
 interface obj {
-  a: number;
-  b: string;
+	a: number;
+	b: string;
 }
 // 定义变量key,类型为keyof Obj
 let key: keyof obj;
@@ -40,7 +40,7 @@ let value: obj["a"];
 // 3. 此时,函数返回值类型-数组的元素类型,就是属性K对应的数组,即`T[K][]`
 
 function getValues<T, K extends keyof T>(adObj: T, keys: K[]): T[K][] {
-  return keys.map(key => adObj[key]);
+	return keys.map((key) => adObj[key]);
 }
 
 console.log(getValues(adObj, ["a", "b"])); // [1, 2]
@@ -50,5 +50,3 @@ console.log(getValues(adObj, ["a", "b"])); // [1, 2]
 
 // 索引类型可以约束对象属性的查询和访问
 // 配合泛型约束能够建立对象,对象属性,属性值之间的约束关系
-
-

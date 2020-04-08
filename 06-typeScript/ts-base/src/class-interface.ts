@@ -1,49 +1,45 @@
 interface Human {
-    // new(name: string): void
-    name: string
-    eat(): void
+	// new(name: string): void
+	name: string;
+	eat(): void;
 }
 
 // 类实现接口的时候，必须实现接口所有声明的属性
 // 接口只能约束类的共有成员
 // 接口不能约束构造函数
 class Asion implements Human {
-    constructor(name: string) {
-        this.name = name
-    }
-    name: string
-    eat() { }
-    sleep() { }
+	constructor(name: string) {
+		this.name = name;
+	}
+	name: string;
+	eat() {}
+	sleep() {}
 }
 
 interface Man extends Human {
-    run(): void
+	run(): void;
 }
 
 interface Child {
-    cry(): void
+	cry(): void;
 }
 
-interface Boy extends Man, Child { }
+interface Boy extends Man, Child {}
 
 let boy: Boy = {
-    name: '',
-    run() { },
-    eat() { },
-    cry() { }
-}
+	name: "",
+	run() {},
+	eat() {},
+	cry() {},
+};
 
 class Auto {
-    state = 1
-    // private state2 = 0
+	state = 1;
+	// private state2 = 0;
 }
-interface AutoInterface extends Auto {
-
-}
+interface AutoInterface extends Auto {}
 class C implements AutoInterface {
-    state = 1
+	state = 1;
 }
 
-class Bus extends Auto implements AutoInterface {
-
-}
+class Bus extends Auto implements AutoInterface {}
