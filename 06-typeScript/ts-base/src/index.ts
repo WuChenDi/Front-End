@@ -12,7 +12,8 @@
 // import "./advanced1";
 // import "./advanced2";
 // import "./advanced3";
-import "./advanced4";
+// import "./advanced4";
+import "./advanced5";
 
 let hello: string = "Hello TypeScript";
 

@@ -6,6 +6,7 @@ interface CatInterface {
 	jump(): void;
 }
 
+// 交叉类型：取所以类型的并集
 let pet: DogInterface & CatInterface = {
 	run() {},
 	jump() {},
