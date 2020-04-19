@@ -1,172 +1,173 @@
 # JavaScrip 常见面试题汇总
 
-1.  请解释 JavaScript 中 this 是如何工作的
+1. 请解释 JavaScript 中 this 是如何工作的
 
-    this 永远指向函数运行时所在的对象，而不是函数被创建时所在的对象
+   this 永远指向函数运行时所在的对象，而不是函数被创建时所在的对象
 
-    匿名函数或不处于任何对象中的函数指向 window
+   匿名函数或不处于任何对象中的函数指向 window
 
-    - 方法调用模式
+   - 方法调用模式
 
-        当函数被保存为对象的一个属性时，成该函数为该对象的方法。函数中 this 的值为该对象
+     当函数被保存为对象的一个属性时，成该函数为该对象的方法。函数中 this 的值为该对象
 
-        ```js
-        var foo = {
-            name: "fooname",
-            getName: function() {
-                return this.name;
-            }
-        };
-        foo.getName(); // this => foo
-        ```
+     ```js
+     var foo = {
+       name: "fooname",
+       getName: function () {
+         return this.name;
+       },
+     };
+     foo.getName(); // this => foo
+     ```
 
-    - 函数调用模式
+   - 函数调用模式
 
-        当函数并不是对象的属性。函数中 this 的值为全局对象
+     当函数并不是对象的属性。函数中 this 的值为全局对象
 
-        note：某个方法中的内部函数中的 this 的值也是全局对象，而非外部函数的 this
+     note：某个方法中的内部函数中的 this 的值也是全局对象，而非外部函数的 this
 
-        ```js
-        function foo() {
-            this.name = "fooname";
-        }
-        foo(); // this => window
-        ```
+     ```js
+     function foo() {
+       this.name = "fooname";
+     }
+     foo(); // this => window
+     ```
 
-    - 构造器调用模式
+   - 构造器调用模式
 
-        即使用 new 调用的函数，则其中 this 将会被绑定到那个新构造的对象。
+     即使用 new 调用的函数，则其中 this 将会被绑定到那个新构造的对象。
 
-        ```js
-        function Foo() {
-            this.name = "fooname";
-        }
-        var foo = new Foo(); // this => foo
-        ```
+     ```js
+     function Foo() {
+       this.name = "fooname";
+     }
+     var foo = new Foo(); // this => foo
+     ```
 
-    - 使用 apply 或 call 调用模式
+   - 使用 apply 或 call 调用模式
 
-        该模式调用时，函数中 this 被绑定到 apply 或 call 方法调用时接受的第一个参数。
+     该模式调用时，函数中 this 被绑定到 apply 或 call 方法调用时接受的第一个参数。
 
-        ```js
-        function getName(name) {
-            this.name = name;
-        }
-        var foo = {};
-        getName.call(foo, name); // this =>foo
-        ```
+     ```js
+     function getName(name) {
+       this.name = name;
+     }
+     var foo = {};
+     getName.call(foo, name); // this =>foo
+     ```
 
-        改变 this 的值主要方法
+     改变 this 的值主要方法
 
-    - apply 或 call 方法调用时强制修改，使 this 指向第一个参数。
+   - apply 或 call 方法调用时强制修改，使 this 指向第一个参数。
 
-    - 使用 Function.bind 方法创造新的函数，该新函数的中 this 指向所提供的第一个参数。
+   - 使用 Function.bind 方法创造新的函数，该新函数的中 this 指向所提供的第一个参数。
 
-2.  请解释原型继承 (prototypal inheritance) 的原理
+2. 请解释原型继承 (prototypal inheritance) 的原理
 
-    JavaScript 没有“子类”和“父类”的概念，也没有“类”（class）和“实例”（instance）的区分，全靠“原型链”（prototype chain）模式，来实现继承。
+   JavaScript 没有“子类”和“父类”的概念，也没有“类”（class）和“实例”（instance）的区分，全靠“原型链”（prototype chain）模式，来实现继承。
 
-    每个函数 Sub 都有一个属性 prototype，prototype 指向一个原型对象，原型对象中也有一个指向函数的属性 constructor，通过 new 一个函数 Sub 可以产生实例 instance，调用这个 instance 的某个属性或方法时，instance 会先查找自身是否有这个方法或者属性，没有的话就会去实例的构造函数 Sub 的原型 prototype 中查找，即 Sub.prototype，如果给原型对象 Sub.prototype 赋予另一个类型的实例 superInstance，则是在 superInstance 中查找的，这个 superInstance 中也有属性 prototype 指向某个原型对象，以此一级级往上最终到 Object.prototype，这样就形成了原型继承。
+   每个函数 Sub 都有一个属性 prototype，prototype 指向一个原型对象，原型对象中也有一个指向函数的属性 constructor，通过 new 一个函数 Sub 可以产生实例 instance，调用这个 instance 的某个属性或方法时，instance 会先查找自身是否有这个方法或者属性，没有的话就会去实例的构造函数 Sub 的原型 prototype 中查找，即 Sub.prototype，如果给原型对象 Sub.prototype 赋予另一个类型的实例 superInstance，则是在 superInstance 中查找的，这个 superInstance 中也有属性 prototype 指向某个原型对象，以此一级级往上最终到 Object.prototype，这样就形成了原型继承。
 
-    利用此原理可以自己实现一个 inherits 函数：
+   利用此原理可以自己实现一个 inherits 函数：
 
-    ```js
-    function inherits(subType, superType) {
-        var _prototype = Object.create(superType.prototype);
-        _prototype.constructor = subType;
-        subType.prototype = _prototype;
-    }
-    ```
+   ```js
+   function inherits(subType, superType) {
+     var _prototype = Object.create(superType.prototype);
+     _prototype.constructor = subType;
+     subType.prototype = _prototype;
+   }
+   ```
 
-3.  解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：function foo(){ }(); 要做哪些改动使它变成 IIFE?
+3. 解释为什么接下来这段代码不是 IIFE (立即调用的函数表达式)：function foo(){ }(); 要做哪些改动使它变成 IIFE?
 
-    (function fn(){..})()，函数被包含在一个括号内，变成为一个表达式，随后跟着一个()，就立即执行这个函数。
+   (function fn(){..})()，函数被包含在一个括号内，变成为一个表达式，随后跟着一个()，就立即执行这个函数。
 
-    IIFE 的一些作用:
+   IIFE 的一些作用:
 
-    - 创建作用域，内部保存一些大量临时变量的代码防止命名冲突。
-    - 一些库的外层用这种形式包起来防止作用域污染。
-    - 运行一些只执行一次的代码。
+   - 创建作用域，内部保存一些大量临时变量的代码防止命名冲突。
+   - 一些库的外层用这种形式包起来防止作用域污染。
+   - 运行一些只执行一次的代码。
 
-4.  (function fn(){..})()，函数被包含在一个括号内，变成为一个表达式，随后跟着一个()，就立即执行这个函数。
+4. (function fn(){..})()，函数被包含在一个括号内，变成为一个表达式，随后跟着一个()，就立即执行这个函数。
 
-    ```
-      IIFE的一些作用:
-      1. 创建作用域，内部保存一些大量临时变量的代码防止命名冲突。
-      2. 一些库的外层用这种形式包起来防止作用域污染。
-      3. 运行一些只执行一次的代码。
-    ```
+   ```md
+   IIFE 的一些作用:
 
-    当某个函数调用时会创建一个执行环境以及作用域链，然后根据 arguments 和其它命名参数初始化形成活动对象。在外部函数调用结束后，其执行环境与作用域链被销毁，但是其活动对象保存在了闭包之中，最后在闭包函数调用结束后才销毁。简单的说，闭包就是能够读取其他函数内部变量的函数。在 js 中，闭包是指有权访问另一个函数作用域中的变量的函数。
+   1. 创建作用域，内部保存一些大量临时变量的代码防止命名冲突。
+   2. 一些库的外层用这种形式包起来防止作用域污染。
+   3. 运行一些只执行一次的代码。
+   ```
 
-    如何使用：将 A 函数内部的 B 函数作为 A 函数的返回值返回。
+   当某个函数调用时会创建一个执行环境以及作用域链，然后根据 arguments 和其它命名参数初始化形成活动对象。在外部函数调用结束后，其执行环境与作用域链被销毁，但是其活动对象保存在了闭包之中，最后在闭包函数调用结束后才销毁。简单的说，闭包就是能够读取其他函数内部变量的函数。在 js 中，闭包是指有权访问另一个函数作用域中的变量的函数。
 
-    - 匿名自执行函数
+   如何使用：将 A 函数内部的 B 函数作为 A 函数的返回值返回。
 
-        有的场景下函数只需要执行一次，例如 init()之类的函数，其内部变量无需维护，我们可以使用闭包。 我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，而且不污染全局对象。
+   - 匿名自执行函数
 
-    - 封装
+     有的场景下函数只需要执行一次，例如 init()之类的函数，其内部变量无需维护，我们可以使用闭包。 我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，而且不污染全局对象。
 
-        模拟面向对象的代码风格进行封装，使私有属性存在成为可能。
+   - 封装
 
-5.  .call 和 .apply 的区别是什么？
+     模拟面向对象的代码风格进行封装，使私有属性存在成为可能。
 
-    .call 和.apply 的共同点是都是用来改变函数体内 this 对象的值。
+5. .call 和 .apply 的区别是什么？
 
-    区别是第二个参数不一样。apply()的第二个参数是一个类数组对象 arguments，参数都是以数组的形式传入，而 call()，传递给他的是一系列参数。code：
+   .call 和.apply 的共同点是都是用来改变函数体内 this 对象的值。
 
-    ```js
-    Math.max.call(null, 1, 2, 3, 4);
-    //4
+   区别是第二个参数不一样。apply()的第二个参数是一个类数组对象 arguments，参数都是以数组的形式传入，而 call()，传递给他的是一系列参数。code：
 
-    Math.max.apply(null, [1, 2, 3, 4]);
-    //4
-    ```
+   ```js
+   Math.max.call(null, 1, 2, 3, 4);
+   //4
 
-6.  请解释 Function.prototype.bind？
+   Math.max.apply(null, [1, 2, 3, 4]);
+   //4
+   ```
 
-    ```js
-    Function.prototype.bind方法会创建一个新函数，当这个新函数被调用时，它的this值是传递给bind()的第一个参数, 它的参数是bind()的其他参数和其原本的参数.
-    ```
+6. 请解释 Function.prototype.bind？
 
-7.  请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？
+   ```js
+   Function.prototype.bind方法会创建一个新函数，当这个新函数被调用时，它的this值是传递给bind()的第一个参数, 它的参数是bind()的其他参数和其原本的参数.
+   ```
 
-    宿主对象是指 DOM 和 BOM。
+7. 请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？
 
-    原生对象是 Object、Function、Array、String、Boolean、Number、Date、RegExp、Error、Math 等对象。
+   宿主对象是指 DOM 和 BOM。
 
-8.  请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
+   原生对象是 Object、Function、Array、String、Boolean、Number、Date、RegExp、Error、Math 等对象。
 
-    ```js
-    function Person() {} // 声明函数Person()
-    var person = Person(); // 将函数Person()的结果返回给变量person，如果没有返回值则person为undefined。
-    var person = new Person(); // new一个Person的实例对象。
-    ```
+8. 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
 
-9.  请尽可能详尽的解释 Ajax 的工作原理。以及使用 Ajax 都有哪些优劣？
+   ```js
+   function Person() {} // 声明函数Person()
+   var person = Person(); // 将函数Person()的结果返回给变量person，如果没有返回值则person为undefined。
+   var person = new Person(); // new一个Person的实例对象。
+   ```
 
-    Ajax 是无需刷新页面就能从服务器取得数据的一种方法。
+9. 请尽可能详尽的解释 Ajax 的工作原理。以及使用 Ajax 都有哪些优劣？
 
-    Ajax 通过 XmlHttpRequest 对象来向服务器发异步请求，从服务器获得数据，然后用 javascript 来操作 DOM 更新页面。
+   Ajax 是无需刷新页面就能从服务器取得数据的一种方法。
 
-    过程：
+   Ajax 通过 XmlHttpRequest 对象来向服务器发异步请求，从服务器获得数据，然后用 javascript 来操作 DOM 更新页面。
 
-    ```
-    1. 创建XMLHttpRequest对象。
-    2. 设置响应HTTP请求的回调函数。
-    3. 创建一个HTTP请求，指定相应的请求方法、url等。
-    4. 发送HTTP请求。
-    5. 获取服务器端返回的数据。
-    6. 使用JavaScript操作DOM更新页面。
-    ```
+   过程：
 
-    缺点：
+   ```md
+   1. 创建 XMLHttpRequest 对象。
+   2. 设置响应 HTTP 请求的回调函数。
+   3. 创建一个 HTTP 请求，指定相应的请求方法、url 等。
+   4. 发送 HTTP 请求。
+   5. 获取服务器端返回的数据。
+   6. 使用 JavaScript 操作 DOM 更新页面。
+   ```
 
-    ```
-    1. 对搜索引擎不友好
-    2. 要实现Ajax下的前后退功能成本较大
-    3. 跨域问题限制
-    ```
+   缺点：
+
+   ```md
+   1. 对搜索引擎不友好
+   2. 要实现 Ajax 下的前后退功能成本较大
+   3. 跨域问题限制
+   ```
 
 10. 请解释变量声明提升 (hoisting)。
 
@@ -195,16 +196,16 @@
 
     优点：
 
-    ```
-    1. 消除Javascript语法的一些不严谨之处，减少一些怪异行为;
+    ```md
+    1. 消除 Javascript 语法的一些不严谨之处，减少一些怪异行为;
     2. 消除代码运行的一些不安全之处，保证代码运行的安全；
     3. 提高编译器效率，增加运行速度；
-    4. 为未来新版本的Javascript做好铺垫
+    4. 为未来新版本的 Javascript 做好铺垫
     ```
 
     缺点：
 
-    ```
+    ```md
     严格模式改变了语义。依赖这些改变可能会导致没有实现严格模式的浏览器中出现问题或者错误
     ```
 
@@ -263,28 +264,30 @@
 
     ```js
     var arr = [1, 2, 3, 4, 5];
-    Array.prototype.duplicator = function() {
-        var len = this.length;
-        for (var i = 0; i < len; i++) {
-            this.push(this[i]);
-        }
+    Array.prototype.duplicator = function () {
+      var len = this.length;
+      for (var i = 0; i < len; i++) {
+        this.push(this[i]);
+      }
     };
     arr.duplicator();
     ```
 
 22. 解释 function foo() {} 与 var foo = function() {} 用法的区别
 
-        函数声明的两种方法：
+    ```md
+    函数声明的两种方法：
 
-        var foo = function () {}
+    var foo = function () {}
 
-        这种方式是声明了个变量，而这个变量是个方法，变量在js中是可以改变的。
+    这种方式是声明了个变量，而这个变量是个方法，变量在 js 中是可以改变的。
 
-    也：将一个匿名函数赋值给了变量。
+    将一个匿名函数赋值给了变量。
 
-        function foo() {}
+    function foo() {}
 
-        这种方式是声明了个方法，foo这个名字无法改变
+    这种方式是声明了个方法，foo 这个名字无法改变
+    ```
 
 23. 请解释可变 (mutable) 和不变 (immutable) 对象的区别。
 
@@ -302,7 +305,7 @@
 
     Promise 也有一些缺点。
 
-    ```
+    ```md
     1. 无法取消Promise，一旦新建它就会立即执行，无法中途取消。
     2. 如果不设置回调函数，Promise内部抛出的错误，不会反应到外部。
     3. 当处于Pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
@@ -320,21 +323,21 @@
 
     - DNS 解析 先本地缓存找，在一层层找 将常见的地址解析成唯一对应的 ip 地址基本顺序为：本地域名服务器->根域名服务器->com 顶级域名服务器依次类推下去,找到后记录并缓存下来如 www.google.com 为:
 
-        . -> .com -> google.com. -> www.google.com
+      . -> .com -> google.com. -> www.google.com
 
     - TCP 连接 三次握手，只要没收到确认消息就要重新发
-        1. 主机向服务器发送一个建立连接的请求（您好，我想认识您）
-        2. 服务器接到请求后发送同意连接的信号（好的，很高兴认识您）
-        3. 主机接到同意连接的信号后，再次向服务器发送了确认信号（我也很高兴认识您），自此，主机与服务器两者建立了连接
+      1. 主机向服务器发送一个建立连接的请求（您好，我想认识您）
+      2. 服务器接到请求后发送同意连接的信号（好的，很高兴认识您）
+      3. 主机接到同意连接的信号后，再次向服务器发送了确认信号（我也很高兴认识您），自此，主机与服务器两者建立了连接
     - 发送 HTTP 请求 浏览器会分析这个 url，并设置好请求报文发出。请求报文中包括请求行、请求头、空行、请求主体
 
     - 服务器处理请求并返回 HTTP 报文
 
     - 浏览器解析渲染页面
-        - 通过 HTML 解析器解析 HTML 文档，构建一个 DOM Tree，同时通过 CSS 解析器解析 HTML 中存在的 CSS，构建 Style Rules，两者结合形成一个 Attachment
-        - 通过 Attachment 构造出一个呈现树（Render Tree）
-        - Render Tree 构建完毕，进入到布局阶段（layout/reflow），将会为每个阶段分配一个应出现在屏幕上的确切坐标
-        - 最后将全部的节点遍历绘制出来后，一个页面就展现出来了。 遇到 script 会停下来执行，所以通常把 script 放在底部
+      - 通过 HTML 解析器解析 HTML 文档，构建一个 DOM Tree，同时通过 CSS 解析器解析 HTML 中存在的 CSS，构建 Style Rules，两者结合形成一个 Attachment
+      - 通过 Attachment 构造出一个呈现树（Render Tree）
+      - Render Tree 构建完毕，进入到布局阶段（layout/reflow），将会为每个阶段分配一个应出现在屏幕上的确切坐标
+      - 最后将全部的节点遍历绘制出来后，一个页面就展现出来了。 遇到 script 会停下来执行，所以通常把 script 放在底部
     - 连接结束
 
 27. babel 原理

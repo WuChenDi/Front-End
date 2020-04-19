@@ -3,12 +3,12 @@
   {
     // js 实现继承
     function Animal() {
-      this.eat = function() {
+      this.eat = function () {
         console.log("animal can eat ...");
       };
     }
     function Dog() {
-      this.break = function() {
+      this.break = function () {
         console.log("dog can break");
       };
     }
@@ -160,14 +160,14 @@
     let definedObj = {};
     let age;
     Object.defineProperty(definedObj, "age", {
-      get: function() {
+      get: function () {
         console.log("For age");
         return age;
       },
-      set: function(newVal) {
+      set: function (newVal) {
         console.log("Set the age");
         age = newVal;
-      }
+      },
     });
     definedObj.age = 24;
     console.log(definedObj.age);
@@ -176,12 +176,12 @@
     // 3.0(Proxy)
     let obj = { a: 1 };
     let proxyObj = new Proxy(obj, {
-      get: function(target, prop) {
+      get: function (target, prop) {
         return prop in target ? target[prop] : 0;
       },
-      set: function(target, prop, value) {
+      set: function (target, prop, value) {
         target[prop] = 0530;
-      }
+      },
     });
     console.log(proxyObj.a); // 1
     console.log(proxyObj.b); // 0
@@ -267,7 +267,7 @@
     //   };
     // }
     // 测试
-    const bar = function() {
+    const bar = function () {
       console.log(this.name, arguments);
     };
     bar.prototype.name = "bar";
@@ -361,21 +361,21 @@
       },
       toString() {
         return 101;
-      }
+      },
     };
     Number(obj1); // 100
 
     const obj2 = {
       toString() {
         return 102;
-      }
+      },
     };
     Number(obj2); // 102
 
     const obj3 = {
       toString() {
         return {};
-      }
+      },
     };
     Number(obj3); // TypeError
 
@@ -443,7 +443,7 @@
           inx: 1,
           valueOf() {
             return this.inx++;
-          }
+          },
         };
         console.log(a == 1 && a == 2 && a == 3); // true
       }
@@ -453,7 +453,7 @@
           inx: 1,
           toString() {
             return this.inx++;
-          }
+          },
         };
         console.log(a == 1 && a == 2 && a == 3); // true
       }

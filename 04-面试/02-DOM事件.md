@@ -28,42 +28,42 @@
 
 ```js
 window.addEventListener(
-    "click",
-    function(e) {
-        console.log("window captrue");
-    },
-    true
+  "click",
+  function (e) {
+    console.log("window captrue");
+  },
+  true
 );
 
 document.addEventListener(
-    "click",
-    function(e) {
-        console.log("document captrue");
-    },
-    true
+  "click",
+  function (e) {
+    console.log("document captrue");
+  },
+  true
 );
 
 document.documentElement.addEventListener(
-    "click",
-    function(e) {
-        console.log("html captrue");
-    },
-    true
+  "click",
+  function (e) {
+    console.log("html captrue");
+  },
+  true
 );
 document.body.addEventListener(
-    "click",
-    function(e) {
-        console.log("body captrue");
-    },
-    true
+  "click",
+  function (e) {
+    console.log("body captrue");
+  },
+  true
 );
 
 ev.addEventListener(
-    "click",
-    function(e) {
-        console.log("ev captrue");
-    },
-    true
+  "click",
+  function (e) {
+    console.log("ev captrue");
+  },
+  true
 );
 ```
 
@@ -81,15 +81,15 @@ event.target; //返回触发事件的元素
 
 ```js
 var eve = new Event("custome");
-ev.addEventListener("custome", function() {
-    console.log("custome");
+ev.addEventListener("custome", function () {
+  console.log("custome");
 });
 events.addEventListener(
-    "click",
-    function() {
-        window.dispatchEvent(eve);
-    },
-    true
+  "click",
+  function () {
+    window.dispatchEvent(eve);
+  },
+  true
 );
 ```
 
