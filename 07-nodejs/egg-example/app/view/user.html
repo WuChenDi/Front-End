@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/styles/reset.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>document <%= res[0].name %></h2>
+  <img src="/public/images/小程序二维码.png" alt="" srcset="">
+
+  <ul>
+    <% for (let i = 0; i < res.length; i++) { %>
+    <li><%= res[i].name %></li>
+    <% } %>
+  </ul>
+
+  <script src="/public/js/index.js"></script>
+</body>
+
+</html>
