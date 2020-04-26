@@ -17,4 +17,5 @@ module.exports = app => {
   router.get('/getuser', controller.user.getUser);
 
   router.get('/weather', controller.weather.weather);
+  router.post('/weather', controller.weather.getWeather);
 };

@@ -53,19 +53,27 @@
   <div class="box">
     <div class="inp">
       <span>查询哪个城市的天气</span>
-      <form action="http://127.0.0.1:7001/weatcher" method="POST">
+      <form action="http://127.0.0.1:7001/weather" method="POST">
         <input type="text" name="location" required />
         <button type="submit">查询</button>
       </form>
     </div>
     <table cellspacing="0" cellpadding="10">
       <tr>
-        <td>北京</td>
+        <td><%= data.currentCity %></td>
         <td>温度</td>
         <td>方向</td>
         <td>天气</td>
       </tr>
+      <% for (let i = 0 ; i < data.weather_data.length; i++) { %>
       <tr>
+        <td class="date"><%= data.weather_data[i].date %></td>
+        <td class="temperature"><%= data.weather_data[i].temperature %></td>
+        <td class="wind"><%= data.weather_data[i].wind %></td>
+        <td><%= data.weather_data[i].weather %></td>
+      </tr>
+      <% } %>
+      <!-- <tr>
         <td class="date">周日 04月19日（实时：18度）</td>
         <td class="temperature">19 ~ 14度</td>
         <td class="wind">东北风微风</td>
@@ -82,7 +90,7 @@
         <td class="temperature">19 ~ 14度</td>
         <td class="wind">东北风微风</td>
         <td>阴</td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 </body>
