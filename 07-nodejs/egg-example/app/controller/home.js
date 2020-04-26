@@ -11,11 +11,16 @@ class HomeController extends Controller {
     // };
     // await ctx.render('user', { data });
 
-    const { ctx, service } = this;
-    // 可以调用多个服务
-    const res = await service.user.getUsers();
-    const arr = await service.index.echo();
-    console.log(`home:${arr}`);
+    // const { ctx, service } = this;
+    // // 可以调用多个服务
+    // const res = await service.user.getUsers();
+    // const arr = await service.index.echo();
+    // console.log(`home:${arr}`);
+    // await ctx.render('user', { res });
+
+    const { ctx, service, app } = this;
+    const res = await service.admin.user.getUser();
+    console.log(app.foo('hello egg'));
     await ctx.render('user', { res });
   }
 

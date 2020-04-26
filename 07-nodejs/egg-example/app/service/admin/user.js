@@ -10,9 +10,10 @@ class UserService extends Service {
       { name: '赵五' },
     ];
     // 服务调用服务
-    const { service } = this;
-    const res = await service.index.echo();
-    console.log(`服务调用服务:${res}`);
+    // const { service } = this;
+    // const res = await service.index.echo();
+    // console.log(`服务调用服务:${res}`);
+    console.log(this.app.foo('服务调用'));
     return users;
   }
 
