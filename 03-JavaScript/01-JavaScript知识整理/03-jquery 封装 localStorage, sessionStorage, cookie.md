@@ -4,8 +4,11 @@ var script = document.createElement("script");
 script.setAttribute("type", "text/javascript");
 script.setAttribute("src", "//code.jquery.com/jquery-1.8.3.min.js");
 var heads = document.getElementsByTagName("head");
-if (heads.length) heads[0].appendChild(script);
-else document.documentElement.appendChild(script);
+if (heads.length) {
+  heads[0].appendChild(script);
+} else {
+  document.documentElement.appendChild(script);
+}
 script.onload = function() {
     (function() {
         $.extend({
