@@ -102,7 +102,7 @@
 10. ajax 请求
 
     ```js
-    $(function() { 
+    $(function() {
         $.ajax({
             type: "post",
             async: true, //默认设置为true，所有请求均为异步请求。
