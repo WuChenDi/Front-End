@@ -5,4 +5,5 @@ function Footer() {
 	dom.append(footer);
 }
 
-export default Footer;
+// export default Footer;
+module.exports = Footer;
