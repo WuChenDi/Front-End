@@ -1,0 +1,22 @@
+{
+  "name": "advance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-combine-routers": "^4.0.2",
+    "koa-helmet": "^5.2.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^9.4.0",
+    "koa-static": "^5.0.0"
+  }
+}
