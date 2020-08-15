@@ -38,4 +38,6 @@ const webpackconfig = {
 	},
 };
 
+console.log(webpackconfig);
+
 module.exports = webpackconfig;
