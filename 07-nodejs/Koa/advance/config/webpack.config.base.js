@@ -1,4 +1,5 @@
 const path = require("path");
+const utils = require("./utils");
 const webpack = require("webpack");
 const nodeExcternals = require("webpack-node-externals");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -6,11 +7,11 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpackconfig = {
 	target: "node",
 	entry: {
-		server: path.join(__dirname, "src/index.js"),
+		server: path.join(utils.APP_PATH, "index.js"),
 	},
 	output: {
 		filename: "[name].bundle.js",
-		path: path.join(__dirname, "./dist"),
+		path: utils.DIST_PATH,
 	},
 	module: {
 		rules: [
