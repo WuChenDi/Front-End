@@ -8,6 +8,8 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
 	stats: {
 		children: false,
 		warnings: false,
+	},
+	optimization: {
 		minimizer: [
 			new TerserWebpackPlugin({
 				terserOptions: {
