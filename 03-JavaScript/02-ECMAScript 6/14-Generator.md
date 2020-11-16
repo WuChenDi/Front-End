@@ -1,14 +1,9 @@
 # Generator
 
-## 基本概念
-
-## next 函数的用法
-
-## yield\*的语法
-
-## generator（生成器）是 ES6 标准引入的新的数据类型。一个 generator 看上去像一个函数，但可以返回多次。
-
-```js
+### 基本概念
+Generators 是可以用来控制迭代器的函数
+### 语法/使用
+```javascript
 {
   // genertaor基本定义
   let tell = function* () {
@@ -25,6 +20,18 @@
   console.log(k.next()); // { value: undefined, done: true }
 }
 
+```
+
+- 函数内部用 yield 来控制程序的执行的 "暂停"，并返回一个对象，这个对象包括两个属性：value 和 done
+- 函数的返回值通过调用 next 来 "恢复" 程序执行
+- Generator 函数的定义不能使用箭头函数，否则会触发 SyntaxError 错误
+
+
+
+generator（生成器）是 ES6 标准引入的新的数据类型。一个 generator 看上去像一个函数，但可以返回多次。
+
+
+```javascript
 {
   let obj = {};
   obj[Symbol.iterator] = function* () {

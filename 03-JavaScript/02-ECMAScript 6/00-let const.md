@@ -1,14 +1,45 @@
--   let const
--   es6 强制开启严格模式
--   es5 开启严格模式要添加 "use strict"
+# let &amp; const
 
-```js
+> es6 强制开启严格模式
+> es5 开启严格模式要添加 "use strict"
+
+## let
+
+
+```javascript
 {
+  	// 不属于顶层对象window
+  	// 不允许重复声明
+  	// 不存在变量提升
+  	// 暂时性死区
+  	// 块级作用域
+  
     // let不允许在相同作用域内重复声明同一个变量，即同一个作用域内不允许出现名称相同的变量。
     let a = 1;
     let a = 2; // Identifier 'a' has already been declared
     console.log(a); // 1
+  
+  	console.log(b); // undefined
+  	var b = 5;
+  	
+  	// 等同于
+    // var b
+    // console.log(b)
+  	// b = 5;
 
+	  for (var i = 0; i < 3; i++) {
+      (function (j) {
+        setTimeout(function () {
+          console.log(j);
+        });
+      })(i);
+    }
+  
+	  for (let i = 0; i < 3; i++) {
+      setTimeout(function () {
+        console.log(i);
+      });
+    }
     // let声明的变量只在它所在的代码块有效。
     // for循环的计数器，就很合适使用let命令
     for (let i = 0; i < 10; i++) {
@@ -20,7 +51,16 @@
     // 计数器i只在for循环体内有效，在循环体外引用就会报错。
 }
 
+```
+## const
+```javascript
 {
+    // 不属于顶层对象window
+  	// 不允许重复声明
+  	// 不存在变量提升
+  	// 暂时性死区
+  	// 块级作用域
+  
     // const用于声明常量，一旦声明，必须立即赋值，且以后不可更改。
     // 使用const声明对象的时候，只能保证对象的引用地址不被更改，并非此对象不被修改。
     const PI = 3.1415926;
@@ -35,4 +75,5 @@
     k.b = 3;
     console.log(PI, k); // 3.1415926 {a: 1, b: 3}
 }
+
 ```
