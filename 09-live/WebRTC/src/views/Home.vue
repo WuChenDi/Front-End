@@ -46,13 +46,6 @@ interface Constraints {
   audio: boolean;
 }
 
-interface Devices {
-  deviceId: string;
-  groupId: string;
-  kind: string;
-  label: string;
-}
-
 export default defineComponent({
   name: "home",
   setup() {
@@ -80,19 +73,20 @@ export default defineComponent({
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
       console.log("enumerateDevices is not supported!");
     } else {
-      getUserMedia({ video: true, audio: true });
+      const constraints = { video: true, audio: true };
+      getUserMedia(constraints);
       navigator.mediaDevices
         .enumerateDevices()
-        .then((devices: any) => {
+        .then((devices: Array<MediaDeviceInfo>) => {
           audioInputOption.value = devices.filter(
-            (item: Devices) => item.kind === "audioinput"
-          );
+            (item: MediaDeviceInfo) => item.kind === "audioinput"
+          ) as [];
           audioOutputOption.value = devices.filter(
-            (item: Devices) => item.kind === "audiooutput"
-          );
+            (item: MediaDeviceInfo) => item.kind === "audiooutput"
+          ) as [];
           videoInputOption.value = devices.filter(
-            (item: Devices) => item.kind === "videoinput"
-          );
+            (item: MediaDeviceInfo) => item.kind === "videoinput"
+          ) as [];
 
           const { deviceId = "" } = videoInputOption.value[0];
           videoInputValue.value = deviceId;
