@@ -106,35 +106,32 @@ export default defineComponent({
         console.log("getUserMedia is not supported!");
       } else {
         const constraints = {
-          // video: {
-          //   // width: 320,
-          //   // height: 240,
-          //   // frameRate: 120, // 帧
-          //   // facingMode: "environment", // 摄像头
-          //   width: {
-          //     min: 200,
-          //     max: 400,
-          //   },
-          //   height: {
-          //     min: 200,
-          //     max: 400,
-          //   },
-          //   frameRate: {
-          //     min: 15,
-          //     max: 120,
-          //   },
+          video: {
+            width: {
+              min: 200,
+              max: 400,
+            },
+            height: {
+              min: 200,
+              max: 400,
+            },
+            // 帧
+            frameRate: {
+              min: 15,
+              max: 120,
+            },
+            // facingMode: "environment", // 摄像头
+          },
+          // audio: {
+          //   noiseSuppression: true, // 降噪
+          //   echoCancellation: true, // 回声消除
           // },
-          // // audio: {
-          // //   noiseSuppression: true, // 降噪
-          // //   echoCancellation: true, // 回声消除
-          // // },
-          video: false,
-          audio: true,
         };
         try {
           const stream = await navigator.mediaDevices.getUserMedia(constraints);
-          refAudioPlay.value.srcObject = stream;
+          // refAudioPlay.value.srcObject = stream;
           refVideoPlay.value.srcObject = stream;
+
           // 标签设置 autoplay 自动播放，但是注意兼容
           // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
           // refVideoPlay.value.onloadedmetadata = async () => {
