@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mediaDevices">
     <a-form :label-col="{ span: 10 }" :wrapper-col="{ span: 8 }">
       <a-form-item label="audio input device">
         <a-select v-model:value="audioInputValue">
@@ -46,17 +46,34 @@
         </a-select>
       </a-form-item>
     </a-form>
-    <video autoplay playsinline id="player" :class="filterValue"></video>
+    <a-button type="primary" @click="handleTakeSnapshout">
+      Take snapshout
+    </a-button>
+    <div style="display: flex">
+      <canvas id="refPicture" ref="refPicture"></canvas>
+      <video
+        id="refVideoPlay"
+        autoplay
+        playsinline
+        ref="refVideoPlay"
+        :class="filterValue"
+      ></video>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted, ref, nextTick } from "vue";
 import adapter from "webrtc-adapter";
 
 export default defineComponent({
   name: "mediaDevices",
   setup() {
+    // const refVideoPlay = ref<HTMLVideoElement | null>(null);
+    const refVideoPlay = ref<any>(null);
+    // const refPicture = ref<HTMLCanvasElement | null>(null);
+    const refPicture = ref<any>(null);
+
     const audioInputValue = ref("default");
     const audioInputOption = ref([]);
     const audioOutputValue = ref("default");
@@ -78,12 +95,10 @@ export default defineComponent({
       { label: "阴影", value: "drop-shadow" },
     ]);
 
-    let videoplay: any;
     // mounted -> onMounted
-    onMounted(() => {
+    onMounted(async () => {
       console.log(adapter);
       console.log(adapter.browserDetails.browser);
-      videoplay = document.getElementById("player");
 
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         console.log("getUserMedia is not supported!");
@@ -112,36 +127,48 @@ export default defineComponent({
           //   echoCancellation: true, // 回声消除
           // },
         };
-        navigator.mediaDevices
-          .getUserMedia(constraints)
-          .then((stream) => {
-            videoplay.srcObject = stream;
-            return navigator.mediaDevices.enumerateDevices();
-          })
-          .then((deviceInfos) => {
-            audioInputOption.value = deviceInfos.filter(
-              (item) => item.kind === "audioinput"
-            ) as any;
-            audioOutputOption.value = deviceInfos.filter(
-              (item) => item.kind === "audiooutput"
-            ) as any;
-            videoInputOption.value = deviceInfos.filter(
-              (item) => item.kind === "videoinput"
-            ) as any;
-            const { deviceId = "" } = videoInputOption.value[0];
-            videoInputValue.value = deviceId;
-          })
-          .catch((err) => {
-            console.log(`getUserMedia error: ${err}`);
-          });
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia(constraints);
+          refVideoPlay.value.srcObject = stream;
+          // 标签设置 autoplay 自动播放，但是注意兼容
+          // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
+          // refVideoPlay.value.onloadedmetadata = async () => {
+          //   await refVideoPlay.value.play();
+          // };
+
+          const deviceInfos: Array<MediaDeviceInfo> = await navigator.mediaDevices.enumerateDevices();
+          audioInputOption.value = deviceInfos.filter(
+            (item: MediaDeviceInfo) => item.kind === "audioinput"
+          ) as [];
+          audioOutputOption.value = deviceInfos.filter(
+            (item: MediaDeviceInfo) => item.kind === "audiooutput"
+          ) as [];
+          videoInputOption.value = deviceInfos.filter(
+            (item: MediaDeviceInfo) => item.kind === "videoinput"
+          ) as [];
+
+          const { deviceId = "" } = videoInputOption.value[0];
+          videoInputValue.value = deviceId;
+
+          refPicture.value.style.width = "320px";
+          refPicture.value.style.height = "240px";
+        } catch (err) {
+          console.log(`getUserMedia error: ${err}`);
+        }
       }
     });
 
-    // const handleFilterChange = (val: string) => {
-    //   console.log(val);
-    //   videoplay.className = val;
-    // };
+    const handleTakeSnapshout = () => {
+      const { width, height } = refPicture.value.getBoundingClientRect();
+
+      refPicture.value
+        .getContext("2d")
+        .drawImage(refVideoPlay.value, 0, 0, width, height);
+    };
+
     return {
+      refVideoPlay,
+      refPicture,
       audioInputValue,
       audioInputOption,
       audioOutputValue,
@@ -150,44 +177,51 @@ export default defineComponent({
       videoInputOption,
       filterValue,
       filterOption,
-      // handleFilterChange,
+      handleTakeSnapshout,
     };
   },
 });
 </script>
 
 <style scoped lang="scss">
-.None {
-  filter: none;
-}
-.grayscale {
-  filter: grayscale(1);
-}
-.sepia {
-  filter: sepia(1);
-}
-.saturate {
-  filter: saturate(3);
-}
-.hue-rotate {
-  filter: hue-rotate(180deg);
-}
-.invert {
-  filter: invert(10);
-}
-.opacity {
-  filter: opacity(90%);
-}
-.brightness {
-  filter: brightness(3);
-}
-.contrast {
-  filter: contrast(3);
-}
-.blur {
-  filter: blur(3px);
-}
-.drop-shadow {
-  filter: drop-shadow(8px 8px 10px #42b983);
+.mediaDevices {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .None {
+    filter: none;
+  }
+  .grayscale {
+    filter: grayscale(1);
+  }
+  .sepia {
+    filter: sepia(1);
+  }
+  .saturate {
+    filter: saturate(3);
+  }
+  .hue-rotate {
+    filter: hue-rotate(180deg);
+  }
+  .invert {
+    filter: invert(10);
+  }
+  .opacity {
+    filter: opacity(90%);
+  }
+  .brightness {
+    filter: brightness(3);
+  }
+  .contrast {
+    filter: contrast(3);
+  }
+  .blur {
+    filter: blur(3px);
+  }
+  .drop-shadow {
+    filter: drop-shadow(8px 8px 10px #42b983);
+  }
 }
 </style>
