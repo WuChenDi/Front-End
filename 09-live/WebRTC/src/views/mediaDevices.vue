@@ -50,9 +50,9 @@
       Take snapshout
     </a-button>
     <div style="display: flex">
-      <canvas id="refPicture" ref="refPicture"></canvas>
+      <canvas ref="refPicture" :class="filterValue"></canvas>
+      <audio autoplay controls ref="refAudioPlay"></audio>
       <video
-        id="refVideoPlay"
         autoplay
         playsinline
         ref="refVideoPlay"
@@ -63,15 +63,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, nextTick } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import adapter from "webrtc-adapter";
 
 export default defineComponent({
   name: "mediaDevices",
   setup() {
     // const refVideoPlay = ref<HTMLVideoElement | null>(null);
-    const refVideoPlay = ref<any>(null);
+    // const refAudioPlay = ref<HTMLAudioElement | null>(null);
     // const refPicture = ref<HTMLCanvasElement | null>(null);
+    const refVideoPlay = ref<any>(null);
+    const refAudioPlay = ref<any>(null);
     const refPicture = ref<any>(null);
 
     const audioInputValue = ref("default");
@@ -104,31 +106,34 @@ export default defineComponent({
         console.log("getUserMedia is not supported!");
       } else {
         const constraints = {
-          video: {
-            // width: 320,
-            // height: 240,
-            // frameRate: 120, // 帧
-            // facingMode: "environment", // 摄像头
-            width: {
-              min: 200,
-              max: 400,
-            },
-            height: {
-              min: 200,
-              max: 400,
-            },
-            frameRate: {
-              min: 15,
-              max: 120,
-            },
-          },
-          // audio: {
-          //   noiseSuppression: true, // 降噪
-          //   echoCancellation: true, // 回声消除
+          // video: {
+          //   // width: 320,
+          //   // height: 240,
+          //   // frameRate: 120, // 帧
+          //   // facingMode: "environment", // 摄像头
+          //   width: {
+          //     min: 200,
+          //     max: 400,
+          //   },
+          //   height: {
+          //     min: 200,
+          //     max: 400,
+          //   },
+          //   frameRate: {
+          //     min: 15,
+          //     max: 120,
+          //   },
           // },
+          // // audio: {
+          // //   noiseSuppression: true, // 降噪
+          // //   echoCancellation: true, // 回声消除
+          // // },
+          video: false,
+          audio: true,
         };
         try {
           const stream = await navigator.mediaDevices.getUserMedia(constraints);
+          refAudioPlay.value.srcObject = stream;
           refVideoPlay.value.srcObject = stream;
           // 标签设置 autoplay 自动播放，但是注意兼容
           // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
@@ -168,6 +173,7 @@ export default defineComponent({
 
     return {
       refVideoPlay,
+      refAudioPlay,
       refPicture,
       audioInputValue,
       audioInputOption,
