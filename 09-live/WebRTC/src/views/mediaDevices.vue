@@ -50,15 +50,25 @@
       Take snapshout
     </a-button>
     <div style="display: flex">
-      <canvas ref="refPicture" :class="filterValue"></canvas>
-      <audio autoplay controls ref="refAudioPlay"></audio>
       <video
         autoplay
         playsinline
         ref="refVideoPlay"
         :class="filterValue"
       ></video>
+      <audio autoplay controls ref="refAudioPlay"></audio>
+      <canvas ref="refPicture" :class="filterValue"></canvas>
     </div>
+
+    <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 8 }">
+      <a-form-item
+        v-for="(value, key, index) in MediaStreamAPI"
+        :key="index"
+        :label="key"
+      >
+        {{ value }}
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
@@ -96,6 +106,7 @@ export default defineComponent({
       { label: "模糊", value: "blur" },
       { label: "阴影", value: "drop-shadow" },
     ]);
+    const MediaStreamAPI = ref({});
 
     // mounted -> onMounted
     onMounted(async () => {
@@ -131,6 +142,11 @@ export default defineComponent({
           const stream = await navigator.mediaDevices.getUserMedia(constraints);
           // refAudioPlay.value.srcObject = stream;
           refVideoPlay.value.srcObject = stream;
+
+          const videoTrack = stream.getVideoTracks();
+          const videoConstraints = videoTrack[0].getSettings();
+          MediaStreamAPI.value = videoConstraints;
+          console.log(MediaStreamAPI.value);
 
           // 标签设置 autoplay 自动播放，但是注意兼容
           // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
@@ -181,6 +197,7 @@ export default defineComponent({
       filterValue,
       filterOption,
       handleTakeSnapshout,
+      MediaStreamAPI,
     };
   },
 });
