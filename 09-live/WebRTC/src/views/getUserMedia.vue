@@ -47,7 +47,7 @@ interface Constraints {
 }
 
 export default defineComponent({
-  name: "home",
+  name: "getUserMedia",
   setup() {
     const audioInputValue = ref("default");
     const audioInputOption = ref([]);

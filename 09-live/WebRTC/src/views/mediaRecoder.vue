@@ -1,12 +1,7 @@
 <template>
   <div class="mediaDevices">
     <div style="display: flex">
-      <video
-        autoplay
-        playsinline
-        ref="refVideoPlay"
-        :class="filterValue"
-      ></video>
+      <video autoplay playsinline ref="refVideoPlay"></video>
 
       <video playsinline ref="refRecplayer"></video>
     </div>
@@ -55,6 +50,8 @@ export default defineComponent({
     const MediaStreamAPI = ref({});
 
     let stream: any;
+    let mediaRecorder: any = null;
+    const buffer: any[] = [];
 
     // mounted -> onMounted
     onMounted(async () => {
@@ -73,8 +70,7 @@ export default defineComponent({
           refVideoPlay.value.srcObject = stream;
 
           const videoTrack = stream.getVideoTracks();
-          const videoConstraints = videoTrack[0].getSettings();
-          MediaStreamAPI.value = videoConstraints;
+          MediaStreamAPI.value = videoTrack[0].getSettings();
           console.log(MediaStreamAPI.value);
 
           // 标签设置 autoplay 自动播放，但是注意兼容
@@ -95,9 +91,6 @@ export default defineComponent({
     }
     const handleOutput = () => {};
 
-    let mediaRecorder: any = null;
-
-    const buffer: any[] = [];
     const handleRecord = () => {
       if (recordStatus.value) {
         const mineType = "video/webm;codecs=vp8";
@@ -140,7 +133,7 @@ export default defineComponent({
       const a = document.createElement("a");
       a.href = url;
       a.style.display = "none";
-      a.download = "aaa.webm";
+      a.download = `cd-${+new Date()}.webm`;
       a.click();
     };
 
