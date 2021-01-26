@@ -42,10 +42,10 @@ import adapter from "webrtc-adapter";
 export default defineComponent({
   name: "mediaRecoder",
   setup() {
-    // const refVideoPlay = ref<HTMLVideoElement | null>(null);
-    // const refRecplayer = ref<HTMLVideoElement | null>(null);
-    const refVideoPlay = ref<any>(null);
-    const refRecplayer = ref<any>(null);
+    const refVideoPlay = ref<HTMLVideoElement | null>(null);
+    const refRecplayer = ref<HTMLVideoElement | null>(null);
+    // const refVideoPlay = ref<any>(null);
+    // const refRecplayer = ref<any>(null);
     const recordStatus = ref(true);
     const MediaStreamAPI = ref({});
 
@@ -67,16 +67,15 @@ export default defineComponent({
         };
         try {
           stream = await navigator.mediaDevices.getUserMedia(constraints);
-          refVideoPlay.value.srcObject = stream;
+          (refVideoPlay.value as HTMLVideoElement).srcObject = stream;
 
           const videoTrack = stream.getVideoTracks();
           MediaStreamAPI.value = videoTrack[0].getSettings();
-          console.log(MediaStreamAPI.value);
 
           // 标签设置 autoplay 自动播放，但是注意兼容
           // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
-          // refVideoPlay.value.onloadedmetadata = async () => {
-          //   await refVideoPlay.value.play();
+          // (refVideoPlay.value as HTMLVideoElement).onloadedmetadata = async () => {
+          //   await (refVideoPlay.value as HTMLVideoElement).play();
           // };
         } catch (err) {
           console.log(`getUserMedia error: ${err}`);
@@ -121,10 +120,10 @@ export default defineComponent({
 
     const handlePlay = () => {
       const blob = new Blob(buffer, { type: "video/webm" });
-      refRecplayer.value.src = window.URL.createObjectURL(blob);
-      refRecplayer.value.srcObject = null;
-      refRecplayer.value.controls = true;
-      refRecplayer.value.play();
+      (refRecplayer.value as HTMLVideoElement).src = window.URL.createObjectURL(blob);
+      (refRecplayer.value as HTMLVideoElement).srcObject = null;
+      (refRecplayer.value as HTMLVideoElement).controls = true;
+      (refRecplayer.value as HTMLVideoElement).play();
     };
 
     const handleDownload = () => {

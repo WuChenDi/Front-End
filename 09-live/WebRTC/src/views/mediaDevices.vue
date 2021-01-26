@@ -79,12 +79,9 @@ import adapter from "webrtc-adapter";
 export default defineComponent({
   name: "mediaDevices",
   setup() {
-    // const refVideoPlay = ref<HTMLVideoElement | null>(null);
-    // const refAudioPlay = ref<HTMLAudioElement | null>(null);
-    // const refPicture = ref<HTMLCanvasElement | null>(null);
-    const refVideoPlay = ref<any>(null);
-    const refAudioPlay = ref<any>(null);
-    const refPicture = ref<any>(null);
+    const refVideoPlay = ref<HTMLVideoElement | null>(null);
+    const refAudioPlay = ref<HTMLAudioElement | null>(null);
+    const refPicture = ref<HTMLCanvasElement | null>(null);
 
     const audioInputValue = ref("default");
     const audioInputOption = ref([]);
@@ -140,8 +137,8 @@ export default defineComponent({
         };
         try {
           const stream = await navigator.mediaDevices.getUserMedia(constraints);
-          // refAudioPlay.value.srcObject = stream;
-          refVideoPlay.value.srcObject = stream;
+          // (refAudioPlay.value as HTMLAudioElement).srcObject = stream;
+          (refVideoPlay.value as HTMLVideoElement).srcObject = stream;
 
           const videoTrack = stream.getVideoTracks();
           const videoConstraints = videoTrack[0].getSettings();
@@ -150,8 +147,8 @@ export default defineComponent({
 
           // 标签设置 autoplay 自动播放，但是注意兼容
           // 更多设置请转移查看: https://www.yuque.com/wuchendi/fe/gflcap
-          // refVideoPlay.value.onloadedmetadata = async () => {
-          //   await refVideoPlay.value.play();
+          // (refVideoPlay.value as HTMLVideoElement).onloadedmetadata = async () => {
+          //   await (refVideoPlay.value as HTMLVideoElement).play();
           // };
 
           const deviceInfos: Array<MediaDeviceInfo> = await navigator.mediaDevices.enumerateDevices();
@@ -168,8 +165,8 @@ export default defineComponent({
           const { deviceId = "" } = videoInputOption.value[0];
           videoInputValue.value = deviceId;
 
-          refPicture.value.style.width = "320px";
-          refPicture.value.style.height = "240px";
+          (refPicture.value as HTMLCanvasElement).style.width = "320px";
+          (refPicture.value as HTMLCanvasElement).style.height = "240px";
         } catch (err) {
           console.log(`getUserMedia error: ${err}`);
         }
@@ -177,11 +174,9 @@ export default defineComponent({
     });
 
     const handleTakeSnapshout = () => {
-      const { width, height } = refPicture.value.getBoundingClientRect();
+      const { width, height } = (refPicture.value as HTMLCanvasElement).getBoundingClientRect();
 
-      refPicture.value
-        .getContext("2d")
-        .drawImage(refVideoPlay.value, 0, 0, width, height);
+      (refPicture.value as any).getContext("2d").drawImage((refVideoPlay.value as HTMLVideoElement), 0, 0, width, height);
     };
 
     return {

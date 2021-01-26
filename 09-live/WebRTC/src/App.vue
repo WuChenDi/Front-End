@@ -61,12 +61,12 @@ export default defineComponent({
   components: {},
   setup() {
     const menuItem = ref<any>([]);
-    const selectedKeys = ref([]);
-    const openKeys = ref([]);
+    const selectedKeys = ref<any>([]);
+    const openKeys = ref<any>([]);
     const route = useRoute();
 
     onMounted(() => {
-      const item:List[] = [
+      const item = [
         {
           index: "/getUserMedia",
           title: "获取设备",
@@ -87,19 +87,18 @@ export default defineComponent({
       menuItem.value = item;
 
       nextTick(() => {
-        const { path } = toRaw(route);
+        const { path } = toRaw(route) as any;
 
         setTimeout(() => {
           const result = item.filter((i) => path.value.includes(i.index));
           if (result[0].subs?.length) {
-            const _subs = result[0].subs.filter((i) =>path.value.includes(i.index));
+            const _subs = result[0].subs.filter((i) => path.value.includes(i.index));
             selectedKeys.value.push(_subs[0].index);
             openKeys.value.push(result[0].index);
           } else {
             selectedKeys.value.push(result[0].index);
             openKeys.value.lenght = 0;
           }
-          console.log(result);
         }, 150);
       });
     });
