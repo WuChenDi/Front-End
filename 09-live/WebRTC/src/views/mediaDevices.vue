@@ -76,6 +76,25 @@
 import { defineComponent, onMounted, ref } from "vue";
 import adapter from "webrtc-adapter";
 
+interface FilterOption {
+  label: string;
+  value: string;
+}
+
+const FILTEROPTION: FilterOption[] = [
+  { label: "None", value: "None" },
+  { label: "灰度", value: "grayscale" },
+  { label: "褐色", value: "sepia" },
+  { label: "饱和度", value: "saturate" },
+  { label: "色相旋转", value: "hue-rotate" },
+  { label: "反色", value: "invert" },
+  { label: "透明度", value: "opacity" },
+  { label: "亮度", value: "brightness" },
+  { label: "对比度", value: "contrast" },
+  { label: "模糊", value: "blur" },
+  { label: "阴影", value: "drop-shadow" },
+];
+
 export default defineComponent({
   name: "mediaDevices",
   setup() {
@@ -90,19 +109,7 @@ export default defineComponent({
     const videoInputValue = ref("default");
     const videoInputOption = ref([]);
     const filterValue = ref("");
-    const filterOption = ref([
-      { label: "None", value: "None" },
-      { label: "灰度", value: "grayscale" },
-      { label: "褐色", value: "sepia" },
-      { label: "饱和度", value: "saturate" },
-      { label: "色相旋转", value: "hue-rotate" },
-      { label: "反色", value: "invert" },
-      { label: "透明度", value: "opacity" },
-      { label: "亮度", value: "brightness" },
-      { label: "对比度", value: "contrast" },
-      { label: "模糊", value: "blur" },
-      { label: "阴影", value: "drop-shadow" },
-    ]);
+    const filterOption = ref(FILTEROPTION);
     const MediaStreamAPI = ref({});
 
     // mounted -> onMounted
@@ -174,9 +181,14 @@ export default defineComponent({
     });
 
     const handleTakeSnapshout = () => {
-      const { width, height } = (refPicture.value as HTMLCanvasElement).getBoundingClientRect();
+      const {
+        width,
+        height,
+      } = (refPicture.value as HTMLCanvasElement).getBoundingClientRect();
 
-      (refPicture.value as any).getContext("2d").drawImage((refVideoPlay.value as HTMLVideoElement), 0, 0, width, height);
+      (refPicture.value as any)
+        .getContext("2d")
+        .drawImage(refVideoPlay.value as HTMLVideoElement, 0, 0, width, height);
     };
 
     return {
