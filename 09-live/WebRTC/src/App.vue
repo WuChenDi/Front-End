@@ -80,7 +80,7 @@ export default defineComponent({
           title: "录制实战",
           subs: [
             { index: "/3/mediaRecoder", title: "录制音视频" },
-            { index: "/3/getDisplayMedia", title: "采集屏面数据" },
+            { index: "/3/getDisplayMedia", title: "屏幕捕获" },
           ],
         },
       ];

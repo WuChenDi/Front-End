@@ -29,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [
 		path: "/3/getDisplayMedia",
 		name: "getDisplayMedia",
 		component: getDisplayMedia,
-		meta: { title: "WebRTC采集屏面数据" },
+		meta: { title: "WebRTC屏幕捕获" },
 	},
 ];
 // console.log(createWebHistory(process.env.BASE_URL));
