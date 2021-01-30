@@ -4,6 +4,7 @@ const getUserMedia = () => import(/* webpackChunkName: "getUserMedia" */ "../vie
 const mediaDevices = () => import(/* webpackChunkName: "mediaDevices" */ "../views/mediaDevices.vue");
 const mediaRecoder = () => import(/* webpackChunkName: "mediaRecoder" */ "../views/mediaRecoder.vue");
 const getDisplayMedia = () => import(/* webpackChunkName: "getDisplayMedia" */ "../views/getDisplayMedia.vue");
+const socketIO = () => import(/* webpackChunkName: "socketIO" */ "../views/socketIO.vue");
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/getUserMedia" },
@@ -30,6 +31,12 @@ const routes: Array<RouteRecordRaw> = [
 		name: "getDisplayMedia",
 		component: getDisplayMedia,
 		meta: { title: "WebRTC屏幕捕获" },
+	},
+	{
+		path: "/socketIO",
+		name: "socketIO",
+		component: socketIO,
+		meta: { title: "WebRTC信令" },
 	},
 ];
 // console.log(createWebHistory(process.env.BASE_URL));

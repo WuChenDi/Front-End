@@ -83,6 +83,10 @@ export default defineComponent({
             { index: "/3/getDisplayMedia", title: "屏幕捕获" },
           ],
         },
+        {
+          index: "/socketIO",
+          title: "信令-socketIO",
+        },
       ];
       menuItem.value = item;
 

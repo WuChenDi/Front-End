@@ -1,41 +1,23 @@
-const fs = require("fs");
-const app = require("express")();
-const http = require("http").Server(app);
-const socketIo = require("socket.io")(http);
-const log4js = require("log4js");
-const qs = require("qs");
+var app = require("express")();
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
 
-const PORT = 3000;
-const SOCKETPORT = 3443;
-
-log4js.configure({
-	appenders: {
-		file: {
-			type: "file",
-			filename: "app.log",
-			layout: {
-				type: "pattern",
-				pattern: "%r %p - %m",
-			},
-		},
-	},
-	categories: {
-		default: {
-			appenders: ["file"],
-			level: "debug",
-		},
-	},
+app.get("/", function (req, res) {
+	res.send("<h1>你好web</h1>");
 });
 
-const logger = log4js.getLogger();
-
-http.listen(PORT, () => {
-	console.log(`server is running no port ${PORT}`);
+io.on("connection", function (socket) {
+	//接收数据
+	socket.on("login", function (obj) {
+		console.log(obj.username);
+		// 发送数据
+		socket.emit("relogin", {
+			msg: `你好${obj.username}`,
+			code: 200,
+		});
+	});
 });
 
-// console.log(socketIo.sockets);
-
-socketIo.sockets.on("connection", (socket) => {
-	console.log(connection);
-	logger.log(socket);
+http.listen(3000, function () {
+	console.log("listening on *:3000");
 });
