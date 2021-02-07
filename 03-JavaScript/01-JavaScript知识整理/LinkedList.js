@@ -10,7 +10,11 @@ class LinkedList {
 		this.size = 0;
 		this.head = null;
 	}
-	// 追加
+
+	/**
+	 * @method 尾部追加数据
+	 * @param {any} element 追加数据
+	 */
 	append(element) {
 		let node = new Node(element);
 		if (this.head === null) {
@@ -22,7 +26,11 @@ class LinkedList {
 		this.size++;
 	}
 
-	// 指定位置追加
+	/**
+	 * @method 指定位置追加数据
+	 * @param {*} position 位置
+	 * @param {*} element 追加数据
+	 */
 	appendAt(position, element) {
 		if (position < 0 || position > this.size) {
 			throw new Error("position out range");
@@ -39,7 +47,10 @@ class LinkedList {
 		this.size++;
 	}
 
-	// 删除
+	/**
+	 * @method 删除指定位置数据
+	 * @param {*} position 位置
+	 */
 	removeAt(position) {
 		if (position < 0 || position >= this.size) {
 			throw new Error("position out range");
@@ -55,7 +66,24 @@ class LinkedList {
 		this.size--;
 	}
 
-	// 查找指定元素索引
+	/**
+	 * @method 修改指定位置数据
+	 * @param {*} position 位置
+	 * @param {*} element 追加数据
+	 */
+	update(position, element) {
+		if (position < 0 || position >= this.size) {
+			throw new Error("position out range");
+		}
+		let pre = this.getNode(position);
+		pre.element = element;
+	}
+
+	/**
+	 * @method 查找指定数据索引
+	 * @param {Number} element
+	 * @return {Number} 索引
+	 */
 	indexOf(element) {
 		let current = this.head;
 		for (let i = 0; i < this.size; i++) {
@@ -65,6 +93,14 @@ class LinkedList {
 			current = current.next;
 		}
 		return -1;
+	}
+
+	/**
+	 * @method 返回链表长度
+	 * @return {Number} 链表长度
+	 */
+	get length() {
+		return this.size;
 	}
 
 	getNode(index) {
@@ -90,12 +126,20 @@ ll.appendAt(3, 4);
 // ll.removeAt(0);
 // ll.removeAt(1);
 
-console.log(ll.indexOf(1));
-console.log(ll.indexOf(2));
-console.log(ll.indexOf(3));
-console.log(ll.indexOf(4));
-console.log(ll.indexOf(5));
+// console.log(ll.indexOf(1));
+// console.log(ll.indexOf(2));
+// console.log(ll.indexOf(3));
+// console.log(ll.indexOf(4));
+// console.log(ll.indexOf(5));
 
 console.dir(ll, {
 	depth: 100,
 });
+console.log(ll.length);
+
+// setTimeout(() => {
+// 	ll.update(3, 9);
+// 	console.dir(ll, {
+// 		depth: 100,
+// 	});
+// }, 1000);
