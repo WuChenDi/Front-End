@@ -1,0 +1,30 @@
+[2021-02-27T22:15:23.784] [DEBUG] cheese - URL {
+  href: 'https://www.yuque.com/wuchendi/fe/egth5q',
+  origin: 'https://www.yuque.com',
+  protocol: 'https:',
+  username: '',
+  password: '',
+  host: 'www.yuque.com',
+  hostname: 'www.yuque.com',
+  port: '',
+  pathname: '/wuchendi/fe/egth5q',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+}
+[2021-02-27T22:15:23.787] [DEBUG] cheese - https://www.yuque.com/wuchendi/fe/egth5q
+[2021-02-28T10:13:32.678] [DEBUG] cheese - URL {
+  href: 'https://www.yuque.com/wuchendi/fe/egth5q',
+  origin: 'https://www.yuque.com',
+  protocol: 'https:',
+  username: '',
+  password: '',
+  host: 'www.yuque.com',
+  hostname: 'www.yuque.com',
+  port: '',
+  pathname: '/wuchendi/fe/egth5q',
+  search: '',
+  searchParams: URLSearchParams {},
+  hash: ''
+}
+[2021-02-28T10:13:32.681] [DEBUG] cheese - https://www.yuque.com/wuchendi/fe/egth5q
