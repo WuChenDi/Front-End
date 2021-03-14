@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			href="https://cdn.bootcss.com/element-ui/2.10.0/theme-chalk/index.css"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+		<script src="https://cdn.bootcss.com/element-ui/2.10.0/index.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/socket.io/3.0.0-rc4/socket.io.min.js"></script>
+	</head>
+
+	<body>
+		<div id="App">
+			<h1>hello server!!!</h1>
+			<el-input
+				v-model="input"
+				placeholder="请输入内容"
+				@keypress.native.enter="send"
+			>
+				<el-button slot="append" type="primary" @click="send">发送</el-button>
+			</el-input>
+		</div>
+
+		<script type="text/javascript">
+			var AppVue = new Vue({
+				el: "#App",
+				data() {
+					return {
+						input: "",
+						socket: null,
+					};
+				},
+				watch: {},
+				methods: {
+					send() {
+						this.input && this.$message.success(this.input);
+						this.socket.emit("chatEvent", this.input);
+						this.input = "";
+					},
+				},
+				mounted() {
+					this.$nextTick(() => {
+						this.socket = io();
+						// this.socket.on("message", (msg) => {
+						// 	console.log(msg);
+						// });
+						this.socket.on("ServerMsg", (msg) => {
+							console.log(msg);
+						});
+					});
+				},
+			});
+		</script>
+	</body>
+</html>

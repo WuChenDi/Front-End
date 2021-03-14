@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>websocket</title>
+		<link
+			href="https://cdn.bootcss.com/element-ui/2.10.0/theme-chalk/index.css"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+		<script src="https://cdn.bootcss.com/element-ui/2.10.0/index.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/socket.io/3.0.0-rc4/socket.io.min.js"></script>
+	</head>
+
+	<body>
+		<div id="App">
+			<template v-if="isShow">
+				<h1>Please enter your nickname to enter the chat room</h1>
+
+				<el-form :model="loginForm" ref="loginForm" label-width="100px">
+					<el-form-item
+						label="nickname"
+						prop="userName"
+						:rules="[{ required: true, message: 'Nicknames cannot be empty'}]"
+					>
+						<el-input
+							type="userName"
+							v-model="loginForm.userName"
+							placeholder="Please enter nickname"
+							autocomplete="off"
+						/>
+					</el-form-item>
+					<el-form-item
+						label="roomId"
+						prop="roomId"
+						:rules="[{ required: true, message: 'The room number cannot be empty'}]"
+					>
+						<el-input
+							type="roomId"
+							v-model="loginForm.roomId"
+							placeholder="Please enter the room number"
+							autocomplete="off"
+						/>
+					</el-form-item>
+					<el-form-item>
+						<el-button type="primary" @click="joinChat('loginForm')">
+							join chat
+						</el-button>
+						<el-button @click="resetForm('loginForm')">reset</el-button>
+					</el-form-item>
+				</el-form>
+			</template>
+
+			<template v-else>
+				<h1>The current number of people online is：{{onlineNum}}</h1>
+				<el-input
+					v-model="message"
+					placeholder="Please enter your inquiry"
+					@keypress.native.enter="sendMessage"
+				>
+					<el-button slot="append" type="primary" @click="sendMessage">
+						send
+					</el-button>
+				</el-input>
+				<ul>
+					<li v-for="(v,j) in lists" :key="j">{{v}}</li>
+				</ul>
+			</template>
+		</div>
+		<script src="./index.js"></script>
+	</body>
+</html>
