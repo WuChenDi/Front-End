@@ -99,13 +99,18 @@ var AppVue = new Vue({
 			// 当用户未进入聊天室，则不接收消息
 			if (this.isShow) return;
 
-			const { ws } = this;
+			const { ws, $message } = this;
 			// 接收服务端发送过来的消息
 			const { data } = res;
 			if (!res && !data) return;
 
 			const { name, types, content, onlineNum } = JSON.parse(data);
 			switch (types) {
+				case "noauth":
+					// 鉴权失败
+					// 路由跳转到 /login 重新获取token
+					$message.error(content);
+					break;
 				case "userName":
 					this.lists.push(`welcome: ${content} join chat`);
 					break;
