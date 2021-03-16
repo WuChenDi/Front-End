@@ -1,4 +1,4 @@
-var AppVue = new Vue({
+const AppVue = new Vue({
 	el: "#App",
 	data() {
 		return {
@@ -53,13 +53,6 @@ var AppVue = new Vue({
 				this.isShow = false;
 				this.$nextTick(() => {
 					this.init();
-					const { ws } = this;
-					const data = JSON.stringify({
-						types: "login",
-						content: userName,
-						roomId,
-					});
-					ws.readyState === 1 && ws.send(data);
 				});
 			});
 		},
@@ -68,13 +61,18 @@ var AppVue = new Vue({
 		},
 		// 发送消息
 		sendMessage() {
-			const { message, ws } = this;
+			const {
+				message,
+				ws,
+				loginForm: { userName },
+			} = this;
 			if (!message) return;
 
 			// this.$message.success(this.message);
 			const data = JSON.stringify({
 				types: "message",
 				content: message,
+				userName,
 			});
 			ws.send(data);
 			// this.lists.push(message);
@@ -99,20 +97,34 @@ var AppVue = new Vue({
 			// 当用户未进入聊天室，则不接收消息
 			if (this.isShow) return;
 
-			const { ws, $message } = this;
+			const {
+				ws,
+				loginForm: { userName, roomId },
+				$message,
+			} = this;
 			// 接收服务端发送过来的消息
 			const { data } = res;
 			if (!res && !data) return;
 
-			const { name, types, content, onlineNum } = JSON.parse(data);
+			const { userName: name, types, content, onlineNum } = JSON.parse(data);
 			switch (types) {
 				case "noauth":
 					// 鉴权失败
 					// 路由跳转到 /login 重新获取token
 					$message.error(content);
 					break;
-				case "userName":
-					this.lists.push(`welcome: ${content} join chat`);
+				case "auth":
+					// 鉴权通过
+					ws.send(
+						JSON.stringify({
+							types: "login",
+							content: userName,
+							roomId,
+						})
+					);
+					break;
+				case "login":
+					this.lists.push(`welcome ${content} to join chat`);
 					break;
 				case "out":
 					this.lists.push(`${name} Quit the chat room`);

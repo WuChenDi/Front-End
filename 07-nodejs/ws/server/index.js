@@ -10,13 +10,14 @@ let group = {};
 
 wss.on("connection", (ws) => {
 	console.log("one client is connected");
+	ws.isAlive = true;
 
 	ws.on("message", function (msg) {
 		console.log(msg);
 
 		const msgObj = JSON.parse(msg);
 		if (msgObj.types === "login") {
-			ws.name = msgObj.content;
+			ws.userName = msgObj.content;
 			ws.roomId = msgObj.roomId;
 			if (typeof group[ws.roomId] === "undefined") {
 				group[ws.roomId] = 1;
@@ -42,7 +43,14 @@ wss.on("connection", (ws) => {
 					return;
 				} else {
 					// 鉴权通过
-					console.log(decode);
+					console.log(group[ws.roomId]);
+					ws.send(
+						JSON.stringify({
+							types: "auth",
+							content: decode,
+							onlineNum: group[ws.roomId],
+						})
+					);
 					ws.isAuth = true;
 					return;
 				}
@@ -62,7 +70,7 @@ wss.on("connection", (ws) => {
 		wss.clients.forEach((client) => {
 			// ws !== client &&
 			if (client.readyState === WebSocket.OPEN && client.roomId === ws.roomId) {
-				msgObj.name = ws.name;
+				msgObj.userName = ws.userName;
 				// msgObj.onlineNum = wss.clients.size;
 				msgObj.onlineNum = group[ws.roomId];
 				client.send(JSON.stringify(msgObj));
@@ -71,14 +79,14 @@ wss.on("connection", (ws) => {
 	});
 
 	ws.on("close", function () {
-		ws.name && group[ws.roomId]--;
+		ws.userName && group[ws.roomId]--;
 		let msgObj = {};
 
 		// 广播消息
 		wss.clients.forEach((client) => {
 			// 判断非自己的客户端
 			if (client.readyState === WebSocket.OPEN && client.roomId === ws.roomId) {
-				msgObj.name = ws.name;
+				msgObj.userName = ws.userName;
 				msgObj.onlineNum = group[ws.roomId];
 				msgObj.types = "out";
 				client.send(JSON.stringify(msgObj));
