@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单例模式</title>
+</head>
+
+<body>
+  <div class="eg2"></div>
+  <script>
+    const Person = (() => {
+      class Person {
+        constructor(name, age, gender) {
+          this.name = name;
+          this.age = age;
+          this.gender = gender;
+        }
+        sayHi() {
+          console.log('hello world!');
+        }
+      }
+
+      let instance = null
+      return function singleTon(...arg) {
+        if (!instance) instance = new Person(...arg)
+        return instance
+      }
+    })()
+
+    const p1 = new Person('wcd', 25, 'boy')
+    const p2 = new Person('ll', 25, 'girl')
+
+    console.log(p1, p2);
+    console.log(p1 === p2);
+  </script>
+</body>
+
+</html>
