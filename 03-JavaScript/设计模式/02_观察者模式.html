@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>观察者模式</title>
+	</head>
+	<body>
+		<div class="eg2"></div>
+
+		<script>
+			// 观察者构造函数
+			class Observer {
+				constructor(name, fn = () => {}) {
+					this.name = name;
+					this.fn = fn;
+				}
+			}
+
+			// 创建观察者
+			const praepostor = new Observer("级长", (state) => {
+				console.log(`因为: ${state}, 你是哪个班的`);
+			});
+			const teacher = new Observer("老师", (state) => {
+				console.log(`因为: ${state}, 把你爸找来`);
+			});
+			const principal = new Observer("校长", (state) => {
+				console.log(`因为: ${state}, 骂你的班主任`);
+			});
+
+			// 被观察者的构造函数
+			class Subject {
+				constructor(state) {
+					// 记录状态
+					this.state = state;
+					// 缓存需要通知被观察者
+					this.observsers = [];
+				}
+
+				// 设置状态
+				setState(val) {
+					this.state = val;
+					this.observsers.forEach((item) => {
+						item.fn(this.state);
+					});
+				}
+
+				addObserver(obs) {
+					this.observsers = this.observsers.filter((item) => item !== obs);
+					this.observsers.push(obs);
+				}
+
+				delObserver(obs) {
+					this.observsers = this.observsers.filter((item) => item !== obs);
+				}
+			}
+
+			// 创造一个被观察者
+			const zhangsan = new Subject("学习");
+			zhangsan.addObserver(praepostor);
+			zhangsan.addObserver(teacher);
+			zhangsan.addObserver(principal);
+
+			const lisi = new Subject("学习");
+			lisi.addObserver(teacher);
+			lisi.addObserver(principal);
+
+			console.log(zhangsan);
+			console.log(lisi);
+		</script>
+	</body>
+</html>
