@@ -4,6 +4,7 @@ const AppVue = new Vue({
 		return {
 			loginForm: {
 				userName: "",
+				uid: "",
 				roomId: "",
 			},
 			isShow: true,
@@ -99,7 +100,7 @@ const AppVue = new Vue({
 
 			const {
 				ws,
-				loginForm: { userName, roomId },
+				loginForm: { userName, uid, roomId },
 				$message,
 			} = this;
 			// 接收服务端发送过来的消息
@@ -119,6 +120,7 @@ const AppVue = new Vue({
 						JSON.stringify({
 							types: "login",
 							content: userName,
+							uid,
 							roomId,
 						})
 					);

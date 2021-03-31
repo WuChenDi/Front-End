@@ -33,6 +33,18 @@
 						/>
 					</el-form-item>
 					<el-form-item
+						label="uid"
+						prop="uid"
+						:rules="[{ required: true, message: 'uid cannot be empty'}]"
+					>
+						<el-input
+							type="uid"
+							v-model="loginForm.uid"
+							placeholder="Please enter uid"
+							autocomplete="off"
+						/>
+					</el-form-item>
+					<el-form-item
 						label="roomId"
 						prop="roomId"
 						:rules="[{ required: true, message: 'The room number cannot be empty'}]"

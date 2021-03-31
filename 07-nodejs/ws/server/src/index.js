@@ -3,22 +3,42 @@ const http = require("http");
 const wss = new WebSocket.Server({ noServer: true });
 const server = http.createServer();
 const jwt = require("jsonwebtoken");
+const { getValue, setValue, existKey } = require("./config/RedisConfig");
 
 const timeInterval = 30000;
 
 let group = {};
 
+const prefix = "DD-";
+
 wss.on("connection", (ws) => {
 	console.log("one client is connected");
 	ws.isAlive = true;
 
-	ws.on("message", function (msg) {
+	ws.on("message", async function (msg) {
 		console.log(msg);
 
 		const msgObj = JSON.parse(msg);
+		const roomId = prefix + (msgObj.roomId ? msgObj.roomId : ws.roomId);
+
 		if (msgObj.types === "login") {
 			ws.userName = msgObj.content;
 			ws.roomId = msgObj.roomId;
+			ws.uid = msgObj.uid;
+			console.log("TCL: connection -> ws.uid", ws.uid);
+			// 判断redis中是否有对应的roomid的键值
+			const result = await existKey(roomId);
+			if (result === 0) {
+				// 初始化一个房间数据
+				setValue(roomId, ws.uid);
+			} else {
+				// 已经存在该房间缓存数据
+				const arrStr = await getValue(roomId);
+				let arr = arrStr.split(",");
+				if (arr.indexOf(ws.uid) === -1) {
+					setValue(roomId, arrStr + "," + ws.uid);
+				}
+			}
 			if (typeof group[ws.roomId] === "undefined") {
 				group[ws.roomId] = 1;
 			} else {
@@ -66,16 +86,79 @@ wss.on("connection", (ws) => {
 			return;
 		}
 
-		// 广播消息
-		wss.clients.forEach((client) => {
+		/**
+		 * 广播消息
+		 * 获取房间里所有的用户信息
+		 */
+		const arrStr = await getValue(roomId);
+		let users = arrStr.split(",");
+		wss.clients.forEach(async (client) => {
 			// ws !== client &&
+			// 判断非自己的客户端
 			if (client.readyState === WebSocket.OPEN && client.roomId === ws.roomId) {
 				msgObj.userName = ws.userName;
-				// msgObj.onlineNum = wss.clients.size;
 				msgObj.onlineNum = group[ws.roomId];
 				client.send(JSON.stringify(msgObj));
+				// 排队已经发送了消息了客户端 -> 在线
+				if (users.indexOf(client.uid) !== -1) {
+					users.splice(users.indexOf(client.uid), 1);
+				}
+				// 消息缓存信息：取redis中的uid数据
+				let result = await existKey(ws.uid);
+				if (result !== 0) {
+					// 存在未发送的离线消息数据
+					let tmpArr = await getValue(ws.uid);
+					let tmpObj = JSON.parse(tmpArr);
+					let uid = ws.uid;
+					if (tmpObj.length > 0) {
+						let i = [];
+						// 遍历该用户的离线缓存数据
+						// 判断用户的房间id是否与当前一致
+						tmpObj.forEach((item) => {
+							if (item.roomId === client.roomId && uid === client.uid) {
+								client.send(JSON.stringify(item));
+								i.push(item);
+							}
+						});
+						// 删除已经发送的缓存消息数据
+						if (i.length > 0) {
+							i.forEach((item) => {
+								tmpObj.splice(item, 1);
+							});
+						}
+						setValue(ws.uid, JSON.stringify(tmpObj));
+					}
+				}
 			}
 		});
+
+		// 断开了与服务端连接的用户的id，并且其他的客户端发送了消息
+		if (users.length > 0 && msgObj.types === "message") {
+			users.forEach(async (item) => {
+				const result = await existKey(item);
+				if (result !== 0) {
+					// 说明已经存在其他房间该用户的离线消息数据
+					let userData = await getValue(item);
+					let msgs = JSON.parse(userData);
+					msgs.push({
+						roomId: ws.roomId,
+						...msgObj,
+					});
+					setValue(item, JSON.stringify(msgs));
+				} else {
+					// 说明先前这个用户一直在线，并且无离线消息数据
+					setValue(
+						item,
+						JSON.stringify([
+							{
+								roomId: ws.roomId,
+								...msgObj,
+							},
+						])
+					);
+				}
+			});
+		}
 	});
 
 	ws.on("close", function () {
