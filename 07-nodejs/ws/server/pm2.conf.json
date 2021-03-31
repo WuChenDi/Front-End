@@ -1,0 +1,19 @@
+{
+  "apps": {
+    "name": "ws",
+    "script": "index.js",
+    "watch": true,
+    "ignore_watch": [
+      "node_modules",
+      "logs"
+    ],
+    "env": {
+      "PORT": 3000,
+      "NODE_ENV": "development"
+    },
+    "instances": 4,
+    "error_file": "logs/err.log",
+    "out_file": "logs/out.log",
+    "log_date_format": "YYYY-MM-DD HH:mm:ss"
+  }
+}
