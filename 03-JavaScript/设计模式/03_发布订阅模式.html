@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/*
+      发布订阅
+        + 有一个对象, 有人一直看着他
+        + 当这个对象发生变化的时候, 第三方通知这个看着的人, 触发技能
+        + 例子: 买书
+          1. 普通程序员买书
+            => 去书店, 问, 没有, 回家
+            => 过一会再去, 问, 没有, 回家
+            => 过一会再去, 问, 没有, 回家            更多最新精品资源 www.cx1314.cn
+          2. 发布订阅的程序员
+            => 去书店, 问, 没有, 留下一个联系方式给店员
+            => 一旦有了书, 就会接到电话
+            => 触发技能去买书
+        + 只需要一个构造函数
+          => 创建一个第三方店员的身份
+          => 我们的任务就是模拟一个 addEventListener()
+
+      分析构造函数
+        + 属性: 消息队列
+          {
+            click: [ fn1, fn2 ],
+            abc: [ fn1, fn2, fn3 ]
+          }
+        + 方法: 能向消息队列里面添加内容
+        + 方法: 删除消息队列里面的内容
+        + 方法: 触发消息队列里面的内容
+    */
+
+			// 创建一个第三方观察着构造函数
+			class Observer {
+				constructor() {
+					this.message = {};
+				}
+
+				// 1. 向消息队列里面添加内容
+				on(type, fn) {
+					// type 我拜托你看着的行为
+					// fn 我要你在行为发生的时候做的事情
+					// 就应该把写着记录再消息队列
+					// 1. 判断 message 里面有没有这个行为已经被注册过了
+					//    如果没有, 我应该给你赋值一个这个行为, 值赋值为 []
+					//    如果有, 直接向数组里面添加就可以了
+					if (!this.message[type]) {
+						// 表示消息队列里面还有注册过
+						this.message[type] = [];
+					}
+
+					// 直接进行 push
+					this.message[type].push(fn);
+				}
+
+				// 2. 删除消息队列里面的内容
+				off(type, fn) {
+					// 判断 如果 fn 不存在, 只有一个参数的情况
+					if (!fn) {
+						// 直接把这个事情取消掉
+						// 从 message 里面把 a 成员删除掉, 就好了
+						delete this.message[type];
+						return;
+					}
+
+					// 代码能来到这里, 表示 fn 存在
+					// 判断你是不是真的订阅过
+					if (!this.message[type]) return;
+
+					// 你订阅过, 我就可以使用 filter 删除
+					this.message[type] = this.message[type].filter((item) => item !== fn);
+				}
+
+				// 3. 触发消息队列
+				trigger(type) {
+					// 判断是不是有订阅过
+					if (!this.message[type]) return;
+
+					// 找到这个数组, 把里面的每一个函数触发
+					this.message[type].forEach((item) => {
+						// item 就是每一个函数
+						item();
+					});
+				}
+			}
+
+			// 使用构造函数创建一个实例
+			const person1 = new Observer();
+
+			// 当你向拜托这个 person1 帮你观察一些内容的时候
+			// 告诉你一个行为, 当行为出现的时候, 告诉你干什么
+			person1.on("a", handlerA);
+			person1.on("a", handlerB);
+			person1.on("b", handlerB);
+			person1.on("b", handlerC);
+
+			// 告诉 person1, 我这个事情不用你关了
+			// 1. 我只告诉你这个事情不用你管
+			// person1.off('a') // 把 消息队列 里面属于 a 的数组清空掉
+			// person1.off('a', handlerA) // 告诉你 a 发生的时候, 不用做 handerA 这个事情了
+			person1.trigger("a");
+
+			// person1 这个人一旦触发 a 行为, 就要把后面的所有事件处理函数执行掉
+
+			console.log(person1);
+
+			function handlerA() {
+				console.log("handlerA");
+			}
+			function handlerB() {
+				console.log("handlerB");
+			}
+			function handlerC() {
+				console.log("handlerC");
+			}
+			function handlerD() {
+				console.log("handlerD");
+			}
+			function handlerE() {
+				console.log("handlerE");
+			}
+			function handlerF() {
+				console.log("handlerF");
+			}
+		</script>
+	</body>
+</html>
