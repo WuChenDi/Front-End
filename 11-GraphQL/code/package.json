@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "start-type": "nodemon baseType.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
