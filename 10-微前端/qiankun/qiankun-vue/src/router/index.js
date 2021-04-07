@@ -22,7 +22,8 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: '/vue',
+  // 运行微应用时，基础路由地址配置为 /vue
+  base: window.__POWERED_BY_QIANKUN__ ? "/vue" : process.env.BASE_URL,
   routes
 })
 
