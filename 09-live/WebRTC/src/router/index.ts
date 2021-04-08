@@ -5,6 +5,7 @@ const mediaDevices = () => import(/* webpackChunkName: "mediaDevices" */ "../vie
 const mediaRecoder = () => import(/* webpackChunkName: "mediaRecoder" */ "../views/mediaRecoder.vue");
 const getDisplayMedia = () => import(/* webpackChunkName: "getDisplayMedia" */ "../views/getDisplayMedia.vue");
 const socketIO = () => import(/* webpackChunkName: "socketIO" */ "../views/socketIO.vue");
+const RTCPeerConnection = () => import(/* webpackChunkName: "RTCPeerConnection" */ "../views/RTCPeerConnection.vue");
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/getUserMedia" },
@@ -37,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
 		name: "socketIO",
 		component: socketIO,
 		meta: { title: "WebRTC信令" },
+	},
+	{
+		path: "/RTCPeerConnection",
+		name: "RTCPeerConnection",
+		component: RTCPeerConnection,
+		meta: { title: "端对端1V1传输" },
 	},
 ];
 // console.log(createWebHistory(process.env.BASE_URL));

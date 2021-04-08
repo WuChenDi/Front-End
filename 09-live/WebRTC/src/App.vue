@@ -87,6 +87,10 @@ export default defineComponent({
           index: "/socketIO",
           title: "信令-socketIO",
         },
+        {
+          index: "/RTCPeerConnection",
+          title: "端对端1V1传输",
+        },
       ];
       menuItem.value = item;
 
