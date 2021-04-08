@@ -6,6 +6,7 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
 
+import 'zone.js';
 import { registerMicroApps, start } from "qiankun";
 
 /*
@@ -30,6 +31,13 @@ registerMicroApps(
 			container: "#react",
 			activeRule: "/react",
 			props: { type: "reactApp" },
+		},
+		{
+			name: "angularapp",
+			entry: "//localhost:30001",
+			container: "#angular",
+			activeRule: "/angular",
+			props: { type: "angularapp" },
 		},
 	],
 	{
