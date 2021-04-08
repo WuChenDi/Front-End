@@ -29,18 +29,12 @@ export default defineComponent({
     let stream: any;
     let pc1: any = null;
     let pc2: any = null;
-    const buffer: any[] = [];
 
     onMounted(async () => {
       console.log(adapter);
       console.log(adapter.browserDetails.browser);
     });
 
-    function handleDataAvailable(e: any) {
-      if (e?.data?.size > 0) {
-        buffer.push(e.data);
-      }
-    }
     const handleStart = async () => {
       const constraints = {
         video: true,
@@ -66,38 +60,37 @@ export default defineComponent({
       };
 
       pc1 = new RTCPeerConnection();
-      pc1.onicecandidate = (e) => {
+      pc1.onicecandidate = (e: { candidate: any }) => {
         // send candidate to peer
         // receive candidate from peer
 
-        pc2.addIceCandidate(e.candidate).catch((err) => {
+        pc2.addIceCandidate(e.candidate).catch((err: any) => {
           console.log(`getUserMedia error: ${err}`);
         });
         console.log("pc1 ICE candidate:", e.candidate);
       };
 
-      pc1.iceconnectionstatechange = (e) => {
+      pc1.iceconnectionstatechange = (e: any) => {
         // console.log(`pc1 ICE state: ${pc.iceConnectionState}`);
         console.log("ICE state change event: ", e);
       };
 
       pc2 = new RTCPeerConnection();
-      pc2.onicecandidate = (e) => {
+      pc2.onicecandidate = (e: { candidate: any }) => {
         // send candidate to peer
         // receive candidate from peer
-
-        pc1.addIceCandidate(e.candidate).catch((err) => {
+        pc1.addIceCandidate(e.candidate).catch((err: any) => {
           console.log(`getUserMedia error: ${err}`);
         });
         console.log("pc2 ICE candidate:", e.candidate);
       };
 
-      pc2.iceconnectionstatechange = (e) => {
+      pc2.iceconnectionstatechange = (e: any) => {
         // console.log(`pc2 ICE state: ${pc.iceConnectionState}`);
         console.log("ICE state change event: ", e);
       };
 
-      pc2.ontrack = function gotRemoteStream(e) {
+      pc2.ontrack = function gotRemoteStream(e: { streams: MediaProvider[] }) {
         if (
           (refRemoteVideo.value as HTMLVideoElement).srcObject !== e.streams[0]
         ) {
@@ -105,8 +98,8 @@ export default defineComponent({
         }
       };
 
-      //add Stream to caller
-      stream.getTracks().forEach((track) => {
+      // add Stream to caller
+      stream.getTracks().forEach((track: any) => {
         pc1.addTrack(track, stream);
       });
 
@@ -114,24 +107,15 @@ export default defineComponent({
         const desc = await pc1.createOffer(offerOptions);
 
         pc1.setLocalDescription(desc);
-
-        //send sdp to callee
-
-        //receive sdp from caller
+        // send sdp to callee
+        // receive sdp from caller
         pc2.setRemoteDescription(desc);
-        pc2
-          .createAnswer()
-          .then((desc2) => {
-            pc2.setLocalDescription(desc2);
 
-            //send sdp to caller
-            //recieve sdp from callee
-
-            pc1.setRemoteDescription(desc2);
-          })
-          .catch((error) => {
-            console.log("Failed to call getUserMedia", error);
-          });
+        const desc2 = await pc2.createAnswer();
+        pc2.setLocalDescription(desc2);
+        // send sdp to caller
+        // recieve sdp from callee
+        pc1.setRemoteDescription(desc2);
       } catch (error) {
         console.log("Failed to call getUserMedia", error);
       }
