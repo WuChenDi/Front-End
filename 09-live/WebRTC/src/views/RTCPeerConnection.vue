@@ -1,6 +1,6 @@
 <template>
-  <div class="mediaDevices">
-    <div style="display: flex">
+  <div class="RTCPeerConnection">
+    <div class="video-wrapper">
       <video autoplay playsinline ref="refLocalVideo"></video>
 
       <video autoplay playsinline ref="refRemoteVideo"></video>
@@ -26,9 +26,9 @@ export default defineComponent({
     const refLocalVideo = ref<HTMLVideoElement | null>(null);
     const refRemoteVideo = ref<HTMLVideoElement | null>(null);
 
-    let stream: any;
-    let pc1: any = null;
-    let pc2: any = null;
+    let stream: MediaStream | MediaSource | Blob | null;
+    let pc1: RTCPeerConnection;
+    let pc2: RTCPeerConnection;
 
     onMounted(async () => {
       console.log(adapter);
@@ -55,8 +55,8 @@ export default defineComponent({
 
     const handleCall = async () => {
       const offerOptions = {
-        offerToReceiveAudio: 0,
-        offerToReceiveVideo: 1,
+        offerToReceiveAudio: false,
+        offerToReceiveVideo: true,
       };
 
       pc1 = new RTCPeerConnection();
@@ -64,14 +64,13 @@ export default defineComponent({
         // send candidate to peer
         // receive candidate from peer
 
-        pc2.addIceCandidate(e.candidate).catch((err: any) => {
+        pc2.addIceCandidate(e.candidate).catch((err) => {
           console.log(`getUserMedia error: ${err}`);
         });
         console.log("pc1 ICE candidate:", e.candidate);
       };
-
-      pc1.iceconnectionstatechange = (e: any) => {
-        // console.log(`pc1 ICE state: ${pc.iceConnectionState}`);
+      pc1.oniceconnectionstatechange = (e) => {
+        console.log(`pc1 ICE state: ${pc1.iceConnectionState}`);
         console.log("ICE state change event: ", e);
       };
 
@@ -79,28 +78,26 @@ export default defineComponent({
       pc2.onicecandidate = (e: { candidate: any }) => {
         // send candidate to peer
         // receive candidate from peer
-        pc1.addIceCandidate(e.candidate).catch((err: any) => {
+        pc1.addIceCandidate(e.candidate).catch((err) => {
           console.log(`getUserMedia error: ${err}`);
         });
         console.log("pc2 ICE candidate:", e.candidate);
       };
 
-      pc2.iceconnectionstatechange = (e: any) => {
-        // console.log(`pc2 ICE state: ${pc.iceConnectionState}`);
+      pc2.oniceconnectionstatechange = (e) => {
+        console.log(`pc2 ICE state: ${pc2.iceConnectionState}`);
         console.log("ICE state change event: ", e);
       };
 
-      pc2.ontrack = function gotRemoteStream(e: { streams: MediaProvider[] }) {
-        if (
-          (refRemoteVideo.value as HTMLVideoElement).srcObject !== e.streams[0]
-        ) {
+      pc2.ontrack = (e) => {
+        if ((refRemoteVideo.value as HTMLVideoElement).srcObject !== e.streams[0]) {
           (refRemoteVideo.value as HTMLVideoElement).srcObject = e.streams[0];
         }
       };
 
       // add Stream to caller
-      stream.getTracks().forEach((track: any) => {
-        pc1.addTrack(track, stream);
+      (stream as MediaStream).getTracks().forEach((track) => {
+        return pc1.addTrack(track, stream as MediaStream);
       });
 
       try {
@@ -124,8 +121,6 @@ export default defineComponent({
     const handleHangup = () => {
       pc1.close();
       pc2.close();
-      pc1 = null;
-      pc2 = null;
     };
 
     return {
@@ -138,3 +133,16 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped lang="scss">
+.RTCPeerConnection {
+  .video-wrapper {
+    display: flex;
+    justify-content: space-around;
+    video {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
+</style>
