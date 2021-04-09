@@ -106,16 +106,16 @@ export default defineComponent({
       try {
         const desc = await pc1.createOffer(offerOptions);
 
-        pc1.setLocalDescription(desc);
+        await pc1.setLocalDescription(desc);
         // send sdp to callee
         // receive sdp from caller
-        pc2.setRemoteDescription(desc);
+        await pc2.setRemoteDescription(desc);
 
         const desc2 = await pc2.createAnswer();
-        pc2.setLocalDescription(desc2);
+        await pc2.setLocalDescription(desc2);
         // send sdp to caller
-        // recieve sdp from callee
-        pc1.setRemoteDescription(desc2);
+        // receive sdp from callee
+        await pc1.setRemoteDescription(desc2);
       } catch (error) {
         console.log("Failed to call getUserMedia", error);
       }
