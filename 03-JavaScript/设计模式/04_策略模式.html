@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>策略模式</title>
+	</head>
+	<body>
+		<div class="eg2"></div>
+
+		<script>
+			const calcPrice = (() => {
+				const sale = {
+					"100_10": (price) => (price -= 10),
+					"200_25": (price) => (price -= 25),
+					"80%": (price) => (price *= 0.8),
+				};
+
+				function calcPrice(price, type) {
+					if (!sale[type]) return "没有这个折扣";
+					return sale[type](price);
+				}
+
+				calcPrice.add = (type, fn) => {
+					if (sale[type]) return "该折扣已经存在";
+
+					sale[type] = fn;
+					return "添加成功";
+				};
+
+				calcPrice.del = (type) => {
+					delete sale[type];
+				};
+
+				return calcPrice;
+			})();
+
+			calcPrice.add("70%", (price) => {
+				return (price *= 0.7);
+			});
+			const res = calcPrice(320, "70%");
+			console.dir(res);
+
+			calcPrice.del("100_10");
+			const res2 = calcPrice(320, "100_10");
+			console.log(res2);
+		</script>
+	</body>
+</html>
