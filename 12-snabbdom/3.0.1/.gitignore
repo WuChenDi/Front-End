@@ -1,0 +1,25 @@
+## Coverage directory used by tools like istanbul
+
+/coverage/
+
+## Dependency directory
+## https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+
+/node_modules/
+
+## Package artifacts
+
+/build/
+
+## Test bundle artifacts
+
+/test-bundles/benchmark/core.js
+/test-bundles/unit/attachto.js
+/test-bundles/unit/attributes.js
+/test-bundles/unit/core.js
+/test-bundles/unit/dataset.js
+/test-bundles/unit/eventlisteners.js
+/test-bundles/unit/htmldomapi.js
+/test-bundles/unit/jsx.js
+/test-bundles/unit/style.js
+/test-bundles/unit/thunk.js
