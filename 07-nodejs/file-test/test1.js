@@ -1,7 +1,7 @@
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
 
-const fileName = path.resolve(__dirname, "data.txt");
+// const fileName = path.resolve(__dirname, "data.txt");
 
 // 读取文件内容
 // fs.readFile(fileName, (err, data) => {
@@ -28,3 +28,8 @@ const fileName = path.resolve(__dirname, "data.txt");
 // fs.exists(fileName, exist => {
 //     console.log(exist);
 // });
+
+const fs = require('fs');
+const path = "F:/BaiduNetdiskDownload/2020 重学C++ 重构你的C++知识体系";
+let files = fs.readdirSync(path);
+console.log(files);

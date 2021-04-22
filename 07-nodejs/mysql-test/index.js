@@ -2,7 +2,7 @@ const mysql = require("mysql");
 
 // 创建链接对象
 const con = mysql.createConnection({
-	host: "localhost",
+	host: "10.100.68.85",
 	user: "root",
 	password: "wcd0530",
 	port: "3306",

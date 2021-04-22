@@ -5,10 +5,9 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 function App() {
 	return (
 		<BrowserRouter basename="/react">
-			<div className="nav">  
-        <Link to="/">index</Link> |
-        <Link to="/about">about</Link>
-      </div>
+			<div className="nav">
+				<Link to="/">index</Link> |<Link to="/about">about</Link>
+			</div>
 			<Route
 				path="/"
 				exact
@@ -31,7 +30,21 @@ function App() {
 					</div>
 				)}
 			></Route>
-			<Route path="/about" render={() => <h1>about</h1>}></Route>
+			<Route
+				path="/about"
+				render={() => (
+					<>
+						<h1>about</h1>
+						<button
+							onClick={() => {
+								throw new Error("抛出错误123");
+							}}
+						>
+							throw error
+						</button>
+					</>
+				)}
+			></Route>
 		</BrowserRouter>
 	);
 }
