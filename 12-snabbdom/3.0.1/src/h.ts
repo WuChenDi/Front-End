@@ -35,6 +35,7 @@ export function h(sel: any, b?: any, c?: any): VNode {
   let children: any;
   let text: any;
   let i: number;
+  // 参数格式化
   if (c !== undefined) {
     if (b !== null) {
       data = b;
@@ -57,6 +58,7 @@ export function h(sel: any, b?: any, c?: any): VNode {
       data = b;
     }
   }
+  // 如果存在 children，将不是 vnode 的项转成 vnode
   if (children !== undefined) {
     for (i = 0; i < children.length; ++i) {
       if (is.primitive(children[i]))
@@ -69,6 +71,7 @@ export function h(sel: any, b?: any, c?: any): VNode {
         );
     }
   }
+  // svg 元素添加 namespace
   if (
     sel[0] === "s" &&
     sel[1] === "v" &&
@@ -77,5 +80,6 @@ export function h(sel: any, b?: any, c?: any): VNode {
   ) {
     addNS(data, children, sel);
   }
+  // 返回 vnode
   return vnode(sel, data, children, text, undefined);
 }

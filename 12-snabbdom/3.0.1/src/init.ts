@@ -125,7 +125,7 @@ export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
 		}
 		const children = vnode.children;
 		const sel = vnode.sel;
-		// 注视节点
+		// 注释节点
 		if (sel === "!") {
 			if (isUndef(vnode.text)) {
 				vnode.text = "";
@@ -153,7 +153,7 @@ export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
       // 调用 create hook
 			for (i = 0; i < cbs.create.length; ++i) cbs.create[i](emptyNode, vnode);
 			
-      // 挂载子节点
+      // 挂载子节点（递归创建节点）
       if (is.array(children)) {
 				for (i = 0; i < children.length; ++i) {
 					const ch = children[i];
@@ -352,8 +352,7 @@ export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
 				newStartVnode = newCh[++newStartIdx];
 			}
 		}
-		// 循环结束后，可能会存在两种情况
-		// 1. oldCh 已经全部处理完成，而 newCh 还有新的节点，需要对剩下的每个项都创建新的 dom
+		// oldCh 已经全部处理完成，而 newCh 还有新的节点，需要对剩下的每个项都创建新的 dom
 		if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
 			if (oldStartIdx > oldEndIdx) {
 				before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
@@ -366,7 +365,7 @@ export function init(modules: Array<Partial<Module>>, domApi?: DOMAPI) {
 					insertedVnodeQueue
 				);
 			} else {
-				// 2. newCh 已经全部处理完成，而 oldCh 还有旧的节点，需要将多余的节点移除
+				// newCh 已经全部处理完成，而 oldCh 还有旧的节点，需要将多余的节点移除
 				removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
 			}
 		}
