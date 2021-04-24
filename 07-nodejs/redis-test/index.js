@@ -1,7 +1,7 @@
 const redis = require("redis");
 
 // 创建客户端
-const redisClient = redis.createClient(6379, "10.100.68.85");
+const redisClient = redis.createClient(16379, "139.159.200.148");
 redisClient.on("error", (err) => {
 	console.error(err);
 });

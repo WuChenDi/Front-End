@@ -1,6 +1,6 @@
 SELECT VERSION();
 
-CREATE SCHEMA `myblog123`;
+CREATE SCHEMA `myblog`;
 
 CREATE TABLE `myblog`.`users` (
 	`id` INT NOT NULL AUTO_INCREMENT,
@@ -45,10 +45,10 @@ DELETE FROM users WHERE username='dd3';
 DELETE FROM users WHERE id=6;
 
 
-INSERT INTO blogs(title, content, createtime, author) VALUES ('标题1', '内容1', '1618037480417', 'dd');
+INSERT INTO blogs(title, content, createtime, author) VALUES ('鏍囬1', '鍐呭1', '1618037480417', 'dd');
 
 SELECT * FROM blogs ORDER BY createtime DESC;
 
 SELECT * FROM blogs WHERE author='dd' ORDER BY createtime DESC;
-SELECT * FROM blogs WHERE title LIKE '%标题%' ORDER BY createtime DESC;
+SELECT * FROM blogs WHERE title LIKE '%锟斤拷锟斤拷%' ORDER BY createtime DESC;
 

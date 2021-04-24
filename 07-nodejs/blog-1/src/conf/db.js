@@ -9,15 +9,15 @@ if (env === "dev") {
 	MYSQL_CONF = {
 		host: "10.100.68.85",
 		user: "root",
-		password: "wcd0530",
-		port: "3306",
+		password: "abc123456.",
+		port: "19666",
 		database: "myblog",
 	};
 
 	// redis
 	REDIS_CONF = {
-		port: 6379,
-		host: "127.0.0.1",
+		port: 16379,
+		host: "10.100.68.85",
 	};
 }
 
@@ -26,15 +26,15 @@ if (env === "production") {
 	MYSQL_CONF = {
 		host: "10.100.68.85",
 		user: "root",
-		password: "wcd0530",
-		port: "3306",
+		password: "abc123456.",
+		port: "19666",
 		database: "myblog",
 	};
 
 	// redis
 	REDIS_CONF = {
-		port: 6379,
-		host: "127.0.0.1",
+		port: 16379,
+		host: "10.100.68.85",
 	};
 }
 
