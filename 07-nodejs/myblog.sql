@@ -5,7 +5,7 @@ CREATE SCHEMA `myblog`;
 CREATE TABLE `myblog`.`users` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`username` VARCHAR(20) NOT NULL,
-	`password` VARCHAR(20) NOT NULL,
+	`password` VARCHAR(32) NOT NULL,
 	`realname` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (`id`));
 	

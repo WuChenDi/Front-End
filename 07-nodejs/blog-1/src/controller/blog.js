@@ -30,7 +30,7 @@ const newBlog = (blogData = {}) => {
 	// }
 	const title = xss(blogData.title);
 	console.log("title is", title);
-	const content = blogData.content;
+	const content = xss(blogData.content);
 	const author = blogData.author;
 	const createTime = Date.now();
 
@@ -52,8 +52,8 @@ const updateBlog = (id, blogData = {}) => {
 	// console.log('update blog', id, blogData)
 
 	// return true
-	const title = blogData.title;
-	const content = blogData.content;
+	const title = xss(blogData.title);
+	const content = xss(blogData.content);
 
 	const sql = `
         update blogs set title='${title}', content='${content}' where id='${id}'
