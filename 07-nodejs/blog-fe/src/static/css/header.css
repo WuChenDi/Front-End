@@ -1,0 +1,12 @@
+.admin {
+	color: white;
+	float: right;
+	width: auto;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.admin .admin-name {
+	margin-left: 2px;
+	margin-right: 2px;
+}
