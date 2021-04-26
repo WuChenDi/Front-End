@@ -12,7 +12,7 @@ const ReduisStore = require("connect-redis")(session);
 const blogRouter = require("./routes/blog");
 const userRouter = require("./routes/user");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

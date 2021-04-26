@@ -44,19 +44,15 @@ const updateBlog = async (id, blogData = {}) => {
 	const sql = `update blogs set title='${title}', content='${content}' where id='${id}'`;
 
 	const updateData = await exec(sql);
-	if (updateData.affectedRows > 0) {
-		return true;
-	}
-	return false;
+	return updateData.affectedRows > 0;
+
 };
 
 const delBlog = async (id, author) => {
 	const sql = `delete from blogs where id='${id}' and author='${author}'`;
 	const delData = exec(sql);
-	if (delData.affectedRows > 0) {
-		return true;
-	}
-	return false;
+	return delData.affectedRows > 0;
+
 };
 
 module.exports = {

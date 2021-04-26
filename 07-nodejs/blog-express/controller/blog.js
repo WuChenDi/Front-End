@@ -50,10 +50,8 @@ const updateBlog = (id, blogData = {}) => {
 
 	return exec(sql).then((updateData) => {
 		console.log("updateData is ", updateData);
-		if (updateData.affectedRows > 0) {
-			return true;
-		}
-		return false;
+		return updateData.affectedRows > 0;
+
 	});
 };
 
@@ -63,10 +61,8 @@ const delBlog = (id, author) => {
     `;
 	return exec(sql).then((delData) => {
 		console.log("delData is ", delData);
-		if (delData.affectedRows > 0) {
-			return true;
-		}
-		return false;
+		return delData.affectedRows > 0;
+
 	});
 };
 

@@ -14,7 +14,7 @@ const getCookieExpires = () => {
 
 // 用于处理 post data
 const getPostData = (req) => {
-	const promise = new Promise((resolve, reject) => {
+	return new Promise((resolve, reject) => {
 		if (req.method !== "POST") {
 			resolve({});
 			return;
@@ -35,7 +35,6 @@ const getPostData = (req) => {
 			resolve(JSON.parse(postData));
 		});
 	});
-	return promise;
 };
 
 const serverHandle = (req, res) => {
@@ -60,13 +59,10 @@ const serverHandle = (req, res) => {
 	req.cookie = {};
 	const cookieStr = req.headers.cookie || "";
 	cookieStr.split(";").forEach((item) => {
-		if (!item) {
-			return;
-		}
+		if (!item) return;
 		const arr = item.split("=");
 		const key = arr[0].trim();
-		const val = arr[1].trim();
-		req.cookie[key] = val;
+		req.cookie[key] = arr[1].trim();
 	});
 
 	// 解析 session （使用 redis）
