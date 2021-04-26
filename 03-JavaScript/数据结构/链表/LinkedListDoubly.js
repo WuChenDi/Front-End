@@ -1,3 +1,4 @@
+// 双向链表
 class DoublyNode {
 	constructor(element) {
 		this.element = element;
