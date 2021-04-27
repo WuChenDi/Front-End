@@ -7,6 +7,7 @@ CREATE TABLE `myblog`.`users` (
 	`username` VARCHAR(20) NOT NULL,
 	`password` VARCHAR(32) NOT NULL,
 	`realname` VARCHAR(10) NOT NULL,
+  `state` INT NOT NULL DEFAULT 1,
 	PRIMARY KEY (`id`));
 	
 CREATE TABLE `myblog`.`blogs` (
