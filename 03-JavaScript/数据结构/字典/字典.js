@@ -3,22 +3,29 @@ class Dictionary {
 		this.items = {};
 	}
 
+	// 添加一个存储键值对
 	set(key, value) {
 		this.items[key] = value;
 	}
 
+	// 根据key返回一个item
 	get(key) {
-		return this.items[key];
+		return this.items.hasOwnProperty(key) ? this.items[key] : undefined;
 	}
 
+	// 删除一个存储键值对
 	remove(key) {
-		delete this.items[key];
+		if (this.items.hasOwnProperty(key)) {
+			delete this.items[key];
+		}
 	}
 
+  // 返回字典中 key
 	get keys() {
 		return Object.keys(this.items);
 	}
 
+  // 返回字典中 value
 	get values() {
 		return Object.keys(this.items).reduce((r, c, i) => {
 			r.push(this.items[c]);
@@ -27,11 +34,15 @@ class Dictionary {
 	}
 }
 const dictionary = new Dictionary();
-dictionary.set("Gandalf", "gandalf@email.com");
-dictionary.set("John", "johnsnow@email.com");
-dictionary.set("Tyrion", "tyrion@email.com");
+dictionary.set("zhangsan", "zhangsan@email.com");
+dictionary.set("lisi", "lisi@email.com");
+dictionary.set("zhaowu", "zhaowu@email.com");
 
 console.log(dictionary);
 console.log(dictionary.keys);
 console.log(dictionary.values);
 console.log(dictionary.items);
+
+console.log("------------------------");
+dictionary.remove("zhaowu");
+console.log(dictionary.get("zhaowu"));
