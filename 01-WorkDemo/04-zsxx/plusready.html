@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="width: expression(alert('XSS'))">
+      按一下手机的休眠按键，再开启，看一下效果！
+    </div>
+    <script type="text/javascript">
+      // 扩展API加载完毕后调用 onPlusReady 回调函数
+      document.addEventListener("plusready", onPlusReady, false);
+      function onPlusReady() {
+        document.addEventListener("pause", onAppPause, false); /*监听手机是否休眠、黑屏、后台运行*/
+      }
+      function onAppPause() {
+        alert("刚才屏幕进入了休眠状态、后台运行、黑屏");
+      }
+    </script>
+  </body>
+</html>
