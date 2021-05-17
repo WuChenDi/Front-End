@@ -35,4 +35,4 @@ function shellSort(arr) {
 const array = Array.from(new Array(10), () => ~~(Math.random() * 100));
 console.log(`原始array: ${array}`);
 const newArr = shellSort(array);
-console.log(`insertionSort排序之后newArr: ${newArr}`);
+console.log(`shellSort排序之后newArr: ${newArr}`);
