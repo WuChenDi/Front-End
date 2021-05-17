@@ -13,8 +13,8 @@ function bubbleSort(arr) {
       }
     }
   }
-  console.log(`result: ${arr}`);
   console.timeEnd("冒泡排序耗时");
+  return arr;
 }
 
 function bubbleSortOptimize(arr) {
@@ -36,16 +36,18 @@ function bubbleSortOptimize(arr) {
 
     if (!changeState) break;
   }
-  console.log(`优化-result: ${arr}`);
   console.timeEnd("优化-冒泡排序耗时");
+  return arr;
 }
 
-const arr = [7, 8, 4, 5, 6, 3, 2, 1];
-bubbleSort(arr);
-// result: 1,2,3,4,5,6,7,8
-// 冒泡排序耗时: 4.7ms
+const array = Array.from(new Array(10), () => ~~(Math.random() * 100));
+console.log(`原始array: ${array}`);
+const newArr = bubbleSort(array);
+console.log(`bubbleSort排序之后newArr: ${newArr}`);
 
-const arr2 = [7, 8, 4, 5, 6, 3, 2, 1];
-bubbleSortOptimize(arr2);
-// 优化-result: 1,2,3,4,5,6,7,8
-// 优化-冒泡排序耗时: 0.136ms
+console.log("----------------------------");
+
+const array2 = Array.from(new Array(10), () => ~~(Math.random() * 100));
+console.log(`原始array: ${array2}`);
+const newArr2 = bubbleSortOptimize(array2);
+console.log(`bubbleSortOptimize排序之后newArr: ${newArr2}`);

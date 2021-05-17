@@ -42,5 +42,7 @@ function insertionSort(arr) {
   return arr;
 }
 
-const array = [5, 4, 3, 2, 1];
-console.log("insertionSort", insertionSort(array));
+const array = Array.from(new Array(10), () => ~~(Math.random() * 100));
+console.log(`原始array: ${array}`);
+const newArr = insertionSort(array);
+console.log(`insertionSort排序之后newArr: ${newArr}`);

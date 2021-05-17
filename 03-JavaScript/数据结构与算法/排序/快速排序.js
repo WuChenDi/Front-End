@@ -16,5 +16,7 @@ function quickSort(arr) {
   return quickSort(left).concat(pivot, quickSort(right));
 }
 
-const array2 = [5, 4, 3, 2, 1];
-console.log("quickSort", quickSort(array2));
+const array = Array.from(new Array(10), () => ~~(Math.random() * 100));
+console.log(`原始array: ${array}`);
+const newArr = quickSort(array);
+console.log(`quickSort排序之后newArr: ${newArr}`);
