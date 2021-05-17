@@ -17,7 +17,7 @@ const selectionSort = (arr) => {
       }
     }
     console.log(
-      `Step${i + 1}: ${arr}, min: ${min}, minIndex: ${minIndex}, step: ${step}`
+      `Step${i + 1}: ${arr}, min: ${min}, minIndex: ${minIndex}, length: ${step}`
     );
 
     [arr[i], arr[minIndex]] = [min, arr[i]];
