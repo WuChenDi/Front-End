@@ -1,4 +1,4 @@
-const selectionSort = (arr) => {
+function selectionSort(arr) {
   console.time("选择排序耗时");
 
   if (!Array.isArray(arr)) return;
@@ -25,7 +25,7 @@ const selectionSort = (arr) => {
 
   console.timeEnd("选择排序耗时");
   return arr;
-};
+}
 
 const array = Array.from(new Array(10), () => ~~(Math.random() * 100));
 console.log(`原始array: ${array}`);
