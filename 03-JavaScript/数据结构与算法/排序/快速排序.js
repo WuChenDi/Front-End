@@ -5,7 +5,7 @@ function quickSort(arr) {
 
   if (length <= 1) return arr;
 
-  const pivotIndex = Math.floor(length / 2);
+  const pivotIndex = length >> 1;
   const pivot = arr.splice(pivotIndex, 1)[0];
   const left = [];
   const right = [];
