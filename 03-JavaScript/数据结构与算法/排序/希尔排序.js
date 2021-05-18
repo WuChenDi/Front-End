@@ -9,7 +9,6 @@ function shellSort(arr) {
     step = 1,
     gap = length;
 
-  // (gap = Math.trunc(gap/2)) == (gap >>= 1)
   while (gap > 0 && (gap >>= 1)) {
     console.log(`Gap is ${gap}`);
     for (let i = gap; i < length; i++) {
