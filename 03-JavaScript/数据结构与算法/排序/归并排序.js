@@ -9,7 +9,7 @@ function mergeSort(arr) {
     left = mergeSort(arr.slice(0, m)),
     right = mergeSort(arr.slice(m));
 
-  let result = [];
+  const result = [];
   let i = 0,
     j = 0;
   while (i < left.length && j < right.length) {
