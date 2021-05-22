@@ -1,18 +1,28 @@
 <template>
   <div class="RTCPeerConnection">
-    <div class="video-wrapper">
-      <video autoplay playsinline ref="refLocalVideo"></video>
-
-      <video autoplay playsinline ref="refRemoteVideo"></video>
-    </div>
-    <br />
-    <br />
-    <br />
     <a-space size="large">
       <a-button type="primary" @click="handleStart"> start </a-button>
       <a-button type="primary" @click="handleCall"> call </a-button>
       <a-button type="primary" @click="handleHangup"> hang up </a-button>
     </a-space>
+
+    <br />
+    <br />
+    <br />
+    <div class="video-wrapper">
+      <div class="left-wrap">
+        <h1>Local:</h1>
+        <video autoplay playsinline ref="refLocalVideo"></video>
+        <h1>Offer SDP:</h1>
+        <a-textarea v-model:value="offerValue" auto-size disabled />
+      </div>
+      <div class="right-wrap">
+        <h1>Remote:</h1>
+        <video autoplay playsinline ref="refRemoteVideo"></video>
+        <h1>Answer SDP:</h1>
+        <a-textarea v-model:value="answerValue" auto-size disabled />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +35,8 @@ export default defineComponent({
   setup() {
     const refLocalVideo = ref<HTMLVideoElement | null>(null);
     const refRemoteVideo = ref<HTMLVideoElement | null>(null);
+    const offerValue = ref<string>("no data");
+    const answerValue = ref<string>("no data");
 
     let stream: MediaStream | MediaSource | Blob | null;
     let pc1: RTCPeerConnection;
@@ -90,7 +102,9 @@ export default defineComponent({
       };
 
       pc2.ontrack = (e) => {
-        if ((refRemoteVideo.value as HTMLVideoElement).srcObject !== e.streams[0]) {
+        if (
+          (refRemoteVideo.value as HTMLVideoElement).srcObject !== e.streams[0]
+        ) {
           (refRemoteVideo.value as HTMLVideoElement).srcObject = e.streams[0];
         }
       };
@@ -102,6 +116,8 @@ export default defineComponent({
 
       try {
         const desc = await pc1.createOffer(offerOptions);
+        const { sdp = "" } = desc;
+        offerValue.value = sdp;
 
         await pc1.setLocalDescription(desc);
         // send sdp to callee
@@ -110,6 +126,8 @@ export default defineComponent({
 
         const desc2 = await pc2.createAnswer();
         await pc2.setLocalDescription(desc2);
+        const { sdp: answer = "" } = desc2;
+        answerValue.value = answer;
         // send sdp to caller
         // receive sdp from callee
         await pc1.setRemoteDescription(desc2);
@@ -126,6 +144,8 @@ export default defineComponent({
     return {
       refLocalVideo,
       refRemoteVideo,
+      offerValue,
+      answerValue,
       handleStart,
       handleCall,
       handleHangup,
@@ -140,7 +160,7 @@ export default defineComponent({
     display: flex;
     justify-content: space-around;
     video {
-      width: 300px;
+      width: 400px;
       height: 300px;
     }
   }
