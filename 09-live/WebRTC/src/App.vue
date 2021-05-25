@@ -41,32 +41,28 @@
 import { defineComponent, ref, onMounted, toRaw, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
-interface List {
+interface Subs {
   index: string;
   title: string;
-  subs?: [
-    {
-      index: string;
-      title: string;
-    }
-  ];
 }
 
 interface MenuItem {
-  value: List[];
+  index: string;
+  title: string;
+  subs?: Subs[];
 }
 
 export default defineComponent({
   name: "App",
   components: {},
   setup() {
-    const menuItem = ref<any>([]);
-    const selectedKeys = ref<any>([]);
-    const openKeys = ref<any>([]);
+    const menuItem = ref<MenuItem[]>([]);
+    const selectedKeys = ref<string[]>([]);
+    const openKeys = ref<string[]>([]);
     const route = useRoute();
 
     onMounted(() => {
-      const item = [
+      const item: MenuItem[] = [
         {
           index: "/getUserMedia",
           title: "获取设备",
@@ -100,12 +96,14 @@ export default defineComponent({
         setTimeout(() => {
           const result = item.filter((i) => path.value.includes(i.index));
           if (result[0].subs?.length) {
-            const _subs = result[0].subs.filter((i) => path.value.includes(i.index));
+            const _subs = result[0].subs.filter((i) =>
+              path.value.includes(i.index)
+            );
             selectedKeys.value.push(_subs[0].index);
             openKeys.value.push(result[0].index);
           } else {
             selectedKeys.value.push(result[0].index);
-            openKeys.value.lenght = 0;
+            openKeys.value.length = 0;
           }
         }, 150);
       });

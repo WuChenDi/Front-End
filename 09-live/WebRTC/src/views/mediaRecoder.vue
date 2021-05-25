@@ -44,8 +44,6 @@ export default defineComponent({
   setup() {
     const refVideoPlay = ref<HTMLVideoElement | null>(null);
     const refRecplayer = ref<HTMLVideoElement | null>(null);
-    // const refVideoPlay = ref<any>(null);
-    // const refRecplayer = ref<any>(null);
     const recordStatus = ref(true);
     const MediaStreamAPI = ref({});
 
