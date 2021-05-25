@@ -41,15 +41,10 @@
 import { defineComponent, ref, onMounted, toRaw, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
-interface Subs {
-  index: string;
-  title: string;
-}
-
 interface MenuItem {
   index: string;
   title: string;
-  subs?: Subs[];
+  subs?: Array<MenuItem>;
 }
 
 export default defineComponent({
