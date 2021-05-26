@@ -42,29 +42,34 @@
 import { defineComponent, ref } from "vue";
 
 interface Constraints {
-  video: boolean;
-  audio: boolean;
+  video: boolean | MediaTrackConstraints;
+  audio: boolean | MediaTrackConstraints;
+}
+
+interface InputOption {
+  deviceId: string;
+  label: string;
 }
 
 export default defineComponent({
   name: "getUserMedia",
   setup() {
-    const audioInputValue = ref("default");
-    const audioInputOption = ref([]);
-    const audioOutputValue = ref("default");
-    const audioOutputOption = ref([]);
-    const videoInputValue = ref("default");
-    const videoInputOption = ref([]);
+    const audioInputValue = ref<string>("default");
+    const audioInputOption = ref<InputOption[]>([]);
+    const audioOutputValue = ref<string>("default");
+    const audioOutputOption = ref<InputOption[]>([]);
+    const videoInputValue = ref<string>("default");
+    const videoInputOption = ref<InputOption[]>([]);
 
     // 访问用户媒体设备
-    function getUserMedia(constraints: Constraints) {
+    function _getUserMedia(constraints: Constraints) {
       if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices
           .getUserMedia(constraints)
-          .then((stream) => {
+          .then((stream: MediaStream) => {
             console.log(stream);
           })
-          .catch((error) => {
+          .catch((error: any) => {
             console.log(`访问用户媒体设备失败${error.name}, ${error.message}`);
           });
       }
@@ -74,19 +79,21 @@ export default defineComponent({
       console.log("enumerateDevices is not supported!");
     } else {
       const constraints = { video: true, audio: true };
-      getUserMedia(constraints);
+
+      _getUserMedia(constraints);
+
       navigator.mediaDevices
         .enumerateDevices()
         .then((devices: Array<MediaDeviceInfo>) => {
           audioInputOption.value = devices.filter(
             (item: MediaDeviceInfo) => item.kind === "audioinput"
-          ) as [];
+          );
           audioOutputOption.value = devices.filter(
             (item: MediaDeviceInfo) => item.kind === "audiooutput"
-          ) as [];
+          );
           videoInputOption.value = devices.filter(
             (item: MediaDeviceInfo) => item.kind === "videoinput"
-          ) as [];
+          );
 
           const { deviceId = "" } = videoInputOption.value[0];
           videoInputValue.value = deviceId;

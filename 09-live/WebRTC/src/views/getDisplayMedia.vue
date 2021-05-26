@@ -39,15 +39,18 @@
 import { defineComponent, onMounted, ref } from "vue";
 import adapter from "webrtc-adapter";
 
+interface Constraints {
+  video: boolean | MediaTrackConstraints;
+  audio: boolean | MediaTrackConstraints;
+}
+
 export default defineComponent({
   name: "getDisplayMedia",
   setup() {
     const refVideoPlay = ref<HTMLVideoElement | null>(null);
     const refRecplayer = ref<HTMLVideoElement | null>(null);
-    // const refVideoPlay = ref<any>(null);
-    // const refRecplayer = ref<any>(null);
-    const recordStatus = ref(true);
-    const MediaStreamAPI = ref({});
+    const recordStatus = ref<boolean>(true);
+    const MediaStreamAPI = ref<object>({});
 
     let stream: any;
     let mediaRecorder: any = null;
@@ -58,15 +61,20 @@ export default defineComponent({
       console.log(adapter);
       console.log(adapter.browserDetails.browser);
 
-      if (!navigator.mediaDevices || !(navigator.mediaDevices as any).getDisplayMedia) {
+      if (
+        !navigator.mediaDevices ||
+        !(navigator.mediaDevices as any).getDisplayMedia
+      ) {
         console.log("getDisplayMedia is not supported!");
       } else {
-        const constraints = {
+        const constraints: Constraints = {
           video: true,
           audio: false,
         };
         try {
-          stream = await (navigator.mediaDevices as any).getDisplayMedia(constraints);
+          stream = await (navigator.mediaDevices as any).getDisplayMedia(
+            constraints
+          );
           (refVideoPlay.value as HTMLVideoElement).srcObject = stream;
 
           const videoTrack = stream.getVideoTracks();
@@ -83,7 +91,7 @@ export default defineComponent({
       }
     });
 
-    function handleDataAvailable(e: any) {
+    function handleDataAvailable(e: { data: { size: number } }) {
       if (e?.data?.size > 0) {
         buffer.push(e.data);
       }
@@ -120,7 +128,9 @@ export default defineComponent({
 
     const handlePlay = () => {
       const blob = new Blob(buffer, { type: "video/webm" });
-      (refRecplayer.value as HTMLVideoElement).src = window.URL.createObjectURL(blob);
+      (refRecplayer.value as HTMLVideoElement).src = window.URL.createObjectURL(
+        blob
+      );
       (refRecplayer.value as HTMLVideoElement).srcObject = null;
       (refRecplayer.value as HTMLVideoElement).controls = true;
       (refRecplayer.value as HTMLVideoElement).play();
