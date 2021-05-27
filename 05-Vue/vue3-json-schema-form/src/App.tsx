@@ -1,6 +1,6 @@
 import { defineComponent, h, reactive, ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-// import HelloWorld from './components/HelloWorld'
+// import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld'
 
 const img = require('./assets/logo.png') // eslint-disable-line
 

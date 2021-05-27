@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 const PropsType = {
   msg: String,
@@ -6,18 +6,16 @@ const PropsType = {
     type: Number,
     required: true
   }
-}
+} as const
 
 export default defineComponent({
   props: PropsType,
 
   setup(props) {
-    const { msg, age } = props
-
     return () => (
       <div class='hello'>
-        <h1>{msg}</h1>
-        <h1>{age}</h1>
+        <h1>{props.msg}</h1>
+        <h1>{props.age}</h1>
       </div>
     )
   }
