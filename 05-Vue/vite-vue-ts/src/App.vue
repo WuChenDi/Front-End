@@ -1,14 +1,25 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
 
-  <Suspense>
+  <ul>
+    <li>
+      <router-link to="/">index</router-link>
+    </li>
+    <li>
+      <router-link to="/chart">ChartDemo</router-link>
+    </li>
+  </ul>
+
+  <router-view></router-view>
+
+  <!-- <Suspense>
     <template #default>
       <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
     </template>
     <template #fallback>
       <div>Loading...</div>
     </template>
-  </Suspense>
+  </Suspense> -->
 </template>
 
 <script setup lang="ts">
