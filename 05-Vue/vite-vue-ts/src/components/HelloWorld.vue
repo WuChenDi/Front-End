@@ -7,10 +7,22 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
+// import { useStore } from "vuex";
+// import type { State } from "../store";
+
+import { useDDStore } from "../hooks/use-store";
+const { state, getters } = useDDStore();
 
 defineProps({
   msg: String,
 });
+
+// const { state, getters } = useStore<State>();
+console.log("vuex: ", state.user);
+console.log("getters", getters.user);
+console.log("getters", getters.user?.isLogin);
+// console.log("getters", getters["user/isLogin"]);
+console.log("getters", getters["user/isLogin"]);
 
 import useProducts from "../models/products";
 const { products } = await useProducts();
