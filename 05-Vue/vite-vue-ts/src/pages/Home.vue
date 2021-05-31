@@ -1,1 +1,15 @@
-<template>Home组件</template>
+<template>
+  Home组件
+  <Suspense>
+    <template #default>
+      <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    </template>
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </Suspense>
+</template>
+
+<script setup lang="ts">
+import HelloWorld from "../components/HelloWorld.vue";
+</script>
