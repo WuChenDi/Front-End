@@ -1,4 +1,4 @@
-import { userState } from "./modules/wechat/store";
+import { userState } from "./modules/user/store";
 import { createStore } from "vuex";
 import { modules } from "./modules";
 
