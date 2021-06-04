@@ -5,6 +5,11 @@
 // import "./function";
 // import "./class";
 // import "./class2";
+// import "./class_decorator1";
+// import "./class_decorator2";
+// import "./class_decorator3";
+// import "./class_decorator4";
+import "./class_decorator5";
 // import "./class-interface";
 // import "./generics";
 // import "./generics1";
@@ -14,7 +19,7 @@
 // import "./advanced3";
 // import "./advanced4";
 // import "./advanced5";
-import "./advanced6";
+// import "./advanced6";
 
 let hello: string = "Hello TypeScript";
 
