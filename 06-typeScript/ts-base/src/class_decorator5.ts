@@ -12,4 +12,4 @@ class Test {
 }
 
 const test = new Test();
-test.getInfo("Dell", 30);
+test.getInfo("dd", 25);
