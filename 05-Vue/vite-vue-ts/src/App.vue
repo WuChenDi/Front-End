@@ -6,6 +6,12 @@
       <router-link to="/">index</router-link>
     </li>
     <li>
+      <router-link to="/watch">watch</router-link>
+    </li>
+    <li>
+      <router-link to="/watchEffect">watchEffect</router-link>
+    </li>
+    <li>
       <router-link to="/chart">ChartDemo</router-link>
     </li>
   </ul>
