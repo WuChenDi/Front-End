@@ -23,8 +23,8 @@ defineProps({
 });
 
 console.log("vuex: ", state.user);
-console.log("getters", getters.user);
-console.log("getters", getters.user?.isLogin);
+// console.log("getters", getters.user);
+// console.log("getters", getters.user?.isLogin);
 console.log("getters", getters["user/isLogin"]);
 
 const handleVuex = () => {

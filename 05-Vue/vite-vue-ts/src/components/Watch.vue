@@ -5,22 +5,26 @@
 </template>
 
 <script lang="ts" setup>
-import {reactive, watch} from "vue";
+import { reactive, watch } from "vue";
 
-const state = reactive({obj: {count: 0}})
+const state = reactive({ obj: { count: 0 } });
 
-watch(() => state.obj, (count, prevCount) => {
-  console.log('第一个监听的值', count, prevCount)
-}, {
-  deep: true,
-  immediate: true
-})
+watch(
+  () => state.obj,
+  (count, prevCount) => {
+    console.log("第一个监听的值", count, prevCount);
+  },
+  {
+    deep: true,
+    immediate: true,
+  }
+);
 
 // setTimeout(() => {
 //   state.count++
 // }, 1000)
 
 setInterval(() => {
-  state.obj.count++
-}, 1000)
+  state.obj.count++;
+}, 1000);
 </script>

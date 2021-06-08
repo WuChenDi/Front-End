@@ -5,21 +5,24 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref, watchEffect} from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 
-const num = ref(0)
+const num = ref(0);
 onMounted(() => {
-  console.log('onMounted')
-})
-watchEffect(() => {
-  console.log('watchEffect', num.value)
-}, {
-  onTrigger(e) {
-    console.log('onTrigger', e)
+  console.log("onMounted");
+});
+watchEffect(
+  () => {
+    console.log("watchEffect", num.value);
+  },
+  {
+    onTrigger(e) {
+      console.log("onTrigger", e);
+    },
   }
-})
+);
 
 setInterval(() => {
-  num.value++
-}, 1000)
+  num.value++;
+}, 1000);
 </script>

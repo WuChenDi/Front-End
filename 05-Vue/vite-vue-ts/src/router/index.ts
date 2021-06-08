@@ -1,20 +1,26 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
-const Home = () => import(/* webpackChunkName: "Home" */ "../pages/Home.vue");
-const Watch = () => import(/* webpackChunkName: "Watch" */ "../components/Watch.vue");
-const watchEffect = () => import(/* webpackChunkName: "watchEffect" */ "../components/watchEffect.vue");
-const ChartDemo = () => import(/* webpackChunkName: "ChartDemo" */ "../components/ChaerDemo.vue");
+const Home = () => import("../pages/Home.vue");
+const Watch = () => import("../components/Watch.vue");
+const watchEffect = () => import("../components/watchEffect.vue");
+const ChartDemo = () => import("../components/ChaerDemo.vue");
 
 const routes: Array<RouteRecordRaw> = [
-  {path: "/", component: Home, children: []},
+  { path: "/", component: Home, children: [] },
   {
-    path: "/watch", component: Watch, children: [],
+    path: "/watch",
+    component: Watch,
+    children: [],
   },
   {
-    path: "/watchEffect", component: watchEffect, children: [],
+    path: "/watchEffect",
+    component: watchEffect,
+    children: [],
   },
   {
-    path: "/chart", component: ChartDemo, children: [],
+    path: "/chart",
+    component: ChartDemo,
+    children: [],
   },
 ];
 
