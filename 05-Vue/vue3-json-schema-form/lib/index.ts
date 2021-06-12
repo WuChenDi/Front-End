@@ -1,7 +1,12 @@
-import {defineComponent, h} from 'vue'
+import SchemaForm from './SchemaForm'
 
-export default defineComponent({
-  setup(p, {slots}) {
-    return () => h('div', 'this is form')
-  },
-})
+import NumberField from './fields/NumberField'
+import StringField from './fields/StringField'
+import ArrayField from './fields/ArrayField'
+import ThemeProvider from './theme'
+
+export * from './types'
+
+export { NumberField, StringField, ArrayField, ThemeProvider }
+
+export default SchemaForm
