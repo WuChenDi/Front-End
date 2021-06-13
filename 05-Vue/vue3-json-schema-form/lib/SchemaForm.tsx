@@ -1,23 +1,7 @@
-import {
-  defineComponent,
-  PropType,
-  provide,
-  watch,
-  watchEffect,
-  shallowRef,
-  Ref,
-  ref,
-  computed,
-} from 'vue'
+import { defineComponent, PropType, provide, watch, watchEffect, shallowRef, Ref, ref, computed } from 'vue'
 import Ajv, { Options } from 'ajv'
 
-import {
-  Schema,
-  UISchema,
-  CustomFormat,
-  CommonWidgetDefine,
-  CustomKeyword,
-} from './types'
+import { Schema, UISchema, CustomFormat, CommonWidgetDefine, CustomKeyword } from './types'
 import SchemaItem from './SchemaItem'
 import { SchemaFormContextKey } from './context'
 import { validateFormData, ErrorSchema } from './validator'
@@ -30,7 +14,7 @@ interface ContextRef {
 }
 
 const defaultAjvOptions: Options = {
-  allErrors: true,
+  allErrors: true
   // jsonPointers: true,
 }
 
@@ -39,37 +23,37 @@ export default defineComponent({
   props: {
     schema: {
       type: Object as PropType<Schema>,
-      required: true,
+      required: true
     },
     uiSchema: {
-      type: Object as PropType<UISchema>,
+      type: Object as PropType<UISchema>
     },
     value: {
-      required: true,
+      required: true
     },
     onChange: {
       type: Function as PropType<(v: any) => void>,
-      required: true,
+      required: true
     },
     contextRef: {
-      type: Object as PropType<Ref<ContextRef | undefined>>,
+      type: Object as PropType<Ref<ContextRef | undefined>>
     },
     ajvOptions: {
-      type: Object as PropType<Options>,
+      type: Object as PropType<Options>
     },
     locale: {
       type: String,
-      default: 'zh',
+      default: 'zh'
     },
     customValidate: {
-      type: Function as PropType<(data: any, errors: any) => void>,
+      type: Function as PropType<(data: any, errors: any) => void>
     },
     customFormats: {
-      type: [Array, Object] as PropType<CustomFormat[] | CustomFormat>,
+      type: [Array, Object] as PropType<CustomFormat[] | CustomFormat>
     },
     customKeywords: {
-      type: [Array, Object] as PropType<CustomKeyword[] | CustomKeyword>,
-    },
+      type: [Array, Object] as PropType<CustomKeyword[] | CustomKeyword>
+    }
   },
   setup(props) {
     const handleChange = (v: any) => {
@@ -78,24 +62,21 @@ export default defineComponent({
 
     const formatMapRef = computed(() => {
       if (props.customFormats) {
-        const customFormats = Array.isArray(props.customFormats)
-          ? props.customFormats
-          : [props.customFormats]
+        const customFormats = Array.isArray(props.customFormats) ? props.customFormats : [props.customFormats]
         return customFormats.reduce((result, format) => {
           result[format.name] = format.component
           return result
         }, {} as { [key: string]: CommonWidgetDefine })
       }
+      return null
     })
 
     const transformSchemaRef = computed(() => {
       if (props.customKeywords) {
-        const customKeywords = Array.isArray(props.customKeywords)
-          ? props.customKeywords
-          : [props.customKeywords]
+        const customKeywords = Array.isArray(props.customKeywords) ? props.customKeywords : [props.customKeywords]
         return (schema: Schema) => {
           let newSchema = schema
-          customKeywords.forEach((keyword) => {
+          customKeywords.forEach(keyword => {
             if ((newSchema as any)[keyword.name]) {
               newSchema = keyword.transformSchema(schema)
             }
@@ -109,7 +90,7 @@ export default defineComponent({
     const context: any = {
       SchemaItem,
       formatMapRef,
-      transformSchemaRef,
+      transformSchemaRef
     }
     provide(SchemaFormContextKey, context)
     const errorSchemaRef: Ref<ErrorSchema> = shallowRef({})
@@ -118,23 +99,19 @@ export default defineComponent({
     watchEffect(() => {
       validatorRef.value = new Ajv({
         ...defaultAjvOptions,
-        ...props.ajvOptions,
+        ...props.ajvOptions
       })
 
       if (props.customFormats) {
-        const customFormats = Array.isArray(props.customFormats)
-          ? props.customFormats
-          : [props.customFormats]
-        customFormats.forEach((format) => {
+        const customFormats = Array.isArray(props.customFormats) ? props.customFormats : [props.customFormats]
+        customFormats.forEach(format => {
           validatorRef.value.addFormat(format.name, format.definition)
         })
       }
 
       if (props.customKeywords) {
-        const customKeywords = Array.isArray(props.customKeywords)
-          ? props.customKeywords
-          : [props.customKeywords]
-        customKeywords.forEach((keyword) => {
+        const customKeywords = Array.isArray(props.customKeywords) ? props.customKeywords : [props.customKeywords]
+        customKeywords.forEach(keyword => {
           // validatorRef.value.addKeyword(keyword.name, keyword.definition)
           validatorRef.value.addKeyword(keyword.definition)
         })
@@ -151,19 +128,13 @@ export default defineComponent({
           doValidate()
         }
       },
-      { deep: true },
+      { deep: true }
     )
 
     async function doValidate() {
       console.log('start validate --------->')
       const index = (validateIndex.value += 1)
-      const result = await validateFormData(
-        validatorRef.value,
-        props.value,
-        props.schema,
-        props.locale,
-        props.customValidate,
-      )
+      const result = await validateFormData(validatorRef.value, props.value, props.schema, props.locale, props.customValidate)
 
       if (index !== validateIndex.value) return
       console.log('end validate ----------->')
@@ -179,32 +150,23 @@ export default defineComponent({
         if (props.contextRef) {
           props.contextRef.value = {
             doValidate() {
-              return new Promise((resolve) => {
+              return new Promise(resolve => {
                 validateResolveRef.value = resolve
                 doValidate()
               })
-            },
+            }
           }
         }
       },
       {
-        immediate: true,
-      },
+        immediate: true
+      }
     )
 
     return () => {
       const { schema, value, uiSchema } = props
 
-      return (
-        <SchemaItem
-          schema={schema}
-          uiSchema={uiSchema || {}}
-          rootSchema={schema}
-          value={value}
-          onChange={handleChange}
-          errorSchema={errorSchemaRef.value || {}}
-        />
-      )
+      return <SchemaItem schema={schema} uiSchema={uiSchema || {}} rootSchema={schema} value={value} onChange={handleChange} errorSchema={errorSchemaRef.value || {}} />
     }
-  },
+  }
 })
