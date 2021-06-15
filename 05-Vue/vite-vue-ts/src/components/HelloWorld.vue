@@ -9,14 +9,13 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { useStore } from "vuex";
+// import { useStore } from "vuex";
 // import type { State } from "../store";
 
 // const { state, getters } = useStore<State>();
-const store = useStore();
 
 import { useDDStore } from "../hooks/use-store";
-const { state, getters } = useDDStore();
+const { state, getters, commit, dispatch } = useDDStore();
 
 defineProps({
   msg: String,
@@ -29,8 +28,8 @@ console.log("getters", getters["user/isLogin"]);
 
 const handleVuex = () => {
   console.log("handleVuex", state.user.loading);
-  store.commit("user/GET_DATA", !state.user.loading);
-  // store.dispatch("user/GET_DATA");
+  commit("user/GET_DATA", !state.user.loading);
+  // dispatch("user/GET_DATA");
 };
 
 import useProducts from "../models/products";
