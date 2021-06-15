@@ -7,15 +7,15 @@ const useStyles = createUseStyles({
   container: {},
   label: {
     display: 'block',
-    color: '#777',
+    color: '#777'
   },
   errorText: {
     color: 'red',
     fontSize: 12,
     margin: '5px 0',
     padding: 0,
-    paddingLeft: 20,
-  },
+    paddingLeft: 20
+  }
 })
 
 const FormItem = defineComponent({
@@ -33,14 +33,14 @@ const FormItem = defineComponent({
           <label class={classes.label}>{schema.title}</label>
           {slots.default && slots.default()}
           <ul class={classes.errorText}>
-            {errors?.map((err) => (
+            {errors?.map(err => (
               <li>{err}</li>
             ))}
           </ul>
         </div>
       )
     }
-  },
+  }
 })
 
 export default FormItem
@@ -58,6 +58,6 @@ export function withFormItem(Widget: any) {
           </FormItem>
         )
       }
-    },
+    }
   })
 }

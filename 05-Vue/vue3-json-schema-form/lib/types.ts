@@ -8,7 +8,7 @@ export enum SchemaTypes {
   'STRING' = 'string',
   'OBJECT' = 'object',
   'ARRAY' = 'array',
-  'BOOLEAN' = 'boolean',
+  'BOOLEAN' = 'boolean'
 }
 
 type SchemaRef = { $ref: string }
@@ -53,27 +53,27 @@ export interface Schema {
 export const FieldPropsDefine = {
   schema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   value: {
-    required: true,
+    required: true
   },
   onChange: {
     type: Function as PropType<(v: any) => void>,
-    required: true,
+    required: true
   },
   rootSchema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   errorSchema: {
     type: Object as PropType<ErrorSchema>,
-    required: true,
+    required: true
   },
   uiSchema: {
     type: Object as PropType<UISchema>,
-    required: true,
-  },
+    required: true
+  }
 } as const
 
 export type CommonFieldType = DefineComponent<typeof FieldPropsDefine>
@@ -82,26 +82,26 @@ export const CommonWidgetPropsDefine = {
   value: {},
   onChange: {
     type: Function as PropType<(v: any) => void>,
-    required: true,
+    required: true
   },
   errors: {
-    type: Object as PropType<string[]>,
+    type: Object as PropType<string[]>
   },
   schema: {
     type: Object as PropType<Schema>,
-    required: true,
+    required: true
   },
   options: {
-    type: Object as PropType<{ [keys: string]: any }>,
-  },
+    type: Object as PropType<{ [keys: string]: any }>
+  }
 } as const
 
 export const SelectionWidgetPropsDefine = {
   ...CommonWidgetPropsDefine,
   options: {
     type: Array as PropType<{ key: string; value: any }[]>,
-    required: true,
-  },
+    required: true
+  }
 } as const
 
 export type CommonWidgetDefine = DefineComponent<typeof CommonWidgetPropsDefine>

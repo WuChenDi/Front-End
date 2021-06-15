@@ -7,21 +7,21 @@ import { getWidget } from '../theme'
 
 const useStyles = createUseStyles({
   container: {
-    border: '1px solid #eee',
+    border: '1px solid #eee'
   },
   actions: {
     background: '#eee',
     padding: 10,
-    textAlign: 'right',
+    textAlign: 'right'
   },
   action: {
     '& + &': {
-      marignRight: 10,
-    },
+      marignRight: 10
+    }
   },
   content: {
-    padding: 10,
-  },
+    padding: 10
+  }
 })
 
 const ArrayItemWrapper = defineComponent({
@@ -29,24 +29,24 @@ const ArrayItemWrapper = defineComponent({
   props: {
     onAdd: {
       type: Function as PropType<(index: number) => void>,
-      required: true,
+      required: true
     },
     onDelete: {
       type: Function as PropType<(index: number) => void>,
-      required: true,
+      required: true
     },
     onUp: {
       type: Function as PropType<(index: number) => void>,
-      required: true,
+      required: true
     },
     onDown: {
       type: Function as PropType<(index: number) => void>,
-      required: true,
+      required: true
     },
     index: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { slots }) {
     const classesRef = useStyles()
@@ -77,7 +77,7 @@ const ArrayItemWrapper = defineComponent({
         </div>
       )
     }
-  },
+  }
 })
 
 /**
@@ -214,5 +214,5 @@ export default defineComponent({
         )
       }
     }
-  },
+  }
 })

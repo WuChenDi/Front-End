@@ -28,32 +28,32 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     height: '100%',
     width: '1200px',
-    margin: '0 auto',
+    margin: '0 auto'
   },
   menu: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   code: {
     width: 700,
-    flexShrink: 0,
+    flexShrink: 0
   },
   codePanel: {
     minHeight: 400,
-    marginBottom: 20,
+    marginBottom: 20
   },
   uiAndValue: {
     display: 'flex',
     justifyContent: 'space-between',
     '& > *': {
-      width: '46%',
-    },
+      width: '46%'
+    }
   },
   content: {
-    display: 'flex',
+    display: 'flex'
   },
   form: {
     padding: '0 20px',
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     appearance: 'none',
@@ -64,16 +64,16 @@ const useStyles = createUseStyles({
     padding: 15,
     borderRadius: 5,
     '&:hover': {
-      background: '#efefef',
-    },
+      background: '#efefef'
+    }
   },
   menuSelected: {
     background: '#337ab7',
     color: '#fff',
     '&:hover': {
-      background: '#337ab7',
-    },
-  },
+      background: '#337ab7'
+    }
+  }
 })
 
 // implementation
@@ -97,7 +97,7 @@ export default defineComponent({
       schemaCode: '',
       dataCode: '',
       uiSchemaCode: '',
-      customValidate: undefined,
+      customValidate: undefined
     })
 
     // 数据监听，确定 demo 的当前值
@@ -128,7 +128,7 @@ export default defineComponent({
     // closure 闭包 demo
     function handleCodeChange(
       field: 'schema' | 'data' | 'uiSchema',
-      value: string,
+      value: string
     ) {
       try {
         const json = JSON.parse(value)
@@ -169,7 +169,7 @@ export default defineComponent({
                 <button
                   class={{
                     [classes.menuButton]: true,
-                    [classes.menuSelected]: index === selected,
+                    [classes.menuSelected]: index === selected
                   }}
                   onClick={() => (selectedRef.value = index)}
                 >
@@ -185,20 +185,20 @@ export default defineComponent({
                 code={demo.schemaCode}
                 class={classes.codePanel}
                 onChange={handleSchemaChange}
-                title="Schema"
+                title='Schema'
               />
               <div class={classes.uiAndValue}>
                 <MonacoEditor
                   code={demo.uiSchemaCode}
                   class={classes.codePanel}
                   onChange={handleUISchemaChange}
-                  title="UISchema"
+                  title='UISchema'
                 />
                 <MonacoEditor
                   code={demo.dataCode}
                   class={classes.codePanel}
                   onChange={handleDataChange}
-                  title="Value"
+                  title='Value'
                 />
               </div>
               {/* /.uiAndValue */}
@@ -222,8 +222,8 @@ export default defineComponent({
             </div>
           </div>
           <a
-            href="https://github.com/cwy007/vue3-json-schema-form"
-            target="_blank"
+            href='https://github.com/cwy007/vue3-json-schema-form'
+            target='_blank'
           >
             github
           </a>
@@ -232,5 +232,5 @@ export default defineComponent({
         // </StyleThemeProvider>
       )
     }
-  },
+  }
 })

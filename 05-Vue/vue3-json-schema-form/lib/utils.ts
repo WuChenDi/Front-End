@@ -31,7 +31,7 @@ export function validateData(schema: any, data: any) {
   const valid = defaultInstance.validate(schema, data)
   return {
     valid,
-    errors: defaultInstance.errors,
+    errors: defaultInstance.errors
   }
 }
 
@@ -46,9 +46,9 @@ export function resolveSchema(schema: Schema, rootSchema = {}, formData = {}) {
   } else if (hasOwnProperty(schema, 'allOf') && Array.isArray(schema.allOf)) {
     return {
       ...schema,
-      allOf: schema.allOf.map((allOfSubschema) =>
-        retrieveSchema(allOfSubschema, rootSchema, formData),
-      ),
+      allOf: schema.allOf.map(allOfSubschema =>
+        retrieveSchema(allOfSubschema, rootSchema, formData)
+      )
     }
   } else {
     // No $ref or dependencies attribute found, returning the original schema.
@@ -59,7 +59,7 @@ export function resolveSchema(schema: Schema, rootSchema = {}, formData = {}) {
 export function retrieveSchema(
   schema: any,
   rootSchema = {},
-  formData: any = {},
+  formData: any = {}
 ): Schema {
   if (!isObject(schema)) {
     return {} as Schema
@@ -72,7 +72,7 @@ export function retrieveSchema(
       resolvedSchema = mergeAllOf({
         // TODO: Schema type not suitable
         ...resolvedSchema,
-        allOf: resolvedSchema.allOf,
+        allOf: resolvedSchema.allOf
       } as any) as Schema
     } catch (e) {
       console.warn('could not merge subschemas in allOf:\n' + e)
@@ -88,7 +88,7 @@ export function retrieveSchema(
     return stubExistingAdditionalProperties(
       resolvedSchema,
       rootSchema,
-      formData,
+      formData
     )
   }
   return resolvedSchema
@@ -99,15 +99,15 @@ export const ADDITIONAL_PROPERTY_FLAG = '__additional_property'
 export function stubExistingAdditionalProperties(
   schema: Schema,
   rootSchema: Schema = {},
-  formData: any = {},
+  formData: any = {}
 ) {
   // Clone the schema so we don't ruin the consumer's original
   schema = {
     ...schema,
-    properties: { ...schema.properties },
+    properties: { ...schema.properties }
   }
 
-  Object.keys(formData).forEach((key) => {
+  Object.keys(formData).forEach(key => {
     if ((schema as any).properties.hasOwnProperty(key)) {
       // No need to stub, our schema already has the property
       return
@@ -118,7 +118,7 @@ export function stubExistingAdditionalProperties(
       additionalProperties = retrieveSchema(
         { $ref: schema.additionalProperties['$ref'] },
         rootSchema,
-        formData,
+        formData
       )
     } else if (schema.additionalProperties.hasOwnProperty('type')) {
       additionalProperties = { ...schema.additionalProperties }
@@ -179,7 +179,7 @@ export function findSchemaDefinition($ref: string, rootSchema = {}): Schema {
 function resolveDependencies(
   schema: any,
   rootSchema: any,
-  formData: any,
+  formData: any
 ): Schema {
   // Drop the dependencies from the source schema.
   let { dependencies = {}, ...resolvedSchema } = schema // eslint-disable-line
@@ -200,7 +200,7 @@ function processDependencies(
   dependencies: any,
   resolvedSchema: any,
   rootSchema: any,
-  formData: any,
+  formData: any
 ): Schema {
   // Process dependencies updating the local schema properties as appropriate.
   for (const dependencyKey in dependencies) {
@@ -215,10 +215,8 @@ function processDependencies(
     ) {
       continue
     }
-    const {
-      [dependencyKey]: dependencyValue,
-      ...remainingDependencies
-    } = dependencies
+    const { [dependencyKey]: dependencyValue, ...remainingDependencies } =
+      dependencies
     if (Array.isArray(dependencyValue)) {
       resolvedSchema = withDependentProperties(resolvedSchema, dependencyValue)
     } else if (isObject(dependencyValue)) {
@@ -227,14 +225,14 @@ function processDependencies(
         rootSchema,
         formData,
         dependencyKey,
-        dependencyValue,
+        dependencyValue
       )
     }
     return processDependencies(
       remainingDependencies,
       resolvedSchema,
       rootSchema,
-      formData,
+      formData
     )
   }
   return resolvedSchema
@@ -255,13 +253,13 @@ function withDependentSchema(
   rootSchema: any,
   formData: any,
   dependencyKey: any,
-  dependencyValue: any,
+  dependencyValue: any
 ) {
   // retrieveSchema
   const { oneOf, ...dependentSchema } = retrieveSchema(
     dependencyValue,
     rootSchema,
-    formData,
+    formData
   )
   schema = mergeSchemas(schema, dependentSchema)
   // Since it does not contain oneOf, we return the original schema.
@@ -271,17 +269,17 @@ function withDependentSchema(
     throw new Error(`invalid: it is some ${typeof oneOf} instead of an array`)
   }
   // Resolve $refs inside oneOf.
-  const resolvedOneOf = oneOf.map((subschema) =>
+  const resolvedOneOf = oneOf.map(subschema =>
     hasOwnProperty(subschema, '$ref')
       ? resolveReference(subschema, rootSchema, formData)
-      : subschema,
+      : subschema
   )
   return withExactlyOneSubschema(
     schema,
     rootSchema,
     formData,
     dependencyKey,
-    resolvedOneOf,
+    resolvedOneOf
   )
 }
 
@@ -290,7 +288,7 @@ function withExactlyOneSubschema(
   rootSchema: any,
   formData: any,
   dependencyKey: any,
-  oneOf: any,
+  oneOf: any
 ) {
   const validSubschemas = oneOf.filter((subschema: any) => {
     if (!subschema.properties) {
@@ -301,8 +299,8 @@ function withExactlyOneSubschema(
       const conditionSchema = {
         type: 'object',
         properties: {
-          [dependencyKey]: conditionPropertySchema,
-        },
+          [dependencyKey]: conditionPropertySchema
+        }
       }
       // TODO: validate formdata
       const { errors } = validateData(conditionSchema, formData)
@@ -311,21 +309,19 @@ function withExactlyOneSubschema(
   })
   if (validSubschemas.length !== 1) {
     console.warn(
-      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid",
+      "ignoring oneOf in dependencies because there isn't exactly one subschema that is valid"
     )
     return schema
   }
   // debugger
   const subschema = validSubschemas[0]
-  const {
-    [dependencyKey]: conditionPropertySchema,
-    ...dependentSubschema
-  } = subschema.properties
+  const { [dependencyKey]: conditionPropertySchema, ...dependentSubschema } =
+    subschema.properties
   const dependentSchema = { ...subschema, properties: dependentSubschema }
   return mergeSchemas(
     schema,
     // retrieveSchema
-    retrieveSchema(dependentSchema, rootSchema, formData),
+    retrieveSchema(dependentSchema, rootSchema, formData)
   )
 }
 
@@ -385,7 +381,7 @@ export function getSchemaType(schema: Schema): string | undefined {
 
   const t: any = type
   if (t instanceof Array && t.length === 2 && t.includes('null')) {
-    return t.find((type) => type !== 'null')
+    return t.find(type => type !== 'null')
   }
 
   return type
@@ -448,7 +444,7 @@ export function isSelect(_schema: any, rootSchema: Schema = {}) {
   if (Array.isArray(schema.enum)) {
     return true
   } else if (Array.isArray(altSchemas)) {
-    return altSchemas.every((altSchemas) => isConstant(altSchemas))
+    return altSchemas.every(altSchemas => isConstant(altSchemas))
   }
   return false
 }
@@ -464,7 +460,7 @@ export function isMultiSelect(schema: Schema, rootSchema: Schema = {}) {
 export function getMatchingOption(
   formData: any,
   options: Schema[],
-  isValid: (schema: Schema, data: any) => boolean,
+  isValid: (schema: Schema, data: any) => boolean
 ) {
   for (let i = 0; i < options.length; i++) {
     const option = options[i]
@@ -480,9 +476,9 @@ export function getMatchingOption(
       // Create an "anyOf" schema that requires at least one of the keys in the
       // "properties" object
       const requiresAnyOf = {
-        anyOf: Object.keys(option.properties).map((key) => ({
-          required: [key],
-        })),
+        anyOf: Object.keys(option.properties).map(key => ({
+          required: [key]
+        }))
       }
 
       let augmentedSchema
@@ -536,7 +532,7 @@ export function mergeDefaultsWithFormData(defaults: any, formData: any): any {
     return Object.keys(formData).reduce((acc, key) => {
       acc[key] = mergeDefaultsWithFormData(
         defaults ? defaults[key] : {},
-        formData[key],
+        formData[key]
       )
       return acc
     }, acc)
@@ -547,7 +543,7 @@ export function mergeDefaultsWithFormData(defaults: any, formData: any): any {
 
 export function getDefaultFormState(
   _schema: Schema,
-  formData: any,
+  formData: any
   // rootSchema = {},
   // includeUndefinedValues = false,
 ) {

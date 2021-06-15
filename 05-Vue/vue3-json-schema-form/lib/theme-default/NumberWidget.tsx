@@ -17,11 +17,11 @@ const NumberWidget = withFormItem(
       return () => {
         const { value } = props
         return (
-          <input type="number" value={value as any} onInput={handleChange} />
+          <input type='number' value={value as any} onInput={handleChange} />
         )
       }
-    },
-  }),
+    }
+  })
 )
 
 export default NumberWidget

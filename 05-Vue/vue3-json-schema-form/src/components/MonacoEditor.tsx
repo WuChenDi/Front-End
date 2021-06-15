@@ -5,7 +5,7 @@ import {
   watch,
   onBeforeMount,
   shallowRef,
-  PropType,
+  PropType
 } from 'vue'
 import * as Monaco from 'monaco-editor'
 import { createUseStyles } from 'vue-jss'
@@ -15,16 +15,16 @@ const useStyles = createUseStyles({
     border: '1px solid #eee',
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: 5,
+    borderRadius: 5
   },
   title: {
     backgroundColor: '#eee',
     padding: '10px 0',
-    paddingLeft: 20,
+    paddingLeft: 20
   },
   code: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 })
 
 // implementation
@@ -33,18 +33,18 @@ export default defineComponent({
   props: {
     code: {
       type: String as PropType<string>,
-      required: true,
+      required: true
     },
     onChange: {
       type: Function as PropType<
         (value: string, event: Monaco.editor.IModelContentChangedEvent) => void
       >,
-      required: true,
+      required: true
     },
     title: {
       type: String as PropType<string>,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props) {
     // must be shallowRef, if not, editor.getValue() won't work
@@ -62,12 +62,12 @@ export default defineComponent({
           formatOnPaste: true,
           tabSize: 2,
           minimap: {
-            enabled: false,
-          },
-        },
+            enabled: false
+          }
+        }
       ))
 
-      _subscription = editor.onDidChangeModelContent((event) => {
+      _subscription = editor.onDidChangeModelContent(event => {
         // console.log('---------->', __preventTriggerChangeEvent)
         if (!__preventTriggerChangeEvent) {
           props.onChange(editor.getValue(), event)
@@ -83,7 +83,7 @@ export default defineComponent({
 
     watch(
       () => props.code,
-      (v) => {
+      v => {
         const editor = editorRef.value
         const model = editor.getModel()
         if (v !== model.getValue()) {
@@ -95,14 +95,14 @@ export default defineComponent({
             [
               {
                 range: model.getFullModelRange(),
-                text: v,
-              },
-            ],
+                text: v
+              }
+            ]
           )
           editor.pushUndoStop()
           __preventTriggerChangeEvent = false
         }
-      },
+      }
     )
 
     const classesRef = useStyles()
@@ -119,5 +119,5 @@ export default defineComponent({
         </div>
       )
     }
-  },
+  }
 })

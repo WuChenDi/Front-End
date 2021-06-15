@@ -6,16 +6,16 @@ const keyword: CustomKeyword = {
     keyword: 'test',
     macro: () => {
       return {
-        minLength: 10,
+        minLength: 10
       }
-    },
+    }
   },
   transformSchema(schema) {
     return {
       ...schema,
-      minLength: 10,
+      minLength: 10
     }
-  },
+  }
 }
 
 export default keyword

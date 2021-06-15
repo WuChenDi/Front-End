@@ -21,15 +21,15 @@ const TextWidget = withFormItem(
         const { value } = props
         return (
           <input
-            type="text"
+            type='text'
             value={value as any}
             onInput={handleChange}
             style={styleRef.value}
           />
         )
       }
-    },
-  }),
+    }
+  })
 )
 
 export default TextWidget

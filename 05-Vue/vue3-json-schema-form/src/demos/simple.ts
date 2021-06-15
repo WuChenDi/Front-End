@@ -9,24 +9,24 @@ export default {
         type: 'string',
         default: 'Chuck',
         title: 'firstName',
-        minLength: 10,
+        minLength: 10
       },
       lastName: {
         type: 'string',
-        title: 'lastName',
+        title: 'lastName'
       },
       telephone: {
         type: 'string',
         minLength: 10,
-        title: 'telephone',
+        title: 'telephone'
       },
       multiTypeArray: {
         type: 'array',
         items: [
           { type: 'string', title: 'string' },
-          { type: 'number', title: 'number' },
+          { type: 'number', title: 'number' }
         ],
-        title: 'multiTypeArray',
+        title: 'multiTypeArray'
       },
       singleTypeArray: {
         type: 'array',
@@ -35,33 +35,33 @@ export default {
           type: 'object',
           properties: {
             name: { type: 'string', title: 'name' },
-            age: { type: 'number', title: 'age' },
-          },
-        },
+            age: { type: 'number', title: 'age' }
+          }
+        }
       },
       multiSelectArray: {
         type: 'array',
         items: {
           type: 'string',
-          enum: ['foo', 'bar', 'foobar'],
+          enum: ['foo', 'bar', 'foobar']
         },
-        title: 'multiSelectArray',
-      },
-    },
+        title: 'multiSelectArray'
+      }
+    }
   },
   uiSchema: {
     title: 'A registration form',
     properties: {
       firstName: {
-        title: 'First name',
+        title: 'First name'
       },
       lastName: {
-        title: 'Last name',
+        title: 'Last name'
       },
       telephone: {
-        title: 'Telephone',
-      },
-    },
+        title: 'Telephone'
+      }
+    }
   },
   default: {
     firstName: 'Chuck',
@@ -69,6 +69,6 @@ export default {
     age: 75,
     bio: 'Roundhouse kicking asses since 1940',
     password: 'noneed',
-    singleTypeArray: [{ name: 'cwy', age: 28 }],
-  },
+    singleTypeArray: [{ name: 'cwy', age: 28 }]
+  }
 }

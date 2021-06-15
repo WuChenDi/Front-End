@@ -15,23 +15,23 @@ const SelectionWidget = withFormItem(
 
       watch(
         () => props.value,
-        (v) => {
+        v => {
           if (v !== currentValueRef.value) currentValueRef.value = v
-        },
+        }
       )
 
       return () => {
         const { options } = props
         return (
           <select multiple={true} v-model={currentValueRef.value}>
-            {options.map((opt) => {
+            {options.map(opt => {
               return <option value={opt.value}>{opt.key}</option>
             })}
           </select>
         )
       }
-    },
-  }),
+    }
+  })
 )
 
 export default SelectionWidget

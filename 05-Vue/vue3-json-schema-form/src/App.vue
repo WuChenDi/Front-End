@@ -9,7 +9,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive, ref, computed, watchEffect } from 'vue'
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  ref,
+  computed,
+  watchEffect
+} from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 // interface Config {

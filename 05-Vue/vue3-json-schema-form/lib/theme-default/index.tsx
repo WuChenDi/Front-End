@@ -6,6 +6,6 @@ export default {
   widgets: {
     SelectionWidget,
     TextWidget,
-    NumberWidget,
-  },
+    NumberWidget
+  }
 }

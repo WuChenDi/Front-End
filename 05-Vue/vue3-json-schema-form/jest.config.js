@@ -8,9 +8,9 @@ module.exports = {
     'ts',
     'tsx',
     // tell Jest to handle *.vue files
-    'vue',
+    'vue'
   ],
   transform: {
-    '^.+\\.vue$': 'vue-jest',
-  },
+    '^.+\\.vue$': 'vue-jest'
+  }
 }

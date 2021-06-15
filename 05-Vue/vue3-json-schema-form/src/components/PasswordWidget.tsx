@@ -16,11 +16,11 @@ const PasswordWidget = withFormItem(
       return () => {
         const { value } = props
         return (
-          <input type="password" value={value as any} onInput={handleChange} />
+          <input type='password' value={value as any} onInput={handleChange} />
         )
       }
-    },
-  }),
+    }
+  })
 )
 
 export default PasswordWidget

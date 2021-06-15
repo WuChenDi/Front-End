@@ -6,7 +6,7 @@ import {
   provide,
   inject,
   ref,
-  ExtractPropTypes,
+  ExtractPropTypes
 } from 'vue'
 import { useVJSFContext } from './context'
 import { FieldPropsDefine, Theme, UISchema } from './types'
@@ -19,20 +19,20 @@ const ThemeProvider = defineComponent({
   props: {
     theme: {
       type: Object as PropType<Theme>,
-      required: true,
-    },
+      required: true
+    }
   },
   setup(props, { slots }) {
     const context = computed(() => props.theme)
     provide(THEME_PROVIDER_KEY, context)
 
     return () => slots.default && slots.default()
-  },
+  }
 })
 
 export function getWidget(
   name: keyof Theme['widgets'],
-  props?: ExtractPropTypes<typeof FieldPropsDefine>,
+  props?: ExtractPropTypes<typeof FieldPropsDefine>
 ) {
   const formContext = useVJSFContext()
   if (props) {

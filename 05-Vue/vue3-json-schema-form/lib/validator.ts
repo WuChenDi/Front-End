@@ -80,7 +80,7 @@ function toErrorSchema(errors: TransformedErrorObject[]) {
 }
 
 function transformErrors(
-  errors: ErrorObject[] | null | undefined,
+  errors: ErrorObject[] | null | undefined
 ): TransformedErrorObject[] {
   if (errors === null || errors === undefined) return []
 
@@ -91,16 +91,18 @@ function transformErrors(
   //     params: { errors: [Array] },
   //     message: '自定义关键字验证 test 失败了'
   //   },
-  return errors.map(({ keyword, instancePath, schemaPath, params, message }) => {
-    return {
-      name: keyword,
-      // property: `${instancePath}`,
-      property: '',
-      schemaPath,
-      params,
-      message,
+  return errors.map(
+    ({ keyword, instancePath, schemaPath, params, message }) => {
+      return {
+        name: keyword,
+        // property: `${instancePath}`,
+        property: '',
+        schemaPath,
+        params,
+        message
+      }
     }
-  })
+  )
 }
 
 export async function validateFormData(
@@ -108,7 +110,7 @@ export async function validateFormData(
   formData: any,
   schema: Schema,
   locale = 'zh',
-  customValidate?: (data: any, errors: any) => void,
+  customValidate?: (data: any, errors: any) => void
 ) {
   let validationError = null
   try {
@@ -124,8 +126,8 @@ export async function validateFormData(
     errors = [
       ...errors,
       {
-        message: validationError.message,
-      } as TransformedErrorObject,
+        message: validationError.message
+      } as TransformedErrorObject
     ]
   }
 
@@ -135,7 +137,7 @@ export async function validateFormData(
     return {
       errors,
       errorSchema,
-      valid: errors.length === 0,
+      valid: errors.length === 0
     }
   }
 
@@ -147,7 +149,7 @@ export async function validateFormData(
   return {
     errors: newErrors,
     errorSchema: newErrorSchema,
-    valid: newErrors.length === 0,
+    valid: newErrors.length === 0
   }
 }
 
@@ -173,7 +175,7 @@ function createErrorProxy() {
         return p
       }
       return res
-    },
+    }
   })
 }
 
@@ -199,11 +201,11 @@ export function toErrorList(errorSchema: ErrorSchema, fieldName = 'root') {
   let errorList: TransformedErrorObject[] = []
   if ('__errors' in errorSchema) {
     errorList = errorList.concat(
-      (errorSchema.__errors || []).map((stack) => {
+      (errorSchema.__errors || []).map(stack => {
         return {
-          message: `${fieldName}: ${stack}`,
+          message: `${fieldName}: ${stack}`
         } as TransformedErrorObject
-      }),
+      })
     )
   }
   return Object.keys(errorSchema).reduce((acc, key) => {

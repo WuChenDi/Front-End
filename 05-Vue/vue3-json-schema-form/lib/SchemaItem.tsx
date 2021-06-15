@@ -17,7 +17,7 @@ export default defineComponent({
     const retrievedSchemaRef = computed(() => {
       const { schema, rootSchema, value } = props
       return formContext.transformSchemaRef.value(
-        retrieveSchema(schema, rootSchema, value),
+        retrieveSchema(schema, rootSchema, value)
       )
     })
 
@@ -47,5 +47,5 @@ export default defineComponent({
       }
       return <Component {...props} schema={retrievedSchema} />
     }
-  },
+  }
 })
