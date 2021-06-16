@@ -9,13 +9,8 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-// import { useStore } from "vuex";
-// import type { State } from "../store";
-
-// const { state, getters } = useStore<State>();
-
-import { useDDStore } from "../hooks/use-store";
-const { state, getters, commit, dispatch } = useDDStore();
+import { useStoreHooks } from "../hooks/useStore";
+const { state, getters, commit, dispatch } = useStoreHooks();
 
 defineProps({
   msg: String,

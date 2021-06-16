@@ -1,42 +1,39 @@
-import path from "path";
-import { defineConfig } from "vite";
-import type { UserConfig, UserConfigExport, ConfigEnv } from "vite";
+import { resolve } from "path";
+import type { UserConfig, ConfigEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 import viteCompression from "vite-plugin-compression";
 
-const pathResolve = (pathStr: string) => {
-  return path.resolve(__dirname, pathStr);
-};
-
-// function pathResolve(pathStr: string) {
-//   return path.resolve(process.cwd(), ".", pathStr);
-// }
-
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [vue()],
-//   build: {
-//     assetsDir: "assetsCDN",
-//   },
-//   resolve: {
-//     alias: {
-//       "@": pathResolve("./src"),
-//     },
-//   },
-// });
+function pathResolve(dir: string) {
+  return resolve(process.cwd(), ".", dir);
+}
 
 export default ({ command }: ConfigEnv): UserConfig => {
   console.log("command:", command);
 
   return {
     build: {
+      target: "es2015",
+      outDir: "dist",
       assetsDir: "assetsCDN",
+      terserOptions: {
+        compress: {
+          keep_infinity: true,
+          drop_console: false,
+        },
+      },
+      brotliSize: false,
+      chunkSizeWarningLimit: 2000,
     },
     resolve: {
-      alias: {
-        "@": pathResolve("./src"),
-      },
+      alias: [
+        {
+          // @/xxxx => src/xxxx
+          find: /\@\//,
+          replacement: `${pathResolve("src")}/`,
+        },
+      ],
     },
-    plugins: [vue(), viteCompression()],
+    plugins: [vue(), vueJsx(), viteCompression()],
   };
 };

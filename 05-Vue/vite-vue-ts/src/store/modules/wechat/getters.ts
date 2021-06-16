@@ -1,8 +1,9 @@
-import { userState } from "./store";
+import { userStateType } from "./store";
 
 const moduleGetters = {
-  isTest: (state: userState): number => {
-    return 123;
+  isLogin: (state: userStateType): string => {
+    console.log("getters 执行成功");
+    return `🏮${state.loading}`;
   },
 };
 

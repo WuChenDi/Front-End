@@ -6,4 +6,4 @@ export const createStore = () => {
 };
 
 // 类型推导
-export type userState = ReturnType<typeof createStore>;
+export type userStateType = ReturnType<typeof createStore>;
