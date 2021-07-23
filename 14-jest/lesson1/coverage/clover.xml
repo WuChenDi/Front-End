@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627021117916" clover="3.2.0">
-  <project timestamp="1627021117916" name="All files">
-    <metrics statements="30" coveredstatements="30" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="4" elements="39" coveredelements="39" complexity="0" loc="30" ncloc="30" packages="1" files="2" classes="2"/>
+<coverage generated="1627024003423" clover="3.2.0">
+  <project timestamp="1627024003423" name="All files">
+    <metrics statements="47" coveredstatements="47" conditionals="10" coveredconditionals="10" methods="9" coveredmethods="9" elements="66" coveredelements="66" complexity="0" loc="47" ncloc="47" packages="1" files="3" classes="3"/>
+    <file name="Counter.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\Counter.js">
+      <metrics statements="17" coveredstatements="17" conditionals="5" coveredconditionals="5" methods="5" coveredmethods="5"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="3" count="5" type="stmt"/>
+      <line num="4" count="5" type="stmt"/>
+      <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+    </file>
     <file name="featchData.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\featchData.js">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
       <line num="1" count="1" type="stmt"/>
