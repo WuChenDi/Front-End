@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627026684662" clover="3.2.0">
-  <project timestamp="1627026684662" name="All files">
-    <metrics statements="47" coveredstatements="41" conditionals="7" coveredconditionals="7" methods="9" coveredmethods="6" elements="63" coveredelements="54" complexity="0" loc="47" ncloc="47" packages="1" files="3" classes="3"/>
+<coverage generated="1627029291061" clover="3.2.0">
+  <project timestamp="1627029291061" name="All files">
+    <metrics statements="54" coveredstatements="54" conditionals="12" coveredconditionals="12" methods="11" coveredmethods="11" elements="77" coveredelements="77" complexity="0" loc="54" ncloc="54" packages="1" files="4" classes="4"/>
     <file name="Counter.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\Counter.js">
-      <metrics statements="17" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="2"/>
+      <metrics statements="17" coveredstatements="17" conditionals="5" coveredconditionals="5" methods="5" coveredmethods="5"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="cond" truecount="1" falsecount="0"/>
-      <line num="3" count="1" type="stmt"/>
+      <line num="3" count="4" type="stmt"/>
+      <line num="4" count="4" type="stmt"/>
+      <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="14" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="16" count="1" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+    </file>
+    <file name="demo.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\demo.js">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="cond" truecount="1" falsecount="0"/>
+      <line num="2" count="8" type="stmt"/>
+      <line num="3" count="8" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
       <line num="6" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="8" count="1" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="10" count="0" type="stmt"/>
-      <line num="11" count="1" type="stmt"/>
-      <line num="12" count="0" type="stmt"/>
-      <line num="13" count="0" type="stmt"/>
-      <line num="14" count="1" type="stmt"/>
-      <line num="15" count="0" type="stmt"/>
-      <line num="16" count="0" type="stmt"/>
-      <line num="17" count="1" type="stmt"/>
     </file>
     <file name="featchData.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\featchData.js">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>

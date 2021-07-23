@@ -46,7 +46,8 @@ describe("测试增加相关的代码", () => {
     });
 
     // 如果只想执行某一个用例，可以用 test.only 来修饰 only可以同时存在多个
-    test.only("测试 Counter 中的 addOne 方法", () => {
+    // test.only("测试 Counter 中的 addOne 方法", () => {
+    test("测试 Counter 中的 addOne 方法", () => {
       console.log("测试 Counter 中的 addOne 方法");
       counter.addOne();
       expect(counter.number).toBe(1);
