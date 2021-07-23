@@ -107,7 +107,7 @@ describe("toBeLessThanOrEqual", () => {
 
 // toBeCloseTo
 // toBeCloseTo 是比较两个值是否足够接近（不一定要相等），“足够接近” 由第二个参数指定 Math.pow(10, -precision) / 2
-// View Source: https://github.com/facebook/jest/blob/master/packages/expect/src/matchers.ts
+// View Source: https://github.com/facebook/jest/blob/master/packages/expect/src/matchers.ts#L172
 describe("toBeCloseTo", () => {
   it("是比较两个值是否足够接近（不一定要相等）", () => {
     const a = 0.1;

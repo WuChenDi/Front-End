@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1627003336851" clover="3.2.0">
-  <project timestamp="1627003336851" name="All files">
+<coverage generated="1627021117916" clover="3.2.0">
+  <project timestamp="1627021117916" name="All files">
     <metrics statements="30" coveredstatements="30" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="4" elements="39" coveredelements="39" complexity="0" loc="30" ncloc="30" packages="1" files="2" classes="2"/>
     <file name="featchData.js" path="D:\WuChenDi\Front-End\14-jest\lesson1\code\featchData.js">
       <metrics statements="25" coveredstatements="25" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
