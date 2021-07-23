@@ -1,5 +1,7 @@
 import Counter from "../code/Counter";
 
+// 每一个 describe 都是一个单独的作用域，可以作用于，下面的所有的 describe
+// 同级的互不影响，每个 describe 都可以拥有独自的钩子函数，执行顺序，先执行外部，再执行内部
 describe("测试增加相关的代码", () => {
   let counter = null;
 
@@ -26,7 +28,6 @@ describe("测试增加相关的代码", () => {
     console.log("外层 afterEach");
   });
 
-  // 执行顺序 由外到内
   describe("测试增加相关的代码", () => {
     beforeAll(() => {
       console.log("内层 beforeAll");
