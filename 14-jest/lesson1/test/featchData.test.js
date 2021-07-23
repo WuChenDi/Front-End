@@ -14,7 +14,7 @@ describe("回调类型的异步函数测试, 只有执行到done执行才结束"
 describe("无回调类型的异步函数测试", () => {
   it("测试返回结果为 { success: true }", () => {
     return fetchData().then((res) => {
-      console.log(res);
+      // console.log(res);
       expect(res.data).toEqual({
         success: true,
       });
