@@ -21,6 +21,21 @@ describe("无回调类型的异步函数测试", () => {
     });
   });
 
+  it("测试返回结果为 { success: true }", async () => {
+    const res = await fetchData();
+    expect(res.data).toEqual({
+      success: true,
+    });
+  });
+
+  it("测试返回结果为 { success: true }", async () => {
+    await expect(fetchData()).resolves.toMatchObject({
+      data: {
+        success: true,
+      },
+    });
+  });
+
   it("测试返回结果为 { success: true }", () => {
     return expect(fetchData()).resolves.toMatchObject({
       data: {
@@ -43,8 +58,15 @@ describe("测试返回404", () => {
   it("two", () => {
     return expect(fetchDataCatch()).rejects.toThrow();
   });
-});
 
-test("测试返回结果为 404", async () => {
-  await expect(fetchData()).rejects.toThrow();
+  it("three", async () => {
+    // 测试用例必须执行一次
+    expect.assertions(1);
+    try {
+      await fetchDataCatch();
+    } catch (error) {
+      expect(error.toString()).toEqual("Error: Request failed with status code 404");
+      // console.log(error.toString());
+    }
+  });
 });
