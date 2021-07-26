@@ -14,7 +14,7 @@ test("测试 runCallback", () => {
   expect(func).toBeCalled();
   // 每一次调用传入的都是 test
   expect(func).toBeCalledWith("test");
-  console.log(func.mock);
+  // console.log(func.mock);
   {
     // calls: [ [ 'test' ], [ 'test' ], [ 'test' ] ], // 包含调用时，传递的参数，可以通过判断calls的length来判断调用了几次
     // instances: [ undefined, undefined, undefined ], // 指func 运行时，this的指向
@@ -34,7 +34,7 @@ test("测试 runCallback 函数多次调用", () => {
   runCallback(func);
   runCallback(func);
   expect(func.mock.calls.length).toBe(3);
-  console.log(func.mock);
+  // console.log(func.mock);
 });
 
 test("测试 runCallback 调用传递参数", () => {
@@ -52,14 +52,14 @@ test("测试 runCallback 函数定义返回值 mockReturnValue", () => {
   runCallback(func);
   expect(func.mock.calls.length).toBe(3);
   expect(func.mock.results[0].value).toBe("dd");
-  console.log(func.mock);
+  // console.log(func.mock);
 });
 
 test("测试 runCallback 函数定义返回值 mockImplementation", () => {
   const func = jest.fn();
 
   func.mockImplementation(() => {
-    console.log("mockImplementation");
+    // console.log("mockImplementation");
     return "dd";
   });
 
@@ -68,7 +68,7 @@ test("测试 runCallback 函数定义返回值 mockImplementation", () => {
   runCallback(func);
   expect(func.mock.calls.length).toBe(3);
   expect(func.mock.results[0].value).toBe("dd");
-  console.log(func.mock);
+  // console.log(func.mock);
 });
 
 test("测试 runCallback 函数定义返回值 mockImplementationOnce", () => {
@@ -94,13 +94,13 @@ test("测试 runCallback 函数定义返回值 mockImplementationOnce", () => {
   expect(func.mock.results[0].value).toBe("dd");
   expect(func.mock.results[1].value).toBe("ww");
   expect(func.mock.results[2].value).toBeUndefined();
-  console.log(func.mock);
+  // console.log(func.mock);
 });
 
 test("测试 createObject instances", () => {
   const func = jest.fn();
   createObject(func);
-  console.log(func.mock);
+  // console.log(func.mock);
 });
 
 jest.mock("axios");
