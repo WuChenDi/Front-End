@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { fetchDataCbk, fetchData, fetchDataCatch } from "../code/featchData";
 
 describe("回调类型的异步函数测试, 只有执行到done执行才结束", () => {

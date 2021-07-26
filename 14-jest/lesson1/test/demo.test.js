@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from "axios";
 import { runCallback, createObject, getData } from "../code/demo";
 

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 generateConfig 函数 1`] = `
+Object {
+  "port": 8080,
+  "proxy": 8081,
+  "sever": "localhost",
+}
+`;
+
+exports[`测试generateAnotherConfig 函数 1`] = `
+Object {
+  "port": 8080,
+  "proxy": 8082,
+  "sever": "localhost",
+}
+`;
+
+exports[`测试generateTimeConfig 函数 1`] = `
+Object {
+  "port": 8080,
+  "proxy": 8084,
+  "sever": "localhost",
+  "time": Any<Date>,
+}
+`;

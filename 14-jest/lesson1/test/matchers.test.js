@@ -1,3 +1,4 @@
+// @ts-nocheck
 // toBe 匹配器
 // matcher object is ===
 describe("toBe", () => {

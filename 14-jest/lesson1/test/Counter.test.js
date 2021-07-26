@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Counter from "../code/Counter";
 
 // 每一个 describe 都是一个单独的作用域，可以作用于，下面的所有的 describe
