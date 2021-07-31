@@ -1,4 +1,4 @@
-import { defineComponent, ref, onMounted, toRaw, nextTick, Slot, Slots } from 'vue';
+import { defineComponent, ref, onMounted, toRaw, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import { Layout, Menu } from 'ant-design-vue';
 import './App.scss';
@@ -11,12 +11,6 @@ interface MenuItem {
   title: string;
   subs?: Array<MenuItem>;
 }
-
-const TitleSlots = defineComponent({
-  setup(props, ctx) {
-    return () => <>{ctx.slots.title && ctx.slots.title('TitleSlots')}</>;
-  },
-});
 
 const App = defineComponent({
   name: 'App',
@@ -73,6 +67,14 @@ const App = defineComponent({
       });
     });
 
+    const ItemNode = (index: string | number | undefined, title: any) => {
+      return (
+        <Item key={index}>
+          <router-link to={index}>{title}</router-link>
+        </Item>
+      );
+    };
+
     return () => (
       <Layout id="components-layout">
         <Sider class="sider">
@@ -80,27 +82,25 @@ const App = defineComponent({
           <Menu
             theme="dark"
             mode="inline"
-            selectedKeys={selectedKeys}
-            openKeys={openKeys}
-            // v-model:selectedKeys={selectedKeys}
-            // v-model={openKeys}
+            v-models={[
+              [openKeys.value, 'openKeys'],
+              [selectedKeys.value, 'selectedKeys'],
+            ]}
           >
             {menuItem.value?.map((v) => {
               return v.subs ? (
                 <>
-                  <TitleSlots v-slots={{ title: (n: string) => <span>{n}</span> }} />
-                  <SubMenu key={v.index}>
-                    {v.subs.map((t) => (
-                      <Item key={t.index}>
-                        <router-link to={t.index}>{t.title}</router-link>
-                      </Item>
-                    ))}
+                  <SubMenu
+                    key={v.index}
+                    v-slots={{
+                      title: () => <span>{v.title}</span>,
+                    }}
+                  >
+                    {v.subs.map((t) => ItemNode(t.index, t.title))}
                   </SubMenu>
                 </>
               ) : (
-                <Item key={v.index}>
-                  <router-link to={v.index}>{v.title}</router-link>
-                </Item>
+                ItemNode(v.index, v.title)
               );
             })}
           </Menu>
