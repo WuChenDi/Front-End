@@ -26,7 +26,7 @@ const ThemeProvider = defineComponent({
     const context = computed(() => props.theme)
     provide(THEME_PROVIDER_KEY, context)
 
-    return () => slots.default && slots.default()
+    return () => slots.default?.()
   }
 })
 

@@ -10,9 +10,9 @@ module.exports = {
   },
   chainWebpack(config) {
     // console.log('config.plugin', config.plugin) // config.plugin [Function: plugin]
-    // if (!isLib) {
-    //   config.plugin('monaco').use(new MonacoWebpackPlugin())
-    // }
+    if (!isLib) {
+      config.plugin('monaco').use(new MonacoWebpackPlugin())
+    }
     config.plugin('circular').use(new CircularDependencyPlugin())
   }
 }

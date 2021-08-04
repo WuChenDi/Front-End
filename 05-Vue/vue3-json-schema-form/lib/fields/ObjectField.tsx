@@ -28,19 +28,17 @@ export default defineComponent({
       const properties = schema.properties || {}
       const currentValue: any = isObject(value) ? value : {}
 
-      return Object.keys(properties).map((k: string, index: number) => {
-        return (
-          <SchemaItem
-            schema={properties[k]}
-            rootSchema={rootSchema}
-            value={currentValue[k]}
-            key={index}
-            onChange={(v: any) => handleObjectFieldChange(k, v)}
-            errorSchema={errorSchema[k] || {}}
-            uiSchema={uiSchema.properties ? uiSchema.properties[k] || {} : {}}
-          />
-        )
-      })
+      return Object.keys(properties).map((k: string, index: number) => (
+        <SchemaItem
+          schema={properties[k]}
+          rootSchema={rootSchema}
+          value={currentValue[k]}
+          key={index}
+          onChange={(v: any) => handleObjectFieldChange(k, v)}
+          errorSchema={errorSchema[k] || {}}
+          uiSchema={uiSchema.properties ? uiSchema.properties[k] || {} : {}}
+        />
+      ))
     }
   }
 })

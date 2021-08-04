@@ -73,7 +73,7 @@ const ArrayItemWrapper = defineComponent({
               下移
             </button>
           </div>
-          <div class={classes.content}>{slots.default && slots.default()}</div>
+          <div class={classes.content}>{slots.default?.()}</div>
         </div>
       )
     }
@@ -140,7 +140,6 @@ export default defineComponent({
 
       if (index === arr.length - 1) return
 
-      const item = arr.splice(index, 1)
       arr.splice(index + 1, 0, item[0])
       props.onChange(arr)
     }
