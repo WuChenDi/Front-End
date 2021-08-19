@@ -1,4 +1,3 @@
-// @ts-nocheck
 import "./index.scss";
 
 const Header = {

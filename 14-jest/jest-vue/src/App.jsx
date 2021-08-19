@@ -1,6 +1,5 @@
-// @ts-nocheck
-// import ToDoList from "./components/ToDoList/index.jsx";
-import HellWorld from "./components/HelloWorld.vue";
+import ToDoList from "./components/ToDoList/index.jsx";
+// import HellWorld from "./components/HelloWorld.vue";
 import "./App.scss";
 
 export default {
@@ -8,8 +7,8 @@ export default {
   render() {
     return (
       <div id="app">
-        <HellWorld msg="1231" />
-        {/* <ToDoList /> */}
+        {/* <HellWorld msg="1231" /> */}
+        <ToDoList />
       </div>
     );
   },

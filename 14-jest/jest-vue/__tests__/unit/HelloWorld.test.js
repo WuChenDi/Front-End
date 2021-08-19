@@ -21,15 +21,21 @@ import HelloWorld from "@/components/HelloWorld.vue";
 // });
 
 describe("HelloWorld.vue", () => {
-  it("renders props.msg when passed", async() => {
-    const msg = "new message";
+  // it("renders props.msg when passed", async() => {
+  //   const msg = "new message";
+  //   const wrapper = shallowMount(HelloWorld, {
+  //     propsData: { msg },
+  //   });
+  //   expect(wrapper.props("msg")).toEqual(msg);
+  //   expect(wrapper.findAll(".test").length).toBe(1);
+  //   // expect(wrapper.text()).toMatch(msg);
+  //   await wrapper.setProps({ msg: "hello" });
+  //   expect(wrapper.props("msg")).toEqual("hello");
+  // });
+  it("组件渲染正常", () => {
     const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg },
+      propsData: { msg: "new message" },
     });
-    expect(wrapper.props("msg")).toEqual(msg);
-    expect(wrapper.findAll(".test").length).toBe(1);
-    // expect(wrapper.text()).toMatch(msg);
-    await wrapper.setProps({ msg: "hello" });
-    expect(wrapper.props("msg")).toEqual("hello");
+    expect(wrapper).toMatchSnapshot()
   });
 });
