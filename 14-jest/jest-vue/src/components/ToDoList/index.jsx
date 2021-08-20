@@ -1,4 +1,3 @@
-// @ts-nocheck
 import Header from "../Header/index.jsx";
 import UnDoList from "../UnDoList/index.jsx";
 
@@ -6,24 +5,24 @@ export default {
   name: "ToDoList",
   data() {
     return {
-      undolist: [],
+      undoList: [],
     };
   },
   methods: {
     addUnDoItem(inputValue) {
-      this.undolist.push(inputValue);
-      console.log(this.undolist);
+      this.undoList.push(inputValue);
+      console.log(this.undoList);
     },
     handleItemDelete(index) {
-      this.undolist.splice(index, 1);
-      console.log(this.undolist);
+      this.undoList.splice(index, 1);
+      console.log(this.undoList);
     },
   },
   render() {
     return (
       <div class="hello">
         <Header on-add={this.addUnDoItem} />
-        <UnDoList list={this.undolist} on-delete={this.handleItemDelete} />
+        <UnDoList list={this.undoList} on-delete={this.handleItemDelete} />
       </div>
     );
   },

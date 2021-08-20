@@ -18,16 +18,14 @@ const Header = {
   render() {
     return (
       <div class="header">
-        <div class="header-content">
-          ToDoList:
-          <input
-            class="header-input"
-            data-test="input"
-            v-model={this.inputValue}
-            vOn:keyup_enter={this.addToDoItem}
-            placeholder="add ToDoItem"
-          />
-        </div>
+        <span>ToDoList</span>
+        <input
+          class="header-input"
+          data-test="input"
+          v-model={this.inputValue}
+          vOn:keyup_enter={this.addToDoItem}
+          placeholder="add ToDoItem"
+        />
       </div>
     );
   },

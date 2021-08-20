@@ -1,19 +1,18 @@
 .header {
-  line-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
   background-color: #333;
-}
-.header-content {
-  width: 600px;
-  margin: 0 auto;
   color: #fff;
   font-size: 24px;
+  padding: 0 10%;
 }
 .header-input {
-  float: right;
-  width: 360px;
-  margin-top: 16px;
-  line-height: 24px;
-  outline: none;
-  color: #333;
+  width: 60%;
+  height: 24px;
   text-indent: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #333;
 }
