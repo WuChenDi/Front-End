@@ -1,7 +1,7 @@
 import Header from "../Header/index.jsx";
 import UnDoList from "../UnDoList/index.jsx";
 
-export default {
+const ToDoList = {
   name: "ToDoList",
   data() {
     return {
@@ -27,3 +27,5 @@ export default {
     );
   },
 };
+
+export default ToDoList;
