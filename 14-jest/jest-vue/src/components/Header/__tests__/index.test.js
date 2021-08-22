@@ -20,28 +20,28 @@ describe("Header.vue", () => {
     expect(inputValue).toBe("");
   });
 
-  it("输入框发生变化，数据应该跟着变", () => {
+  it("输入框发生变化，数据应该跟着变", async () => {
     const wrapper = shallowMount(Header);
     const input = findTestWrapper(wrapper, "input");
-    input.setValue("hello");
+    await input.setValue("hello");
     const inputValue = wrapper.vm.$data.inputValue;
     expect(inputValue).toBe("hello");
   });
 
-  it("输入框输入回车，无内容时，无反应", () => {
+  it("输入框输入回车，无内容时，无反应", async () => {
     const wrapper = shallowMount(Header);
     const input = findTestWrapper(wrapper, "input");
-    input.setValue("");
-    input.trigger("keyup.enter");
+    await input.setValue("");
+    await input.trigger("keyup.enter");
     // expect(wrapper.emitted.add).toBeTruthy();
     expect(wrapper.emitted().add).toBeFalsy();
   });
 
-  it("输入框输入回车，有内容时，向外触发事件，同时清空 inputValue", () => {
+  it("输入框输入回车，有内容时，向外触发事件，同时清空 inputValue", async () => {
     const wrapper = shallowMount(Header);
     const input = findTestWrapper(wrapper, "input");
-    input.setValue("hello");
-    input.trigger("keyup.enter");
+    await input.setValue("hello");
+    await input.trigger("keyup.enter");
     expect(wrapper.emitted().add).toBeTruthy();
     expect(wrapper.vm.$data.inputValue).toBe("");
   });

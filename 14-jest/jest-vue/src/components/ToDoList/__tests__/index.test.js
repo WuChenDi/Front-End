@@ -28,9 +28,9 @@ describe("ToDoList.vue", () => {
   // });
 
   // 单元测试
-  it("addUnDoItem 执行后，内容增加", () => {
+  it("addUnDoItem 执行后，内容增加", async () => {
     const wrapper = shallowMount(ToDoList);
-    wrapper.setData({
+    await wrapper.setData({
       undoList: [1, 2, 3],
     });
     wrapper.vm.addUnDoItem(4);
@@ -44,9 +44,9 @@ describe("ToDoList.vue", () => {
     expect(list).toBeTruthy();
   });
 
-  it("handleDeleteItem 方法执行时，UnDoList 内容减少", () => {
+  it("handleDeleteItem 方法执行时，UnDoList 内容减少", async () => {
     const wrapper = shallowMount(ToDoList);
-    wrapper.setData({
+    await wrapper.setData({
       undoList: [1, 2, 3],
     });
     wrapper.vm.handleItemDelete(1);
