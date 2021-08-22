@@ -12,9 +12,9 @@ const UnDoList = {
   render() {
     return (
       <div class="undocontent">
-        <div data-test="count" class="title">
-          {/* <span> 正在进行： </span> */}
-          <span> {this.list.length} </span>
+        <div class="title">
+          正在进行：
+          <span data-test="count"> {this.list.length} </span>
         </div>
 
         <ul>
