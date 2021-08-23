@@ -5,8 +5,16 @@ const UnDoList = {
   props: ["list"],
   methods: {
     handleDelete(index) {
-      console.log(index);
       this.$emit("delete", index);
+    },
+    changeStatus(index) {
+      this.$emit("status", index);
+    },
+    handleInputBlur() {
+      this.$emit("reset");
+    },
+    handleInputChange(value, index) {
+      this.$emit("change", { value, index });
     },
   },
   render() {
@@ -19,8 +27,25 @@ const UnDoList = {
 
         <ul>
           {this.list.map((item, index) => (
-            <li key={index} data-test="item" class="undoitem">
-              {item}
+            <li
+              key={index}
+              data-test="item"
+              class="undoitem"
+              on-click={() => this.changeStatus(index)}
+            >
+              {item.status === "input" ? (
+                <input
+                  data-test="input"
+                  value={item.value}
+                  on-blur={this.handleInputBlur}
+                  on-change={(e) =>
+                    this.handleInputChange(e.target.value, index)
+                  }
+                />
+              ) : (
+                <span> {item.value}</span>
+              )}
+
               <span
                 data-test="delete-button"
                 on-click={() => this.handleDelete(index)}

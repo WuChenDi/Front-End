@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1629600671642" clover="3.2.0">
-  <project timestamp="1629600671643" name="All files">
+<coverage generated="1629646077957" clover="3.2.0">
+  <project timestamp="1629646077958" name="All files">
     <metrics statements="20" coveredstatements="19" conditionals="2" coveredconditionals="2" methods="12" coveredmethods="11" elements="34" coveredelements="32" complexity="0" loc="20" ncloc="20" packages="4" files="4" classes="4"/>
     <package name="src">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -18,7 +18,7 @@
         <line num="12" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
       </file>
     </package>
     <package name="src.components.ToDoList">
@@ -31,7 +31,7 @@
         <line num="14" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
+        <line num="22" count="8" type="stmt"/>
       </file>
     </package>
     <package name="src.components.UnDoList">
