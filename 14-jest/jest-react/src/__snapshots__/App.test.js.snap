@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.js renders learn react link enzyme 1`] = `
+<div
+  className="App"
+  data-test="App"
+  title="jest react"
+>
+  Learn React
+</div>
+`;
