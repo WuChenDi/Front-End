@@ -7,11 +7,11 @@ import { findTestWrapper } from "./utils/testUtils";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("App.js", () => {
-  it("renders learn react link", () => {
-    render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+  // it("renders learn react link", () => {
+  //   render(<App />);
+  //   const linkElement = screen.getByText(/learn react/i);
+  //   expect(linkElement).toBeInTheDocument();
+  // });
 
   it("renders learn react link enzyme", () => {
     // 集成测试使用 mount

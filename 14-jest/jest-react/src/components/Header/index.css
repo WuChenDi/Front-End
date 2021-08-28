@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: #333;
+  color: #fff;
+  font-size: 24px;
+  padding: 0 10%;
+}
+.header-input {
+  width: 60%;
+  height: 24px;
+  text-indent: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #333;
+}

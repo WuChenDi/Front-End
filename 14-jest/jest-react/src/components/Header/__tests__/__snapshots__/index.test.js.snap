@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.jsx 样式发生改变，做提示 1`] = `
+<div
+  className="header"
+>
+  <span>
+    ToDoList
+  </span>
+  <input
+    className="header-input"
+    data-test="input"
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="add ToDoItem"
+    value=""
+  />
+</div>
+`;
