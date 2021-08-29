@@ -42,7 +42,7 @@ describe("Header.jsx", () => {
     expect(fn).not.toHaveBeenCalled();
   });
 
-  it("输入框输入回车，有内容时，向外触发事件，同时清空 inputValue", async () => {
+  it("输入框输入回车，有内容时，向外触发事件，同时清空 inputValue", () => {
     const fn = jest.fn();
     const wrapper = shallow(<Header add={fn} />);
     const input = findTestWrapper(wrapper, "input");

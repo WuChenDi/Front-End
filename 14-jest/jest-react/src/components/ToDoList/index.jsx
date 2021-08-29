@@ -6,15 +6,23 @@ const ToDoList = () => {
   const [undoList, setUndoList] = useState([]);
 
   const addUnDoItem = (value) => {
-    setUndoList.push({
-      status: "div",
-      value: value,
-    });
+    setUndoList([
+      ...undoList,
+      {
+        status: "div",
+        value: value,
+      },
+    ]);
   };
 
   return (
-    <div data-test="undoList" undoList={undoList}>
+    <div data-test="undoList" data-list={undoList}>
       <Header add={(value) => addUnDoItem(value)} />
+      <ul>
+        {undoList.map((item, index) => (
+          <li key={index}>{item.value}</li>
+        ))}
+      </ul>
     </div>
   );
 };

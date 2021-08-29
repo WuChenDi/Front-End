@@ -10,25 +10,23 @@ describe("ToDoList.jsx", () => {
   it("初始化时. undoList 为空", () => {
     const wrapper = shallow(<ToDoList />);
     const input = findTestWrapper(wrapper, "undoList");
-    expect(input.prop("undoList")).toEqual([]);
+    expect(input.prop("data-list")).toEqual([]);
   });
 
-  it("addUnDoItem 方法执行时，内容增加", () => {
+  it("addUnDoItem 执行后，内容增加", () => {
     const wrapper = shallow(<ToDoList />);
     const Header = wrapper.find("Header");
-    // console.log(Header.prop("add"))
-    console.log(wrapper.instance());
-    // expect(Header.prop("addUnDoItem")).toBe(wrapper.instance().addUnDoItem);
+    const addFunc = Header.prop("add");
+    addFunc("hello");
+    const input = findTestWrapper(wrapper, "undoList");
+    expect(input.prop("data-list").length).toBe(1);
+    expect(input.prop("data-list")[0]).toEqual({
+      status: "div",
+      value: "hello",
+    });
+    // await addFunc("hello1");
+    // const newInput = findTestWrapper(wrapper, "undoList");
+    // console.log(newInput.prop("data-list"))
+    // expect(newInput.prop("undoList").length).toBe(2);
   });
-
-  // it("addUnDoItem 方法执行时，内容增加", () => {
-  //   const wrapper = shallow(<ToDoList />, {
-  //     wrappingComponent: ToDoList,
-  //   });
-  //   const provider = wrapper.getWrappingComponent();
-  //   const Header = wrapper.find("Header");
-  //   // console.log(Header.prop("add"))
-  //   console.log(provider)
-  //   // expect(Header.prop("addUnDoItem")).toBe(wrapper.instance().addUnDoItem);
-  // });
 });
