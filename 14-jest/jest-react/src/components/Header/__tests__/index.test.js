@@ -1,9 +1,6 @@
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import Header from "../index.jsx";
 import { findTestWrapper } from "../../../utils/testUtils";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("Header.jsx", () => {
   it("样式发生改变，做提示", () => {

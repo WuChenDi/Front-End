@@ -1,10 +1,7 @@
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import ToDoList from "../index.jsx";
 import Header from "../../Header/index.jsx";
 import { findTestWrapper } from "../../../utils/testUtils";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe("ToDoList.jsx", () => {
   it("初始化时. undoList 为空", () => {
