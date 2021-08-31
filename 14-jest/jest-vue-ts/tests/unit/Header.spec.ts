@@ -16,8 +16,15 @@ describe("Header.vue", () => {
 
   it("输入框初始值为空", async () => {
     const wrapper = shallowMount(Header);
-    const input = findTestWrapper(wrapper, "input");
-    expect(input.text()).toBe("")
+    // const input = wrapper.find('input');
+    // input.element.value = '1';
+    // input.trigger('input');
+    // console.log(input.element)
+    console.log(wrapper.emitted())
+
+    // const input = findTestWrapper(wrapper, "input").setValue('');
+    // console.log(input.text())
+    // expect(input).toBe('')
     // const inputValue = wrapper.vm.$data.inputValue;
     // expect(wrapper).toBe("");
   });

@@ -34,3 +34,8 @@ export interface UnDoListType {
   status: string;
   value: string;
 }
+
+export interface UnDoChangeParameter {
+  value: string;
+  index: number;
+}

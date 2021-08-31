@@ -1,59 +1,61 @@
 import { defineComponent, ref } from "vue";
 import Header from "../Header/index";
 import UnDoList from "../UnDoList/index";
-import { UnDoListType } from "../../utils/types";
+import { UnDoListType, UnDoChangeParameter } from "@/utils/types";
 
 export default defineComponent({
   name: "ToDoList",
   setup() {
-    const undoList = ref<UnDoListType[]>([]);
+    const undoListRef = ref<UnDoListType[]>([]);
 
     const addUnDoItem = (inputValue: string) => {
       console.log(inputValue);
-      undoList.value.push({
+      undoListRef.value.push({
         status: "div",
         value: inputValue,
       });
-      console.log(undoList.value);
+      console.log(undoListRef.value);
     };
 
     const handleItemDelete = (index: number) => {
-      undoList.value.splice(index, 1);
-      console.log(undoList.value);
+      undoListRef.value.splice(index, 1);
+      console.log(undoListRef.value);
     };
 
     const changeStatus = (index: number) => {
       const newList: UnDoListType[] = [];
-      undoList.value.forEach((item, itemIndex) => {
+      undoListRef.value.forEach((item, itemIndex) => {
         newList.push({
           status: itemIndex === index ? "input" : "div",
           value: item.value,
         });
       });
-      undoList.value = newList;
+      undoListRef.value = newList;
     };
 
     const resetStatus = () => {
       const newList: UnDoListType[] = [];
-      undoList.value.forEach((item) => {
+      undoListRef.value.forEach((item) => {
         newList.push({
           status: "div",
           value: item.value,
         });
       });
-      undoList.value = newList;
+      undoListRef.value = newList;
     };
 
-    const changeItemValue = ({ value, index }: any) => {
-      undoList.value[index].value = value;
+    const changeItemValue = ({ value, index }: UnDoChangeParameter) => {
+      undoListRef.value[index].value = value;
     };
 
     return () => {
+      const undoList = undoListRef.value;
+
       return (
         <div class="hello">
           <Header add={(e) => addUnDoItem(e)} />
           <UnDoList
-            list={undoList.value}
+            list={undoList}
             delete={handleItemDelete}
             status={changeStatus}
             reset={resetStatus}
