@@ -1,15 +1,23 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { ThemeContext } from '../App'
 
 const LikeButton: React.FC = () => {
   const [like, setLike] = useState(0)
   const [on, setOn] = useState(true)
-  const [obj, setObj] = useState({like: 0, on: true})
+  const [obj, setObj] = useState({ like: 0, on: true })
   // const positions = useMousePosition()
 
   const likeRef = useRef(0)
 
   const didMountRef = useRef(false)
   const domRef = useRef<HTMLInputElement>(null)
+
+  const theme = useContext(ThemeContext)
+  console.log(theme)
+  const style = {
+    background: theme.background,
+    color: theme.color
+  }
 
   // 首次与每次渲染都会执行
   useEffect(() => {
@@ -40,14 +48,15 @@ const LikeButton: React.FC = () => {
 
   return (
     <>
-      <input type='text' ref={domRef}/>
+      <input type='text' ref={domRef} />
       {/* <>
         <p>X:{positions.x}</p>
         <p>Y:{positions.y}</p>
       </> */}
       <button
+        style={style}
         onClick={() => {
-          setLike(like + 1);
+          setLike(like + 1)
           likeRef.current++
         }}
       >
@@ -62,14 +71,14 @@ const LikeButton: React.FC = () => {
       </button>
       <button
         onClick={() => {
-          setObj({like: obj.like + 1, on: obj.on})
+          setObj({ like: obj.like + 1, on: obj.on })
         }}
       >
         {obj.like}👍
       </button>
       <button
         onClick={() => {
-          setObj({like: obj.like, on: !obj.on})
+          setObj({ like: obj.like, on: !obj.on })
         }}
       >
         {obj.on ? 'ON' : 'OFF'}

@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../App'
 
 interface IHelloProps {
-	message?: string
+  message?: string
 }
-const Hello: React.FC<IHelloProps> = (props) => {
-	return <h2>{props.message}</h2>
+const Hello: React.FC<IHelloProps> = props => {
+  const theme = useContext(ThemeContext)
+  console.log(theme)
+  const style = {
+    background: theme.background,
+    color: theme.color
+  }
+
+  return <h2 style={style}>{props.message}</h2>
 }
 
 Hello.defaultProps = {
-	message: 'hello world',
+  message: 'hello world'
 }
 
 export default Hello

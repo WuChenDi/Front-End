@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -13,14 +13,31 @@ interface IShowResult {
   status: string
 }
 
-const DogShow: React.FC<{ data: IShowResult }> = ({data}) => {
+const DogShow: React.FC<{ data: IShowResult }> = ({ data }) => {
   return (
     <>
       <h2>Dog show:{data.status}</h2>
-      <img src={data.message} alt=''/>
+      <img src={data.message} alt='' />
     </>
   )
 }
+
+interface IThemeProps {
+  [key: string]: { color: string; background: string }
+}
+
+const themes: IThemeProps = {
+  light: {
+    color: '#000',
+    background: '#eee'
+  },
+  dark: {
+    color: '#fff',
+    background: '#222'
+  }
+}
+
+export const ThemeContext = React.createContext(themes.light)
 
 const App: React.FC = () => {
   const [show, setShow] = useState(true)
@@ -33,39 +50,41 @@ const App: React.FC = () => {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo'/>
-        <Hello/>
-        <LikeButton/>
+      <ThemeContext.Provider value={themes.light}>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+          <Hello />
+          <LikeButton />
 
-        {/*{loading ? <p>dog loading...</p> : <img src={dogResult && dogResult.message} alt='dog'/>}*/}
+          {/*{loading ? <p>dog loading...</p> : <img src={dogResult && dogResult.message} alt='dog'/>}*/}
 
-        {/*<WrappedDogShow/>*/}
+          {/*<WrappedDogShow/>*/}
 
-        <p>
-          <button
-            onClick={() => {
-              setShow(!show)
-            }}
-          >
-            Toggle Tracker
-          </button>
-        </p>
+          <p>
+            <button
+              onClick={() => {
+                setShow(!show)
+              }}
+            >
+              Toggle Tracker
+            </button>
+          </p>
 
-        {/* <>
+          {/* <>
           <p>X:{positions.x}</p>
           <p>Y:{positions.y}</p>
         </> */}
 
-        {show && <MouseTracker/>}
+          {show && <MouseTracker />}
 
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
+          </p>
+          <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
+            Learn React
+          </a>
+        </header>
+      </ThemeContext.Provider>
     </div>
   )
 }
