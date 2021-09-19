@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import logo from './logo.svg'
 import './App.css'
 
 import Hello from './components/Hello'
 import LikeButton from './components/LikeButton'
 import MouseTracker from './components/MouseTracker'
-import useMousePosition from './hooks/useMousePosition'
 import useURLLoader from './hooks/useURLLoader'
 import withLoader from './components/withLoader'
 
@@ -14,11 +13,11 @@ interface IShowResult {
   status: string
 }
 
-const DogShow: React.FC<{ data: IShowResult }> = ({ data }) => {
+const DogShow: React.FC<{ data: IShowResult }> = ({data}) => {
   return (
     <>
       <h2>Dog show:{data.status}</h2>
-      <img src={data.message} alt='' />
+      <img src={data.message} alt=''/>
     </>
   )
 }
@@ -35,13 +34,13 @@ const App: React.FC = () => {
   return (
     <div className='App'>
       <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <Hello />
-        <LikeButton />
+        <img src={logo} className='App-logo' alt='logo'/>
+        <Hello/>
+        <LikeButton/>
 
-        {loading ? <p>dog loading...</p> : <img src={dogResult && dogResult.message} alt='dog' />}
+        {/*{loading ? <p>dog loading...</p> : <img src={dogResult && dogResult.message} alt='dog'/>}*/}
 
-        <WrappedDogShow />
+        {/*<WrappedDogShow/>*/}
 
         <p>
           <button
@@ -58,7 +57,7 @@ const App: React.FC = () => {
           <p>Y:{positions.y}</p>
         </> */}
 
-        {show && <MouseTracker />}
+        {show && <MouseTracker/>}
 
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
