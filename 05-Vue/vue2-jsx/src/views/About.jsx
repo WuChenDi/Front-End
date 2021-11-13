@@ -1,5 +1,5 @@
 export default {
-  name: 'Home',
+  name: 'About',
 
   render() {
     return (
