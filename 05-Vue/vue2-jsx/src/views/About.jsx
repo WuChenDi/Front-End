@@ -1,5 +1,7 @@
 import Button from '@/components/button';
 import HelloWorld from '@/components/HelloWorld';
+import MyScoped from '@/components/MyScoped';
+
 import logo from '../assets/logo.png';
 import styles from './Home.module.less';
 
@@ -21,19 +23,25 @@ export default {
 
               <p>this.$slots 挂载组件内部的所有插槽</p>
               <p>default: 默认插槽</p>
-              <p>scopedSlots即作用域插槽</p>
-              {/* <pre>
-                  <div
-                    {...{
-                      scopedSlots: {
-                        default: () => {},
-                        header: () => {}
-                      }
-                    }}
-                  >
-                    123
-                  </div>
-              </pre> */}
+            </div>
+          </div>
+
+          <div class={styles.card}>
+            <div class={styles.card__header}>具名插槽 作用域插槽</div>
+            <div class={styles.card__body}>
+              <p>scopedSlots</p>
+
+              <MyScoped
+                {...{
+                  scopedSlots: {
+                    test: ({ user }) => <div>{user.name}</div>
+                  }
+                }}
+              >
+                <header slot='header'>header</header>
+                <header slot='content'>content</header>
+                <footer slot='footer'>footer</footer>
+              </MyScoped>
             </div>
           </div>
         </div>
