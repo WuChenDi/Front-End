@@ -1,4 +1,5 @@
 import HelloWorld from '@/components/HelloWorld';
+import Button from '@/components/button';
 import logo from '../assets/logo.png';
 import styles from './Home.module.less';
 
@@ -41,7 +42,7 @@ export default {
     return (
       <div class={styles.home}>
         <img src={logo} alt='' />
-        <HelloWorld msg='Vue + JSX' />
+        <HelloWorld msg='Vue + JSX，指令' />
 
         <div class={styles.content}>
           <div class={styles.card}>
@@ -70,7 +71,9 @@ export default {
             <div class={styles.card__body}>
               <button onClick={this.handleClick}>点击事件</button>
               <button on-click={this.handleClick}>点击事件</button>
-              <p>nativeOnClick 原生点击事件 对应@click.native</p>
+              <Button nativeOnClick={this.handleClick}>
+                nativeOnClick 原生点击事件 对应@click.native
+              </Button>
               <button onClick={e => this.handleClick(e)}>
                 触发点击事件时，传递参数
               </button>
