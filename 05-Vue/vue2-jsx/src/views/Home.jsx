@@ -1,4 +1,4 @@
-import HelloWorld from '@/components/HelloWorld.jsx';
+import HelloWorld from '@/components/HelloWorld';
 import logo from '../assets/logo.png';
 import styles from './Home.module.css';
 
