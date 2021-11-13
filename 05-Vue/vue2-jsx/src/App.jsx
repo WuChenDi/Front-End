@@ -1,21 +1,17 @@
-import HelloWorld from './components/HelloWorld'
-import logo from './assets/logo.png'
-import styles from './App.module.css'
+import styles from './App.module.css';
 
-const App = {
+export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
 
   render() {
     return (
       <div id={styles.app}>
-        <img src={logo} alt='' />
-        <HelloWorld msg='Welcome to Your Vue.js App' />
+        <div id='nav'>
+          <router-link to='/'>Home</router-link> |
+          <router-link to='/about'>About</router-link>
+        </div>
+        <router-view />
       </div>
-    )
+    );
   }
-}
-
-export default App
+};
