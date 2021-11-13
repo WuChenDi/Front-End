@@ -1,24 +1,8 @@
-# vue2-demo1
+# vue jsx
 
-## Project setup
-```
-yarn install
-```
+> 想了解 vue 模板被编译 查看：https://github.com/WuChenDi/Front-End/blob/master/05-Vue/vue-template-compiler-render/index.js
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 指令
+- 事件
+- 插槽
+- 函数式组件
