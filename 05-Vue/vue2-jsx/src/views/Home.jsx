@@ -39,6 +39,11 @@ export default {
       html
     } = this;
 
+    const inputAttrs = {
+      type: 'email',
+      placeholder: 'Enter your email'
+    };
+
     return (
       <div class={styles.home}>
         <img src={logo} alt='' />
@@ -77,6 +82,13 @@ export default {
               <button onClick={e => this.handleClick(e)}>
                 触发点击事件时，传递参数
               </button>
+            </div>
+          </div>
+
+          <div class={styles.card}>
+            <div class={styles.card__header}>结构赋值</div>
+            <div class={styles.card__body}>
+              <input {...{ attrs: inputAttrs }} />
             </div>
           </div>
 
