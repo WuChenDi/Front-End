@@ -20,22 +20,22 @@ export default defineComponent({
     console.log('setup')
 
     onBeforeMount(() => {
-      console.log('onBeforeMount')
+      console.log('Composition API ------ onBeforeMount')
     })
     onMounted(() => {
-      console.log('onMounted')
+      console.log('Composition API ------ onMounted')
     })
     onBeforeUpdate(() => {
-      console.log('onBeforeUpdate')
+      console.log('Composition API ------ onBeforeUpdate')
     })
     onUpdated(() => {
-      console.log('onUpdated')
+      console.log('Composition API ------ onUpdated')
     })
     onBeforeUnmount(() => {
-      console.log('onBeforeUnmount')
+      console.log('Composition API ------ onBeforeUnmount')
     })
     onUnmounted(() => {
-      console.log('onUnmounted')
+      console.log('Composition API ------ onUnmounted')
     })
 
     return () => <p>生命周期 Composition API ------ {props.msg}</p>
