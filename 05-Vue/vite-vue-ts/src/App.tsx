@@ -10,6 +10,8 @@ export default defineComponent({
       { path: '/LifeCycles', name: 'LifeCycles' },
       { path: '/Ref', name: 'Ref' },
       { path: '/RefTemplate', name: 'RefTemplate' },
+      { path: '/ToRef', name: 'ToRef' },
+      { path: '/ToRefs', name: 'ToRefs' },
       { path: '/watch', name: 'watch' },
       { path: '/watchEffect', name: 'watchEffect' },
       { path: '/chart', name: 'ChartDemo' }

@@ -15,6 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../components/RefTemplate')
   },
   {
+    path: '/ToRef',
+    component: () => import('../components/ToRef')
+  },
+  {
+    path: '/ToRefs',
+    component: () => import('../components/ToRefs')
+  },
+  {
     path: '/watch',
     component: import('../components/Watch.vue')
   },
