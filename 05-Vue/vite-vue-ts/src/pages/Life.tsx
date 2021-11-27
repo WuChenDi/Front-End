@@ -5,15 +5,15 @@ import LifeCycles from '@/components/LifeCycles'
 export default defineComponent({
   name: 'Life',
   setup() {
-    const msg = ref('Hello Vue 3.0 + Vite')
-    const flag = ref(true)
+    const msgRef = ref('Hello Vue 3.0 + Vite')
+    const flagRef = ref(true)
 
     const handleClick = () => {
-      msg.value = `vue3 ${+new Date()}`
+      msgRef.value = `vue3 ${+new Date()}`
     }
 
     const handleChangeFlag = () => {
-      flag.value = !flag.value
+      flagRef.value = !flagRef.value
     }
 
     return () => (
@@ -21,8 +21,8 @@ export default defineComponent({
         <div>
           <p>Life</p>
 
-          {flag.value && <LifeCycles2 msg={msg.value} />}
-          {flag.value && <LifeCycles msg={msg.value} />}
+          {flagRef.value && <LifeCycles2 msg={msgRef.value} />}
+          {flagRef.value && <LifeCycles msg={msgRef.value} />}
         </div>
 
         <button onClick={handleClick}>change msg</button>
