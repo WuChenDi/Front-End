@@ -7,6 +7,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../pages/Life')
   },
   {
+    path: '/Ref',
+    component: () => import('../components/Ref')
+  },
+  {
+    path: '/RefTemplate',
+    component: () => import('../components/RefTemplate')
+  },
+  {
     path: '/watch',
     component: import('../components/Watch.vue')
   },
