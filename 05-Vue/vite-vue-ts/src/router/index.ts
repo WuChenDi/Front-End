@@ -1,32 +1,28 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-
-const Home = () => import("../pages/Home.vue");
-const Watch = () => import("../components/Watch.vue");
-const watchEffect = () => import("../components/watchEffect.vue");
-const ChartDemo = () => import("../components/ChaerDemo.vue");
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
-  { path: "/", component: Home, children: [] },
+  { path: '/', component: () => import('../pages/Home.vue') },
   {
-    path: "/watch",
-    component: Watch,
-    children: [],
+    path: '/LifeCycles',
+    component: () => import('../pages/Life')
   },
   {
-    path: "/watchEffect",
-    component: watchEffect,
-    children: [],
+    path: '/watch',
+    component: import('../components/Watch.vue')
   },
   {
-    path: "/chart",
-    component: ChartDemo,
-    children: [],
+    path: '/watchEffect',
+    component: () => import('../components/watchEffect.vue')
   },
-];
+  {
+    path: '/chart',
+    component: () => import('../components/ChaerDemo.vue')
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-export default router;
+export default router

@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { useStoreHooks } from "../hooks/useStore";
 const { state, getters, commit, dispatch } = useStoreHooks();
 
