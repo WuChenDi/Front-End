@@ -76,5 +76,6 @@ delete proxyData.nums // 删除属性
 
 // TODO: 为什么输出没有 a 对象
 // proxyData.a.b = 200
+// reactive 方法默认空对象影响，按道理应该要报错的，去掉默认值就可以了
 
 console.log(proxyData)
