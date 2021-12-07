@@ -12,6 +12,7 @@ export default defineComponent({
       { path: '/RefTemplate', name: 'RefTemplate' },
       { path: '/ToRef', name: 'ToRef' },
       { path: '/ToRefs', name: 'ToRefs' },
+      { path: '/VModel', name: 'VModel' },
       { path: '/watch', name: 'watch' },
       { path: '/watchEffect', name: 'watchEffect' },
       { path: '/chart', name: 'ChartDemo' }

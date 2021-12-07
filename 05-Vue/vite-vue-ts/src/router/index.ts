@@ -23,6 +23,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../components/ToRefs')
   },
   {
+    path: '/VModel',
+    component: () => import('../pages/VModel')
+  },
+  {
     path: '/watch',
     component: import('../components/Watch.vue')
   },
