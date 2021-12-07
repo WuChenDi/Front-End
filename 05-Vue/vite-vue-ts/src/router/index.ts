@@ -27,12 +27,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../pages/VModel')
   },
   {
-    path: '/watch',
-    component: import('../components/Watch.vue')
-  },
-  {
-    path: '/watchEffect',
-    component: () => import('../components/watchEffect.vue')
+    path: '/Watch',
+    component: import('../pages/Watch')
   },
   {
     path: '/chart',
