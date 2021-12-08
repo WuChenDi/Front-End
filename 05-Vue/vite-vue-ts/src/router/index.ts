@@ -31,6 +31,10 @@ const routes: Array<RouteRecordRaw> = [
     component: import('../pages/Watch')
   },
   {
+    path: '/GetInstance',
+    component: import('../components/GetInstance.vue')
+  },
+  {
     path: '/chart',
     component: () => import('../components/ChaerDemo.vue')
   }
