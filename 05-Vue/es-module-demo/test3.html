@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES Module demo</title>
+  </head>
+  <body>
+    <p>远程引用</p>
+
+    <script type="module">
+      import { createStore } from 'https://unpkg.com/redux@latest/es/redux.mjs'
+      console.log('createStore', createStore)
+    </script>
+  </body>
+</html>

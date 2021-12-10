@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ES Module demo</title>
+  </head>
+  <body>
+    <p>基本演示</p>
+
+    <script type="module">
+      import add from './src/add.js'
+
+      const res = add(1, 2)
+      console.log('add res', res)
+    </script>
+
+    <script type="module">
+      import { add, multi } from './src/math.js'
+      console.log('add res', add(10, 20))
+      console.log('multi res', multi(10, 20))
+    </script>
+  </body>
+</html>
