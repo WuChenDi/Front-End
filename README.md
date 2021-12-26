@@ -1,14 +1,23 @@
 # 👀 Learning by doing
 
-## What is this
+## 🤔 What is this
 
 - 记录开发时遇到问题与个人总结知识点文章
 
 - 更完整的博客请查看：[语雀](https://www.yuque.com/wuchendi/fe)
 
-## 目录
+## 📚 目录
 
-- **[前端面试](https://www.yuque.com/wuchendi/fe/gbm289)**
+- **📝 思考与总结**
+  - [x] [2017](https://www.yuque.com/wuchendi/fe/hlmugn)
+  - [x] [通宵加班吐槽 - 负能量(已加密)](https://www.yuque.com/wuchendi/fe/wp3ue7)
+  - [x] [leave it - 负能量(已加密)](https://www.yuque.com/wuchendi/fe/gf6eln)
+  - [x] [2018](https://www.yuque.com/wuchendi/fe/tsk7tu)
+  - [x] [2019 - 忙(没写完)](https://www.yuque.com/wuchendi/fe/2019)
+  - [x] [2020](https://www.yuque.com/wuchendi/fe/2020)
+  - [x] [2021-职业思考](https://www.yuque.com/wuchendi/fe/20210318)
+  - [ ] [2021](https://www.yuque.com/wuchendi/fe/ndmoi4)
+- **[🚌 前端面试](https://www.yuque.com/wuchendi/fe/gbm289)**
   - [x] [页面布局](https://www.yuque.com/wuchendi/fe/wkvdd5)
   - [x] [CSS 类](https://www.yuque.com/wuchendi/fe/gz38f8)
   - [x] [DOM 事件](https://www.yuque.com/wuchendi/fe/ak21nu)
@@ -26,12 +35,36 @@
   - [ ] [Vue - 待补充](https://www.yuque.com/wuchendi/fe/gvqnao)
   - [ ] [React - 待补充](https://www.yuque.com/wuchendi/fe/pm3a6g)
   - [x] [面试题目总结 -- 暂停更新](https://www.yuque.com/wuchendi/fe/naounc)
+- **JavaScript**
+  - [x] [Web Scoket 类方法封装](https://www.yuque.com/wuchendi/fe/wx3wzn)
+- **[设计模式](https://www.yuque.com/wuchendi/fe/ch6d63)**
+  - **创建型模式**
+    - [x] [工厂模式](https://www.yuque.com/wuchendi/fe/fr2dce)
+    - [x] [单例模式](https://www.yuque.com/wuchendi/fe/bz40t8)
+  - **结构型模式**
+    - [x] [适配器模式](https://www.yuque.com/wuchendi/fe/gegbcc)
+    - [x] [装饰器模式](https://www.yuque.com/wuchendi/fe/bdfak0)
+    - [x] [代理模式](https://www.yuque.com/wuchendi/fe/aroq8r)
+    - [x] [外观模式](https://www.yuque.com/wuchendi/fe/gghal1)
+  - **行为型模式**
+    - [x] [策略模式](https://www.yuque.com/wuchendi/fe/zof95x)
+    - [x] [观察者模式](https://www.yuque.com/wuchendi/fe/nppb04)
+    - [x] [发布订阅模式](https://www.yuque.com/wuchendi/fe/hyzk3n)
+- **数据结构与算法**
+  - [x] [复杂度分析](https://www.yuque.com/wuchendi/fe/qwgpwl)
+  - [x] [排序](https://www.yuque.com/wuchendi/fe/gkyy34)
+  - [x] [栈](https://www.yuque.com/wuchendi/fe/qloqrg)
+  - [x] [队列](https://www.yuque.com/wuchendi/fe/gblegg)
+  - [x] [链表](https://www.yuque.com/wuchendi/fe/vx4is2)
+  - [x] [树](https://www.yuque.com/wuchendi/fe/bst46n)
+  - [x] [哈希表](https://www.yuque.com/wuchendi/fe/rpzpl7)
+  - [x] [字典](https://www.yuque.com/wuchendi/fe/pgq4mi)
 - **框架与类库**
   - **Vue**
-    - [x] [Vue(2|3) 学习记录(全家桶)](https://www.yuque.com/wuchendi/fe/doboqg)
+    - [x] [Vue(2\|3) 学习记录(全家桶)](https://www.yuque.com/wuchendi/fe/doboqg)
     - [x] [vue 模板编译](https://www.yuque.com/wuchendi/fe/xkd1mc)
     - [x] [vue 模板编译 -- code](./05-Vue/vue-template-compiler-render)
-    - [x] [vue-jsx|tsx](https://www.yuque.com/wuchendi/fe/eynq4g)
+    - [x] [vue 使用 jsx 或 tsx 开发](https://www.yuque.com/wuchendi/fe/eynq4g)
     - [x] [生产环境使用 vue devtools 调试](https://www.yuque.com/wuchendi/fe/gi82zv)
     - [x] [Cases - vue2-jsx 项目代码](./05-Vue/vue2-jsx)
     - [x] [vue3 练手项目(Vite, tsx, 二次封装 vuex 主要是为了更好的 ts 推断)](./05-Vue/vite-vue-ts)
@@ -48,21 +81,49 @@
     - [x] [虚拟 DOM 源码分析](https://www.yuque.com/wuchendi/fe/uvt07z)
     - [x] [Snabbdom 3.0.1 源码笔记](./12-snabbdom/3.0.1)
     - [x] [Snabbdom virtual-dom 测试代码](./12-snabbdom/virtual-dom)
-- **Node.js**
-  - [x] [Cases - 实现多人聊天室功能(前后端)](https://github.com/WuChenDi/node-case/blob/main/chat-room)
-  - [x] [Cases - 使用 node 生成 swagger api 文档](https://github.com/WuChenDi/node-case/blob/main/express-swagger)
-  - [x] [Cases - 大文件分片上传](https://github.com/WuChenDi/node-case/blob/main/fileupload)
-  - [x] [Cases - 基于 Node.js 的视频流播放](https://github.com/WuChenDi/node-case/blob/main/video-stream)
-- **Vite**
-  - [x] [Vite 生成 vue2 模板库](https://github.com/WuChenDi/vite-vue2-template)
-  - [x] [ES Module 在浏览器中的应用(针对 Vite 挖掘，为什么比 webpack 快)](./05-Vue/es-module-demo/test1.html)
+- **前端音视频**
+  - [x] [H5 直播 video \| X5 内核 \| Android or IOS](https://www.yuque.com/wuchendi/fe/gflcap)
+  - [x] [🔧 工具函数封装 音频流转 mp3 \| Gop 关键针](https://www.yuque.com/wuchendi/fe/km1u2o)
+- **微前端**
+  - **qiankun**
+    - [x] [基座 - base](./10-微前端/qiankun/qiankun-base)
+    - [x] [子应用 - vue](./10-微前端/qiankun/qiankun-vue)
+    - [x] [子应用 - reat](./10-微前端/qiankun/qiankun-react)
+    - [x] [子应用 - angular](./10-微前端/qiankun/qiankun-angular)
+    - [x] [nginx.conf](./10-微前端/qiankun/nginx.conf)
+- **[👷 工程化](https://www.yuque.com/wuchendi/fe/suxour)**
+  - [x] [组件设计思考](https://www.yuque.com/wuchendi/fe/gecylg)
+  - [x] [版本管理](https://www.yuque.com/wuchendi/fe/mr08cy)
+  - [x] [PM2 常用操作](https://www.yuque.com/wuchendi/fe/czcqdv)
+  - [x] [Http \| Https]()
+  - [x] [Verdaccio 搭建私有化 NPM 源](https://www.yuque.com/wuchendi/fe/eqyac8)
+  - [x] [StoryBook 构建 UI 组件 - 项目演示](https://github.com/WuChenDi/react-components)
+- **运维知识**
+  - [ ] [Linux]()
+  - [ ] [Jenkins]()
+  - **Docker**
+    - [x] [常用命令与学习笔记](https://www.yuque.com/wuchendi/fe/qd8gsi)
+  - [ ] [Kubernetes]()
+  - [ ] [Nginx]()
+- **构建与运行环境**
+  - **WebPack**
+    - [x] [webapck 学习记录](https://www.yuque.com/wuchendi/fe/guaow0)
+  - [ ] [rollup]()
+  - **Vite**
+    - [x] [Vite 生成 vue2 模板库](https://github.com/WuChenDi/vite-vue2-template)
+    - [x] [ES Module 在浏览器中的应用(针对 Vite 挖掘，为什么比 webpack 快)](./05-Vue/es-module-demo/test1.html)
 - **Jest**
   - [x] [Cases - \*+react](./14-jest/jest-react)
   - [x] [Cases - \*+vue2](./14-jest/jest-vue)
   - [x] [Cases - \*+vue3+ts](./14-jest/jest-vue-ts)
   - [x] [Cases - 刷 leetcode 起的环境仓库](./14-jest/lesson1/package.json)
+- **Node.js**
+  - [x] [Cases - 实现多人聊天室功能(前后端)](https://github.com/WuChenDi/node-case/blob/main/chat-room)
+  - [x] [Cases - 使用 node 生成 swagger api 文档](https://github.com/WuChenDi/node-case/blob/main/express-swagger)
+  - [x] [Cases - 大文件分片上传](https://github.com/WuChenDi/node-case/blob/main/fileupload)
+  - [x] [Cases - 基于 Node.js 的视频流播放](https://github.com/WuChenDi/node-case/blob/main/video-stream)
 
-## 有用的工具
+## 💼 有用的工具
 
 - [日常开发工具类](https://www.yuque.com/wuchendi/fe/qye7xc)
 - [node 包管理工具与源切换](https://www.yuque.com/wuchendi/fe/xrqgad)
