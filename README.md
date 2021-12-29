@@ -96,8 +96,16 @@
   - [x] [版本管理](https://www.yuque.com/wuchendi/fe/mr08cy)
   - [x] [PM2 常用操作](https://www.yuque.com/wuchendi/fe/czcqdv)
   - [x] [Http \| Https]()
-  - [x] [Verdaccio 搭建私有化 NPM 源](https://www.yuque.com/wuchendi/fe/eqyac8)
+  - **私服搭建**
+    - [x] [Verdaccio](https://www.yuque.com/wuchendi/fe/eqyac8)
+    - [x] [Nexus](https://www.yuque.com/wuchendi/fe/buq4az)
   - [x] [StoryBook 构建 UI 组件 - 项目演示](https://github.com/WuChenDi/react-components)
+- **监控**
+  - **sentry**
+    - [x] [私有化部署](https://www.yuque.com/wuchendi/fe/noh92g)
+    - [x] [项目接入与问题记录](https://www.yuque.com/wuchendi/fe/fdcdnq)
+    - [x] [监控原理](https://www.yuque.com/wuchendi/fe/rndweh)
+  - [x] [腾讯云-前端性能监控](https://www.yuque.com/wuchendi/fe/ampdk6)
 - **运维知识**
   - [ ] [Linux]()
   - [ ] [Jenkins]()
