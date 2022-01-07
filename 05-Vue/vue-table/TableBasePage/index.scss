@@ -1,0 +1,237 @@
+.TableBasePage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+
+  &__container {
+    flex: 1;
+    height: 0;
+    overflow: auto;
+  }
+
+  &__body {
+    font-size: 14px;
+  }
+
+  .cursorPointer {
+    .el-table__row {
+      cursor: pointer;
+    }
+  }
+
+  &__page {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 0;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    .el-pagination {
+      // display: inline-block;
+      &.is-background .el-pager li:not(.disabled).active {
+        // background-color: #7048e8;
+      }
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    // padding-left: 10px;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    // margin-bottom: 14px;
+  }
+
+  &__buttons {
+    display: flex;
+    margin: auto 0;
+
+    .el-dropdown {
+      width: auto;
+      margin: 0 10px;
+    }
+  }
+
+  &__actionbutton {
+    font-size: 14px;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    max-width: 100%;
+  }
+
+  &__searchbtn {
+    min-width: 40px;
+    margin-left: 10px;
+
+    .el-button {
+      height: 30px;
+    }
+  }
+
+  &__simpleform {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    // width: 600px;
+    max-width: 600px;
+    height: auto;
+
+    .el-form-item__content {
+      overflow: hidden;
+    }
+
+    .el-form-item--small.el-form-item {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    max-width: 100%;
+    font-size: 14px;
+
+    .el-link--inner {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+  }
+
+  &__tips {
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    background: #fffae2;
+    border-radius: 4px;
+    margin: 4px 0;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+
+    .select-cancel {
+      color: #294ba3;
+      cursor: pointer;
+    }
+  }
+
+  .el-table {
+    border: 0;
+    border-top: 1px solid #ebeef5;
+
+    &::after {
+      background-color: transparent;
+    }
+  }
+
+  .el-table__header {
+    th {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-weight: 500;
+      color: #8d94a8;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .el-table__row {
+    td {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      color: #5a6070;
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+
+  .el-table__fixed-header-wrapper {
+    th:last-child {
+      border-right: 0;
+    }
+  }
+
+  .el-table__row .cell > div {
+    width: 92%;
+  }
+
+  .el-table__row .cell > div.el-table__expand-icon {
+    width: 4%;
+  }
+
+  .TableBasePage .el-table__row &__actioncolumn {
+    border-right: 0 solid #ebeef5;
+
+    .el-button {
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: 14px;
+    }
+
+    .el-dropdown {
+      width: auto;
+      margin-left: 10px;
+    }
+  }
+
+  &__column--required {
+    .cell::before {
+      margin-right: 4px;
+      color: #f56c6c;
+      content: '*';
+    }
+  }
+
+  .el-checkbox__inner {
+    width: 18px;
+    height: 18px;
+    // margin-left: 0;
+
+    &::after {
+      border-width: 2px;
+      height: 9px;
+      width: 4px;
+      top: 1px;
+      left: 5px;
+    }
+
+    &::before {
+      height: 4px !important;
+      top: 6px !important;
+      transform: scale(0.6) !important;
+    }
+  }
+
+  &__customselectable {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .el-checkbox {
+      margin-right: 8px;
+    }
+  }
+
+  &__header__culumnsSelect {
+    .el-checkbox__inner {
+      margin-left: 0;
+    }
+
+    .el-checkbox {
+      margin-right: 8px;
+    }
+  }
+}
