@@ -16,7 +16,7 @@
   - [x] [2019 - 忙(没写完)](https://www.yuque.com/wuchendi/fe/2019)
   - [x] [2020](https://www.yuque.com/wuchendi/fe/2020)
   - [x] [2021-职业思考](https://www.yuque.com/wuchendi/fe/20210318)
-  - [ ] [2021](https://www.yuque.com/wuchendi/fe/ndmoi4)
+  - [x] [2021](https://www.yuque.com/wuchendi/fe/ndmoi4)
 - **[🚌 前端面试](https://www.yuque.com/wuchendi/fe/gbm289)**
   - [x] [页面布局](https://www.yuque.com/wuchendi/fe/wkvdd5)
   - [x] [CSS 类](https://www.yuque.com/wuchendi/fe/gz38f8)
@@ -110,7 +110,10 @@
   - [ ] [Linux]()
   - [ ] [Jenkins]()
   - **Docker**
-    - [x] [常用命令与学习笔记](https://www.yuque.com/wuchendi/fe/qd8gsi)
+    - [x] [命令与学习笔记](https://www.yuque.com/wuchendi/fe/qd8gsi)
+    - [x] [docker-compose](https://www.yuque.com/wuchendi/fe/hr5v3s)
+    - [x] [docker-gitlab](https://www.yuque.com/wuchendi/fe/vfbycd)
+    - [x] [练习](https://www.yuque.com/wuchendi/fe/ntlwr8)
   - [ ] [Kubernetes]()
   - [ ] [Nginx]()
 - **构建与运行环境**
@@ -137,7 +140,7 @@
 - [node 包管理工具与源切换](https://www.yuque.com/wuchendi/fe/xrqgad)
 - [Windows 桌面版微信内置浏览器调试(新版不兼容)](https://www.yuque.com/wuchendi/fe/winwechat)
 - [微信内置浏览器缓存清理](https://www.yuque.com/wuchendi/fe/abrnuy)
-- [Chrome 小技巧](https://www.yuque.com/wuchendi/fe/faypc7)
+- [Chrome 相关](https://www.yuque.com/wuchendi/fe/faypc7)
 
 ## 📊 Stats
 
