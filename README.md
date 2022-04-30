@@ -158,6 +158,9 @@
 
 <!--
 <img src="./screenshots/forkStar.png"/> -->
+## LICENSE
+
+MIT
 
 [1]: https://github.com/WuChenDi
 [2]: https://WuChenDi.github.io
