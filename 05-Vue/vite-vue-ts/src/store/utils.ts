@@ -113,4 +113,4 @@ type Dispatch = GetDispatch<ActionPayload>;
 
 // --------------------
 
-export { Getters, Mutations, Actions, Dispatch, Commit };
+export type { Getters, Mutations, Actions, Dispatch, Commit };

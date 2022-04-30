@@ -1,8 +1,8 @@
-import { resolve } from "path";
 import type { UserConfig, ConfigEnv } from "vite";
+import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import viteCompression from "vite-plugin-compression";
+  import viteCompression from "vite-plugin-compression";
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir);
@@ -16,12 +16,6 @@ export default ({ command }: ConfigEnv): UserConfig => {
       target: "es2015",
       outDir: "dist",
       assetsDir: "assetsCDN",
-      terserOptions: {
-        compress: {
-          keep_infinity: true,
-          drop_console: false,
-        },
-      },
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
     },

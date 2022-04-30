@@ -22,5 +22,5 @@ export function setupStore(app: App) {
   app.use(store);
 }
 
-export { RootState };
+export type { RootState };
 export default store;
