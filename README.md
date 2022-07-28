@@ -142,9 +142,9 @@
 - [微信内置浏览器缓存清理](https://www.yuque.com/wuchendi/fe/abrnuy)
 - [Chrome 相关](https://www.yuque.com/wuchendi/fe/faypc7)
 
+<!-- 
 ## 📊 Stats
-
-![Alt](https://repobeats.axiom.co/api/embed/a91ef613a9adf2dcec4eaa82b1913a493acdf509.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/a91ef613a9adf2dcec4eaa82b1913a493acdf509.svg "Repobeats analytics image") -->
 
 <!-- ### 我觉得写总结是一种思路整理、自我纠正和目标重新聚焦的过程 🦝 🦝 🦝
 
