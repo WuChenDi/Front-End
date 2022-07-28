@@ -8,6 +8,9 @@ module.exports = {
 	resolve: {
 		extensions: [".js", ".ts", ".tsx"],
 	},
+  experiments: {
+    topLevelAwait: true
+  },
 	module: {
 		rules: [
 			{

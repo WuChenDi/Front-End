@@ -20,7 +20,14 @@
 // import "./lessonTS/advanced4";
 // import "./lessonTS/advanced5";
 // import "./lessonTS/advanced6";
-import './lessonTS/utility'
+// import './lessonTS/utility'
+
+import './es13/Class'
+// import './es13/RegExp'
+// import './es13/Await'
+// import './es13/.at()'
+// import './es13/Object'
+// import './es13/Error'
 
 let hello: string = 'Hello TypeScript'
 
