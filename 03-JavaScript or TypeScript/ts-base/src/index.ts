@@ -1,27 +1,27 @@
-// import "./datatype";
-// import "./enum";
-// import "./enum1";
-// import "./interface";
-// import "./function";
-// import "./class";
-// import "./class2";
-// import "./class_decorator1";
-// import "./class_decorator2";
-// import "./class_decorator3";
-// import "./class_decorator4";
-// import "./class_decorator5";
-// import "./class-interface";
-// import "./generics";
-// import "./generics1";
-// import "./advanced";
-// import "./advanced1";
-// import "./advanced2";
-// import "./advanced3";
-// import "./advanced4";
-// import "./advanced5";
-// import "./advanced6";
-import "./utility";
+// import "./lessonTS/datatype";
+// import "./lessonTS/enum";
+// import "./lessonTS/enum1";
+// import "./lessonTS/interface";
+// import "./lessonTS/function";
+// import "./lessonTS/class";
+// import "./lessonTS/class2";
+// import "./lessonTS/class_decorator1";
+// import "./lessonTS/class_decorator2";
+// import "./lessonTS/class_decorator3";
+// import "./lessonTS/class_decorator4";
+// import "./lessonTS/class_decorator5";
+// import "./lessonTS/class-interface";
+// import "./lessonTS/generics";
+// import "./lessonTS/generics1";
+// import "./lessonTS/advanced";
+// import "./lessonTS/advanced1";
+// import "./lessonTS/advanced2";
+// import "./lessonTS/advanced3";
+// import "./lessonTS/advanced4";
+// import "./lessonTS/advanced5";
+// import "./lessonTS/advanced6";
+import './lessonTS/utility'
 
-let hello: string = "Hello TypeScript";
+let hello: string = 'Hello TypeScript'
 
-document.querySelectorAll(".app")[0].innerHTML = hello;
+document.querySelectorAll('.app')[0].innerHTML = hello
