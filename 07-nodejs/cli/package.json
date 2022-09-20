@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "chalk": "^5.0.1",
     "commander": "^9.4.0",
     "download-git-repo": "^3.0.2",
