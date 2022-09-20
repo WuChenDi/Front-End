@@ -81,6 +81,9 @@
     - [x] [虚拟 DOM 源码分析](https://www.yuque.com/wuchendi/fe/uvt07z)
     - [x] [Snabbdom 3.0.1 源码笔记](./12-snabbdom/3.0.1)
     - [x] [Snabbdom virtual-dom 测试代码](./12-snabbdom/virtual-dom)
+- **Nodejs**
+  - [x] [cli](./07-nodejs/cli)
+  - [x] [More](https://github.com/WuChenDi/node-case)
 - **前端音视频**
   - [x] [H5 直播 video \| X5 内核 \| Android or IOS](https://www.yuque.com/wuchendi/fe/gflcap)
   - [x] [🔧 工具函数封装 音频流转 mp3 \| Gop 关键针](https://www.yuque.com/wuchendi/fe/km1u2o)
