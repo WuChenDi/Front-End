@@ -18,7 +18,7 @@ npm link
 ### 2. 运行程序
 
 ```bash
-wudi@wudi MINGW64 /d/GitHub/Front-End/07-nodejs/cli (master)
+wudi@wudi MINGW64 /d/WuChenDi/GitHub/Front-End/07-nodejs/cli (master)
 $ cli -h
 Usage: cli [options] [command]
 
