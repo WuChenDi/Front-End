@@ -19,7 +19,7 @@ npm link
 
 ```bash
 wudi@wudi MINGW64 /d/GitHub/Front-End/07-nodejs/cli (master)
-$ cli
+$ cli -h
 Usage: cli [options] [command]
 
 Options:
