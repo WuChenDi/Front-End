@@ -669,3 +669,30 @@
         return _clone(parent);
     };
 }
+
+{
+  // 秒转换成时分秒
+  function secTotime(s) {
+    let t = '';
+    if (s > -1) {
+      let hour = Math.floor(s / 3600);
+      let min = Math.floor(s / 60) % 60;
+      let sec = s % 60;
+      if (hour < 10) {
+        t = '0' + hour + ':';
+      } else {
+        t = hour + ':';
+      }
+      if (min < 10) {
+        t += '0';
+      }
+      t += min + ':';
+      if (sec < 10) {
+        t += '0';
+      }
+      t += sec.toFixed(0);
+    }
+    return t;
+  }
+  secTotime(1232) // '00:20:32'
+}
