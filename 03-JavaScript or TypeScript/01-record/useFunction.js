@@ -678,19 +678,18 @@
       let hour = Math.floor(s / 3600);
       let min = Math.floor(s / 60) % 60;
       let sec = s % 60;
-      if (hour < 10) {
-        t = '0' + hour + ':';
-      } else {
-        t = hour + ':';
+
+      // 检查是否小于 10 的函数
+      function checkTime(time) {
+        if (time < 10) {
+          return '0' + time;
+        }
+        return time;
       }
-      if (min < 10) {
-        t += '0';
-      }
-      t += min + ':';
-      if (sec < 10) {
-        t += '0';
-      }
-      t += sec.toFixed(0);
+
+      t = checkTime(hour) + ':';
+      t += checkTime(min) + ':';
+      t += checkTime(sec);
     }
     return t;
   }
