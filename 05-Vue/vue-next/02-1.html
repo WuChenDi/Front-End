@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="app1">
+    <div>
+      <p></p>
+    </div>
+  </div>
+</body>
+
+<script>
+  /**
+   * Specify the div element inside which to display the hello world!
+   *
+   * 指定 div 元素内展示 hello world!
+   */
+  const el = document.querySelector('#app')
+  el.innerHTML = 'hello world!'
+
+  //
+  /**
+   * Specify the div element under which to display the hello world!
+   *
+   * 指定 div 元素下展示 hello world!
+   */
+  const el1 = document.querySelector('#app1')
+  const subEl = el1.querySelector('div')
+  const pEl = subEl.querySelector('p')
+  const msg = 'hello world!'
+  pEl.innerHTML = msg
+</script>
+
+</html>
