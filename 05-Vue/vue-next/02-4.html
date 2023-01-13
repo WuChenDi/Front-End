@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.45/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<script>
+  const { compile, createApp } = Vue
+
+  /**
+   * Create html structure
+   *
+   * 创建 html 结构
+   */
+  const html = `<div class="test">hello compiler</div>`
+
+  /**
+   * Use the compile function to generate the render function
+   *
+   * 利用 compile 函数，生成 render 函数
+   */
+  const renderFn = compile(html)
+  console.log("🚀 ~ file: 02-4.html:22 ~ renderFn", renderFn)
+
+  /**
+   * Create Instance
+   *
+   * 创建实例
+   */
+  const app = createApp({
+    render: renderFn
+  })
+
+  /**
+   * Mounted
+   *
+   * 挂载
+   */
+  app.mount('#app')
+</script>
+
+</html>
