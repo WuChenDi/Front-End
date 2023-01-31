@@ -15,7 +15,8 @@ export default defineComponent({
       { path: '/VModel', name: 'VModel' },
       { path: '/Watch', name: 'Watch/watchEffect' },
       { path: '/GetInstance', name: '获取组件实例' },
-      { path: '/chart', name: 'ChartDemo' }
+      { path: '/chart', name: 'ChartDemo' },
+      { path: '/Modifier', name: 'Modifier' },
     ])
 
     return () => (

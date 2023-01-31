@@ -37,6 +37,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/chart',
     component: () => import('../components/ChaerDemo.vue')
+  },
+  {
+    path: '/Modifier',
+    component: import('../pages/Modifier')
   }
 ]
 
