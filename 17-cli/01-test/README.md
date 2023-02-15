@@ -24,6 +24,7 @@ npm install -g dd-cli-test
 ```bash
 npm login
 npm publish
+npm unpublish dd-cli-test@1.0.0
 npm unpublish dd-cli-test -f
 ```
 
