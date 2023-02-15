@@ -1,6 +1,6 @@
 {
   "name": "dd-cli-test",
-  "version": "1.1.1",
+  "version": "0.0.1",
   "description": "Used to demonstrate the scaffolding development and release process.",
   "bin": {
     "dd-cli-test": "bin/index.js"
