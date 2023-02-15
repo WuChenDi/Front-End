@@ -1,7 +1,7 @@
 {
   "name": "dd-cli-test",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.1",
+  "description": "Used to demonstrate the scaffolding development and release process.",
   "bin": {
     "dd-cli-test": "bin/index.js"
   },
@@ -9,7 +9,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuChenDi/Front-End.git"
+  },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "wudi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WuChenDi/Front-End/issues"
+  },
+  "homepage": "https://github.com/WuChenDi/Front-End/blob/master/17-cli/01-test#readme"
 }
