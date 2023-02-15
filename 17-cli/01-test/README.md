@@ -17,6 +17,8 @@ npm install -g dd-cli-test
 
 # run dd-cli-test
 # welcome dd cli test
+
+npm remove -g dd-cli-test
 ```
 
 - npm
