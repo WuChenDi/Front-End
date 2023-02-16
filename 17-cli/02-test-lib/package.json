@@ -1,0 +1,20 @@
+{
+  "name": "dd-cli-test-lib",
+  "version": "0.0.1",
+  "description": "Provide library files for use with dd-cli-test scaffolding.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuChenDi/Front-End.git"
+  },
+  "keywords": [],
+  "author": "wudi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WuChenDi/Front-End/issues"
+  },
+  "homepage": "https://github.com/WuChenDi/Front-End/blob/master/17-cli/02-test-lib#readme"
+}

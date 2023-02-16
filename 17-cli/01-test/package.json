@@ -1,6 +1,6 @@
 {
   "name": "dd-cli-test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Used to demonstrate the scaffolding development and release process.",
   "bin": {
     "dd-cli-test": "bin/index.js"
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/WuChenDi/Front-End/issues"
   },
-  "homepage": "https://github.com/WuChenDi/Front-End/blob/master/17-cli/01-test#readme"
+  "homepage": "https://github.com/WuChenDi/Front-End/blob/master/17-cli/01-test#readme",
+  "dependencies": {
+    "dd-cli-test-lib": "^0.0.1"
+  }
 }
