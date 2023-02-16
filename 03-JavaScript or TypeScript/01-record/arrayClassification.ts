@@ -20,6 +20,30 @@ function arrayClassification(arr: TagGroup[], label: 'tagGroupId' | 'strategyId'
   return categorys.map(c => arr.filter(a => a[label] === c))
 }
 
+// function arrayClassification1(arr: TagGroup[], label: 'tagGroupId' | 'strategyId'): TagGroup[][] {
+//   const map = new Map<string, TagGroup[]>()
+//   for (const item of arr) {
+//     const key = item[label]!.toString()
+//     if (!map.has(key)) {
+//       map.set(key, [])
+//     }
+//     map.get(key)?.push(item)
+//   }
+//   return Array.from(map.values())
+// }
+
+// function arrayClassification2(arr: TagGroup[], label: 'tagGroupId' | 'strategyId'): TagGroup[][] {
+//   const map = arr.reduce((map, item) => {
+//     const key = item[label]!.toString()
+//     if (!map.has(key)) {
+//       map.set(key, [])
+//     }
+//     map.get(key)?.push(item)
+//     return map
+//   }, new Map<string, TagGroup[]>())
+//   return Array.from(map.values())
+// }
+
 // 测试数据
 const array_test = [
   {
