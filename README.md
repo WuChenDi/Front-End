@@ -163,7 +163,8 @@
 <img src="./screenshots/forkStar.png"/> -->
 ## LICENSE
 
-MIT
+[![GitHub license](https://img.shields.io/github/license/WuChenDi/Front-End)](https://github.com/WuChenDi/Front-End/blob/master/LICENSE)
+<!-- MIT -->
 
 [1]: https://github.com/WuChenDi
 [2]: https://WuChenDi.github.io
