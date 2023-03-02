@@ -4,7 +4,7 @@
 
 - 记录开发时遇到问题与个人总结知识点文章
 
-- 更完整的博客请查看：[语雀](https://www.yuque.com/wuchendi/fe)
+- 更完整的博客请查看：[语雀(private)](https://www.yuque.com/wuchendi/fe)
 
 ## 📚 目录
 
