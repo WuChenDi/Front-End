@@ -1,0 +1,9 @@
+{
+  "token_secret": "your_secret",
+  "db": {
+    "host": "your_host1",
+    "port": "your_port",
+    "user": "your_user",
+    "pass": "your_pass"
+  }
+}

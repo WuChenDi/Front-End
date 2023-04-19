@@ -1,0 +1,6 @@
+token_secret: your_secret
+db:
+  host: your_secret
+  port: your_port
+  dbName: your_user
+  pass: your_pass
