@@ -46,8 +46,24 @@ const compiler = require('vue-template-compiler')
 // `
 // with(this){return _c('button',{on:{"click":clickHandler}},[_v("submit")])}
 
-// v-model
-const template = `<input type="text" v-model="name">`
+// 指令 v-show
+// const template = `
+// <div v-show="stateShow">
+//   <p>hello world</p>
+// </div>
+// `
+// with(this){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(stateShow),expression:"stateShow"}]},[_c('p',[_v("hello world")])])}
+
+// 指令 v-loading
+const template = `
+  <div v-loading="stateLoading">
+    <p>hello world</p>
+  </div>
+`
+// with(this){return _c('div',{directives:[{name:"loading",rawName:"v-loading",value:(stateLoading),expression:"stateLoading"}]},[_c('p',[_v("hello world")])])}
+
+// 指令 v-model
+// const template = `<input type="text" v-model="name">`
 // 主要看 input 事件
 // with(this){return _c('input',{directives:[{name:"model",rawName:"v-model",value:(name),expression:"name"}],attrs:{"type":"text"},domProps:{"value":(name)},on:{"input":function($event){if($event.target.composing)return;name=$event.target.value}}})}
 
