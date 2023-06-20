@@ -1,10 +1,10 @@
 # 👀 Learning by doing
 
-## 🤔 What is this
+## 🤔 What is this?
 
-- 记录开发时遇到问题与个人总结知识点文章
+- Record the problems encountered during development and personal summary of knowledge articles.
 
-- 更完整的博客请查看：[语雀(private)](https://www.yuque.com/wuchendi/fe)
+- [Yuque (private)](https://www.yuque.com/wuchendi/fe).
 
 ## 📚 目录
 
