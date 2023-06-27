@@ -176,25 +176,36 @@ export function h<P>(
 
 // Actual implementation
 export function h(type: any, propsOrChildren?: any, children?: any): VNode {
-  const l = arguments.length
-  if (l === 2) {
+  // 获取用户传递的参数个数
+  const argCount = arguments.length
+
+  // 如果只有两个参数，则第二个参数可能是 props 或者 children
+  if (argCount === 2) {
+    // 第二个参数是对象，但不是数组，代表它是一个 VNode 或者普通的 props
     if (isObject(propsOrChildren) && !isArray(propsOrChildren)) {
-      // single vnode without props
+      // 如果是 VNode，则第二个参数代表 children
       if (isVNode(propsOrChildren)) {
         return createVNode(type, null, [propsOrChildren])
       }
-      // props without children
+      // 如果不是 VNode，代表这是 props 参数
       return createVNode(type, propsOrChildren)
-    } else {
-      // omit props
+    }
+    // 如果第二个参数不是单纯的 object，则代表这就是 props 参数
+    else {
       return createVNode(type, null, propsOrChildren)
     }
-  } else {
-    if (l > 3) {
+  }
+  // 如果有三个参数或更多，则第二个参数一定代表 props 参数
+  else {
+    // 如果参数数量超过三个，则从第二个参数开始，把所有后续参数都作为 children
+    if (argCount > 3) {
       children = Array.prototype.slice.call(arguments, 2)
-    } else if (l === 3 && isVNode(children)) {
+    }
+    // 如果只有三个参数，且最后一个参数是 VNode，则它只是一个单纯的 children 参数
+    else if (argCount === 3 && isVNode(children)) {
       children = [children]
     }
+    // 通过传递的参数，创建 VNode 实例
     return createVNode(type, propsOrChildren, children)
   }
 }

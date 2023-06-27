@@ -315,7 +315,7 @@ export function createAppAPI<HostElement>(
         context.directives[name] = directive
         return app
       },
-
+      // 挂载方法
       mount(
         rootContainer: HostElement,
         isHydrate?: boolean,
@@ -330,6 +330,7 @@ export function createAppAPI<HostElement>(
                 ` you need to unmount the previous app by calling \`app.unmount()\` first.`
             )
           }
+          // 直接通过 createVNode 方法构建 vnode
           const vnode = createVNode(
             rootComponent as ConcreteComponent,
             rootProps
@@ -348,6 +349,7 @@ export function createAppAPI<HostElement>(
           if (isHydrate && hydrate) {
             hydrate(vnode as VNode<Node, Element>, rootContainer as any)
           } else {
+            // 通过 render 函数进行挂载
             render(vnode, rootContainer, isSVG)
           }
           isMounted = true

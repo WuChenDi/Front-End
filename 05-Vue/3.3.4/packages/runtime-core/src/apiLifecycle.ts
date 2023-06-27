@@ -14,12 +14,16 @@ import { LifecycleHooks } from './enums'
 
 export { onActivated, onDeactivated } from './components/KeepAlive'
 
+/**
+ * 注册 hook
+ */
 export function injectHook(
   type: LifecycleHooks,
   hook: Function & { __weh?: Function },
   target: ComponentInternalInstance | null = currentInstance,
   prepend: boolean = false
 ): Function | undefined {
+  // 将 hook 注册到 组件实例中
   if (target) {
     const hooks = target[type] || (target[type] = [])
     // cache the error handling wrapper for injected hooks so the same hook
@@ -63,6 +67,11 @@ export function injectHook(
   }
 }
 
+/**
+ * 创建一个指定的 hook
+ * @param lifecycle 指定的 hook enum
+ * @returns 注册 hook 的方法
+ */
 export const createHook =
   <T extends Function = () => any>(lifecycle: LifecycleHooks) =>
   (hook: T, target: ComponentInternalInstance | null = currentInstance) =>

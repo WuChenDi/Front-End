@@ -131,6 +131,9 @@ export type VNodeNormalizedChildren =
   | RawSlots
   | null
 
+/**
+ * VNode
+ */
 export interface VNode<
   HostNode = RendererNode,
   HostElement = RendererElement,
@@ -351,6 +354,9 @@ export function isVNode(value: any): value is VNode {
   return value ? value.__v_isVNode === true : false
 }
 
+/**
+ * 根据 key || type 判断是否为相同类型节点
+ */
 export function isSameVNodeType(n1: VNode, n2: VNode): boolean {
   if (
     __DEV__ &&
@@ -416,6 +422,9 @@ const normalizeRef = ({
   ) as any
 }
 
+/**
+ * 构建基础 vnode
+ */
 function createBaseVNode(
   type: VNodeTypes | ClassComponent | typeof NULL_DYNAMIC_COMPONENT,
   props: (Data & VNodeProps) | null = null,
@@ -507,6 +516,16 @@ export const createVNode = (
   __DEV__ ? createVNodeWithArgsTransform : _createVNode
 ) as typeof _createVNode
 
+/**
+ * 生成一个 VNode 对象，并返回
+ * @param type vnode.type
+ * @param props 标签属性或自定义属性
+ * @param children 标签属性或自定义属性
+ * @param patchFlag
+ * @param dynamicProps
+ * @param isBlockNode
+ * @returns VNode 对象
+ */
 function _createVNode(
   type: VNodeTypes | ClassComponent | typeof NULL_DYNAMIC_COMPONENT,
   props: (Data & VNodeProps) | null = null,
@@ -555,6 +574,7 @@ function _createVNode(
   if (props) {
     // for reactive or proxy objects, we need to clone it to enable mutation.
     props = guardReactiveProps(props)!
+    // 处理 class 和 style
     let { class: klass, style } = props
     if (klass && !isString(klass)) {
       props.class = normalizeClass(klass)
@@ -570,6 +590,7 @@ function _createVNode(
   }
 
   // encode the vnode type information into a bitmap
+  // 通过 bit 位处理 shapeFlag 类型
   const shapeFlag = isString(type)
     ? ShapeFlags.ELEMENT
     : __FEATURE_SUSPENSE__ && isSuspense(type)
@@ -718,7 +739,7 @@ export function createStaticVNode(
 }
 
 /**
- * @private
+ * @private 创建注释节点
  */
 export function createCommentVNode(
   text: string = '',
@@ -731,6 +752,9 @@ export function createCommentVNode(
     : createVNode(Comment, null, text)
 }
 
+/**
+ * 标准化 VNode
+ */
 export function normalizeVNode(child: VNodeChild): VNode {
   if (child == null || typeof child === 'boolean') {
     // empty placeholder
@@ -803,16 +827,20 @@ export function normalizeChildren(vnode: VNode, children: unknown) {
     children = { default: children, _ctx: currentRenderingInstance }
     type = ShapeFlags.SLOTS_CHILDREN
   } else {
+    // children 为 string
     children = String(children)
     // force teleport children to array so it can be moved around
     if (shapeFlag & ShapeFlags.TELEPORT) {
       type = ShapeFlags.ARRAY_CHILDREN
       children = [createTextVNode(children as string)]
     } else {
+      // 为 type 指定 Flags
       type = ShapeFlags.TEXT_CHILDREN
     }
   }
+  // 修改 vnode 的 chidlren
   vnode.children = children as VNodeNormalizedChildren
+  // 按位或赋值
   vnode.shapeFlag |= type
 }
 

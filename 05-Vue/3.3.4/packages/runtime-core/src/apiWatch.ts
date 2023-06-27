@@ -73,6 +73,9 @@ export interface WatchOptionsBase extends DebuggerOptions {
   flush?: 'pre' | 'post' | 'sync'
 }
 
+/**
+ * watch 配置项属性
+ */
 export interface WatchOptions<Immediate = boolean> extends WatchOptionsBase {
   immediate?: Immediate
   deep?: boolean
@@ -154,6 +157,14 @@ export function watch<
   options?: WatchOptions<Immediate>
 ): WatchStopHandle
 
+/**
+ * 指定的 watch 函数
+ * @param source 监听的响应性数据
+ * @param cb 回调函数
+ * @param options 配置对象
+ * @returns
+ */
+
 // implementation
 export function watch<T = any, Immediate extends Readonly<boolean> = false>(
   source: T | WatchSource<T>,
@@ -202,15 +213,19 @@ function doWatch(
   const instance =
     getCurrentScope() === currentInstance?.scope ? currentInstance : null
   // const instance = currentInstance
+  // 触发 getter 的指定函数
   let getter: () => any
   let forceTrigger = false
   let isMultiSource = false
 
+	// 判断 source 的数据类型
   if (isRef(source)) {
     getter = () => source.value
     forceTrigger = isShallow(source)
   } else if (isReactive(source)) {
+    // 指定 getter
     getter = () => source
+    // 深度
     deep = true
   } else if (isArray(source)) {
     isMultiSource = true
@@ -269,7 +284,9 @@ function doWatch(
     }
   }
 
+  // 存在回调函数和deep
   if (cb && deep) {
+    // TODO: 待补充
     const baseGetter = getter
     getter = () => traverse(baseGetter())
   }
@@ -304,9 +321,11 @@ function doWatch(
     }
   }
 
+  // 旧值
   let oldValue: any = isMultiSource
     ? new Array((source as []).length).fill(INITIAL_WATCHER_VALUE)
     : INITIAL_WATCHER_VALUE
+  // job 执行方法
   const job: SchedulerJob = () => {
     if (!effect.active) {
       return
@@ -352,6 +371,7 @@ function doWatch(
   // it is allowed to self-trigger (#1727)
   job.allowRecurse = !!cb
 
+  // 调度器
   let scheduler: EffectScheduler
   if (flush === 'sync') {
     scheduler = job as any // the scheduler function gets called directly
@@ -440,6 +460,9 @@ export function createPathGetter(ctx: any, path: string) {
   }
 }
 
+/**
+ * 依次执行 getter，从而触发依赖收集
+ */
 export function traverse(value: unknown, seen?: Set<unknown>) {
   if (!isObject(value) || (value as any)[ReactiveFlags.SKIP]) {
     return value

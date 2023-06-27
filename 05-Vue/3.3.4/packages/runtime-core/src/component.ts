@@ -481,6 +481,9 @@ const emptyAppContext = createAppContext()
 
 let uid = 0
 
+/**
+ * 创建组件实例
+ */
 export function createComponentInstance(
   vnode: VNode,
   parent: ComponentInternalInstance | null,
@@ -492,17 +495,25 @@ export function createComponentInstance(
     (parent ? parent.appContext : vnode.appContext) || emptyAppContext
 
   const instance: ComponentInternalInstance = {
+    // 组件实例的唯一标识
     uid: uid++,
+    // 组件的 vnode（虚拟节点）
     vnode,
+    // 组件的类型
     type,
+    // 组件的父组件实例
     parent,
     appContext,
     root: null!, // to be immediately set
     next: null,
+    // render 函数的返回值
     subTree: null!, // will be set synchronously right after creation
+    // ReactiveEffect 实例
     effect: null!,
+    // update 函数，触发effect.run
     update: null!, // will be set synchronously right after creation
     scope: new EffectScope(true /* detached */),
+    // 组件内的 render 函数
     render: null,
     proxy: null,
     exposed: null,
@@ -551,20 +562,30 @@ export function createComponentInstance(
 
     // lifecycle hooks
     // not using enums here because it results in computed properties
-    isMounted: false,
+    isMounted: false, // 是否挂载
     isUnmounted: false,
     isDeactivated: false,
+    // beforeCreate
     bc: null,
+    // created
     c: null,
+    // beforeMount
     bm: null,
+    // mounted
     m: null,
+    // beforeUpdate
     bu: null,
+    // updated
     u: null,
+    // beforeUnmount
     um: null,
     bum: null,
+    // deactivated
     da: null,
+    // activated
     a: null,
     rtg: null,
+    // renderTracked
     rtc: null,
     ec: null,
     sp: null
@@ -655,6 +676,9 @@ export function isStatefulComponent(instance: ComponentInternalInstance) {
 
 export let isInSSRComponentSetup = false
 
+/**
+ * 规范化组件实例数据
+ */
 export function setupComponent(
   instance: ComponentInternalInstance,
   isSSR = false
@@ -713,6 +737,7 @@ function setupStatefulComponent(
   }
   // 2. call setup()
   const { setup } = Component
+  // 存在 setup ，则直接获取 setup 函数的返回值即可
   if (setup) {
     const setupContext = (instance.setupContext =
       setup.length > 1 ? createSetupContext(instance) : null)
@@ -762,6 +787,7 @@ function setupStatefulComponent(
       handleSetupResult(instance, setupResult, isSSR)
     }
   } else {
+    // 获取组件实例
     finishComponentSetup(instance, isSSR)
   }
 }
@@ -771,6 +797,7 @@ export function handleSetupResult(
   setupResult: unknown,
   isSSR: boolean
 ) {
+  // 存在 setupResult，并且它是一个函数，则 setupResult 就是需要渲染的 render
   if (isFunction(setupResult)) {
     // setup returned an inline render function
     if (__SSR__ && (instance.type as ComponentOptions).__ssrInlineRender) {
@@ -847,10 +874,13 @@ export function finishComponentSetup(
 
   // template / render function normalization
   // could be already set when returned from setup()
+  // 组件不存在 render 时，才需要重新赋值
   if (!instance.render) {
     // only do on-the-fly compile if not in SSR - SSR on-the-fly compilation
     // is done by server-renderer
+    // 存在编辑器，并且组件中不包含 render 函数，同时包含 template 模板，则直接使用编辑器进行编辑，得到 render 函数
     if (!isSSR && compile && !Component.render) {
+      // 这里就是 runtime 模块和 compile 模块结合点
       const template =
         (__COMPAT__ &&
           instance.vnode.props &&
@@ -889,6 +919,7 @@ export function finishComponentSetup(
       }
     }
 
+    // 为 render 赋值
     instance.render = (Component.render || NOOP) as InternalRenderFunction
 
     // for runtime-compiled render functions using `with` blocks, the render
@@ -903,6 +934,8 @@ export function finishComponentSetup(
   if (__FEATURE_OPTIONS_API__ && !(__COMPAT__ && skipOptions)) {
     setCurrentInstance(instance)
     pauseTracking()
+    // 改变 options 中的 this 指向
+    // 初始化 props、methods、inject、setupState、attrs、emit等
     applyOptions(instance)
     resetTracking()
     unsetCurrentInstance()

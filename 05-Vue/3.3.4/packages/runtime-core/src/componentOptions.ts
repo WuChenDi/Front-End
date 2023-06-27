@@ -617,6 +617,7 @@ export function applyOptions(instance: ComponentInternalInstance) {
 
   // call beforeCreate first before accessing other options since
   // the hook may mutate resolved options (#2791)
+  // hooks
   if (options.beforeCreate) {
     callHook(options.beforeCreate, instance, LifecycleHooks.BEFORE_CREATE)
   }
@@ -707,6 +708,7 @@ export function applyOptions(instance: ComponentInternalInstance) {
     }
   }
 
+  // 存在 data 选项时
   if (dataOptions) {
     if (__DEV__ && !isFunction(dataOptions)) {
       warn(
@@ -714,6 +716,7 @@ export function applyOptions(instance: ComponentInternalInstance) {
           `Plain object usage is no longer supported.`
       )
     }
+    // 触发 dataOptions 函数，拿到 data 对象
     const data = dataOptions.call(publicThis, publicThis)
     if (__DEV__ && isPromise(data)) {
       warn(
@@ -725,6 +728,8 @@ export function applyOptions(instance: ComponentInternalInstance) {
     if (!isObject(data)) {
       __DEV__ && warn(`data() should return an object.`)
     } else {
+      // 如果拿到的 data 是一个对象
+      // 则把 data 包装成 reactiv 的响应性数据，赋值给 instance
       instance.data = reactive(data)
       if (__DEV__) {
         for (const key in data) {
@@ -798,6 +803,7 @@ export function applyOptions(instance: ComponentInternalInstance) {
     })
   }
 
+  // hooks
   if (created) {
     callHook(created, instance, LifecycleHooks.CREATED)
   }
@@ -813,6 +819,7 @@ export function applyOptions(instance: ComponentInternalInstance) {
     }
   }
 
+  // 注册 hooks
   registerLifecycleHook(onBeforeMount, beforeMount)
   registerLifecycleHook(onMounted, mounted)
   registerLifecycleHook(onBeforeUpdate, beforeUpdate)
@@ -917,6 +924,9 @@ export function resolveInjections(
   }
 }
 
+/**
+ * 触发 hooks
+ */
 function callHook(
   hook: Function,
   instance: ComponentInternalInstance,

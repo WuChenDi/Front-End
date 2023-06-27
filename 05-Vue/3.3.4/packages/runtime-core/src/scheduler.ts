@@ -35,6 +35,7 @@ export interface SchedulerJob extends Function {
 export type SchedulerJobs = SchedulerJob | SchedulerJob[]
 
 let isFlushing = false
+// 对应 promise 的 pending 状态
 let isFlushPending = false
 
 const queue: SchedulerJob[] = []
@@ -44,7 +45,13 @@ const pendingPostFlushCbs: SchedulerJob[] = []
 let activePostFlushCbs: SchedulerJob[] | null = null
 let postFlushIndex = 0
 
+/**
+ * promise.resolve()
+ */
 const resolvedPromise = /*#__PURE__*/ Promise.resolve() as Promise<any>
+/**
+ * 当前的执行任务
+ */
 let currentFlushPromise: Promise<void> | null = null
 
 const RECURSION_LIMIT = 100
@@ -99,6 +106,9 @@ export function queueJob(job: SchedulerJob) {
   }
 }
 
+/**
+ * 依次处理队列中执行函数
+ */
 function queueFlush() {
   if (!isFlushing && !isFlushPending) {
     isFlushPending = true
@@ -133,6 +143,9 @@ export function queuePostFlushCb(cb: SchedulerJobs) {
   queueFlush()
 }
 
+/**
+ * 依次处理队列中的任务
+ */
 export function flushPreFlushCbs(
   seen?: CountMap,
   // if currently flushing, skip the current job itself
@@ -202,6 +215,9 @@ const comparator = (a: SchedulerJob, b: SchedulerJob): number => {
   return diff
 }
 
+/**
+ * 处理队列
+ */
 function flushJobs(seen?: CountMap) {
   isFlushPending = false
   isFlushing = true
