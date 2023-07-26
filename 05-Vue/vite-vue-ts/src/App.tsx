@@ -14,9 +14,10 @@ export default defineComponent({
       { path: '/ToRefs', name: 'ToRefs' },
       { path: '/VModel', name: 'VModel' },
       { path: '/Watch', name: 'Watch/watchEffect' },
-      { path: '/GetInstance', name: '获取组件实例' },
+      { path: '/GetInstance', name: 'Get component instance' },
       { path: '/chart', name: 'ChartDemo' },
       { path: '/Modifier', name: 'Modifier' },
+      { path: '/CustomRef', name: 'customRef' },
     ])
 
     return () => (

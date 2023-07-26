@@ -41,6 +41,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/Modifier',
     component: import('../pages/Modifier')
+  },
+  {
+    path: '/CustomRef',
+    component: import('../pages/CustomRef')
   }
 ]
 
