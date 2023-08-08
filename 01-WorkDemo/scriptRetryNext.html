@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js
+    // https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js
+    const domains = [
+      'cdn.bootcdn.net1',
+      'cdnjs.cloudflare.com',
+      'cdn.jsdelivr.net',
+    ];
+    const retryInfo = {};
+
+    window.addEventListener('error', (event) => {
+      console.log("🚀 ~ file: scriptRetryNext.html:23 ~ window.addEventListener ~ event:", event)
+      const tag = event.target;
+      if (tag.tagName === 'SCRIPT' && !(event instanceof ErrorEvent)) {
+        const url = new URL(tag.src);
+        if (!retryInfo[url.pathname]) {
+          // 没重试过就给它添加一个
+          retryInfo[url.pathname] = {
+            times: 0, // 第几次重试从 0 开始
+            nextIndex: 0, // 重试的域名也从 0 开始
+          };
+        }
+        const info = retryInfo[url.pathname];
+        if (info.times < domains.length) {
+          const script = document.createElement('script');
+          url.host = domains[info.nextIndex];
+          script.src = url.toString();
+          script.addEventListener('error', () => {
+            // 脚本加载失败时，继续下一次重试
+            retryNext(info, url);
+          });
+          document.head.appendChild(script);
+          info.times++;
+          info.nextIndex++;
+        }
+      }
+    }, true);
+
+    function retryNext(info, url) {
+      if (info.nextIndex < domains.length) {
+        url.host = domains[info.nextIndex];
+        const script = document.createElement('script');
+        script.src = url.toString();
+        script.addEventListener('error', () => {
+          retryNext(info, url);
+        });
+        document.head.appendChild(script);
+        info.nextIndex++;
+      }
+    }
+
+    // window.addEventListener('error', (event) => {
+    //   const tag = event.target;
+    //   if (tag.tagName === 'SCRIPT' && !(event instanceof ErrorEvent)) {
+    //     const url = new URL(tag.src);
+    //     if (!retryInfo[url.pathname]) {
+    //       // 没重试过就给它添加一个
+    //       retryInfo[url.pathname] = {
+    //         times: 0, // 第几次重试从 0 开始
+    //         nextIndex: 0, // 重试的域名也从 0 开始
+    //       };
+    //     }
+    //     const info = retryInfo[url.pathname];
+    //     if (info.times < domains.length) {
+    //       const script = document.createElement('script')
+    //       url.host = domains[info.nextIndex]
+    //       // 阻塞页面后续的加载
+    //       // 因为我们是写在 script 标签里 所以要转译一下，否则会被认为是 script 标签的结束
+    //       document.write(`<script src='${url.toString().replace(/'/g, "\\'")}'></script>`);
+    //       info.times++
+    //       info.nextIndex++;
+    //     }
+    //   }
+    // }, true)
+
+  </script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.bootcdn.net1/ajax/libs/vue/3.3.4/vue.global.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <div>
+    <h1>scriptRetryNext</h1>
+  </div>
+</body>
+
+</html>
