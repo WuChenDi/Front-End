@@ -4,7 +4,8 @@
 
 - Record the problems encountered during development and personal summary of knowledge articles.
 
-- [Yuque (private)](https://www.yuque.com/wuchendi/fe).
+<!-- - [Yuque (private)](https://www.yuque.com/wuchendi/fe). -->
+- [Link](https://notes-wuchendi.vercel.app/).
 
 ## 📚 目录
 
