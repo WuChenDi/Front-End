@@ -4,8 +4,8 @@
 
 - Record the problems encountered during development and personal summary of knowledge articles.
 
-<!-- - [Yuque (private)](https://www.yuque.com/wuchendi/fe). -->
 - [Link](https://notes-wuchendi.vercel.app/).
+- [yuque-private](https://www.yuque.com/wuchendi/fe).
 
 ## 📚 目录
 
@@ -162,9 +162,10 @@
 
 <!--
 <img src="./screenshots/forkStar.png"/> -->
-## LICENSE
 
-[![GitHub license](https://img.shields.io/github/license/WuChenDi/Front-End)](https://github.com/WuChenDi/Front-End/blob/master/LICENSE)
+## 📜 License
+
+[MIT](./LICENSE) License &copy; 2017-PRESENT [wudi](https://github.com/WuChenDi)
 <!-- MIT -->
 
 [1]: https://github.com/WuChenDi
