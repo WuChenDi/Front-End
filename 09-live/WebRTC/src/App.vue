@@ -2,19 +2,14 @@
   <a-layout id="components-layout">
     <a-layout-sider class="sider">
       <div class="logo">WebRTC</div>
-      <a-menu
-        theme="dark"
-        mode="inline"
-        v-model:selectedKeys="selectedKeys"
-        v-model:openKeys="openKeys"
-      >
-        <template v-for="(v, j) in menuItem">
+      <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
+        <template v-for="v in menuItem">
           <template v-if="v.subs">
             <a-sub-menu :key="v.index">
               <template #title>
                 <span>{{ v.title }}</span>
               </template>
-              <a-menu-item v-for="(t, m) in v.subs" :key="t.index">
+              <a-menu-item v-for="t in v.subs" :key="t.index">
                 <router-link :to="t.index">{{ t.title }}</router-link>
               </a-menu-item>
             </a-sub-menu>
@@ -37,8 +32,8 @@
   </a-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, onMounted, toRaw, nextTick } from "vue";
+<script setup lang="ts">
+import { ref, onMounted, toRaw, nextTick } from "vue";
 import { useRoute } from "vue-router";
 
 interface MenuItem {
@@ -47,70 +42,59 @@ interface MenuItem {
   subs?: Array<MenuItem>;
 }
 
-export default defineComponent({
-  name: "App",
-  components: {},
-  setup() {
-    const menuItem = ref<MenuItem[]>([]);
-    const selectedKeys = ref<string[]>([]);
-    const openKeys = ref<string[]>([]);
-    const route = useRoute();
+const menuItem = ref<MenuItem[]>([]);
+const selectedKeys = ref<string[]>([]);
+const openKeys = ref<string[]>([]);
+const route = useRoute();
 
-    onMounted(() => {
-      const item: MenuItem[] = [
-        {
-          index: "/getUserMedia",
-          title: "获取设备",
-        },
-        {
-          index: "/mediaDevices",
-          title: "音视频数据采集",
-        },
-        {
-          index: "/3",
-          title: "录制实战",
-          subs: [
-            { index: "/3/mediaRecoder", title: "录制音视频" },
-            { index: "/3/getDisplayMedia", title: "屏幕捕获" },
-          ],
-        },
-        {
-          index: "/socketIO",
-          title: "信令-socketIO",
-        },
-        {
-          index: "/RTCPeerConnection",
-          title: "端对端1V1传输",
-        },
-      ];
-      menuItem.value = item;
+onMounted(() => {
+  const item: MenuItem[] = [
+    {
+      index: "/getUserMedia",
+      title: "获取设备",
+    },
+    {
+      index: "/mediaDevices",
+      title: "音视频数据采集",
+    },
+    {
+      index: "/3",
+      title: "录制实战",
+      subs: [
+        { index: "/3/mediaRecoder", title: "录制音视频" },
+        { index: "/3/getDisplayMedia", title: "屏幕捕获" },
+      ],
+    },
+    {
+      index: "/socketIO",
+      title: "信令-socketIO",
+    },
+    {
+      index: "/RTCPeerConnection",
+      title: "端对端1V1传输",
+    },
+  ];
+  menuItem.value = item;
 
-      nextTick(() => {
-        const { path } = toRaw(route) as any;
+  nextTick(() => {
+    const { path } = toRaw(route);
 
-        setTimeout(() => {
-          const result = item.filter((i) => path.value.includes(i.index));
-          if (result[0].subs?.length) {
-            const _subs = result[0].subs.filter((i) =>
-              path.value.includes(i.index)
-            );
-            selectedKeys.value.push(_subs[0].index);
-            openKeys.value.push(result[0].index);
-          } else {
-            selectedKeys.value.push(result[0].index);
-            openKeys.value.length = 0;
-          }
-        }, 150);
-      });
-    });
-
-    return {
-      menuItem,
-      selectedKeys,
-      openKeys,
-    };
-  },
+    setTimeout(() => {
+      const result = item.filter((i) => path.includes(i.index));
+      if (result[0].subs?.length) {
+        const _subs = result[0].subs.filter((i) =>
+          path.includes(i.index)
+        );
+        selectedKeys.value.push(_subs[0].index);
+        openKeys.value.push(result[0].index);
+      } else {
+        selectedKeys.value.push(result[0].index);
+        openKeys.value.length = 0;
+      }
+    }, 150);
+  });
 });
+
 </script>
 
 <style scoped lang="scss">
@@ -152,4 +136,5 @@ export default defineComponent({
     }
   }
 }
+
 </style>

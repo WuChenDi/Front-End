@@ -9,48 +9,47 @@ const RTCPeerConnection = () => import(/* webpackChunkName: "RTCPeerConnection" 
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/getUserMedia" },
-	{
-		path: "/getUserMedia",
-		name: "getUserMedia",
-		component: getUserMedia,
-		meta: { title: "WebRTC获取音视频设备" },
-	},
-	{
-		path: "/mediaDevices",
-		name: "mediaDevices",
-		component: mediaDevices,
-		meta: { title: "WebRTC音视频数据采集" },
-	},
-	{
-		path: "/3/mediaRecoder",
-		name: "mediaRecoder",
-		component: mediaRecoder,
-		meta: { title: "WebRTC录制" },
-	},
-	{
-		path: "/3/getDisplayMedia",
-		name: "getDisplayMedia",
-		component: getDisplayMedia,
-		meta: { title: "WebRTC屏幕捕获" },
-	},
-	{
-		path: "/socketIO",
-		name: "socketIO",
-		component: socketIO,
-		meta: { title: "WebRTC信令" },
-	},
-	{
-		path: "/RTCPeerConnection",
-		name: "RTCPeerConnection",
-		component: RTCPeerConnection,
-		meta: { title: "端对端1V1传输" },
-	},
+  {
+    path: "/getUserMedia",
+    name: "getUserMedia",
+    component: getUserMedia,
+    meta: { title: "WebRTC获取音视频设备" },
+  },
+  {
+    path: "/mediaDevices",
+    name: "mediaDevices",
+    component: mediaDevices,
+    meta: { title: "WebRTC音视频数据采集" },
+  },
+  {
+    path: "/3/mediaRecoder",
+    name: "mediaRecoder",
+    component: mediaRecoder,
+    meta: { title: "WebRTC录制" },
+  },
+  {
+    path: "/3/getDisplayMedia",
+    name: "getDisplayMedia",
+    component: getDisplayMedia,
+    meta: { title: "WebRTC屏幕捕获" },
+  },
+  {
+    path: "/socketIO",
+    name: "socketIO",
+    component: socketIO,
+    meta: { title: "WebRTC信令" },
+  },
+  {
+    path: "/RTCPeerConnection",
+    name: "RTCPeerConnection",
+    component: RTCPeerConnection,
+    meta: { title: "端对端1V1传输" },
+  },
 ];
-// console.log(createWebHistory(process.env.BASE_URL));
 
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL),
-	routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
