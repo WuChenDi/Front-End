@@ -1,64 +1,52 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
 
-const getUserMedia = () =>
-  import(/* webpackChunkName: "getUserMedia" */ '../views/getUserMedia.vue');
-const mediaDevices = () =>
-  import(/* webpackChunkName: "mediaDevices" */ '../views/mediaDevices.vue');
-const mediaRecoder = () =>
-  import(/* webpackChunkName: "mediaRecoder" */ '../views/mediaRecoder.vue');
-const getDisplayMedia = () =>
-  import(/* webpackChunkName: "getDisplayMedia" */ '../views/getDisplayMedia.vue');
-const socketIO = () => import(/* webpackChunkName: "socketIO" */ '../views/socketIO.vue');
-const RTCPeerConnection = () =>
-  import(/* webpackChunkName: "RTCPeerConnection" */ '../views/RTCPeerConnection.vue');
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "Home" */ '../views/Home'),
+    component: () => import('../views/Home'),
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "About" */ '../views/About'),
+    component: () => import('../views/About'),
   },
 
   { path: '/', redirect: '/getUserMedia' },
   {
     path: '/getUserMedia',
     name: 'getUserMedia',
-    component: getUserMedia,
+    component: () => import('../views/getUserMedia.vue'),
     meta: { title: 'WebRTC获取音视频设备' },
   },
   {
     path: '/mediaDevices',
     name: 'mediaDevices',
-    component: mediaDevices,
+    component: () => import('../views/mediaDevices.vue'),
     meta: { title: 'WebRTC音视频数据采集' },
   },
   {
     path: '/3/mediaRecoder',
     name: 'mediaRecoder',
-    component: mediaRecoder,
+    component: () => import('../views/mediaRecoder.vue'),
     meta: { title: 'WebRTC录制' },
   },
   {
     path: '/3/getDisplayMedia',
     name: 'getDisplayMedia',
-    component: getDisplayMedia,
+    component: () => import('../views/getDisplayMedia.vue'),
     meta: { title: 'WebRTC屏幕捕获' },
   },
   {
     path: '/socketIO',
     name: 'socketIO',
-    component: socketIO,
+    component: () => import('../views/socketIO.vue'),
     meta: { title: 'WebRTC信令' },
   },
   {
     path: '/RTCPeerConnection',
     name: 'RTCPeerConnection',
-    component: RTCPeerConnection,
+    component: () => import('../views/RTCPeerConnection.vue'),
     meta: { title: '端对端1V1传输' },
   },
 ];
