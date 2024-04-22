@@ -1,0 +1,17 @@
+{
+  "name": "examples-mysql",
+  "version": "1.0.0",
+  "author": "wudi",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.2.6",
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^20.12.7"
+  }
+}
