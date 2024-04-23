@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "bootstrap": "pnpm i && pnpm run build:plugin",
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "build:plugin": "pnpm -C packages/plugin build",
+    "clean": "bash ./scripts/clean.sh",
+    "format": "prettier --check --write .",
+    "format:fail": "prettier --check ."
+  },
+  "devDependencies": {
+    "@cdlab996/eslint-config-react": "0.0.6-beta.4",
+    "@cdlab996/eslint-config-vue": "0.0.6-beta.4",
+    "@cdlab996/prettier-config": "0.0.6-beta.4",
+    "@types/node": "^20.12.7",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
+    "vite-plugin-dts": "^3.9.0"
+  },
+  "author": "wudi",
+  "license": "MIT"
+}

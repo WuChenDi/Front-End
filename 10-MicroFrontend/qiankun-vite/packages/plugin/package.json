@@ -1,0 +1,28 @@
+{
+  "name": "@cdlab996/vite-plugin-qiankun",
+  "version": "0.0.1",
+  "description": "Qiankun plugin for vite",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vite-plugin",
+    "qiankun",
+    "vite"
+  ],
+  "author": "wudi",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "1.0.0-rc.12",
+    "node-html-parser": "^6.1.10"
+  }
+}

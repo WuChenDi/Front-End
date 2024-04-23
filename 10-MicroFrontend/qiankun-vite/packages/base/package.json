@@ -1,0 +1,26 @@
+{
+  "name": "@cdlab996/base",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --port 10000",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@cdlab996/vite-plugin-qiankun": "workspace:*",
+    "element-plus": "^2.7.1",
+    "qiankun": "^2.10.16",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@cdlab996/eslint-config-vue": "0.0.6-beta.4",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
+    "vue-tsc": "^2.0.6"
+  }
+}
