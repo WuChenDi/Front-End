@@ -1,0 +1,27 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "pnpm i && bash ./scripts/init.sh",
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "clean": "bash ./scripts/clean.sh",
+    "format": "prettier --check --write .",
+    "format:fail": "prettier --check ."
+  },
+  "dependencies": {
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "@cdlab996/eslint-config-ts": "^0.0.6-beta.4",
+    "@cdlab996/eslint-config-vue": "^0.0.6-beta.4",
+    "@cdlab996/prettier-config": "^0.0.6-beta.4",
+    "@types/node": "^20.12.7",
+    "dotenv": "^16.4.5",
+    "eslint": "8.57.0",
+    "typescript": "^5.4.5"
+  }
+}

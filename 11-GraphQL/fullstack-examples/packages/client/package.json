@@ -1,0 +1,25 @@
+{
+  "name": "@cdlab996/graphql-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "vue-tsc && bunx --bun vite build",
+    "preview": "bunx --bun vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.9.11",
+    "@vue/apollo-composable": "^4.0.2",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.6"
+  }
+}

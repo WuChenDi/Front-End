@@ -1,0 +1,7 @@
+.nuxt
+.output
+.vscode
+dist
+node_modules
+**/*.yaml
+public/telegram-web-app.js
