@@ -1,12 +1,28 @@
-# 👀 Learning by doing
+# 📖 Technology Learning Adventure
 
-## 🤔 What is this?
+Learn by doing!
 
-- Record the problems encountered during development and personal summary of knowledge articles.
-- [notes-vercel](https://notes-wuchendi.vercel.app/)
-- [notes-yuque](https://www.yuque.com/wuchendi/fe)
+This repository documents the challenges encountered during development and summarizes key knowledge.
 
-## 📖 Catalogue
+- Vercel: [Notes](https://notes-wuchendi.vercel.app/)
+- Yuque: [Notes](https://www.yuque.com/wuchendi/fe)
+
+## 🛠️ Tech Stack
+
+- [x] Work Demos
+- [x] HTML5/CSS3
+- [x] JavaScript/TypeScript
+- [x] Interview Techniques
+- [x] Vue/React
+- [x] Testing
+- [x] Micro Frontend
+- [x] Node.js
+- [x] GraphQL
+- [x] Database
+- [x] Build Tools
+- [x] Live/WebRTC/Video
+- [x] Docker
+- [x] Vagrant
 
 ## 📜 License
 
