@@ -9,30 +9,44 @@ interface ILoaderState {
 interface ILoaderProps {
   data: any
 }
-const withLoader = <P extends ILoaderState>(WrappedComponent: React.ComponentType<P>, url: string) => {
-  return class LoaderComponent extends React.Component<Partial<ILoaderProps>, ILoaderState> {
+const withLoader = <P extends ILoaderState>(
+  WrappedComponent: React.ComponentType<P>,
+  url: string
+) => {
+  return class LoaderComponent extends React.Component<
+    Partial<ILoaderProps>,
+    ILoaderState
+  > {
     constructor(props: any) {
       super(props)
       this.state = {
         data: null,
-        isLoading: false
+        isLoading: false,
       }
     }
+
     componentDidMount() {
       this.setState({
-        isLoading: true
+        isLoading: true,
       })
-      axios.get(url).then(result => {
+      axios.get(url).then((result) => {
         this.setState({
           data: result.data,
-          isLoading: false
+          isLoading: false,
         })
       })
     }
+
     render() {
       const { data, isLoading } = this.state
       return (
-        <>{isLoading || !data ? <p>data is loading</p> : <WrappedComponent {...(this.props as P)} data={data} />}</>
+        <>
+          {isLoading || !data ? (
+            <p>data is loading</p>
+          ) : (
+            <WrappedComponent {...(this.props as P)} data={data} />
+          )}
+        </>
       )
     }
   }

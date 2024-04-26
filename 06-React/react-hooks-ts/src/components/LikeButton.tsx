@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ThemeContext } from '../App'
 
@@ -16,7 +18,7 @@ const LikeButton: React.FC = () => {
   console.log(theme)
   const style = {
     background: theme.background,
-    color: theme.color
+    color: theme.color,
   }
 
   // 首次与每次渲染都会执行

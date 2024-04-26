@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from './logo.svg'
+import logo from './assets/react.svg'
 import './App.css'
 
 import Hello from './components/Hello'
@@ -29,12 +29,12 @@ interface IThemeProps {
 const themes: IThemeProps = {
   light: {
     color: '#000',
-    background: '#eee'
+    background: '#eee',
   },
   dark: {
     color: '#fff',
-    background: '#222'
-  }
+    background: '#222',
+  },
 }
 
 export const ThemeContext = React.createContext(themes.light)
@@ -80,7 +80,12 @@ const App: React.FC = () => {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
+          <a
+            className='App-link'
+            href='https://reactjs.org'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
             Learn React
           </a>
         </header>

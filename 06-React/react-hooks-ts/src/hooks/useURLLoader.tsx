@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const useURLLoader = (url: string, deps: any[] = []) => {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<any>(null)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
-    setLoading(true);
-    axios.get(url).then(result => {
-      setData(result.data);
-      setLoading(false);
-    });
-  }, deps);
-  return [data, loading];
-};
+    setLoading(true)
+    axios.get(url).then((result) => {
+      setData(result.data)
+      setLoading(false)
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 
-export default useURLLoader;
+  return [data, loading]
+}
+
+export default useURLLoader
