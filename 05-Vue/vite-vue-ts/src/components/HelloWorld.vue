@@ -1,3 +1,31 @@
+<!-- eslint-disable no-console -->
+<script setup lang="ts">
+import { useStoreHooks } from '../hooks/useStore'
+
+import useProducts from '../models/products'
+defineProps({
+  msg: String,
+})
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+// eslint-disable-next-line unused-imports/no-unused-vars
+const { state, getters, commit, dispatch } = useStoreHooks()
+
+console.log('vuex: ', state.user)
+// console.log("getters", getters.user);
+// console.log("getters", getters.user?.isLogin);
+console.log('getters', getters['user/isLogin'])
+
+const handleVuex = () => {
+  console.log('handleVuex', state.user.loading)
+  commit('user/GET_DATA', !state.user.loading)
+  // dispatch("user/GET_DATA");
+}
+const { products } = await useProducts()
+console.log(products)
+</script>
+
 <template>
   <h1>{{ msg }}</h1>
   <button @click="handleVuex">change vuex</button>
@@ -6,30 +34,6 @@
     <li v-for="product in products" :key="product.id">{{ product.title }}</li>
   </ul>
 </template>
-
-<script setup lang="ts">
-import { useStoreHooks } from "../hooks/useStore";
-const { state, getters, commit, dispatch } = useStoreHooks();
-
-defineProps({
-  msg: String,
-});
-
-console.log("vuex: ", state.user);
-// console.log("getters", getters.user);
-// console.log("getters", getters.user?.isLogin);
-console.log("getters", getters["user/isLogin"]);
-
-const handleVuex = () => {
-  console.log("handleVuex", state.user.loading);
-  commit("user/GET_DATA", !state.user.loading);
-  // dispatch("user/GET_DATA");
-};
-
-import useProducts from "../models/products";
-const { products } = await useProducts();
-console.log(products);
-</script>
 
 <style scoped>
 a {

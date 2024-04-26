@@ -4,7 +4,7 @@ export default defineComponent({
   name: 'VModelComponents',
   props: {
     name: String,
-    age: [String, Number]
+    age: [String, Number],
   },
   emits: ['update:name', 'update:age'],
   setup(props, { emit }) {
@@ -27,5 +27,5 @@ export default defineComponent({
         </>
       )
     }
-  }
+  },
 })

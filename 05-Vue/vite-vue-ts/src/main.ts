@@ -1,20 +1,20 @@
-import { createApp } from "vue";
-import App from "./App";
-import router from "./router";
-import { setupStore } from "./store";
+import { createApp } from 'vue'
+import App from './App'
+import router from './router'
+import { setupStore } from './store'
 
-import VueHighcharts from "./directive/highcharts";
+import VueHighcharts from './directive/highcharts'
 
 async function bootstrap() {
-  const app = createApp(App);
+  const app = createApp(App)
 
-  app.use(router);
+  app.use(router)
 
-  setupStore(app);
+  setupStore(app)
 
-  app.use(VueHighcharts);
+  app.use(VueHighcharts)
 
-  app.mount("#app", true);
+  app.mount('#app', true)
 }
 
-void bootstrap();
+void bootstrap()

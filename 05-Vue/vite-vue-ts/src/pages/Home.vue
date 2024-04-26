@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import HelloWorld from '@/components/HelloWorld.vue'
+</script>
+
 <template>
   Home组件
   <Suspense>
@@ -9,7 +13,3 @@
     </template>
   </Suspense>
 </template>
-
-<script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
-</script>

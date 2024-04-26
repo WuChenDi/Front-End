@@ -29,5 +29,5 @@ export default defineComponent({
         <button onClick={handleChangeFlag}>change flag</button>
       </>
     )
-  }
+  },
 })

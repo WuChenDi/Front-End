@@ -5,9 +5,12 @@ export default defineComponent({
   setup() {
     const state = reactive({
       age: 18,
-      name: 'dd'
+      name: 'dd',
     })
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line unused-imports/no-unused-vars
     const age1 = computed(() => {
       return state.age + 1
     })
@@ -33,5 +36,5 @@ export default defineComponent({
         toRef demo - {ageRef.value} - {state.name} {state.age}
       </p>
     )
-  }
+  },
 })

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   defineComponent,
   onBeforeMount,
@@ -5,11 +6,11 @@ import {
   onBeforeUpdate,
   onUpdated,
   onBeforeUnmount,
-  onUnmounted
+  onUnmounted,
 } from 'vue'
 
 const PropsType = {
-  msg: String
+  msg: String,
 } as const
 
 export default defineComponent({
@@ -39,5 +40,5 @@ export default defineComponent({
     })
 
     return () => <p>生命周期 Composition API ------ {props.msg}</p>
-  }
+  },
 })

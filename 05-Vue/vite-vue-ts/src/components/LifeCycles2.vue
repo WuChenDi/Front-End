@@ -1,12 +1,9 @@
-<template>
-  <p>生命周期-兼容 2 的写法 ------ {{msg}}</p>
-</template>
-
+<!-- eslint-disable no-console -->
 <script>
 export default {
   name: 'LifeCycles2',
   props: {
-    msg: String
+    msg: String,
   },
 
   beforeCreate() {
@@ -34,6 +31,10 @@ export default {
   // destroyed 改名
   unmounted() {
     console.log('unmounted')
-  }
+  },
 }
 </script>
+
+<template>
+  <p>生命周期-兼容 2 的写法 ------ {{ msg }}</p>
+</template>

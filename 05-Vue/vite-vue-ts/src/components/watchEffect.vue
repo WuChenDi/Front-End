@@ -1,11 +1,4 @@
-<template>
-  <h1>watchEffect</h1>
-
-  <h2>num: {{ num }}</h2>
-
-  <h3>name: {{ state.name }} age: {{ state.age }}</h3>
-</template>
-
+<!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import { reactive, ref, watchEffect } from 'vue'
 
@@ -13,7 +6,7 @@ const num = ref(0)
 
 const state = reactive({
   name: 'dd',
-  age: 20
+  age: 20,
 })
 
 watchEffect(
@@ -27,7 +20,7 @@ watchEffect(
   {
     onTrigger(e) {
       console.log('onTrigger', e)
-    }
+    },
   }
 )
 
@@ -43,3 +36,11 @@ setInterval(() => {
   state.age++
 }, 3000)
 </script>
+
+<template>
+  <h1>watchEffect</h1>
+
+  <h2>num: {{ num }}</h2>
+
+  <h3>name: {{ state.name }} age: {{ state.age }}</h3>
+</template>

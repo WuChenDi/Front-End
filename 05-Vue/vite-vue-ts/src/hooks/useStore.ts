@@ -1,19 +1,18 @@
-import { useStore } from "vuex";
-import { RootState } from "../store";
-import { Getters, Dispatch, Commit } from "../store/utils";
+import { useStore } from 'vuex'
+import type { RootState } from '../store'
+import type { Getters, Dispatch, Commit } from '../store/utils'
 
 interface UseStoreHooks {
-  state: RootState;
-  getters: Getters;
-  dispatch: Dispatch;
-  commit: Commit;
+  state: RootState
+  getters: Getters
+  dispatch: Dispatch
+  commit: Commit
 }
 
 const useStoreHooks = (): UseStoreHooks => {
-  const { state, getters, dispatch, commit }: UseStoreHooks =
-    useStore<RootState>();
-  return { state, getters, dispatch, commit };
-};
+  const { state, getters, dispatch, commit }: UseStoreHooks = useStore<RootState>()
+  return { state, getters, dispatch, commit }
+}
 
-export { useStoreHooks };
-export default useStoreHooks;
+export { useStoreHooks }
+export default useStoreHooks

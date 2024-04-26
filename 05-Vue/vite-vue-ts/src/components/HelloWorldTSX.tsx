@@ -1,15 +1,16 @@
-import { defineComponent, ref, PropType } from 'vue'
+import type { PropType } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 const PropsType = {
   msg: String,
   onChange: {
-    type: Function as PropType<(v: any) => void>,
-    required: true
-  }
+    type: Function as PropType<(v: string) => void>,
+    required: true,
+  },
 } as const
 
 export default defineComponent({
-  name: 'HelloWorld-tsx',
+  name: 'HelloWorldTsx',
   props: PropsType,
   setup(props) {
     const countRef = ref(0)
@@ -25,5 +26,5 @@ export default defineComponent({
         <button onClick={handleClick}>count is: {countRef.value}</button>
       </>
     )
-  }
+  },
 })

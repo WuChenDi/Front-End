@@ -1,22 +1,14 @@
-import {
-  defineComponent,
-  h,
-  Ref,
-  ref,
-  toRefs,
-  PropType,
-  watch,
-  onMounted,
-  onUnmounted,
-} from "vue";
-import Highcharts, { Chart, Options } from "highcharts";
+import type { Ref, PropType } from 'vue'
+import { defineComponent, h, ref, toRefs, watch, onMounted, onUnmounted } from 'vue'
+import type { Chart, Options } from 'highcharts'
+import Highcharts from 'highcharts'
 
 const vueHighcharts = defineComponent({
-  name: "VueHighcharts",
+  name: 'VueHighcharts',
   props: {
     type: {
       type: String as PropType<keyof typeof Highcharts>,
-      default: "chart",
+      default: 'chart',
     },
     options: {
       type: Object as PropType<Options>,
@@ -36,59 +28,55 @@ const vueHighcharts = defineComponent({
     },
   },
   setup(props, { emit }) {
-    const chartRef = ref(null);
-    const chart: Ref<Chart | null> = ref(null);
-    const { options } = toRefs(props);
+    const chartRef = ref(null)
+    const chart: Ref<Chart | null> = ref(null)
+    const { options } = toRefs(props)
     if (options?.value) {
       watch(
         options,
         (newValue) => {
           if (chart.value !== null) {
-            (chart as unknown as Ref<Chart>).value.update(
+            ;(chart as unknown as Ref<Chart>).value.update(
               newValue,
               props.redrawOnUpdate,
               props.oneToOneUpdate,
               props.animateOnUpdate
-            );
-            emit("updated");
+            )
+            emit('updated')
           }
         },
         {
           deep: true,
         }
-      );
+      )
       onMounted(() => {
         // chart.value = (Highcharts as any)[props.type](
-        chart.value = Highcharts[props.type](
-          chartRef.value,
-          options.value,
-          () => {
-            emit("rendered");
-          }
-        );
-      });
+        chart.value = Highcharts[props.type](chartRef.value, options.value, () => {
+          emit('rendered')
+        })
+      })
       onUnmounted(() => {
         if (chart?.value) {
-          (<Ref<Chart>>(chart as unknown)).value.destroy();
+          ;(<Ref<Chart>>(chart as unknown)).value.destroy()
         }
 
-        emit("destroyed");
-      });
+        emit('destroyed')
+      })
     } else {
-      console.error("Options cannot be empty");
+      console.error('Options cannot be empty')
     }
 
     return {
       chartRef,
       chart,
-    };
+    }
   },
   render() {
-    return h("div", {
-      class: "vue-highcharts",
-      ref: "chartRef",
-    });
+    return h('div', {
+      class: 'vue-highcharts',
+      ref: 'chartRef',
+    })
   },
-});
+})
 
-export default vueHighcharts;
+export default vueHighcharts

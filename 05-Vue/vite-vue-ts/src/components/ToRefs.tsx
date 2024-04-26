@@ -5,7 +5,7 @@ export default defineComponent({
   setup() {
     const state = reactive({
       age: 20,
-      name: 'dd'
+      name: 'dd',
     })
 
     const stateAsRefs = toRefs(state) // 将响应式对象，变成普通对象
@@ -22,5 +22,5 @@ export default defineComponent({
         toRefs demo {ageRef.value} {nameRef.value}
       </p>
     )
-  }
+  },
 })

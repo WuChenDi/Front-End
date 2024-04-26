@@ -12,12 +12,12 @@
 
 // const modules = await asyncStoreModule();
 
-import user from "./modules/user";
-import wechat from "./modules/wechat";
+import user from './modules/user'
+import wechat from './modules/wechat'
 
 const modules = {
   user,
   wechat,
-};
+}
 
-export { modules };
+export { modules }

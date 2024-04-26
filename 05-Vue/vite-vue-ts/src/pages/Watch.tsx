@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import Watch from '@/components/Watch.vue'
 import WatchEffect from '@/components/watchEffect.vue'
 
@@ -19,5 +19,5 @@ export default defineComponent({
         <WatchEffect />
       </>
     )
-  }
+  },
 })

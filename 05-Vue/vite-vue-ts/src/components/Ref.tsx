@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { defineComponent, ref, reactive } from 'vue'
 
 export default defineComponent({
@@ -7,7 +8,7 @@ export default defineComponent({
     const nameRef = ref('dd')
 
     const state = reactive({
-      name: nameRef
+      name: nameRef,
     })
 
     setTimeout(() => {
@@ -22,5 +23,5 @@ export default defineComponent({
         ref demo {ageRef.value} {state.name}
       </p>
     )
-  }
+  },
 })

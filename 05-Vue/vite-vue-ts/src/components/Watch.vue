@@ -1,9 +1,4 @@
-<template>
-  <h1>watch</h1>
-
-  <h2>{{ state.obj }}</h2>
-</template>
-
+<!-- eslint-disable no-console -->
 <script lang="ts" setup>
 import { reactive, watch } from 'vue'
 
@@ -19,7 +14,7 @@ watch(
   // 配置项
   {
     deep: true,
-    immediate: true
+    immediate: true,
   }
 )
 
@@ -31,3 +26,9 @@ setInterval(() => {
   state.obj.count++
 }, 1000)
 </script>
+
+<template>
+  <h1>watch</h1>
+
+  <h2>{{ state.obj }}</h2>
+</template>

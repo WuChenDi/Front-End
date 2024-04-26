@@ -1,9 +1,9 @@
-import { createStore } from "./store";
-import actions from "./actions";
-import mutations from "./mutations";
-import getters from "./getters";
+import { createStore } from './store'
+import actions from './actions'
+import mutations from './mutations'
+import getters from './getters'
 
-const state = createStore();
+const state = createStore()
 
 export default {
   namespaced: true,
@@ -11,4 +11,4 @@ export default {
   actions,
   getters,
   mutations,
-};
+}

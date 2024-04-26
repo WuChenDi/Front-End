@@ -1,9 +1,9 @@
 export const createStore = () => {
   const store = {
     loading: true,
-  };
-  return store;
-};
+  }
+  return store
+}
 
 // 类型推导
-export type userStateType = ReturnType<typeof createStore>;
+export type userStateType = ReturnType<typeof createStore>

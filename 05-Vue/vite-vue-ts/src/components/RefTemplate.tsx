@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { defineComponent, ref, onMounted } from 'vue'
 
 export default defineComponent({
@@ -10,5 +11,5 @@ export default defineComponent({
     })
 
     return () => <p ref={elemRef}>我是一 p 标签</p>
-  }
+  },
 })

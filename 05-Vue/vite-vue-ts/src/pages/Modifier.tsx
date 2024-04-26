@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { defineComponent, ref, watch } from 'vue'
 
 export default defineComponent({
@@ -29,22 +30,16 @@ export default defineComponent({
           <p>Modifier</p>
         </div>
 
-        <p>
-          v-models.lazy: {msgLazyRef.value}
-        </p>
+        <p>v-models.lazy: {msgLazyRef.value}</p>
         {/* <input v-model:lazy={msgRef.value} /> */}
         <input v-model={[msgLazyRef.value, ['lazy']]} />
 
-        <p>
-          v-models.number: {msgNumberRef.value}
-        </p>
+        <p>v-models.number: {msgNumberRef.value}</p>
         <input v-model={[msgNumberRef.value, ['number']]} />
 
-        <p>
-          v-models.trim: {msgTrimRef.value}
-        </p>
+        <p>v-models.trim: {msgTrimRef.value}</p>
         <input v-model={[msgTrimRef.value, ['trim']]} />
       </>
     )
-  }
+  },
 })
