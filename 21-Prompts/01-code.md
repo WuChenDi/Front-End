@@ -4,7 +4,10 @@
 
 你现在是一个 [程序语言] 专家，请帮我用 [程序语言] 写一个函式，它需要做到 [某个功能]
 
+<details>
+<summary>example</summary>
 👉 你现在是一个 JavaScript 专家，请帮我用 JavaScript 写一个函式，它需要做到 输入一个一维数组，把这个一维数组转换成二维数组。同时我要能够自由地决定二维数组中的子数组长度是多少
+</details>
 
 ## Read code
 
@@ -20,7 +23,10 @@ You are now a Clean Code expert. I have the following code; please rewrite it in
 
 你现在是一个 [程序语言] 专家，我有一段程序码，我预期这段程序码可以 [做到某个功能]，只是它通过不了 [测试案例] 这个测试案例。请帮我找出我哪里写错了，以及用正确的方式改写。[附上程序码]
 
+<details>
+<summary>example</summary>
 👉 你现在是一个 python 专家，我有一段程序码，我预期这段程序码可以判断一个字串是不是镜像回文，只是它通过不了 aacdeedcc 这个测试案例。请帮我找出我哪里写错了，以及用正确的方式改写。[附上程序码]
+</details>
 
 ## Write Testings
 
@@ -30,4 +36,7 @@ You are now a Clean Code expert. I have the following code; please rewrite it in
 
 你现在是一个 Regex 专家，请帮我写一个 Regex ，它能够把 [需求]
 
+<details>
+<summary>example</summary>
 👉 你现在是一个 Regex 专家，请帮我写一个 Regex ，它能够把输入一个字串，把这个字串中的所有数字都取出来
+</details>
