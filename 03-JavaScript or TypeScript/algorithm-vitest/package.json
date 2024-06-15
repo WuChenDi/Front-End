@@ -1,0 +1,46 @@
+{
+  "name": "algorithm",
+  "type": "module",
+  "version": "0.0.5",
+  "description": "algorithm for test",
+  "author": "wudi",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/algorithm.d.ts",
+      "import": "./dist/algorithm.js",
+      "require": "./dist/algorithm.cjs"
+    }
+  },
+  "main": "./dist/algorithm.cjs",
+  "module": "./dist/algorithm.js",
+  "types": "./dist/algorithm.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18.20.3 || >=20.0.0"
+  },
+  "scripts": {
+    "build": "pnpm run test && tsc && vite build",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint:type": "tsc -p ./tsconfig.json --noEmit",
+    "prepack": "pnpm run test && pnpm run build"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.2",
+    "@vitest/coverage-v8": "1.6.0",
+    "camelcase": "8.0.0",
+    "jsdom": "24.1.0",
+    "typescript": "5.4.5",
+    "vite": "5.2.11",
+    "vite-plugin-dts": "3.9.1",
+    "vitest": "1.6.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
