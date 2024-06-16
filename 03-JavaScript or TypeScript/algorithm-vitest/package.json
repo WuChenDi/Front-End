@@ -22,7 +22,7 @@
     "node": ">=18.20.3 || >=20.0.0"
   },
   "scripts": {
-    "build": "pnpm run test && tsc && vite build",
+    "build": "npm run test && tsc && vite build",
     "test": "vitest --run",
     "test:watch": "vitest",
     "test:coverage": "vitest --coverage",
