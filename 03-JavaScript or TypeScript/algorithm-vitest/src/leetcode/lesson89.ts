@@ -1,4 +1,4 @@
-export function lesson89(n: number): string[] {
+export function grayCode(n: number): string[] {
   if (n === 0) {
     // 基础情况：n为0时直接返回空数组
     return []

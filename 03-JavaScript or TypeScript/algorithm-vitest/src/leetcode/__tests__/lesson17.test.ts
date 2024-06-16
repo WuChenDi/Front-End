@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { letterCombinations } from '../lesson17'
+import { letterCombinations } from '../index'
 
 describe('letterCombinations', () => {
   // 1. 测试空字符串输入
