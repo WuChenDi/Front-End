@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {hasGroupsSizeX} from '../index'
+import { hasGroupsSizeX } from '../index'
 
 describe('hasGroupsSizeX', () => {
   // 1. 基本测试
