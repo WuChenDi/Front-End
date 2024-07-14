@@ -1,4 +1,4 @@
 *.hj.io
 linktr.ee
 myip.com
-www.cakeresume.com
+cakeresume.com
