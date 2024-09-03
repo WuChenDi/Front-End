@@ -1,5 +1,7 @@
-*.hj.io
-nssurge.com
+.nuxt.com
+miro.com
+.hj.io
 linktr.ee
+nssurge.com
 myip.com
 cakeresume.com
