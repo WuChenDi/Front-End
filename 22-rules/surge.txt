@@ -1,3 +1,5 @@
+letsvpn.world
+v2rayssr.com
 .nuxt.com
 miro.com
 .hj.io
