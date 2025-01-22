@@ -1,0 +1,17 @@
+networks:
+  traefik:
+    external: true
+    name: traefik
+
+services:
+  app:
+    image: registry.cn-shanghai.aliyuncs.com/nocobase/nocobase:latest
+    container_name: nocobase-app
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ./storage:/app/nocobase/storage
+    ports:
+      - '13000:80'
+    networks:
+      - traefik
