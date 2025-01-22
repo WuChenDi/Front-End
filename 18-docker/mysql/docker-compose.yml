@@ -1,0 +1,20 @@
+networks:
+  traefik:
+    external: true
+    name: traefik
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: dd-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password  # Set root password
+      MYSQL_DATABASE: dd_db               # Set default database
+      MYSQL_USER: dd_user                 # Set user
+      MYSQL_PASSWORD: dd_password         # Set user password
+    volumes:
+      - ./mysql_data:/var/lib/mysql       # MySQL data persistence
+    ports:
+      - '3306:3306'
+    networks:
+      - traefik
