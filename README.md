@@ -4,8 +4,11 @@ Learn by doing!
 
 This repository documents the challenges encountered during development and summarizes key knowledge.
 
-- Vercel: [Notes](https://notes-wuchendi.vercel.app/)
-- Yuque: [Notes](https://www.yuque.com/wuchendi/fe)
+- CF: <https://notes-wudi.pages.dev/>
+- Vercel: <https://notes-wudi.vercel.app/>
+- Yuque: <https://www.yuque.com/wuchendi/fe>
+
+![](https://cdn.jsdelivr.net/gh/cdLab996/picture-lib/wudi/notes/notes-bg.png)
 
 ## 🛠️ Tech Stack
 
