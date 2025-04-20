@@ -1,4 +1,5 @@
 export * from './lesson17'
+export * from './lesson42'
 export * from './lesson89'
 export * from './lesson557'
 export * from './lesson605'
