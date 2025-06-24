@@ -16,6 +16,7 @@
 #   - Modify 'output_file' to change the output filename
 #   - Modify 'exclude_extensions' to add/remove file types to exclude
 #   - Modify 'exclude_directories' to add/remove directories to exclude
+#   - Modify 'exclude_files' to add/remove specific files to exclude
 #
 # Output Format:
 #   - filename.ext
@@ -37,6 +38,10 @@ exclude_extensions="sh json sql md"
 # Directories to exclude (space-separated)
 # Add or remove directory names as needed
 exclude_directories="node_modules .git dist build .next .nuxt coverage .vscode .idea logs tmp temp"
+
+# Specific files to exclude (space-separated, with relative paths)
+# Add or remove specific files as needed
+exclude_files="package-lock.json yarn.lock bun.lock .env .env.local .gitignore LICENSE README.md"
 
 # Clear or create the output file
 > "$output_file"
@@ -85,7 +90,23 @@ traverse_directory() {
                 extension=""
             fi
 
-            # Check if file should be excluded
+            # Check if specific file should be excluded
+            excluded_file=false
+            for exclude_file in $exclude_files; do
+                if [ "$filename" = "$exclude_file" ] || [ "$relative_path" = "$exclude_file" ]; then
+                    echo "Skipping file: $relative_path (excluded specific file)"
+                    excluded_file=true
+                    break
+                fi
+            done
+
+            # Skip processing if specific file is excluded
+            if [ "$excluded_file" = true ]; then
+                continue
+            fi
+
+            # Check if file extension should be excluded
+            # Check if file extension should be excluded
             excluded=false
             for ext in $exclude_extensions; do
                 if [ "$extension" = "$ext" ]; then
@@ -95,7 +116,7 @@ traverse_directory() {
                 fi
             done
 
-            # Skip processing if file is excluded
+            # Skip processing if file extension is excluded
             if [ "$excluded" = true ]; then
                 continue
             fi
