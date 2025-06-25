@@ -1,0 +1,22 @@
+services:
+  app:
+    container_name: desktop
+    image: zzci/desktop
+    volumes:
+        - ./work:/work
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true
+    name: traefik
+
+# docker run -d --name desktop \
+#   -v ./work:/work \
+#   --cap-add NET_ADMIN --cap-add SYS_ADMIN \
+#   --network traefik \
+#   zzci/desktop
