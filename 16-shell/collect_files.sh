@@ -33,7 +33,7 @@ output_file="files_summary.md"
 
 # File extensions to exclude (space-separated)
 # Add or remove extensions as needed
-exclude_extensions="sh json sql md"
+exclude_extensions="sh json sql md js jsonc"
 
 # Directories to exclude (space-separated)
 # Add or remove directory names as needed
@@ -41,7 +41,7 @@ exclude_directories="node_modules .git dist build .next .nuxt coverage .vscode .
 
 # Specific files to exclude (space-separated, with relative paths)
 # Add or remove specific files as needed
-exclude_files="package-lock.json yarn.lock bun.lock .env .env.local .gitignore LICENSE README.md"
+exclude_files="package-lock.json yarn.lock pnpm-lock.yaml bun.lock .env .env.local .gitignore LICENSE README.md"
 
 # Clear or create the output file
 > "$output_file"
