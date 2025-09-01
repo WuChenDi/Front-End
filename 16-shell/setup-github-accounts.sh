@@ -20,16 +20,18 @@
 #        - Work:     https://github.com/settings/keys
 #
 # After setup:
-#   - Use git@github.com-wudi:username/repo.git for personal repos.
-#   - Use git@github.com-cd996:org/repo.git for work repos.
+#   - Use git@github.com-wudi:username/repo.git for wudi repos.
+#   - Use git@github.com-cd996:username/repo.git for cd996 repos.
 #
 # Git will automatically pick the correct user.name and user.email based
-# on the repository path.
+# on the repository path:
+#   - /app/work/wudi/ -> wudi account
+#   - /app/work/cd996/ -> cd996 account
 
 set -e
 
-WD_EMAIL="xxx@gmail.com"
-CD_EMAIL="xxx@gmail.com"
+WD_EMAIL="wuchendi96@gmail.com"
+CD_EMAIL="cdhj996@gmail.com"
 
 generate_key() {
   local KEY_PATH=$1
@@ -42,6 +44,11 @@ generate_key() {
     ssh-keygen -t ed25519 -C "$EMAIL" -f "$KEY_PATH" -N ""
   fi
 }
+
+# Create work directories if they don't exist
+echo ">>> Creating work directories..."
+mkdir -p /app/work/wudi
+mkdir -p /app/work/cd996
 
 generate_key ~/.ssh/id_ed25519_wudi "$WD_EMAIL"
 generate_key ~/.ssh/id_ed25519_cd996 "$CD_EMAIL"
@@ -80,10 +87,10 @@ cat <<'EOF' > ~/.gitconfig
     name = DefaultName
     email = default@example.com
 
-[includeIf "gitdir:~/projects/work/"]
+[includeIf "gitdir:/app/work/cd996/"]
     path = ~/.gitconfig-cd996
 
-[includeIf "gitdir:~/projects/personal/"]
+[includeIf "gitdir:/app/work/wudi/"]
     path = ~/.gitconfig-wudi
 EOF
 
@@ -99,7 +106,7 @@ cat <<EOF > ~/.gitconfig-cd996
     email = $CD_EMAIL
 EOF
 
-# publice keys
+# public keys
 echo ""
 echo ">>> Done! Now add these SSH keys to GitHub:"
 echo ""
@@ -108,3 +115,11 @@ cat ~/.ssh/id_ed25519_wudi.pub
 echo ""
 echo "Work (cd996):"
 cat ~/.ssh/id_ed25519_cd996.pub
+echo ""
+echo ">>> Directory structure created:"
+echo "  /app/work/wudi/  -> wudi account"
+echo "  /app/work/cd996/ -> cd996 account"
+echo ""
+echo ">>> Usage examples:"
+echo "  cd /app/work/wudi && git clone git@github.com-wudi:username/repo.git"
+echo "  cd /app/work/cd996 && git clone git@github.com-cd996:username/repo.git"
