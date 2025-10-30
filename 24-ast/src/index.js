@@ -1,188 +1,185 @@
-'use strict';
+'use strict'
 
 function tokenizer(input) {
-  let current = 0;
-  let tokens = [];
+  let current = 0
+  const tokens = []
 
   while (current < input.length) {
-    let char = input[current];
+    let char = input[current]
 
     if (char === '(') {
       tokens.push({
         type: 'paren',
         value: '(',
-      });
-      current++;
-      continue;
+      })
+      current++
+      continue
     }
 
     if (char === ')') {
       tokens.push({
         type: 'paren',
         value: ')',
-      });
-      current++;
-      continue;
+      })
+      current++
+      continue
     }
 
-    let WHITESPACE = /\s/;
+    const WHITESPACE = /\s/
     if (WHITESPACE.test(char)) {
-      current++;
-      continue;
+      current++
+      continue
     }
 
-    let NUMBERS = /[0-9]/;
+    const NUMBERS = /[0-9]/
     if (NUMBERS.test(char)) {
-      let value = '';
+      let value = ''
 
       while (NUMBERS.test(char)) {
-        value += char;
-        char = input[++current];
+        value += char
+        char = input[++current]
       }
 
-      tokens.push({ type: 'number', value });
-      continue;
+      tokens.push({ type: 'number', value })
+      continue
     }
 
     if (char === '"') {
-      let value = '';
-      char = input[++current];
+      let value = ''
+      char = input[++current]
 
       while (char !== '"') {
-        value += char;
-        char = input[++current];
+        value += char
+        char = input[++current]
       }
 
-      char = input[++current];
-      tokens.push({ type: 'string', value });
-      continue;
+      char = input[++current]
+      tokens.push({ type: 'string', value })
+      continue
     }
 
-    let LETTERS = /[a-z]/i;
+    const LETTERS = /[a-z]/i
     if (LETTERS.test(char)) {
-      let value = '';
+      let value = ''
 
       while (LETTERS.test(char)) {
-        value += char;
-        char = input[++current];
+        value += char
+        char = input[++current]
       }
 
-      tokens.push({ type: 'name', value });
-      continue;
+      tokens.push({ type: 'name', value })
+      continue
     }
 
-    throw new TypeError('Unknown character: ' + char);
+    throw new TypeError('Unknown character: ' + char)
   }
 
-  return tokens;
+  return tokens
 }
 
 function parser(tokens) {
-  let current = 0;
+  let current = 0
 
   function walk() {
-    let token = tokens[current];
+    let token = tokens[current]
 
     if (token.type === 'number') {
-      current++;
+      current++
       return {
         type: 'NumberLiteral',
         value: token.value,
-      };
+      }
     }
 
     if (token.type === 'string') {
-      current++;
+      current++
       return {
         type: 'StringLiteral',
         value: token.value,
-      };
+      }
     }
 
     if (token.type === 'paren' && token.value === '(') {
-      token = tokens[++current];
+      token = tokens[++current]
 
-      let node = {
+      const node = {
         type: 'CallExpression',
         name: token.value,
         params: [],
-      };
-
-      token = tokens[++current];
-
-      while (
-        (token.type !== 'paren') ||
-        (token.type === 'paren' && token.value !== ')')
-      ) {
-        node.params.push(walk());
-        token = tokens[current];
       }
 
-      current++;
-      return node;
+      token = tokens[++current]
+
+      while (token.type !== 'paren' || (token.type === 'paren' && token.value !== ')')) {
+        node.params.push(walk())
+        token = tokens[current]
+      }
+
+      current++
+      return node
     }
 
-    throw new TypeError(token.type);
+    throw new TypeError(token.type)
   }
 
-  let ast = {
+  const ast = {
     type: 'Program',
     body: [],
-  };
-
-  while (current < tokens.length) {
-    ast.body.push(walk());
   }
 
-  return ast;
+  while (current < tokens.length) {
+    ast.body.push(walk())
+  }
+
+  return ast
 }
 
 function traverser(ast, visitor) {
   function traverseArray(array, parent) {
-    array.forEach(child => {
-      traverseNode(child, parent);
-    });
+    array.forEach((child) => {
+      traverseNode(child, parent)
+    })
   }
 
   function traverseNode(node, parent) {
-    let methods = visitor[node.type];
+    const methods = visitor[node.type]
 
     if (methods && methods.enter) {
-      methods.enter(node, parent);
+      methods.enter(node, parent)
     }
 
     switch (node.type) {
       case 'Program':
-        traverseArray(node.body, node);
-        break;
+        traverseArray(node.body, node)
+        break
 
       case 'CallExpression':
-        traverseArray(node.params, node);
-        break;
+        traverseArray(node.params, node)
+        break
 
       case 'NumberLiteral':
       case 'StringLiteral':
-        break;
+        break
 
       default:
-        throw new TypeError(node.type);
+        throw new TypeError(node.type)
     }
 
     if (methods && methods.exit) {
-      methods.exit(node, parent);
+      methods.exit(node, parent)
     }
   }
 
-  traverseNode(ast, null);
+  traverseNode(ast, null)
 }
 
 function transformer(ast) {
-  let newAst = {
+  const newAst = {
     type: 'Program',
     body: [],
-  };
+  }
 
-  ast._context = newAst.body;
+  ast._context = newAst.body
 
   traverser(ast, {
     NumberLiteral: {
@@ -190,7 +187,7 @@ function transformer(ast) {
         parent._context.push({
           type: 'NumberLiteral',
           value: node.value,
-        });
+        })
       },
     },
 
@@ -199,7 +196,7 @@ function transformer(ast) {
         parent._context.push({
           type: 'StringLiteral',
           value: node.value,
-        });
+        })
       },
     },
 
@@ -212,32 +209,32 @@ function transformer(ast) {
             name: node.name,
           },
           arguments: [],
-        };
+        }
 
-        node._context = expression.arguments;
+        node._context = expression.arguments
 
         if (parent.type !== 'CallExpression') {
           expression = {
             type: 'ExpressionStatement',
-            expression: expression,
-          };
+            expression,
+          }
         }
 
-        parent._context.push(expression);
+        parent._context.push(expression)
       },
-    }
-  });
+    },
+  })
 
-  return newAst;
+  return newAst
 }
 
 function codeGenerator(node) {
   switch (node.type) {
     case 'Program':
-      return node.body.map(codeGenerator).join('\n');
+      return node.body.map(codeGenerator).join('\n')
 
     case 'ExpressionStatement':
-      return codeGenerator(node.expression) + ';';
+      return codeGenerator(node.expression) + ';'
 
     case 'CallExpression':
       return (
@@ -245,35 +242,28 @@ function codeGenerator(node) {
         '(' +
         node.arguments.map(codeGenerator).join(', ') +
         ')'
-      );
+      )
 
     case 'Identifier':
-      return node.name;
+      return node.name
 
     case 'NumberLiteral':
-      return node.value;
+      return node.value
 
     case 'StringLiteral':
-      return '"' + node.value + '"';
+      return '"' + node.value + '"'
 
     default:
-      throw new TypeError(node.type);
+      throw new TypeError(node.type)
   }
 }
 
 function compiler(input) {
-  let tokens = tokenizer(input);
-  let ast = parser(tokens);
-  let newAst = transformer(ast);
-  let output = codeGenerator(newAst);
+  const tokens = tokenizer(input)
+  const ast = parser(tokens)
+  const newAst = transformer(ast)
+  const output = codeGenerator(newAst)
 
-  return output;
+  return output
 }
-export {
-  tokenizer,
-  parser,
-  traverser,
-  transformer,
-  codeGenerator,
-  compiler,
-}
+export { tokenizer, parser, traverser, transformer, codeGenerator, compiler }
