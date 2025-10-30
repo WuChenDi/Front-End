@@ -1,0 +1,15 @@
+{
+  "name": "ast",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "wudi <wuchendi96@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/WuChenDi",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node src/test/index.js"
+  }
+}
